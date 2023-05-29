@@ -1,3 +1,4 @@
-export default function Header({ isScrollPositionZero }) {
+function Header() {
   return <div>header</div>;
 }
+export default Header;
