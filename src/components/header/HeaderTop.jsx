@@ -1,0 +1,136 @@
+import Tippy from '@tippyjs/react/headless'
+import Icon from '../icon/Icon'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+
+function Currencies() {
+  const [initial, setInitial] = useState({})
+  const [final, setFinal] = useState({})
+
+  const onMount = () => {
+    setInitial({ rotateX: -90, height: 40 })
+    setFinal({ rotateX: 0, height: 'auto' })
+  }
+  const onHide = () => {
+    setInitial({ rotateX: 0, height: 'auto' })
+    setFinal({ rotateX: -90, height: 40 })
+  }
+  const currencies = [
+    { icon: '€', name: 'Euro' },
+    { icon: '€', name: 'Pounds' },
+    { icon: '$', name: 'US Dollar' },
+  ]
+  const content = (attrs) => (
+    <motion.div
+      initial={initial}
+      animate={final}
+      transition={{ duration: 0.1 }}
+      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
+      {...attrs}
+    >
+      {currencies.map((item, index) => (
+        <div
+          key={index}
+          className="p-2 hover:text-primary cursor-pointer"
+          style={{ fontSize: 12 }}
+        >
+          <a href="#">
+            ({item.icon})&nbsp;{item.name}
+          </a>
+        </div>
+      ))}
+    </motion.div>
+  )
+  return (
+    <Tippy
+      render={content}
+      placement="bottom-end"
+      interactive={true}
+      onMount={onMount}
+      onHide={onHide}
+    >
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
+        <div>$ US Dollar</div>
+        <Icon id="angle-down" size={10} />
+      </div>
+    </Tippy>
+  )
+}
+function Languages() {
+  const [initial, setInitial] = useState({})
+  const [final, setFinal] = useState({})
+
+  const onMount = () => {
+    setInitial({ rotateX: -90, height: 40 })
+    setFinal({ rotateX: 0, height: 'auto' })
+  }
+  const onHide = () => {
+    setInitial({ rotateX: 0, height: 'auto' })
+    setFinal({ rotateX: -90, height: 40 })
+  }
+  const languages = ['English', 'Arabic']
+  const content = (attrs) => (
+    <motion.div
+      initial={initial}
+      animate={final}
+      transition={{ duration: 0.1 }}
+      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
+      {...attrs}
+    >
+      {languages.map((language, index) => (
+        <div
+          key={index}
+          className="p-2 hover:text-primary cursor-pointer flex space-x-1 items-center"
+          style={{ fontSize: 12 }}
+        >
+          <img
+            src="image/catalog/flags/gb.png"
+            style={{ width: 16, height: 11 }}
+          />
+          <a href="#">{language}</a>
+        </div>
+      ))}
+    </motion.div>
+  )
+  return (
+    <Tippy
+      render={content}
+      placement="bottom-end"
+      interactive={true}
+      onMount={onMount}
+      onHide={onHide}
+    >
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
+        <img
+          src="image/catalog/flags/gb.png"
+          style={{ width: 16, height: 11 }}
+        />
+        <div>English</div>
+        <Icon id="angle-down" size={10} />
+      </div>
+    </Tippy>
+  )
+}
+
+export default function HeaderTop() {
+  return (
+    <div
+      className="flex space-x-2 items-center"
+      style={{ paddingLeft: 2.5 + '%', paddingRight: 2.5 + '%' }}
+    >
+      <div
+        className="flex-auto leading-9 text-gray-500"
+        style={{ fontSize: 12 }}
+      >
+        Welcome to SuperMarket! Wrap new offers / gift every single day on
+        Weekends - New Coupon code:{' '}
+        <span className="text-primary">Happy2018</span>
+      </div>
+      <div className="flex space-x-6 items-center" style={{ fontSize: 12 }}>
+        <Currencies />
+        <div className="h-2 bg-gray-500" style={{ width: 1 }}></div>
+        <Languages />
+      </div>
+    </div>
+  )
+}
