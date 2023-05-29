@@ -112,6 +112,61 @@ function Languages() {
   )
 }
 
+function AccountNavs() {
+  const [initial, setInitial] = useState({})
+  const [final, setFinal] = useState({})
+
+  const onMount = () => {
+    setInitial({ rotateX: -90, height: 40 })
+    setFinal({ rotateX: 0, height: 'auto' })
+  }
+  const onHide = () => {
+    setInitial({ rotateX: 0, height: 'auto' })
+    setFinal({ rotateX: -90, height: 40 })
+  }
+  const accountNavs = [
+    { icon: 'user', title: 'Register' },
+    { icon: 'edit', title: 'Log in' },
+  ]
+  const content = (attrs) => (
+    <motion.div
+      initial={initial}
+      animate={final}
+      transition={{ duration: 0.1 }}
+      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
+      {...attrs}
+    >
+      {accountNavs.map((nav, index) => (
+        <div
+          key={index}
+          className="p-2 hover:text-primary cursor-pointer flex space-x-1 items-center"
+          style={{ fontSize: 12 }}
+        >
+          <Icon id={nav.icon} size={12} />
+          <a href="#">{nav.title}</a>
+        </div>
+      ))}
+    </motion.div>
+  )
+  return (
+    <Tippy
+      render={content}
+      placement="bottom-end"
+      interactive={true}
+      onMount={onMount}
+      onHide={onHide}
+    >
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
+        <Icon id="user" size={12} />
+        <div className="hidden md:block" style={{ fontSize: 12 }}>
+          My Account
+        </div>
+        <Icon id="caret-down" size={10} />
+      </div>
+    </Tippy>
+  )
+}
+
 export default function HeaderTop() {
   return (
     <div
@@ -119,12 +174,15 @@ export default function HeaderTop() {
       style={{ paddingLeft: 2.5 + '%', paddingRight: 2.5 + '%' }}
     >
       <div
-        className="flex-auto leading-9 text-gray-500"
+        className="flex-auto leading-9 text-gray-500 hidden lg:flex"
         style={{ fontSize: 12 }}
       >
         Welcome to SuperMarket! Wrap new offers / gift every single day on
         Weekends - New Coupon code:{' '}
         <span className="text-primary">Happy2018</span>
+      </div>
+      <div className="flex-auto flex lg:hidden">
+        <AccountNavs />
       </div>
       <div className="flex space-x-6 items-center" style={{ fontSize: 12 }}>
         <Currencies />
