@@ -49,7 +49,7 @@ function Currencies() {
       onMount={onMount}
       onHide={onHide}
     >
-      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <div>$ US Dollar</div>
         <Icon id="angle-down" size={10} />
       </div>
@@ -100,7 +100,7 @@ function Languages() {
       onMount={onMount}
       onHide={onHide}
     >
-      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <img
           src="image/catalog/flags/gb.png"
           style={{ width: 16, height: 11 }}
@@ -178,15 +178,15 @@ export default function HeaderTop() {
         style={{ fontSize: 12 }}
       >
         Welcome to SuperMarket! Wrap new offers / gift every single day on
-        Weekends - New Coupon code:{' '}
+        Weekends - New Coupon code:&nbsp;
         <span className="text-primary">Happy2018</span>
       </div>
       <div className="flex-auto flex lg:hidden">
         <AccountNavs />
       </div>
-      <div className="flex space-x-6 items-center" style={{ fontSize: 12 }}>
+      <div className="flex space-x-5 items-center" style={{ fontSize: 12 }}>
         <Currencies />
-        <div className="h-2 bg-gray-500" style={{ width: 1 }}></div>
+        <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div>
         <Languages />
       </div>
     </div>
