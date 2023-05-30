@@ -83,7 +83,7 @@ function RightNavs() {
   return (
     <div className="flex space-x-8 items-center">
       {[{ icon: 'refresh' }, { icon: 'heart' }].map((item, index) => (
-        <div className="cursor-pointer">
+        <div className="cursor-pointer" key={index}>
           <i
             className={'fa fa-' + item.icon + ' text-white hover:text-black'}
             style={{ fontSize: 24 }}
