@@ -51,7 +51,7 @@ function Currencies() {
     >
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <div>$ US Dollar</div>
-        <Icon id="angle-down" size={10} />
+        <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
       </div>
     </Tippy>
   )
@@ -106,7 +106,7 @@ function Languages() {
           style={{ width: 16, height: 11 }}
         />
         <div>English</div>
-        <Icon id="angle-down" size={10} />
+        <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
       </div>
     </Tippy>
   )
@@ -126,7 +126,7 @@ function AccountNavs() {
   }
   const accountNavs = [
     { icon: 'user', title: 'Register' },
-    { icon: 'edit', title: 'Log in' },
+    { icon: 'pencil-square-o', title: 'Log in' },
   ]
   const content = (attrs) => (
     <motion.div
@@ -142,7 +142,7 @@ function AccountNavs() {
           className="p-2 hover:text-primary cursor-pointer flex space-x-1 items-center"
           style={{ fontSize: 12 }}
         >
-          <Icon id={nav.icon} size={12} />
+          <i className={'fa fa-' + nav.icon} style={{ fontSize: 12 }} />
           <a href="#">{nav.title}</a>
         </div>
       ))}
@@ -157,11 +157,11 @@ function AccountNavs() {
       onHide={onHide}
     >
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
-        <Icon id="user" size={12} />
+        <i className="fa fa-user" style={{ fontSize: 12 }} />
         <div className="hidden md:block" style={{ fontSize: 12 }}>
           My Account
         </div>
-        <Icon id="caret-down" size={10} />
+        <i className="fa fa-caret-down" style={{ fontSize: 10 }} />
       </div>
     </Tippy>
   )

@@ -9,6 +9,7 @@ const queryClient = new QueryClient()
 import App from './App'
 import './index.css'
 import './styles/scrollbar.css'
+import './assets/font-awesome/css/font-awesome.min.css'
 
 import { store } from './store/store'
 import { Provider } from 'react-redux'
@@ -21,5 +22,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </Provider>
-  </BrowserRouter>,
+  </BrowserRouter>
 )
