@@ -170,10 +170,64 @@ function ServiceNavs() {
   )
 }
 
+function FooterBottom() {
+  const navs = [
+    { title: 'about us' },
+    { title: 'customer service' },
+    { title: 'privacy policy' },
+    { title: 'site map' },
+    { title: 'orders and returns' },
+    { title: 'contact us' },
+  ]
+  return (
+    <div className="flex flex-col space-y-12 items-center w-[919px] mx-auto">
+      <img
+        src="image/catalog/demo/payment/pay1.jpg"
+        className="w-[507px] h-[51]"
+      />
+      <div className="flex flex-col items-center space-y-12">
+        <div className="flex space-x-3 items-center">
+          {navs.map((nav, key) => (
+            <div
+              key={key}
+              className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer"
+            >
+              {nav.title}
+            </div>
+          ))}
+        </div>
+
+        <div className="text-xs text-gray-700 text-center">
+          **$50 off orders $350+ with the code BOO50. $75 off orders $500+ with
+          the code BOO75. $150 off orders $1000+ with the code BOO150. Valid
+          from October 28, 2016 to October 31, 2016. Offer may not be combined
+          with any other offers or promotions, is non-exchangeable and
+          non-refundable. Offer valid within the US only.
+        </div>
+      </div>
+      <img
+        src="image/catalog/demo/payment/pay1.jpg"
+        className="w-[507px] h-[51]"
+      />
+    </div>
+  )
+}
+
+function PoweredBy() {
+  return (
+    <div className="flex items-center justify-center bg-[#222] text-white py-[25px] text-xs">
+      SuperMarket © 2018 Demo Store. All Rights Reserved. Designed by&nbsp;
+      <span className="cursor-pointer hover:text-primary">
+        OpenCartWorks.Com
+      </span>
+    </div>
+  )
+}
+
 export default function Footer() {
   return (
     <div>
-      <div className="bg-[#f5f5f5] mt-[50px] pb-[50px]">
+      <div className="bg-[#f5f5f5] mt-[50px] space-y-24">
         <div className="mt-[-50px] mb-[-15px] px-5">
           <SocialMedia />
         </div>
@@ -189,6 +243,14 @@ export default function Footer() {
           <CategoryNavs />
           <ServiceNavs />
           <CategoryNavs />
+        </div>
+
+        <hr className="mx-[30px]" />
+
+        <div>
+          <FooterBottom />
+
+          <PoweredBy />
         </div>
       </div>
     </div>
