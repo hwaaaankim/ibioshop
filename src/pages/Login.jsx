@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
+import { useState } from 'react'
 
 function AccountRegistrationIntro() {
   return (
@@ -29,6 +30,7 @@ function AccountRegistrationIntro() {
 }
 
 function LoginForm() {
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -55,7 +57,11 @@ function LoginForm() {
               label="E-Mail Address"
               {...register('email', { required: true })}
             />
-            {errors.email && <span>E-Mail Address is required</span>}
+            {errors.email && (
+              <span className="text-xs text-red-600">
+                E-Mail Address is required
+              </span>
+            )}
           </div>
 
           <div>
@@ -64,7 +70,9 @@ function LoginForm() {
               label="Password"
               {...register('password', { required: true })}
             />
-            {errors.password && <span>Password is required</span>}
+            {errors.password && (
+              <span className="text-xs text-red-600">Password is required</span>
+            )}
           </div>
         </div>
       </div>
@@ -77,11 +85,17 @@ function LoginForm() {
           Forgotten Password
         </div>
         <div
-          className="py-2 px-4 rounded text-white text-sm"
+          className="py-2 px-4 rounded text-white text-sm flex space-x-2 items-center"
           style={{ background: '#333' }}
           onClick={handleSubmit(handleLogin)}
         >
-          Login
+          {loading && (
+            <i
+              className="fa fa-circle-o-notch animate-spin"
+              style={{ fontSize: 14 }}
+            />
+          )}
+          <div>Login</div>
         </div>
       </div>
     </div>
