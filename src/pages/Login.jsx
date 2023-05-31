@@ -19,10 +19,7 @@ function AccountRegistrationIntro() {
       </div>
 
       <div className="flex justify-end p-2 py-3 bg-gray-100">
-        <div
-          className="py-2 px-4 rounded text-white text-sm"
-          style={{ background: '#333' }}
-        >
+        <div className="py-2 px-4 rounded text-white text-sm bg-[#333] hover:bg-primary cursor-pointer">
           Continue
         </div>
       </div>
@@ -54,8 +51,7 @@ function LoginForm() {
     }
     const { isError, data, error } = await auth.signIn(requestPayload)
     if (isError) setError(error.toString())
-
-    console.log('login successful', data)
+    else console.log('login successful', data)
 
     setLoading(false)
   }
@@ -108,8 +104,7 @@ function LoginForm() {
           Forgotten Password
         </div>
         <div
-          className="py-2 px-4 rounded text-white text-sm flex space-x-2 items-center"
-          style={{ background: '#333' }}
+          className="py-2 px-4 rounded text-white text-sm flex space-x-2 items-center bg-[#333] hover:bg-primary cursor-pointer"
           onClick={handleSubmit(handleLogin)}
         >
           {loading && (
