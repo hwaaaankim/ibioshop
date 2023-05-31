@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
+import auth from '../services/api/auth'
 
 function AccountRegistrationIntro() {
   return (
@@ -18,12 +19,12 @@ function AccountRegistrationIntro() {
       </div>
 
       <div className="flex justify-end p-2 py-3 bg-gray-100">
-        <di
+        <div
           className="py-2 px-4 rounded text-white text-sm"
           style={{ background: '#333' }}
         >
           Continue
-        </di>
+        </div>
       </div>
     </div>
   )
@@ -36,7 +37,10 @@ function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const handleLogin = (data) => console.log(data)
+
+  const handleLogin = async (data) => {
+    console.log({ data })
+  }
 
   return (
     <div className="border border-gray-300 flex flex-col justify-between">
