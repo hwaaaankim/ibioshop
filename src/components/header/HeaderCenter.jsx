@@ -30,7 +30,7 @@ function CategoriesSelector({ category, setter }) {
 
 function FilterBar() {
   const [category, setCategory] = useState('All Categories')
-  const [search, setSearch] = useState('h')
+  const [search, setSearch] = useState('')
   return (
     <div className="flex-auto flex items-center">
       <CategoriesSelector category={category} setter={setCategory} />
@@ -103,7 +103,6 @@ function RightNavs() {
 export default function HeaderCenter() {
   return (
     <div
-      className="bg-primary"
       style={{
         paddingTop: 25,
         paddingBottom: 16,
