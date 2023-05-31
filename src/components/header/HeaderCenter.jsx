@@ -41,7 +41,7 @@ function FilterBar() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{ fontSize: 12 }}
-            className="flex-auto outline-none px-3 text-gray-500"
+            className="flex-auto outline-none px-4 text-gray-500"
             placeholder="Keyword here..."
           />
           <div
@@ -59,20 +59,22 @@ function FilterBar() {
 function CartMini() {
   const Badge = ({ total }) => (
     <div
-      className="absolute -top-2 -right-2 p-1.5 bg-black text-white rounded-full"
+      className="absolute -top-2 -right-2 p-1.5 bg-black text-white rounded-full w-6 h-6 flex items-center justify-center"
       style={{ fontSize: 8 }}
     >
       {total}
     </div>
   )
   return (
-    <div className="flex space-x-6 items-center">
-      <div className="relative bg-white p-2 px-3 rounded-full">
-        <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
+    <div className="flex space-x-4 items-center">
+      <div className="relative bg-white w-10 h-10 rounded-full">
+        <div className="w-full h-full flex items-center justify-center">
+          <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
+        </div>
         <Badge total={'02'} />
       </div>
-      <div className="text-white">
-        <div className="uppercase text-sm">my cart</div>
+      <div className="text-white flex flex-col justify-end">
+        <div className="uppercase text-sm font-semibold">my cart</div>
         <div style={{ fontSize: 12 }}>($162.00)</div>
       </div>
     </div>
@@ -81,9 +83,12 @@ function CartMini() {
 
 function RightNavs() {
   return (
-    <div className="flex space-x-8 items-center">
+    <div className="flex space-x-6 pl-12 mx-4 items-center">
       {[{ icon: 'refresh' }, { icon: 'heart' }].map((item, index) => (
-        <div className="cursor-pointer" key={index}>
+        <div
+          className="cursor-pointer w-10 h-10 flex items-center justify-center"
+          key={index}
+        >
           <i
             className={'fa fa-' + item.icon + ' text-white hover:text-black'}
             style={{ fontSize: 24 }}
@@ -106,7 +111,7 @@ export default function HeaderCenter() {
         paddingRight: 2.5 + '%',
       }}
     >
-      <div className="flex space-x-10 items-center">
+      <div className="flex space-x-7 items-center">
         <Logo />
         <FilterBar />
         <RightNavs />
