@@ -32,14 +32,32 @@ function AccountRegistrationIntro() {
 
 function LoginForm() {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
 
-  const handleLogin = async (data) => {
-    console.log({ data })
+  const handleLogin = async ({ email, password }) => {
+    setLoading(true)
+
+    let formData = new FormData()
+    formData.append('email', email)
+    formData.append('password', password)
+
+    const requestPayload = {
+      method: 'post',
+      url: 'login',
+      data: formData,
+    }
+    const { isError, data, error } = await auth.signIn(requestPayload)
+    if (isError) setError(error.toString())
+
+    console.log('login successful', data)
+
+    setLoading(false)
   }
 
   return (
@@ -55,6 +73,7 @@ function LoginForm() {
           <div className="text-sm font-semibold">I am a returning customer</div>
         </div>
 
+        {error && <div className="text-red-600 text-xs">{error}</div>}
         <div className="space-y-2">
           <div>
             <BaseInput
