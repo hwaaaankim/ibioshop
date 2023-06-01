@@ -86,6 +86,7 @@ function LoginForm() {
           <div>
             <BaseInput
               label="E-Mail Address"
+              sm={false}
               {...register('email', { required: true })}
             />
             {errors.email && (
@@ -99,6 +100,7 @@ function LoginForm() {
             <BaseInput
               type="password"
               label="Password"
+              sm={false}
               {...register('password', { required: true })}
             />
             {errors.password && (
