@@ -41,12 +41,15 @@ function LoginForm() {
     setLoading(true)
 
     let formData = new FormData()
-    formData.append('email', email)
+    formData.append('username', email)
     formData.append('password', password)
 
     const requestPayload = {
       method: 'post',
       url: 'login',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
       data: formData,
     }
     const { isError, data, error } = await auth.signIn(requestPayload)
