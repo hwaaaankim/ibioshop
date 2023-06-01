@@ -1,13 +1,25 @@
 import axios from 'axios'
+import { tokenService } from './storageService'
+import { BASE_URL } from '../config/config'
 
-const http = axios.create({
-  baseURL: 'http://www.codingjunior.shop/api/v1/',
-  headers: {
-    'Content-type': 'application/json',
-    // 'Content-Type': 'multipart/form-data',
+const apiService = {
+  init() {
+    axios.defaults.baseURL = BASE_URL
   },
-})
 
-export default function request(config) {
-  return http.request(config)
+  setHeader() {
+    axios.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${tokenService.getToken()}`
+  },
+
+  removeHeader() {
+    axios.defaults.headers.common = {}
+  },
+
+  request(data) {
+    return axios(data)
+  },
 }
+
+export default apiService

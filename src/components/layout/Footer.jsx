@@ -18,7 +18,7 @@ function SocialMedia() {
               key={key}
               className="w-[42px] h-[42px] flex items-center justify-center cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm"
             >
-              <icon className={'text-[12px] fa fa-' + brand} />
+              <i className={'text-[12px] fa fa-' + brand} />
             </div>
           ))}
         </div>
