@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux'
+import { setUser } from '../store/slices/userSlice'
+
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
@@ -37,6 +40,8 @@ function LoginForm() {
     formState: { errors },
   } = useForm()
 
+  const dispatch = useDispatch()
+
   const handleLogin = async ({ email, password }) => {
     setLoading(true)
 
@@ -53,8 +58,11 @@ function LoginForm() {
       data: formData,
     }
     const { isError, data, error } = await auth.signIn(requestPayload)
-    if (isError) setError(error.toString())
-    else console.log('login successful', data)
+    if (!isError) {
+      dispatch(setUser({ user: data.member, token: data.token }))
+    } else {
+      setError(error.toString())
+    }
 
     setLoading(false)
   }
