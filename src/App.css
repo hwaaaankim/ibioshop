@@ -1,0 +1,14 @@
+.required::before{
+    content: '*';
+    font-size: medium;
+    color: red;
+    margin-right: 3px;
+    line-height: normal;
+    vertical-align: super;
+
+}
+
+select{
+    -webkit-appearance: none;
+    appearance: none;
+}

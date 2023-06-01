@@ -6,6 +6,7 @@ import NotFound from "./components/NotFound";
 import Home from "./pages/Home";
 import Footer from "./components/layout/Footer";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const header = useSelector((state) => state.header);
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="checkout" element={<Checkout/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}
