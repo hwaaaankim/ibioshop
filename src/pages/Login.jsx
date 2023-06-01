@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux'
+import { setUser, setStatus } from '../store/slices/authSlice'
+
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
@@ -19,10 +22,7 @@ function AccountRegistrationIntro() {
       </div>
 
       <div className="flex justify-end p-2 py-3 bg-gray-100">
-        <div
-          className="py-2 px-4 rounded text-white text-sm"
-          style={{ background: '#333' }}
-        >
+        <div className="py-2 px-4 rounded text-white text-sm bg-[#333] hover:bg-primary cursor-pointer">
           Continue
         </div>
       </div>
@@ -40,22 +40,30 @@ function LoginForm() {
     formState: { errors },
   } = useForm()
 
+  const dispatch = useDispatch()
+
   const handleLogin = async ({ email, password }) => {
     setLoading(true)
 
     let formData = new FormData()
-    formData.append('email', email)
+    formData.append('username', email)
     formData.append('password', password)
 
     const requestPayload = {
       method: 'post',
       url: 'login',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
       data: formData,
     }
-    const { isError, data, error } = await auth.signIn(requestPayload)
-    if (isError) setError(error.toString())
-
-    console.log('login successful', data)
+    const { isError, user, error } = await auth.signIn(requestPayload)
+    if (!isError) {
+      dispatch(setUser({ user }))
+      dispatch(setStatus({ signedIn: true }))
+    } else {
+      setError(error.toString())
+    }
 
     setLoading(false)
   }
@@ -108,8 +116,7 @@ function LoginForm() {
           Forgotten Password
         </div>
         <div
-          className="py-2 px-4 rounded text-white text-sm flex space-x-2 items-center"
-          style={{ background: '#333' }}
+          className="py-2 px-4 rounded text-white text-sm flex space-x-2 items-center bg-[#333] hover:bg-primary cursor-pointer"
           onClick={handleSubmit(handleLogin)}
         >
           {loading && (
