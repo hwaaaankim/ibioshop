@@ -1,9 +1,9 @@
 function Label({ name, className, required }) {
-  className = 'sm:text-right ' + className
+  className = className
   return (
-    <div className="sm:text-right md:w-1/6 my-2 text-sm">
+    <div className="mb-2 mt-3">
       {required ? (
-        <span className="text-red-500 font-semibold mt-2">*</span>
+        <span className="text-red-500 font-semibold mt-2 mr-1">*</span>
       ) : (
         ''
       )}
