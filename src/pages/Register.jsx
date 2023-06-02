@@ -30,11 +30,11 @@ function Register() {
             <Icon className='mt-2 mx-2' id="chevronRight" size='10'></Icon><li><a href="/register">Register</a></li>
         </ul>
         <h2 className='text-gray-700 font-normal '>Register Account</h2>
-        <p className='mt-2'>If you already have an account with us, please login at <a href="/login">the login page.</a> </p>
+        <p className='mt-2 text-xs'>If you already have an account with us, please login at <a href="/login">the login page.</a> </p>
         <h2 className="mt-4 mb-2">Your Personal Details</h2>
         <hr className='mb-6'></hr>
         {/* PERSONAL DETAILS */}
-        <form className='mb-10' onSubmit={handleSubmit(handleRegistration)}>
+        <form onSubmit={handleSubmit(handleRegistration)}>
         <div className='sm:flex mb-4 sm:space-x-4'>
             <Label required={true} className='mt-4' name='Firstname'></Label>
             <input className='outline-none focus-within:border-2 pl-3 border border-gray-300 rounded py-2 w-full text-sm' {...register("firstName", { required: true })} />
