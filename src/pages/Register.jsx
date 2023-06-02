@@ -1,8 +1,4 @@
 import Icon from '../components/icon/Icon'
-import PersonalDetails from '../components/registration/PersonalDetails'
-import Address from '../components/registration/Address'
-import Password from '../components/registration/Password'
-import NewsLetter from '../components/registration/NewsLetter'
 import CheckBox from '../components/controlled/CheckBox'
 import Label from '../components/controlled/Label'
 import { useForm } from "react-hook-form";
@@ -27,7 +23,7 @@ function Register() {
         }
     }
 
-    return <div className="sm:mx-10 mx-3">
+    return <div className="sm:mx-10 mx-3 mt-4">
         <ul className="flex flex-row mb-4 text-gray-400">
             <Icon className='mt-1.5' size='12' id="home"></Icon><li><a href="/"></a></li>
             <Icon className='mt-2 mx-2' id="chevronRight" size='10'></Icon><li><a href="/account">Account</a></li>
@@ -38,7 +34,7 @@ function Register() {
         <h2 className="mt-4 mb-2">Your Personal Details</h2>
         <hr className='mb-6'></hr>
         {/* PERSONAL DETAILS */}
-        <form onSubmit={handleSubmit(handleRegistration)}>
+        <form className='mb-10' onSubmit={handleSubmit(handleRegistration)}>
         <div className='sm:flex mb-4 sm:space-x-4'>
             <Label required={true} className='mt-4' name='Firstname'></Label>
             <input className='outline-none focus-within:border-2 pl-3 border border-gray-300 rounded py-2 w-full text-sm' {...register("firstName", { required: true })} />
@@ -119,7 +115,7 @@ function Register() {
         <input type='radio' value='yes' className='outline-none focus-within:border-2 pl-3  border border-gray-300 rounded py-2  text-sm' {...register("password", { required: true })} /> Yes
         <input type='radio' value='no' className='outline-none focus-within:border-2 pl-3 border border-gray-300 rounded py-2  text-sm' {...register("password", { required: true })} /> No
         </div> 
-        <div className='float-right mb-4 flex space-x-2 text-m'>
+        <div className='mb-10 flex space-x-2 text-m'>
             <span>I have read and agree to the<a>Pricing Tables</a></span>
             <CheckBox></CheckBox>
             { error }
