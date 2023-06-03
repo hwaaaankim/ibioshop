@@ -5,7 +5,7 @@ const account = {
         try {
             const payload = {
                 method: 'post',
-                url: 'login',
+                url: 'register',
                 headers: {
                   'Content-Type': 'multipart/form-data',
                 },

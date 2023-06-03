@@ -264,7 +264,14 @@ function MyAccount() {
                       <option selected disabled>
                         Select your state
                       </option>
-                      <option value="seoul">Seoul</option>
+                      <option value="North Chungcheong">North Chungcheong</option> 
+                      <option vaue="South Chungcheong">South Chungcheong</option>
+                      <option value="Gangwon, Gyeonggi">Gangwon, Gyeonggi</option>
+                      <option value="North Gyeongsang">North Gyeongsang</option>
+                      <option value="South Gyeongsang">South Gyeongsang</option>
+                      <option value="North Jeolla">North Jeolla</option>
+                      <option value="South Jeolla">South Jeolla</option>
+                      <option value="Jeju">Jeju</option>
                     </select>
                   </div>
                 </div>
