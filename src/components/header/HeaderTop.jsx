@@ -104,29 +104,12 @@ function Languages() {
 }
 
 function AccountNavs() {
-  const [initial, setInitial] = useState({})
-  const [final, setFinal] = useState({})
-
-  const onMount = () => {
-    setInitial({ rotateX: -90, height: 40 })
-    setFinal({ rotateX: 0, height: 'auto' })
-  }
-  const onHide = () => {
-    setInitial({ rotateX: 0, height: 'auto' })
-    setFinal({ rotateX: -90, height: 40 })
-  }
   const accountNavs = [
     { icon: 'user', title: 'Register' },
     { icon: 'pencil-square-o', title: 'Log in' },
   ]
-  const content = (attrs) => (
-    <motion.div
-      initial={initial}
-      animate={final}
-      transition={{ duration: 0.1 }}
-      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
-      {...attrs}
-    >
+  const content = (
+    <div>
       {accountNavs.map((nav, index) => (
         <div
           key={index}
@@ -137,16 +120,11 @@ function AccountNavs() {
           <a href="#">{nav.title}</a>
         </div>
       ))}
-    </motion.div>
+    </div>
   )
+
   return (
-    <Tippy
-      render={content}
-      placement="bottom-end"
-      interactive={true}
-      onMount={onMount}
-      onHide={onHide}
-    >
+    <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
         <i className="fa fa-user" style={{ fontSize: 12 }} />
         <div className="hidden md:block" style={{ fontSize: 12 }}>
@@ -154,7 +132,7 @@ function AccountNavs() {
         </div>
         <i className="fa fa-caret-down" style={{ fontSize: 10 }} />
       </div>
-    </Tippy>
+    </Dropdown>
   )
 }
 
