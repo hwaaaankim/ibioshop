@@ -2,18 +2,15 @@ import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
 import CheckBox from '../components/controlled/CheckBox'
 import { useState } from 'react'
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import image from '../assets/images/10.jpg'
-// import ReactTooltip from 'react-tooltip'
 import '../App.css'
 
-function LeftSectionTop() {
+
+function UserAccount() {
   const [userType, setUserType] = useState('guest')
-  const handleChange = (e) => {
-    const target = e.target
-    if (target.checked) {
-      setUserType(target.value)
-    }
-  }
+
   return (
     <div className="inline-block rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-2 bg-gray-100">
@@ -30,53 +27,19 @@ function LeftSectionTop() {
                 selected= {userType}
                 value="register"
                 title="Register Account"
-                // onClick={onOptionChange}
                 setter={setUserType}
               />
-              {/* <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={userType === 'register'}
-                  type="radio"
-                  value="register"
-                  className="w-3 h-3"
-                  onChange={handleChange}
-                />
-                <span className="text-xs text-gray-500">Register Account</span>
-              </label> */}
             </li>
             <li>
               <RadioBox
                 value="guest"
                 selected= {userType}
                 title="Guest Checkout"
-                // onClick={onOptionChange}
                 setter={setUserType}
               />
-              {/* <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={userType === 'guest'}
-                  type="radio"
-                  value="guest"
-                  className="w-3 h-3"
-                  onChange={handleChange}
-                />
-                <span className="text-xs text-gray-500">Guest Checkout</span>
-              </label> */}
             </li>
             <li>
               <RadioBox value="returning" selected= {userType} title="Returning Customer" setter={setUserType} />
-              {/* <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={userType === 'returning'}
-                  type="radio"
-                  value="returning"
-                  className="w-3 h-3"
-                  onChange={handleChange}
-                />
-                <span className="text-xs text-gray-500">
-                  Returning Customer
-                </span>
-              </label> */}
             </li>
           </ul>
         </span>
@@ -85,20 +48,16 @@ function LeftSectionTop() {
   )
 }
 
-function LeftSectionSecond() {
+function PersonalDetail() {
   const [userData, setUserData] = useState({
-    fName:'text',
-    lName:'text',
-    email:'text',
-    phne: 'number',
-    fax: 'text'
+    fName:'',
+    lName:'',
+    email:'',
+    phne: '',
+    fax: ''
   })
 
-  const handleKeyDown=(e)=>{
-    const target = e.target.value
-    setUserData({...userData, target:value});
-
-  }
+  
   return (
     <div className="inline-block pb-5 rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-2 bg-gray-100">
@@ -116,7 +75,7 @@ function LeftSectionSecond() {
             <li className="mt-3">
               <BaseInput
                 label="First Name"
-                value=""
+                value={userData.fName}
                 setter={setUserData}
                 required={true}
                 icon=""
@@ -126,7 +85,7 @@ function LeftSectionSecond() {
             <li>
               <BaseInput
                 label="Last Name"
-                value=""
+                value={userData.lName}
                 required={true}
                 setter={setUserData}
                 icon=""
@@ -137,7 +96,7 @@ function LeftSectionSecond() {
             <li>
               <BaseInput
                 label="E-mail"
-                value=""
+                value={userData.email}
                 required={true}
                 setter={setUserData}
                 icon=""
@@ -147,7 +106,7 @@ function LeftSectionSecond() {
             <li>
               <BaseInput
                 label="Telephone"
-                value=""
+                value={userData.phne}
                 setter={setUserData}
                 icon=""
                 required={true}
@@ -157,7 +116,7 @@ function LeftSectionSecond() {
             <li>
               <BaseInput
                 label="Fax"
-                value=""
+                value={userData.fax}
                 setter={setUserData}
                 icon=""
                 placeholder="Fax"
@@ -170,19 +129,29 @@ function LeftSectionSecond() {
   )
 }
 
-function LeftSectionThird() {
+function PersonalAddress() {
   const [address, setAddress] = useState({
-    address1 : 'text',
-    address2: 'text',
-    company: 'text',
-    country: 'text',
-    state: 'text'
+    address1 : '',
+    address2: '',
+    company: '',
+    city : '',
+    post : '',
+    country: '',
+    state: '',
+    box: false
   })
   const countries = [
     { name: '--- Please Select ---', value: '' },
     { name: 'Aaland Islands', value: 244 },
     { name: 'Bahrain', value: 17 },
   ]
+
+  const states = [
+    { name: '--- Please Select ---', value: '' },
+    { name: 'Aaland Islands', value: 244 },
+    { name: 'Bahrain', value: 17 },
+  ]
+
   return (
     <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-2 bg-gray-100">
@@ -200,54 +169,57 @@ function LeftSectionThird() {
             <li className="mt-3">
               <BaseInput
                 label="Company"
-                value=""
-                setter=""
+                value={address.company}
+                // setter={handleChange}
                 icon=""
                 placeholder="Company"
+                onChange = {(e)=>setAddress({...address, company:e.target.value})}
               />
             </li>
             <li>
               <BaseInput
                 label="Address 1"
-                value=""
+                value={address.address1}
                 required={true}
-                setter=""
+                setter={setAddress}
                 icon=""
                 placeholder="Address 1"
+                onChange = {(e)=>setAddress({...address, address1:e.target.value})}
               />
             </li>
             <li>
               <BaseInput
                 label="Address 2"
-                value=""
-                setter=""
-                icon=""
+                value={address.address2}
+                setter={setAddress}
                 placeholder="Address 2"
+                onChange={(e)=>setAddress({...address, address2:e.target.value})}
               />
             </li>
+                
             <li>
               <BaseInput
                 label="City"
-                value=""
+                value={address.city}
                 required={true}
-                setter=""
-                icon=""
+                setter={setAddress}
                 placeholder="City"
+                onChange={(e)=>setAddress({...address, city:e.target.value})}
               />
             </li>
             <li>
               <BaseInput
                 label="Post Code"
-                value=""
-                setter=""
+                value={address.post}
+                setter={setAddress}
                 required={true}
-                icon=""
                 placeholder="Post Code"
+                onChange={(e)=>setAddress({...address, post:e.target.value})}
               />
             </li>
             <li>
               <label className="block text-sm text-neutral-500">Country</label>
-              <select
+              <select onChange={(e)=>setAddress({...address, country:e.target.value})}
                 name="country-id"
                 id="country"
                 className="bg-white border-gray-1 inset-px
@@ -255,7 +227,7 @@ function LeftSectionThird() {
                            focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
               >
                 {countries.map((country) => (
-                  <option value={country.value}> {country.name}</option>
+                  <option key = {country.value} value={country.value}> {country.name}</option>
                 ))}
               </select>
             </li>
@@ -263,36 +235,39 @@ function LeftSectionThird() {
               <label className="block text-sm text-neutral-500">
                 Region / State
               </label>
-              <select
+              <select onChange={(e)=>setAddress({...address, state:e.target.value})}
                 name="zone-id"
                 id="state"
                 className="p-2 text-sm block w-full px-3 mt-1 transition bg-white duration-150 ease-in-out border 
                            border-gray-1 inset-px rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none 
                            focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
               >
-                {countries.map((country) => (
-                  <option value={country.value}> {country.name}</option>
+                {states.map((state) => (
+                  <option key = {state.value} value={state.value}> {state.name}</option>
                 ))}
               </select>
             </li>
           </ul>
-          <CheckBox title="My delivery and billing addresses are the same." />
+          <CheckBox checked ={address.box === true} title="My delivery and billing addresses are the same." onClick={(e)=>{
+            setAddress({...address,box:!address.box})
+          }}/>
         </span>
       </div>
     </div>
   )
 }
 
-function RightSectionTop() {
+function DeliPayMethod() {
   const [deliveryMethod, setDelivery] = useState('free')
+  const [paymentMethod, setPayment] = useState('cash')
+
   const handleDeliveryMethod = (e) => {
     const target = e.target
     if (target.checked) {
       setDelivery(target.value)
-    }
+    }    
   }
 
-  const [paymentMethod, setPayment] = useState('cash')
   const handlePaymentMethod = (e) => {
     const target = e.target
     if (target.checked) {
@@ -313,42 +288,20 @@ function RightSectionTop() {
               Please select the preferred shipping method to use on this order.
             </p>
             <div className="my-2 relative block ">
-              {/* <RadioBox
+              <RadioBox
+                selected= {deliveryMethod}
                 value="free"
-                selected={deliveryMethod}
                 title="Free Shipping - $0.00"
-              /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={deliveryMethod === 'free'}
-                  type="radio"
-                  value="free"
-                  className="w-3 h-3"
-                  onChange={handleDeliveryMethod}
-                />
-                <span className="text-xs text-gray-500">
-                  Free Shipping - $0.00
-                </span>
-              </label>
+                setter={setDelivery}
+              />
             </div>
             <div className="relative block -mt-1 mb-2 ">
-              {/* <RadioBox
+              <RadioBox
+                selected= {deliveryMethod}
                 value="flat"
-                selected={deliveryMethod}
                 title="Flat Shipping Rate - $7.50"
-              /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={deliveryMethod === 'flat'}
-                  type="radio"
-                  value="flat"
-                  className="w-3 h-3"
-                  onChange={handleDeliveryMethod}
-                />
-                <span className="text-xs text-gray-500">
-                  Flat Shipping Rate - $7.50
-                </span>
-              </label>
+                setter={setDelivery}
+              />
             </div>
           </div>
         </div>
@@ -363,38 +316,21 @@ function RightSectionTop() {
               Please select the preferred payment method to use on this order.
             </p>
             <div className="my-2 relative block">
-              {/* <RadioBox
+
+              <RadioBox
+                selected= {paymentMethod}
                 value="cash"
-                selected={paymentMethod}
                 title="Cash On Delivery"
-              /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={paymentMethod === 'cash'}
-                  type="radio"
-                  value="cash"
-                  className="w-3 h-3"
-                  onChange={handlePaymentMethod}
-                />
-                <span className="text-xs text-gray-500">Cash On Delivery</span>
-              </label>
+                setter={setPayment}
+              />
             </div>
             <div className="relative block -mt-1 mb-2">
-              {/* <RadioBox
+              <RadioBox
+                selected= {paymentMethod}
                 value="paypal"
-                selected={paymentMethod}
-                title="Paypal"
-              /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
-                <input
-                  checked={paymentMethod === 'paypal'}
-                  type="radio"
-                  value="paypal"
-                  className="w-3 h-3"
-                  onChange={handlePaymentMethod}
-                />
-                <span className="text-xs text-gray-500">Paypal</span>
-              </label>
+                title="Cash On Delivery"
+                setter={setPayment}
+              />
             </div>
           </div>
         </div>
@@ -403,7 +339,10 @@ function RightSectionTop() {
   )
 }
 
-function RightSectionSecond() {
+function CouponVoucher() {
+  const [coupon, setCoupon] = useState('')
+  const [voucher, setVoucher] = useState('')
+  
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
@@ -415,22 +354,17 @@ function RightSectionSecond() {
         <div className="p-4 -mx-4 leading-6">
           <div className="float-left w-1/2 px-4 relative box-border ">
             <div className="border-separate table relative w-full">
-              <input
-                type="text"
-                className="block w-full px-3 h-9 transition duration-150 ease-in-out border rounded-l-md shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue
-                      focus:border-blue-300 sm:text-sm sm:leading-5"
-                id="input-coupon"
+              <BaseInput
+                
+                value={coupon}
+                setter={setCoupon}
                 placeholder="Enter your coupon here"
-                name="coupon"
               />
-              {/* <BaseInput placeholder ='Enter your coupon here'/> */}
               <span className="whitespace-nowrap align-middle table-cell border-separate">
                 <input
                   type="button"
                   className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
-                    align-middle text-center leading-normal font-normal text-sm inline-block px-2 h-9"
-                  data-loading-text="Loading..."
-                  id="button-coupon"
+                    align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 px-2 h-9"
                   value="Apply Coupon"
                 />
               </span>
@@ -438,22 +372,17 @@ function RightSectionSecond() {
           </div>
           <div className="float-left w-1/2 relative box-border ">
             <div className="border-separate table w-full relative">
-              {/* <BaseInput placeholder ='Enter your gift voucher code here'/> */}
-              <input
-                type="text"
-                className="block w-full px-3 h-9 transition duration-150 ease-in-out border-2 rounded-l-md shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue
-                       focus:border-blue-300 sm:text-sm sm:leading-5"
-                id="input-voucher"
-                placeholder="Enter your gift voucher code here"
-                name="voucher"
-              />
+               <BaseInput 
+               value={voucher}
+               setter = {setVoucher}
+               placeholder ='Enter your gift voucher code here'
+               
+               />
               <span className="whitespace-nowrap align-middle table-cell border-separate">
                 <input
                   type="button"
                   className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
-                    leading-normal font-normal text-sm inline-block  px-2 h-9"
-                  data-loading-text="Loading..."
-                  id="button-voucher"
+                    leading-normal font-normal text-sm inline-block mt-1 -ml-1 px-2 h-9"
                   value="Apply Voucher"
                 />
               </span>
@@ -465,8 +394,15 @@ function RightSectionSecond() {
   )
 }
 
-function RightSectionThird() {
+function ShoppingCart() {
 
+  const [quantity, setQauntity] =useState(1)
+const handleRemove = ()=>{
+
+}
+const handleUpdate = ()=>{
+
+}
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
@@ -516,37 +452,35 @@ function RightSectionThird() {
                         name="quantity"
                         value="1"
                         size="1"
+                        onChange={(e)=>setQauntity(e,target.value)}
                       />
                       <span
                         className="whitespace-nowrap align-middle table-cell"
                         style={{ width: 1 + '%' }}
                       >
-                        
+                        <Tippy content={<span> Update</span>}>
                         <button
                           type="submit"
-                          data-toggle="tooltip"
-                          title=""
                           className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block px-4 h-9"
-                          data-original-title="Update"
-                          data-tip = "Update"
-                          data-for='updateTip'
-                          data-place='top'
-                        >
+                          onClick={handleUpdate}
+                          >
                           <i className="fa fa-refresh"></i>
+        
                         </button>
-                        {/* <ReactTooltip id='updateTip'/> */}
+                        </Tippy>
+                        <Tippy content={<span>Remove</span>}>
                         <button
                           type="button"
                           data-toggle="tooltip"
                           title=""
                           className="cursor-pointer bg-red-600 hover:bg-red-700 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block  px-4 h-9"
-                          onClick=""
-                          data-original-title="Remove"
+                          onClick={handleRemove}
                         >
                           <i className="fa fa-times-circle"></i>
                         </button>
+                        </Tippy>
                       </span>
                     </div>
                   </td>
@@ -604,12 +538,6 @@ function RightSectionThird() {
                 </tr>
               </tfoot>
             </table>
-            {/* <div id='update' role='tooltip' 
-            className='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium 
-            text-white transition-opacity bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700' >
-                Update
-                <div className='tool'></div>
-            </div> */}
           </div>
         </div>
       </div>
@@ -617,7 +545,11 @@ function RightSectionThird() {
   )
 }
 
-function RightSectionFourth() {
+function AddComment() {
+  const handleConfirm = ()=>{
+
+  }
+  const [comment, setComment] = useState('');
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
@@ -637,15 +569,13 @@ function RightSectionFourth() {
               focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
             id="confirm_comment"
             name="comments"
+            value={comment}
+            onChange={(e)=>setComment(e.target.value)}
           ></textarea>
 
           <label>
             <input
               type="checkbox"
-              value="1"
-              required=""
-              id="confirm_agree"
-              name="confirm agree"
             />
             <span className="text-neutral-600 ml-1">
               I have read and agree to the
@@ -660,12 +590,12 @@ function RightSectionFourth() {
           <div className="box-border">
             <div className="float-right">
               <input
-                id="button-confirm"
                 type="button"
                 className="cursor-pointer touch-manipulation bg-blue-1 hover:bg-blue-2 border-blue-2 select-none bg-none text-white border border-transparent
                    align-middle whitespace-nowrap text-center leading-snug font-normal text-sm 
                    mb-0 pt-1 px-3 inline-block m-0 h-9"
                 value="Confirm Order"
+                onClick={handleConfirm}
               />
             </div>
           </div>
@@ -677,21 +607,21 @@ function RightSectionFourth() {
 
 export default function Checkout() {
   return (
-    <div className='container p-0 overflow-visible mx-auto box-border text-gray-500 leading-6 text-sm justify-center' 
+    <div className='container p-0 overflow-visible mx-auto box-border text-gray-2 leading-6 text-sm justify-center' 
     style={{ width: 95 + '%', margin: '0 auto' }}>
-      <ul className="flex list-none my-6  rounded bg-transparent p-0 space-x-3 w-full ">
+      <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
           <a href="#">
-            <i className='fa fa-home ml-2 leading-loose font-black hover:text-blue-3'></i>
+            <i className='fa fa-home ml-2 text-gray-400 hover:text-blue-3'></i>
           </a>
         </li>
         <li>{'\>'}</li>
-        <li className='text-blue-3'>
+        <li className='text-primary'>
           <a href="#">Checkout</a>
         </li>
       </ul>
       <div className='w-full pb-0'>
-      <h2 className="text-xl mt-9 font-medium leading-none text-neutral-500">
+      <h2 className="text-xl mt-9 font-light leading-none">
           Checkout
         </h2>
       </div>
@@ -700,15 +630,15 @@ export default function Checkout() {
         
       >
         <div className="col-span-3">
-          <LeftSectionTop />
-          <LeftSectionSecond />
-          <LeftSectionThird />
+          <UserAccount />
+          <PersonalDetail />
+          <PersonalAddress />
         </div>
         <div className="col-span-9">
-          <RightSectionTop />
-          <RightSectionSecond />
-          <RightSectionThird />
-          <RightSectionFourth />
+          <DeliPayMethod />
+          <CouponVoucher />
+          <ShoppingCart />
+          <AddComment />
         </div>
       </div>
     </div>

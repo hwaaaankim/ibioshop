@@ -11,6 +11,7 @@ module.exports = {
         },
         'gray':{
           1: '#ccc',
+          2: '#666',
           
         } 
       },
