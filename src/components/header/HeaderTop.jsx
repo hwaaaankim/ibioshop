@@ -1,19 +1,18 @@
 import Tippy from '@tippyjs/react/headless'
-import Icon from '../icon/Icon'
-import { motion } from 'framer-motion'
+import { animate, motion } from 'framer-motion'
 import { useState } from 'react'
 
 function Currencies() {
-  const [initial, setInitial] = useState({})
-  const [final, setFinal] = useState({})
+  const initialVariants = {
+    animate: { height: 0 },
+  }
+  const [variants, setVariants] = useState(initialVariants)
 
-  const onMount = () => {
-    setInitial({ rotateX: -90, height: 40 })
-    setFinal({ rotateX: 0, height: 'auto' })
+  const onShow = () => {
+    setVariants({ animate: { height: 'auto' } })
   }
   const onHide = () => {
-    setInitial({ rotateX: 0, height: 'auto' })
-    setFinal({ rotateX: -90, height: 40 })
+    setVariants({ animate: { height: 0 } })
   }
   const currencies = [
     { icon: '€', name: 'Euro' },
@@ -22,9 +21,10 @@ function Currencies() {
   ]
   const content = (attrs) => (
     <motion.div
-      initial={initial}
-      animate={final}
-      transition={{ duration: 0.1 }}
+      variants={variants}
+      animate="animate"
+      exit={{ height: 0 }}
+      transition={{ duration: 0.05 }}
       className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
       {...attrs}
     >
@@ -46,7 +46,7 @@ function Currencies() {
       render={content}
       placement="bottom-end"
       interactive={true}
-      onMount={onMount}
+      onShow={onShow}
       onHide={onHide}
     >
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
@@ -56,6 +56,7 @@ function Currencies() {
     </Tippy>
   )
 }
+
 function Languages() {
   const [initial, setInitial] = useState({})
   const [final, setFinal] = useState({})
