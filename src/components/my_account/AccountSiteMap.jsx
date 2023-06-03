@@ -5,16 +5,16 @@ export default function AccountSiteMap() {
       <div className="">
         <ul>
           <li className="mb-3">
-            <a href="#">Login</a>
+            <a href="/login">Login</a>
           </li>
           <li className="mb-3">
-            <a href="#">Register</a>
+            <a href="/register">Register</a>
           </li>
           <li className="mb-3">
             <a href="#">Forgotten Password </a>
           </li>
           <li className="mb-3">
-            <a href="#">My Account</a>
+            <a href="/my_account">My Account</a>
           </li>
           <li className="mb-3">
             <a href="#">Wish List</a>

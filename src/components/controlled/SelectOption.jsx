@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SelectOption = React.forwardRef(
-  ({ label, id, options = [], ...rest }, ref) => {
+  ({ label, id, options, ...rest }, ref) => {
 
     console.log(options)
     return (

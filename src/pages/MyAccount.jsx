@@ -3,18 +3,40 @@ import BaseInput from '../components/controlled/BaseInput'
 import Label from '../components/my_account/Label'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import { useForm } from 'react-hook-form'
+import account from '../services/api/account'
+import { useState } from 'react'
 
 function MyAccount() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
   const name = 'Jhone Cary!'
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm()
 
+  // update Account function
+  const updateAccount = async (data) => {
+    console.log(errors)
+    setLoading(true)
+    if (data.newPassword !== data.repeatPassword) {
+      setError('Passwords do not match')
+      return
+    }
+    const { isError, response, error } = await account.updateAccount(data)
+    if (!isError) {
+      console.log(response)
+    } else {
+      setError(error.toString())
+    }
+    setLoading(false)
+  }
+
   return (
     <div className="px-8 sm:px-16 lg:px-8 sm:text-sm lg:text-xs my-account">
+      {/* Breadcrumb */}
       <ul className="flex flex-row mb-4 mt-7 text-gray-400">
         <li>
           <a href="/">
@@ -39,9 +61,10 @@ function MyAccount() {
               account information.
             </p>
           </div>
-          <form>
+          <form onSubmit={handleSubmit(updateAccount)}>
             <div className="sm:flex sm:flex-col">
               <div className="sm:flex">
+                {/* Personal details form */}
                 <div className="w-full pr-8 mb-9">
                   <h3 className="text-lg text-gray-800">Personal Details</h3>
                   <hr className="mb-5" />
@@ -50,9 +73,14 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="First Name"
-                      sm={false}
+                      sm="false"
                       {...register('firstName', { required: true })}
                     />
+                    {errors.firstName && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Firstname is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -60,9 +88,14 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Last Name"
-                      sm={false}
+                      sm="false"
                       {...register('lastName', { required: true })}
                     />
+                    {errors.lastName && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Latname is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -70,9 +103,14 @@ function MyAccount() {
                     <BaseInput
                       type="email"
                       placeholder="E-mail"
-                      sm={false}
+                      sm="false"
                       {...register('email', { required: true })}
                     />
+                    {errors.email && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Email is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -80,9 +118,14 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Telephone"
-                      sm={false}
+                      sm="false"
                       {...register('telephone', { required: true })}
                     />
+                    {errors.telephone && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Telephone is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -90,11 +133,17 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Fax"
-                      sm={false}
+                      sm="false"
                       {...register('fax', { required: true })}
                     />
+                    {errors.fax && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Fax is required
+                      </span>
+                    )}
                   </div>
                 </div>
+                {/* Change password form*/}
                 <div className="w-full pr-8 mb-9">
                   <h3 className="text-lg text-gray-800">Change Password</h3>
                   <hr className="mb-5" />
@@ -108,9 +157,14 @@ function MyAccount() {
                     <BaseInput
                       type="password"
                       placeholder="Old Password"
-                      sm={false}
+                      sm="false"
                       {...register('oldPassword', { required: true })}
                     />
+                    {errors.oldPassword && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Old password is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -118,9 +172,14 @@ function MyAccount() {
                     <BaseInput
                       type="password"
                       placeholder="New Password"
-                      sm={false}
+                      sm="false"
                       {...register('newPassword', { required: true })}
                     />
+                    {errors.newPassword && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        New password is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -128,9 +187,14 @@ function MyAccount() {
                     <BaseInput
                       type="password"
                       placeholder="New Password Confirm"
-                      sm={false}
+                      sm="false"
                       {...register('repeatPassword', { required: true })}
                     />
+                    {errors.repeatPassword && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Repeat password is required
+                      </span>
+                    )}
                   </div>
                   <div className="mt-4">
                     <h3 className="text-lg text-gray-800">Newsletter</h3>
@@ -141,21 +205,22 @@ function MyAccount() {
                         type="radio"
                         value="yes"
                         className="outline-none focus-within:border-2 pl-3  border border-gray-300 rounded py-2  text-sm"
-                        {...register('subscribe', { required: true })}
-                      />{' '}
+                        {...register('subscribe')}
+                      />
                       Yes
                       <input
                         type="radio"
                         value="no"
                         className="outline-none focus-within:border-2 pl-3 border border-gray-300 rounded py-2  text-sm"
                         {...register('subscribe', { required: true })}
-                      />{' '}
+                      />
                       No
                     </div>
                   </div>
                 </div>
               </div>
               <div className="sm:flex">
+                {/* Payment address form */}
                 <div className="w-full pr-7">
                   <h3 className="text-lg text-gray-800">Payment Address</h3>
                   <hr className="mb-5" />
@@ -165,8 +230,10 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Company"
-                      sm={false}
-                      {...register('company', { required: true })}
+                      sm="false"
+                      {...register('paymentAddress_company', {
+                        required: true,
+                      })}
                     />
                   </div>
 
@@ -175,9 +242,16 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Address 1"
-                      sm={false}
-                      {...register('address', { required: true })}
+                      sm="false"
+                      {...register('paymentAddress_address', {
+                        required: true,
+                      })}
                     />
+                    {errors.paymentAdress_address && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Address is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -185,34 +259,52 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="City"
-                      sm={false}
-                      {...register('city', { required: true })}
+                      sm="false"
+                      {...register('paymentAddress_city', { required: true })}
                     />
+                    {errors.paymentAdress_city && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        City is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
-                    <Label name="Post COde" required={true}></Label>
+                    <Label name="Post Code" required={true}></Label>
                     <BaseInput
                       type="text"
                       placeholder="Post Code"
-                      sm={false}
-                      {...register('postCode', { required: true })}
+                      sm="false"
+                      {...register('paymentAddress_postCode', {
+                        required: true,
+                      })}
                     />
+                    {errors.paymentAdress_postCode && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Post code is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
                     <Label name="State" required={true}></Label>
                     <select
                       className="block w-full px-3 py-2 mt-1 transition duration-150 ease-in-out border rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-                      {...register('state', { required: true })}
+                      {...register('paymentAddress_state', { required: true })}
                     >
                       <option selected disabled>
                         Select your state
                       </option>
                       <option value="seoul">Seoul</option>
                     </select>
+                    {errors.paymentAdress_state && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        State is required
+                      </span>
+                    )}
                   </div>
                 </div>
+                {/* Shipping Address form */}
                 <div className="w-full pr-7">
                   <h2 className="text-lg text-gray-800">Shipping Address</h2>
                   <hr className="mb-5" />
@@ -221,8 +313,10 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Company"
-                      sm={false}
-                      {...register('company', { required: true })}
+                      sm="false"
+                      {...register('shippingAddress_company', {
+                        required: true,
+                      })}
                     />
                   </div>
 
@@ -231,9 +325,16 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Address 1"
-                      sm={false}
-                      {...register('address', { required: true })}
+                      sm="false"
+                      {...register('shippingAddress_address', {
+                        required: true,
+                      })}
                     />
+                    {errors.shippingAddress_address && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Address is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -241,9 +342,14 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="City"
-                      sm={false}
-                      {...register('city', { required: true })}
+                      sm="false"
+                      {...register('shippingAddress_city', { required: true })}
                     />
+                    {errors.shippingAddress_city && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        City is required
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-4">
@@ -251,15 +357,22 @@ function MyAccount() {
                     <BaseInput
                       type="text"
                       placeholder="Post Code"
-                      sm={false}
-                      {...register('postCode', { required: true })}
+                      sm="false"
+                      {...register('shippingAddress_postCode', {
+                        required: true,
+                      })}
                     />
+                    {errors.shippingAddress_postCode && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        Post code is required
+                      </span>
+                    )}
                   </div>
                   <div className="mb-4">
                     <Label name="State" required={true}></Label>
                     <select
                       className="block w-full px-3 py-2 mt-1 transition duration-150 ease-in-out border rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-                      {...register('state', { required: true })}
+                      {...register('shippingAddress_state', { required: true })}
                     >
                       <option selected disabled>
                         Select your state
@@ -273,6 +386,11 @@ function MyAccount() {
                       <option value="South Jeolla">South Jeolla</option>
                       <option value="Jeju">Jeju</option>
                     </select>
+                    {errors.shippingAddress_state && (
+                      <span className="text-red-400 mt-2 text-xs">
+                        State is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -281,7 +399,6 @@ function MyAccount() {
               <button
                 type="submit"
                 className="bg-blue-2 text-white text-sm font-normal px-3 py-1.5 focus:border-blue-300 "
-                onClick={handleSubmit}
               >
                 Save Changes
               </button>
@@ -289,6 +406,7 @@ function MyAccount() {
           </form>
         </div>
         <div className="sm:w-1/4 hidden sm:block">
+          {/* Site Map */}
           <AccountSiteMap />
         </div>
       </div>
