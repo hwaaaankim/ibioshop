@@ -71,26 +71,9 @@ function Currencies() {
 }
 
 function Languages() {
-  const [initial, setInitial] = useState({})
-  const [final, setFinal] = useState({})
-
-  const onMount = () => {
-    setInitial({ rotateX: -90, height: 40 })
-    setFinal({ rotateX: 0, height: 'auto' })
-  }
-  const onHide = () => {
-    setInitial({ rotateX: 0, height: 'auto' })
-    setFinal({ rotateX: -90, height: 40 })
-  }
   const languages = ['English', 'Arabic']
-  const content = (attrs) => (
-    <motion.div
-      initial={initial}
-      animate={final}
-      transition={{ duration: 0.1 }}
-      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
-      {...attrs}
-    >
+  const content = (
+    <div>
       {languages.map((language, index) => (
         <div
           key={index}
@@ -104,16 +87,10 @@ function Languages() {
           <a href="#">{language}</a>
         </div>
       ))}
-    </motion.div>
+    </div>
   )
   return (
-    <Tippy
-      render={content}
-      placement="bottom-end"
-      interactive={true}
-      onMount={onMount}
-      onHide={onHide}
-    >
+    <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <img
           src="image/catalog/flags/gb.png"
@@ -122,7 +99,7 @@ function Languages() {
         <div>English</div>
         <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
       </div>
-    </Tippy>
+    </Dropdown>
   )
 }
 
