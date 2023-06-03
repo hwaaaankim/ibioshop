@@ -1,12 +1,10 @@
 import Tippy from '@tippyjs/react/headless'
-import { animate, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-function Currencies() {
-  const initialVariants = {
-    animate: { height: 0 },
-  }
-  const [variants, setVariants] = useState(initialVariants)
+function Dropdown({ content, children }) {
+  const initial = { animate: { height: 0 } }
+  const [variants, setVariants] = useState(initial)
 
   const onShow = () => {
     setVariants({ animate: { height: 'auto' } })
@@ -14,20 +12,40 @@ function Currencies() {
   const onHide = () => {
     setVariants({ animate: { height: 0 } })
   }
-  const currencies = [
-    { icon: '€', name: 'Euro' },
-    { icon: '€', name: 'Pounds' },
-    { icon: '$', name: 'US Dollar' },
-  ]
-  const content = (attrs) => (
+
+  const contentAnimated = () => (
     <motion.div
       variants={variants}
       animate="animate"
       exit={{ height: 0 }}
       transition={{ duration: 0.05 }}
       className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
-      {...attrs}
     >
+      {content}
+    </motion.div>
+  )
+
+  return (
+    <Tippy
+      render={contentAnimated}
+      placement="bottom-end"
+      interactive={true}
+      onShow={onShow}
+      onHide={onHide}
+    >
+      {children}
+    </Tippy>
+  )
+}
+
+function Currencies() {
+  const currencies = [
+    { icon: '€', name: 'Euro' },
+    { icon: '€', name: 'Pounds' },
+    { icon: '$', name: 'US Dollar' },
+  ]
+  const content = (
+    <div>
       {currencies.map((item, index) => (
         <div
           key={index}
@@ -39,21 +57,16 @@ function Currencies() {
           </a>
         </div>
       ))}
-    </motion.div>
+    </div>
   )
+
   return (
-    <Tippy
-      render={content}
-      placement="bottom-end"
-      interactive={true}
-      onShow={onShow}
-      onHide={onHide}
-    >
+    <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <div>$ US Dollar</div>
         <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
       </div>
-    </Tippy>
+    </Dropdown>
   )
 }
 
