@@ -7,7 +7,7 @@ module.exports = {
         primary: "#094bad",
         'blue':{
           1: '#337ab7',
-          2: '#2e6da4'
+          2: '#2e6da4',
         },
         'gray':{
           1: '#ccc',
@@ -16,5 +16,6 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: []
+    // require('/flowbite/plugin')],
 };

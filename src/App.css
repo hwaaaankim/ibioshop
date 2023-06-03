@@ -12,3 +12,16 @@ select{
     -webkit-appearance: none;
     appearance: none;
 }
+
+.main-container{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    color: #666;
+    font-family: 'Poppins', sans-serif;
+    max-width: 1650px;
+    width: 95%;
+    -webkit-text-size-adjust: 100%;
+}
+.breadcrumb{
+    line-height: 100%;
+    margin: 23px 0;
+}

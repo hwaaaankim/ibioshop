@@ -1,14 +1,14 @@
-import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
 import CheckBox from '../components/controlled/CheckBox'
 import { useState } from 'react'
+import image from '../assets/images/10.jpg'
+// import ReactTooltip from 'react-tooltip'
 import '../App.css'
 
 function LeftSectionTop() {
   const [userType, setUserType] = useState('guest')
   const handleChange = (e) => {
-    console.log(e.target.value)
     const target = e.target
     if (target.checked) {
       setUserType(target.value)
@@ -26,14 +26,14 @@ function LeftSectionTop() {
         <span className="text-xl font-medium leading-tight text-neutral-600 dark:text-neutral-50">
           <ul className="space-y-3 mt-4 pb-6">
             <li>
-              {/* <RadioBox
+              <RadioBox
+                selected= {userType}
                 value="register"
-                selected={selected}
                 title="Register Account"
-                onClick={onOptionChange}
-                setter={onOptionChange}
-              /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
+                // onClick={onOptionChange}
+                setter={setUserType}
+              />
+              {/* <label className="flex space-x-1 items-center py-0 cursor-pointer">
                 <input
                   checked={userType === 'register'}
                   type="radio"
@@ -42,17 +42,17 @@ function LeftSectionTop() {
                   onChange={handleChange}
                 />
                 <span className="text-xs text-gray-500">Register Account</span>
-              </label>
+              </label> */}
             </li>
             <li>
-              {/* <RadioBox
+              <RadioBox
                 value="guest"
-                selected={selected}
+                selected= {userType}
                 title="Guest Checkout"
-                onClick={onOptionChange}
-                setter={onOptionChange}
-              /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
+                // onClick={onOptionChange}
+                setter={setUserType}
+              />
+              {/* <label className="flex space-x-1 items-center py-0 cursor-pointer">
                 <input
                   checked={userType === 'guest'}
                   type="radio"
@@ -61,11 +61,11 @@ function LeftSectionTop() {
                   onChange={handleChange}
                 />
                 <span className="text-xs text-gray-500">Guest Checkout</span>
-              </label>
+              </label> */}
             </li>
             <li>
-              {/* <RadioBox value="returning" selected={selected} title="Returning Customer" onClick={onOptionChange} setter={setSelected} /> */}
-              <label className="flex space-x-1 items-center py-0 cursor-pointer">
+              <RadioBox value="returning" selected= {userType} title="Returning Customer" setter={setUserType} />
+              {/* <label className="flex space-x-1 items-center py-0 cursor-pointer">
                 <input
                   checked={userType === 'returning'}
                   type="radio"
@@ -76,7 +76,7 @@ function LeftSectionTop() {
                 <span className="text-xs text-gray-500">
                   Returning Customer
                 </span>
-              </label>
+              </label> */}
             </li>
           </ul>
         </span>
@@ -86,6 +86,19 @@ function LeftSectionTop() {
 }
 
 function LeftSectionSecond() {
+  const [userData, setUserData] = useState({
+    fName:'text',
+    lName:'text',
+    email:'text',
+    phne: 'number',
+    fax: 'text'
+  })
+
+  const handleKeyDown=(e)=>{
+    const target = e.target.value
+    setUserData({...userData, target:value});
+
+  }
   return (
     <div className="inline-block pb-5 rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-2 bg-gray-100">
@@ -100,11 +113,12 @@ function LeftSectionSecond() {
             className="space-y-5"
             style={{ width: 95 + '%', margin: '0 auto' }}
           >
-            <li className='mt-3'>
+            <li className="mt-3">
               <BaseInput
                 label="First Name"
                 value=""
-                setter=""
+                setter={setUserData}
+                required={true}
                 icon=""
                 placeholder="First Name"
               />
@@ -113,16 +127,19 @@ function LeftSectionSecond() {
               <BaseInput
                 label="Last Name"
                 value=""
-                setter=""
+                required={true}
+                setter={setUserData}
                 icon=""
                 placeholder="Last Name"
+                
               />
             </li>
             <li>
               <BaseInput
                 label="E-mail"
                 value=""
-                setter=""
+                required={true}
+                setter={setUserData}
                 icon=""
                 placeholder="E-mail"
               />
@@ -131,8 +148,9 @@ function LeftSectionSecond() {
               <BaseInput
                 label="Telephone"
                 value=""
-                setter=""
+                setter={setUserData}
                 icon=""
+                required={true}
                 placeholder="Telephone"
               />
             </li>
@@ -140,7 +158,7 @@ function LeftSectionSecond() {
               <BaseInput
                 label="Fax"
                 value=""
-                setter=""
+                setter={setUserData}
                 icon=""
                 placeholder="Fax"
               />
@@ -153,6 +171,13 @@ function LeftSectionSecond() {
 }
 
 function LeftSectionThird() {
+  const [address, setAddress] = useState({
+    address1 : 'text',
+    address2: 'text',
+    company: 'text',
+    country: 'text',
+    state: 'text'
+  })
   const countries = [
     { name: '--- Please Select ---', value: '' },
     { name: 'Aaland Islands', value: 244 },
@@ -172,7 +197,7 @@ function LeftSectionThird() {
             className="space-y-5 mb-3"
             style={{ width: 95 + '%', margin: '0 auto' }}
           >
-            <li className='mt-3'>
+            <li className="mt-3">
               <BaseInput
                 label="Company"
                 value=""
@@ -185,6 +210,7 @@ function LeftSectionThird() {
               <BaseInput
                 label="Address 1"
                 value=""
+                required={true}
                 setter=""
                 icon=""
                 placeholder="Address 1"
@@ -203,6 +229,7 @@ function LeftSectionThird() {
               <BaseInput
                 label="City"
                 value=""
+                required={true}
                 setter=""
                 icon=""
                 placeholder="City"
@@ -213,6 +240,7 @@ function LeftSectionThird() {
                 label="Post Code"
                 value=""
                 setter=""
+                required={true}
                 icon=""
                 placeholder="Post Code"
               />
@@ -258,7 +286,6 @@ function LeftSectionThird() {
 function RightSectionTop() {
   const [deliveryMethod, setDelivery] = useState('free')
   const handleDeliveryMethod = (e) => {
-    console.log(e.target.value)
     const target = e.target
     if (target.checked) {
       setDelivery(target.value)
@@ -267,7 +294,6 @@ function RightSectionTop() {
 
   const [paymentMethod, setPayment] = useState('cash')
   const handlePaymentMethod = (e) => {
-    console.log(e.target.value)
     const target = e.target
     if (target.checked) {
       setPayment(target.value)
@@ -440,6 +466,7 @@ function RightSectionSecond() {
 }
 
 function RightSectionThird() {
+
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
@@ -466,10 +493,11 @@ function RightSectionThird() {
                     <a href="product.html">
                       <img
                         width="60px"
-                        src=""
+                        src={image}
                         alt="Xitefun Causal Wear Fancy Shoes"
                         title="Xitefun Causal Wear Fancy Shoes"
-                        className="img-thumbnail"
+                        className="transition-all rounded p-1 border-solid border-gray-400
+                        max-w-full inline-block align-middle h-auto text-center border-separate border-spacing-0"
                       />
                     </a>
                   </td>
@@ -477,8 +505,7 @@ function RightSectionThird() {
                     <a href="product.html">Emasa rumas gacem</a>
                   </td>
                   <td className="text-left border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
-                    <div className="border-separate table relative min-w-full" 
-                    >
+                    <div className="border-separate table relative min-w-full">
                       <input
                         type="text"
                         className="table w-full px-3 h-9 transition duration-150 ease-in-out border-2 rounded-l-sm shadow-sm
@@ -490,8 +517,11 @@ function RightSectionThird() {
                         value="1"
                         size="1"
                       />
-                      <span className="whitespace-nowrap align-middle table-cell"
-                      style={{width: 1+'%'}}>
+                      <span
+                        className="whitespace-nowrap align-middle table-cell"
+                        style={{ width: 1 + '%' }}
+                      >
+                        
                         <button
                           type="submit"
                           data-toggle="tooltip"
@@ -499,9 +529,13 @@ function RightSectionThird() {
                           className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block px-4 h-9"
                           data-original-title="Update"
+                          data-tip = "Update"
+                          data-for='updateTip'
+                          data-place='top'
                         >
                           <i className="fa fa-refresh"></i>
                         </button>
+                        {/* <ReactTooltip id='updateTip'/> */}
                         <button
                           type="button"
                           data-toggle="tooltip"
@@ -570,6 +604,12 @@ function RightSectionThird() {
                 </tr>
               </tfoot>
             </table>
+            {/* <div id='update' role='tooltip' 
+            className='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium 
+            text-white transition-opacity bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700' >
+                Update
+                <div className='tool'></div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -607,7 +647,7 @@ function RightSectionFourth() {
               id="confirm_agree"
               name="confirm agree"
             />
-            <span className='text-neutral-600 ml-1'>
+            <span className="text-neutral-600 ml-1">
               I have read and agree to the
               <a
                 className="ml-1 outline-none cursor-pointer bg-transparent  ease-in-out"
@@ -637,20 +677,39 @@ function RightSectionFourth() {
 
 export default function Checkout() {
   return (
-    <div
-      className="container grid grid-cols-1 md:grid-cols-12 gap-8 py-4 min-h-screen justify-center"
-      style={{ width: 95 + '%', margin: '0 auto' }}
-    >
-      <div className="col-span-3">
-        <LeftSectionTop />
-        <LeftSectionSecond />
-        <LeftSectionThird />
+    <div className='container p-0 overflow-visible mx-auto box-border text-gray-500 leading-6 text-sm justify-center' 
+    style={{ width: 95 + '%', margin: '0 auto' }}>
+      <ul className="flex list-none my-6  rounded bg-transparent p-0 space-x-3 w-full ">
+        <li className="relative py-0">
+          <a href="#">
+            <i className='fa fa-home ml-2 leading-loose font-black hover:text-blue-3'></i>
+          </a>
+        </li>
+        <li>{'\>'}</li>
+        <li className='text-blue-3'>
+          <a href="#">Checkout</a>
+        </li>
+      </ul>
+      <div className='w-full pb-0'>
+      <h2 className="text-xl mt-9 font-medium leading-none text-neutral-500">
+          Checkout
+        </h2>
       </div>
-      <div className="col-span-9">
-        <RightSectionTop />
-        <RightSectionSecond />
-        <RightSectionThird />
-        <RightSectionFourth />
+      <div
+        className="grid grid-cols-1 md:grid-cols-12 gap-8 text-neutral-700 py-4 min-h-screen"
+        
+      >
+        <div className="col-span-3">
+          <LeftSectionTop />
+          <LeftSectionSecond />
+          <LeftSectionThird />
+        </div>
+        <div className="col-span-9">
+          <RightSectionTop />
+          <RightSectionSecond />
+          <RightSectionThird />
+          <RightSectionFourth />
+        </div>
       </div>
     </div>
   )
