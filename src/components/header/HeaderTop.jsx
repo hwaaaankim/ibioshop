@@ -3,22 +3,21 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 function Dropdown({ content, children }) {
-  const initial = { animate: { height: 0 } }
+  const initial = { animate: { rotateX: 90, originY: 0 } }
   const [variants, setVariants] = useState(initial)
 
   const onShow = () => {
-    setVariants({ animate: { height: 'auto' } })
+    setVariants({ animate: { rotateX: 0 } })
   }
   const onHide = () => {
-    setVariants({ animate: { height: 0 } })
+    setVariants({ animate: { rotateX: 90 } })
   }
 
   const contentAnimated = () => (
     <motion.div
       variants={variants}
       animate="animate"
-      exit={{ height: 0 }}
-      transition={{ duration: 0.05 }}
+      transition={{ duration: 0.2 }}
       className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
     >
       {content}
