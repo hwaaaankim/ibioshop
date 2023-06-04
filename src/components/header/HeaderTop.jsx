@@ -2,7 +2,7 @@ import Tippy from '@tippyjs/react/headless'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-function Dropdown({ content, children }) {
+export function Dropdown({ content, children }) {
   const initial = { animate: { rotateX: 90, originY: 0 } }
   const [variants, setVariants] = useState(initial)
 
