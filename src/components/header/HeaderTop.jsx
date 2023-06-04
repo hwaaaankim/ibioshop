@@ -13,12 +13,13 @@ function Dropdown({ content, children }) {
     setVariants({ animate: { rotateX: 90 } })
   }
 
-  const contentAnimated = () => (
+  const contentAnimated = (attrs) => (
     <motion.div
       variants={variants}
       animate="animate"
       transition={{ duration: 0.2 }}
       className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
+      {...attrs}
     >
       {content}
     </motion.div>
