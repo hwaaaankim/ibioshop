@@ -13,7 +13,7 @@ export default function CheckBox({ value, setter, title }) {
       <input
         type="checkbox"
         value={value}
-        onKeyDown={(event) => setter(event.target.value)}
+        // onKeyDown={(event) => setter(event.target.value)}
         className="w-3 h-3"
         ref={checkboxRef}
       />

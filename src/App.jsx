@@ -9,6 +9,8 @@ import Login from './pages/Login'
 import Checkout from './pages/Checkout'
 import Protected from './components/route-hocs/Protected'
 import OnlyWhenLoggedOut from './components/route-hocs/OnlyWhenLoggedOut'
+import Register from './pages/Register'
+import MyAccount from './pages/MyAccount'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -20,7 +22,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Protected component={Home} />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
+        <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="my_account" element={<MyAccount />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}
