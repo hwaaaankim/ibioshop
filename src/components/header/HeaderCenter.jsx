@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Dropdown } from './HeaderTop'
 
 function Logo() {
   return (
@@ -56,6 +57,117 @@ function FilterBar() {
   )
 }
 
+function CartContent() {
+  return (
+    <div className="w-[320px]">
+      <div>
+        <table className="table table-striped">
+          <tbody>
+            <tr className="bg-[#f9f9f9] text-xs w-full">
+              <td
+                className="text-center h-[75px] p-[8px]"
+                style={{ width: '70px' }}
+              >
+                <a href="#">
+                  <img
+                    src="image/catalog/demo/product/80/1.jpg"
+                    style={{ width: '70px' }}
+                    alt="Yutculpa ullamcon"
+                    title="Yutculpa ullamco"
+                    className="preview"
+                  />
+                </a>
+              </td>
+              <td className="text-left">
+                {' '}
+                <a className="cart_product_name" href="#">
+                  Yutculpa ullamco
+                </a>
+              </td>
+              <td className="text-center">x1</td>
+              <td className="text-center">$80.00</td>
+              <td className="text-right">
+                <a href="#" className="fa fa-edit font-[12px]"></a>
+              </td>
+              <td className="text-right">
+                <a className="fa fa-times fa-delete font-[12px]"></a>
+              </td>
+            </tr>
+            <tr>
+              <td className="text-center" style={{ width: '70px' }}>
+                <a href="product.html">
+                  <img
+                    src="image/catalog/demo/product/80/2.jpg"
+                    style={{ width: '70px' }}
+                    alt="Xancetta bresao"
+                    title="Xancetta bresao"
+                    className="preview"
+                  />
+                </a>
+              </td>
+              <td className="text-left">
+                {' '}
+                <a className="cart_product_name" href="#">
+                  Xancetta bresao
+                </a>
+              </td>
+              <td className="text-center">x1</td>
+              <td className="text-center">$60.00</td>
+              <td className="text-right">
+                <a href="#" className="fa fa-edit"></a>
+              </td>
+              <td className="text-right">
+                <a className="fa fa-times fa-delete"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <table className="table table-bordered">
+          <tbody>
+            <tr>
+              <td className="text-left">
+                <strong>Sub-Total</strong>
+              </td>
+              <td className="text-right">$140.00</td>
+            </tr>
+            <tr>
+              <td className="text-left">
+                <strong>Eco Tax (-2.00)</strong>
+              </td>
+              <td className="text-right">$2.00</td>
+            </tr>
+            <tr>
+              <td className="text-left">
+                <strong>VAT (20%)</strong>
+              </td>
+              <td className="text-right">$20.00</td>
+            </tr>
+            <tr>
+              <td className="text-left">
+                <strong>Total</strong>
+              </td>
+              <td className="text-right">$162.00</td>
+            </tr>
+          </tbody>
+        </table>
+        <p className="text-right">
+          {' '}
+          <a className="btn view-cart" href="cart.html">
+            <i className="fa fa-shopping-cart"></i>View Cart
+          </a>
+          &nbsp;&nbsp;&nbsp;{' '}
+          <a className="btn btn-mega checkout-cart" href="checkout.html">
+            <i className="fa fa-share"></i>Checkout
+          </a>
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function CartMini() {
   const Badge = ({ total }) => (
     <div
@@ -65,19 +177,22 @@ function CartMini() {
       {total}
     </div>
   )
+  const cartContent = CartContent()
   return (
-    <div className="flex space-x-4 items-center">
-      <div className="relative bg-white w-10 h-10 rounded-full">
-        <div className="w-full h-full flex items-center justify-center">
-          <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
+    <Dropdown hasPadding={false} content={cartContent}>
+      <div className="flex space-x-4 items-center">
+        <div className="relative bg-white w-10 h-10 rounded-full">
+          <div className="w-full h-full flex items-center justify-center">
+            <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
+          </div>
+          <Badge total={'02'} />
         </div>
-        <Badge total={'02'} />
+        <div className="text-white flex flex-col justify-end">
+          <div className="uppercase text-sm font-semibold">my cart</div>
+          <div style={{ fontSize: 12 }}>($162.00)</div>
+        </div>
       </div>
-      <div className="text-white flex flex-col justify-end">
-        <div className="uppercase text-sm font-semibold">my cart</div>
-        <div style={{ fontSize: 12 }}>($162.00)</div>
-      </div>
-    </div>
+    </Dropdown>
   )
 }
 

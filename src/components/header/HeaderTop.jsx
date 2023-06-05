@@ -2,7 +2,7 @@ import Tippy from '@tippyjs/react/headless'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-export function Dropdown({ content, children }) {
+export function Dropdown({ hasPadding = 'true', content, children }) {
   const initial = { animate: { rotateX: 90, originY: 0 } }
   const [variants, setVariants] = useState(initial)
 
@@ -18,7 +18,11 @@ export function Dropdown({ content, children }) {
       variants={variants}
       animate="animate"
       transition={{ duration: 0.2 }}
-      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
+      className={
+        'bg-white ' +
+        (hasPadding ? 'px-4 py-2' : '') +
+        ' shadow-lg border overflow-clip text-gray-500'
+      }
       {...attrs}
     >
       {content}
