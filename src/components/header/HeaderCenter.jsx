@@ -57,112 +57,73 @@ function FilterBar() {
   )
 }
 
-function CartContent() {
+function Product({ product, light = false }) {
   return (
-    <div className="w-[320px]">
-      <div>
-        <table className="table table-striped">
-          <tbody>
-            <tr className="bg-[#f9f9f9] text-xs w-full">
-              <td
-                className="text-center h-[75px] p-[8px]"
-                style={{ width: '70px' }}
-              >
-                <a href="#">
-                  <img
-                    src="image/catalog/demo/product/80/1.jpg"
-                    style={{ width: '70px' }}
-                    alt="Yutculpa ullamcon"
-                    title="Yutculpa ullamco"
-                    className="preview"
-                  />
-                </a>
-              </td>
-              <td className="text-left">
-                {' '}
-                <a className="cart_product_name" href="#">
-                  Yutculpa ullamco
-                </a>
-              </td>
-              <td className="text-center">x1</td>
-              <td className="text-center">$80.00</td>
-              <td className="text-right">
-                <a href="#" className="fa fa-edit font-[12px]"></a>
-              </td>
-              <td className="text-right">
-                <a className="fa fa-times fa-delete font-[12px]"></a>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center" style={{ width: '70px' }}>
-                <a href="product.html">
-                  <img
-                    src="image/catalog/demo/product/80/2.jpg"
-                    style={{ width: '70px' }}
-                    alt="Xancetta bresao"
-                    title="Xancetta bresao"
-                    className="preview"
-                  />
-                </a>
-              </td>
-              <td className="text-left">
-                {' '}
-                <a className="cart_product_name" href="#">
-                  Xancetta bresao
-                </a>
-              </td>
-              <td className="text-center">x1</td>
-              <td className="text-center">$60.00</td>
-              <td className="text-right">
-                <a href="#" className="fa fa-edit"></a>
-              </td>
-              <td className="text-right">
-                <a className="fa fa-times fa-delete"></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div
+      className={
+        (light ? '' : 'bg-[#f9f9f9]') +
+        ' p-[8px] text-xs text-gray-600 flex space-x-2 items-center border-b border-gray-200'
+      }
+    >
+      <img
+        src="image/catalog/demo/product/80/1.jpg"
+        className="w-[54px] h-[54px] cursor-pointer"
+      />
+      <div className="w-[94px] break-words cursor-pointer hover:text-primary">
+        {product.name}
       </div>
-
+      <div className="flex-auto flex space-x-2 items-center justify-between">
+        <div>{product.size}</div>
+        <div>${product.price} </div>
+        <div className="cursor-pointer hover:text-primary">
+          <i className="fa fa-edit"></i>
+        </div>
+        <div className="cursor-pointer hover:text-primary">
+          <i className="fa fa-times"></i>
+        </div>
+      </div>
+    </div>
+  )
+}
+function CartContent() {
+  const products = [
+    { id: 1, name: 'Yutculpa ullamco', size: 'xl', price: 80.0 },
+    { id: 2, name: 'Xancetta bresao', size: 'xl', price: 60.0 },
+  ]
+  return (
+    <div className="w-[320px] space-y-5 pb-[10px]">
       <div>
-        <table className="table table-bordered">
-          <tbody>
-            <tr>
-              <td className="text-left">
-                <strong>Sub-Total</strong>
-              </td>
-              <td className="text-right">$140.00</td>
-            </tr>
-            <tr>
-              <td className="text-left">
-                <strong>Eco Tax (-2.00)</strong>
-              </td>
-              <td className="text-right">$2.00</td>
-            </tr>
-            <tr>
-              <td className="text-left">
-                <strong>VAT (20%)</strong>
-              </td>
-              <td className="text-right">$20.00</td>
-            </tr>
-            <tr>
-              <td className="text-left">
-                <strong>Total</strong>
-              </td>
-              <td className="text-right">$162.00</td>
-            </tr>
-          </tbody>
-        </table>
-        <p className="text-right">
-          {' '}
-          <a className="btn view-cart" href="cart.html">
-            <i className="fa fa-shopping-cart"></i>View Cart
-          </a>
-          &nbsp;&nbsp;&nbsp;{' '}
-          <a className="btn btn-mega checkout-cart" href="checkout.html">
-            <i className="fa fa-share"></i>Checkout
-          </a>
-        </p>
+        {products.map((item, index) => (
+          <Product key={item.id} product={item} light={index % 2 !== 0} />
+        ))}
+      </div>
+      <div className="text-xs text-gray-600">
+        <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
+          <div className="font-semibold">Sub-Total</div>
+          <div className="text-right">$140.00</div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+          <div className="font-semibold">Eco Tax (-2.00)</div>
+          <div className="text-right">$2.00</div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+          <div className="font-semibold">VAT (20%)</div>
+          <div className="text-right">$20.00</div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+          <div className="font-semibold">Total</div>
+          <div className="text-right">$162.00</div>
+        </div>
+        <div className="flex space-x-[12px] items-center justify-end py-2">
+          <div className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary">
+            <i className="fa fa-shopping-cart"></i>
+            <div>View Cart</div>
+          </div>
+          <div className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary">
+            <i className="fa fa-share"></i>
+            <div>Checkout</div>
+          </div>
+        </div>
       </div>
     </div>
   )
