@@ -2,11 +2,10 @@ import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
 import CheckBox from '../components/controlled/CheckBox'
 import { useState } from 'react'
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import Tippy from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
 import image from '../assets/images/10.jpg'
 import '../App.css'
-
 
 function UserAccount() {
   const [userType, setUserType] = useState('guest')
@@ -24,7 +23,7 @@ function UserAccount() {
           <ul className="space-y-3 mt-4 pb-6">
             <li>
               <RadioBox
-                selected= {userType}
+                selected={userType}
                 value="register"
                 title="Register Account"
                 setter={setUserType}
@@ -33,13 +32,18 @@ function UserAccount() {
             <li>
               <RadioBox
                 value="guest"
-                selected= {userType}
+                selected={userType}
                 title="Guest Checkout"
                 setter={setUserType}
               />
             </li>
             <li>
-              <RadioBox value="returning" selected= {userType} title="Returning Customer" setter={setUserType} />
+              <RadioBox
+                value="returning"
+                selected={userType}
+                title="Returning Customer"
+                setter={setUserType}
+              />
             </li>
           </ul>
         </span>
@@ -50,14 +54,13 @@ function UserAccount() {
 
 function PersonalDetail() {
   const [userData, setUserData] = useState({
-    fName:'',
-    lName:'',
-    email:'',
+    fName: '',
+    lName: '',
+    email: '',
     phne: '',
-    fax: ''
+    fax: '',
   })
 
-  
   return (
     <div className="inline-block pb-5 rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-2 bg-gray-100">
@@ -90,7 +93,6 @@ function PersonalDetail() {
                 setter={setUserData}
                 icon=""
                 placeholder="Last Name"
-                
               />
             </li>
             <li>
@@ -131,14 +133,14 @@ function PersonalDetail() {
 
 function PersonalAddress() {
   const [address, setAddress] = useState({
-    address1 : '',
+    address1: '',
     address2: '',
     company: '',
-    city : '',
-    post : '',
+    city: '',
+    post: '',
     country: '',
     state: '',
-    box: false
+    box: false,
   })
   const countries = [
     { name: '--- Please Select ---', value: '' },
@@ -173,7 +175,9 @@ function PersonalAddress() {
                 // setter={handleChange}
                 icon=""
                 placeholder="Company"
-                onChange = {(e)=>setAddress({...address, company:e.target.value})}
+                onChange={(e) =>
+                  setAddress({ ...address, company: e.target.value })
+                }
               />
             </li>
             <li>
@@ -184,7 +188,9 @@ function PersonalAddress() {
                 setter={setAddress}
                 icon=""
                 placeholder="Address 1"
-                onChange = {(e)=>setAddress({...address, address1:e.target.value})}
+                onChange={(e) =>
+                  setAddress({ ...address, address1: e.target.value })
+                }
               />
             </li>
             <li>
@@ -193,10 +199,12 @@ function PersonalAddress() {
                 value={address.address2}
                 setter={setAddress}
                 placeholder="Address 2"
-                onChange={(e)=>setAddress({...address, address2:e.target.value})}
+                onChange={(e) =>
+                  setAddress({ ...address, address2: e.target.value })
+                }
               />
             </li>
-                
+
             <li>
               <BaseInput
                 label="City"
@@ -204,7 +212,9 @@ function PersonalAddress() {
                 required={true}
                 setter={setAddress}
                 placeholder="City"
-                onChange={(e)=>setAddress({...address, city:e.target.value})}
+                onChange={(e) =>
+                  setAddress({ ...address, city: e.target.value })
+                }
               />
             </li>
             <li>
@@ -214,12 +224,17 @@ function PersonalAddress() {
                 setter={setAddress}
                 required={true}
                 placeholder="Post Code"
-                onChange={(e)=>setAddress({...address, post:e.target.value})}
+                onChange={(e) =>
+                  setAddress({ ...address, post: e.target.value })
+                }
               />
             </li>
             <li>
               <label className="block text-sm text-neutral-500">Country</label>
-              <select onChange={(e)=>setAddress({...address, country:e.target.value})}
+              <select
+                onChange={(e) =>
+                  setAddress({ ...address, country: e.target.value })
+                }
                 name="country-id"
                 id="country"
                 className="bg-white border-gray-1 inset-px
@@ -227,7 +242,10 @@ function PersonalAddress() {
                            focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
               >
                 {countries.map((country) => (
-                  <option key = {country.value} value={country.value}> {country.name}</option>
+                  <option key={country.value} value={country.value}>
+                    {' '}
+                    {country.name}
+                  </option>
                 ))}
               </select>
             </li>
@@ -235,7 +253,10 @@ function PersonalAddress() {
               <label className="block text-sm text-neutral-500">
                 Region / State
               </label>
-              <select onChange={(e)=>setAddress({...address, state:e.target.value})}
+              <select
+                onChange={(e) =>
+                  setAddress({ ...address, state: e.target.value })
+                }
                 name="zone-id"
                 id="state"
                 className="p-2 text-sm block w-full px-3 mt-1 transition bg-white duration-150 ease-in-out border 
@@ -243,14 +264,21 @@ function PersonalAddress() {
                            focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
               >
                 {states.map((state) => (
-                  <option key = {state.value} value={state.value}> {state.name}</option>
+                  <option key={state.value} value={state.value}>
+                    {' '}
+                    {state.name}
+                  </option>
                 ))}
               </select>
             </li>
           </ul>
-          <CheckBox checked ={address.box === true} title="My delivery and billing addresses are the same." onClick={(e)=>{
-            setAddress({...address,box:!address.box})
-          }}/>
+          <CheckBox
+            checked={address.box === true}
+            title="My delivery and billing addresses are the same."
+            onClick={(e) => {
+              setAddress({ ...address, box: !address.box })
+            }}
+          />
         </span>
       </div>
     </div>
@@ -265,7 +293,7 @@ function DeliPayMethod() {
     const target = e.target
     if (target.checked) {
       setDelivery(target.value)
-    }    
+    }
   }
 
   const handlePaymentMethod = (e) => {
@@ -289,7 +317,7 @@ function DeliPayMethod() {
             </p>
             <div className="my-2 relative block ">
               <RadioBox
-                selected= {deliveryMethod}
+                selected={deliveryMethod}
                 value="free"
                 title="Free Shipping - $0.00"
                 setter={setDelivery}
@@ -297,7 +325,7 @@ function DeliPayMethod() {
             </div>
             <div className="relative block -mt-1 mb-2 ">
               <RadioBox
-                selected= {deliveryMethod}
+                selected={deliveryMethod}
                 value="flat"
                 title="Flat Shipping Rate - $7.50"
                 setter={setDelivery}
@@ -316,9 +344,8 @@ function DeliPayMethod() {
               Please select the preferred payment method to use on this order.
             </p>
             <div className="my-2 relative block">
-
               <RadioBox
-                selected= {paymentMethod}
+                selected={paymentMethod}
                 value="cash"
                 title="Cash On Delivery"
                 setter={setPayment}
@@ -326,7 +353,7 @@ function DeliPayMethod() {
             </div>
             <div className="relative block -mt-1 mb-2">
               <RadioBox
-                selected= {paymentMethod}
+                selected={paymentMethod}
                 value="paypal"
                 title="Cash On Delivery"
                 setter={setPayment}
@@ -342,7 +369,7 @@ function DeliPayMethod() {
 function CouponVoucher() {
   const [coupon, setCoupon] = useState('')
   const [voucher, setVoucher] = useState('')
-  
+
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
@@ -355,7 +382,6 @@ function CouponVoucher() {
           <div className="float-left w-1/2 px-4 relative box-border ">
             <div className="border-separate table relative w-full">
               <BaseInput
-                
                 value={coupon}
                 setter={setCoupon}
                 placeholder="Enter your coupon here"
@@ -372,12 +398,11 @@ function CouponVoucher() {
           </div>
           <div className="float-left w-1/2 relative box-border ">
             <div className="border-separate table w-full relative">
-               <BaseInput 
-               value={voucher}
-               setter = {setVoucher}
-               placeholder ='Enter your gift voucher code here'
-               
-               />
+              <BaseInput
+                value={voucher}
+                setter={setVoucher}
+                placeholder="Enter your gift voucher code here"
+              />
               <span className="whitespace-nowrap align-middle table-cell border-separate">
                 <input
                   type="button"
@@ -395,14 +420,9 @@ function CouponVoucher() {
 }
 
 function ShoppingCart() {
-
-  const [quantity, setQauntity] =useState(1)
-const handleRemove = ()=>{
-
-}
-const handleUpdate = ()=>{
-
-}
+  const [quantity, setQauntity] = useState(1)
+  const handleRemove = () => {}
+  const handleUpdate = () => {}
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
@@ -452,34 +472,33 @@ const handleUpdate = ()=>{
                         name="quantity"
                         value="1"
                         size="1"
-                        onChange={(e)=>setQauntity(e,target.value)}
+                        onChange={(e) => setQauntity(e, target.value)}
                       />
                       <span
                         className="whitespace-nowrap align-middle table-cell"
                         style={{ width: 1 + '%' }}
                       >
                         <Tippy content={<span> Update</span>}>
-                        <button
-                          type="submit"
-                          className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
+                          <button
+                            type="submit"
+                            className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block px-4 h-9"
-                          onClick={handleUpdate}
+                            onClick={handleUpdate}
                           >
-                          <i className="fa fa-refresh"></i>
-        
-                        </button>
+                            <i className="fa fa-refresh"></i>
+                          </button>
                         </Tippy>
                         <Tippy content={<span>Remove</span>}>
-                        <button
-                          type="button"
-                          data-toggle="tooltip"
-                          title=""
-                          className="cursor-pointer bg-red-600 hover:bg-red-700 text-white align-middle text-center 
+                          <button
+                            type="button"
+                            data-toggle="tooltip"
+                            title=""
+                            className="cursor-pointer bg-red-600 hover:bg-red-700 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block  px-4 h-9"
-                          onClick={handleRemove}
-                        >
-                          <i className="fa fa-times-circle"></i>
-                        </button>
+                            onClick={handleRemove}
+                          >
+                            <i className="fa fa-times-circle"></i>
+                          </button>
                         </Tippy>
                       </span>
                     </div>
@@ -546,10 +565,8 @@ const handleUpdate = ()=>{
 }
 
 function AddComment() {
-  const handleConfirm = ()=>{
-
-  }
-  const [comment, setComment] = useState('');
+  const handleConfirm = () => {}
+  const [comment, setComment] = useState('')
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
@@ -570,13 +587,11 @@ function AddComment() {
             id="confirm_comment"
             name="comments"
             value={comment}
-            onChange={(e)=>setComment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
           ></textarea>
 
           <label>
-            <input
-              type="checkbox"
-            />
+            <input type="checkbox" />
             <span className="text-neutral-600 ml-1">
               I have read and agree to the
               <a
@@ -607,28 +622,25 @@ function AddComment() {
 
 export default function Checkout() {
   return (
-    <div className='container p-0 overflow-visible mx-auto box-border text-gray-2 leading-6 text-sm justify-center' 
-    style={{ width: 95 + '%', margin: '0 auto' }}>
+    <div
+      className="container p-0 overflow-visible mx-auto box-border text-gray-2 leading-6 text-sm justify-center"
+      style={{ width: 95 + '%', margin: '0 auto' }}
+    >
       <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
           <a href="#">
-            <i className='fa fa-home ml-2 text-gray-400 hover:text-blue-3'></i>
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
           </a>
         </li>
-        <li>{'\>'}</li>
-        <li className='text-primary'>
+        <li>{'>'}</li>
+        <li className="text-primary">
           <a href="#">Checkout</a>
         </li>
       </ul>
-      <div className='w-full pb-0'>
-      <h2 className="text-xl mt-9 font-light leading-none">
-          Checkout
-        </h2>
+      <div className="w-full pb-0">
+        <h2 className="text-xl mt-9 font-light leading-none">Checkout</h2>
       </div>
-      <div
-        className="grid grid-cols-1 md:grid-cols-12 gap-8 text-neutral-700 py-4 min-h-screen"
-        
-      >
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-neutral-700 py-4 min-h-screen">
         <div className="col-span-3">
           <UserAccount />
           <PersonalDetail />
