@@ -226,6 +226,65 @@ function LatestProducts() {
   )
 }
 
+function Features() {
+  const items = [
+    {
+      id: 1,
+      icon: 'fa fa-file-text-o',
+      title: 'free delivery',
+      description: 'on order over $49.86',
+    },
+    {
+      id: 2,
+      icon: 'fa fa-shield',
+      title: 'order protection',
+      description: 'secured information',
+    },
+    {
+      id: 3,
+      icon: 'fa fa-gift',
+      title: 'promotion gift',
+      description: 'special offers!',
+    },
+    {
+      id: 4,
+      icon: 'fa fa-money',
+      title: 'money back',
+      description: 'return over 30 days',
+    },
+  ]
+  return (
+    <div className="border">
+      <img
+        src="image/catalog/banners/call-us.jpg"
+        className="w-full h-[124px] cursor-pointer"
+      />
+      <div className="">
+        {items.map((item, index) => (
+          <div
+            key={item.id}
+            className={
+              'flex space-x-4 items-center px-4 py-6 cursor-pointer group' +
+              (index + 1 < items.length ? ' border-b' : '')
+            }
+          >
+            <i
+              className={item.icon + ' text-primary'}
+              style={{ fontSize: 36 }}
+            ></i>
+            <div className="text-[13px]">
+              <div className="uppercase font-semibold text-gray-700 group-hover:text-primary group-hover:text-[13.5px]">
+                {item.title}
+              </div>
+              <div className="capitalize text-gray-500">{item.description}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -245,6 +304,7 @@ export default function Home() {
             />
           </div>
           <LatestProducts />
+          <Features />
         </div>
         <div className="flex-auto">main section</div>
       </div>
