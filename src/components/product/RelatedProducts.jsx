@@ -1,6 +1,6 @@
 import banner from '../../assets/images/banner-sidebar.jpg'
 
-function BannerSidebar() {
+function RelatedProducts() {
 
   return (
     <div class="rounded">
@@ -15,4 +15,4 @@ function BannerSidebar() {
   )
 }
 
-export default BannerSidebar;
+export default RelatedProducts;
