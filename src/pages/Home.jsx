@@ -354,6 +354,67 @@ function Recommended() {
   )
 }
 
+function LatestPosts() {
+  const posts = [
+    {
+      title: 'Biten demons lector in henderit in vulp nemusa tumps',
+      date: 'December 4th, 2017',
+      comments: [],
+    },
+    {
+      title: 'Commodo laoreet semper tincidun sit dolor spums',
+      date: 'November 15th, 2017',
+      comments: [],
+    },
+  ]
+
+  return (
+    <div className="space-y-2">
+      <div>
+        <div className="uppercase font-semibold py-2">latest posts</div>
+        <div className="grid grid-cols-2">
+          <div className="border-b-2 border-primary"></div>
+          <div className="border-b-2 border-gray-400"></div>
+        </div>
+      </div>
+
+      <div className="space-y-2 items-center py-2">
+        <div className="cursor-pointer hover:opacity-80">
+          <img
+            src="image/catalog/blog/1.jpg"
+            className="w-full h-[170px] rounded"
+          />
+        </div>
+
+        <div className="space-y-4 py-2">
+          {posts.map((post, index) => (
+            <div
+              key={index}
+              className={
+                'space-y-2 pb-4' + (index + 1 < posts.length ? ' border-b' : '')
+              }
+            >
+              <div className="text-[13px] font-[600] cursor-pointer hover:text-primary">
+                {post.title}
+              </div>
+              <div className="flex space-x-2 items-center justify-between text-[#999] text-xs">
+                <div className="flex space-x-1 items-center">
+                  <i className="fa fa-calendar"></i>
+                  <div>{post.date}</div>
+                </div>
+                <div className="flex space-x-1 items-center">
+                  <i className="fa fa-comments"></i>
+                  <div>{post.comments.length} Comment</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -375,6 +436,7 @@ export default function Home() {
           <LatestProducts />
           <Features />
           <Recommended />
+          <LatestPosts />
         </div>
         <div className="flex-auto">main section</div>
       </div>
