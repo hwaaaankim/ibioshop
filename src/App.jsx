@@ -11,6 +11,8 @@ import Protected from './components/route-hocs/Protected'
 import OnlyWhenLoggedOut from './components/route-hocs/OnlyWhenLoggedOut'
 import Register from './pages/Register'
 import MyAccount from './pages/MyAccount'
+import OrderHistory from './pages/OrderHistory'
+import Contact from './pages/Contact'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -25,6 +27,8 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="my_account" element={<MyAccount />} />
+        <Route path="order_history" element={<OrderHistory />} />
+        <Route path="contact_us" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}

@@ -12,9 +12,13 @@ module.exports = {
         'gray':{
           1: '#ccc',
           2: '#666',
+          3:'#999',
           
         } 
       },
+      fontFamily: {
+        'body': [" 'Poppins' ", 'sans-serif'],
+      }
     },
   },
   plugins: []
