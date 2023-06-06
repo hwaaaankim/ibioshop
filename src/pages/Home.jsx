@@ -8,27 +8,24 @@ function ImageCarousel() {
     { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
   ]
   const [activeIndex, setActiveIndex] = useState(0)
-  const [direction, setDirection] = useState(1)
   const handleClick = (index) => {
-    setDirection(activeIndex < index ? 1 : -1)
     setActiveIndex(index)
   }
 
   return (
     <div className="cursor-pointer w-full h-full relative overflow-x-hidden">
-      {images.map(
-        (image, index) =>
-          activeIndex === index && (
-            <motion.img
-              initial={{ opacity: 0, x: direction > 0 ? 2000 : -2000 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: 'tween', duration: 0.5 }}
-              src={image.path}
-              className="w-full h-full"
-              key={image.key}
-            />
-          )
-      )}
+      <div className="absolute top-0 bottom-0 left-0 right-0">
+        {images.map((image, index) => (
+          <motion.img
+            animate={{ x: (index - activeIndex) * 832 }}
+            transition={{ ease: 'easeInOut', duration: 0.5 }}
+            src={image.path}
+            className="h-full flex-shrink-0 object-cover absolute top-0 bottom-0 left-0 right-0"
+            style={{ width: 832 + 'px' }}
+            key={image.key}
+          ></motion.img>
+        ))}
+      </div>
       <div className="absolute bottom-0 right-0 left-0 flex space-x-2 items-center justify-center py-4 cursor-default">
         {[0, 1, 2].map((index) => (
           <div
@@ -45,16 +42,102 @@ function ImageCarousel() {
     </div>
   )
 }
+
+function BestSelling() {
+  const [currentPage, setPage] = useState(1)
+  const bestSellingItem = {
+    id: 1,
+    picture: 'image/catalog/demo/product/80/1.jpg',
+    name: 'Sausage Cowbee',
+    rate: 4,
+    price: 89,
+    discounted: true,
+    discount: 80,
+  }
+
+  return (
+    <div className="rounded border border-gray-50">
+      <div className="flex space-x-2 justify-between items-center bg-[#e9ecf1] rounded-t py-[6px] px-[20px]">
+        <div className="flex-auto uppercase font-semibold">best selling</div>
+        <div className="flex space-x-2 items-center">
+          {[1, 2].map((page) => (
+            <div
+              key={page}
+              className={
+                'w-[' +
+                (page == currentPage ? 30 : 8) +
+                'px] h-[8px] cursor-pointer rounded-full bg-' +
+                (page === currentPage ? 'primary' : 'black')
+              }
+              onClick={() => setPage(page)}
+            ></div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        {[1, 2, 3, 4].map((item, index) => (
+          <div key={index} className="flex space-x-2 items-center">
+            <img src={bestSellingItem.picture} className="w-[60px] h-[60px]" />
+            <div className="flex-auto -space-y-1">
+              <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+                {bestSellingItem.name}
+              </div>
+              <div className="space-x-1">
+                <i
+                  className="fa fa-star text-[#fec42d]"
+                  style={{ fontSize: 12 }}
+                ></i>
+                <i
+                  className="fa fa-star text-[#fec42d]"
+                  style={{ fontSize: 12 }}
+                ></i>
+                <i
+                  className="fa fa-star text-[#fec42d]"
+                  style={{ fontSize: 12 }}
+                ></i>
+                <i
+                  className="fa fa-star text-[#fec42d]"
+                  style={{ fontSize: 12 }}
+                ></i>
+                <i
+                  className="fa fa-star text-[#fec42d]"
+                  style={{ fontSize: 12 }}
+                ></i>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {bestSellingItem.discounted && (
+                  <div className="text-primary font-semibold">
+                    ${bestSellingItem.discount}.00
+                  </div>
+                )}
+                <div
+                  className={
+                    bestSellingItem.discounted
+                      ? 'line-through text-[14px] text-gray-500'
+                      : 'text-primary font-semibold'
+                  }
+                >
+                  ${bestSellingItem.price}.00
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
       <div className="col-span-3 flex space-x-8">
-        <div className="w-[237px]"></div>
+        <div className="" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">
           <ImageCarousel />
         </div>
       </div>
-      <div className="bg-gray-50">best selling</div>
+      <BestSelling />
     </div>
   )
 }
