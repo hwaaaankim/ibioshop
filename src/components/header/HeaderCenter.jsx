@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Dropdown } from './HeaderTop'
 
 function Logo() {
   return (
@@ -56,6 +57,78 @@ function FilterBar() {
   )
 }
 
+function Product({ product, light = false }) {
+  return (
+    <div
+      className={
+        (light ? '' : 'bg-[#f9f9f9]') +
+        ' p-[8px] text-xs text-gray-600 flex space-x-2 items-center border-b border-gray-200'
+      }
+    >
+      <img
+        src="image/catalog/demo/product/80/1.jpg"
+        className="w-[54px] h-[54px] cursor-pointer"
+      />
+      <div className="w-[94px] break-words cursor-pointer hover:text-primary">
+        {product.name}
+      </div>
+      <div className="flex-auto flex space-x-2 items-center justify-between">
+        <div>{product.size}</div>
+        <div>${product.price} </div>
+        <div className="cursor-pointer hover:text-primary">
+          <i className="fa fa-edit"></i>
+        </div>
+        <div className="cursor-pointer hover:text-primary">
+          <i className="fa fa-times"></i>
+        </div>
+      </div>
+    </div>
+  )
+}
+function CartContent() {
+  const products = [
+    { id: 1, name: 'Yutculpa ullamco', size: 'xl', price: 80.0 },
+    { id: 2, name: 'Xancetta bresao', size: 'xl', price: 60.0 },
+  ]
+  return (
+    <div className="w-[320px] space-y-5 pb-[10px]">
+      <div>
+        {products.map((item, index) => (
+          <Product key={item.id} product={item} light={index % 2 !== 0} />
+        ))}
+      </div>
+      <div className="text-xs text-gray-600">
+        <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
+          <div className="font-semibold">Sub-Total</div>
+          <div className="text-right">$140.00</div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+          <div className="font-semibold">Eco Tax (-2.00)</div>
+          <div className="text-right">$2.00</div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+          <div className="font-semibold">VAT (20%)</div>
+          <div className="text-right">$20.00</div>
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+          <div className="font-semibold">Total</div>
+          <div className="text-right">$162.00</div>
+        </div>
+        <div className="flex space-x-[12px] items-center justify-end py-2">
+          <div className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary">
+            <i className="fa fa-shopping-cart"></i>
+            <div>View Cart</div>
+          </div>
+          <div className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary">
+            <i className="fa fa-share"></i>
+            <div>Checkout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function CartMini() {
   const Badge = ({ total }) => (
     <div
@@ -65,19 +138,22 @@ function CartMini() {
       {total}
     </div>
   )
+  const cartContent = CartContent()
   return (
-    <div className="flex space-x-4 items-center">
-      <div className="relative bg-white w-10 h-10 rounded-full">
-        <div className="w-full h-full flex items-center justify-center">
-          <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
+    <Dropdown hasPadding={false} content={cartContent}>
+      <div className="flex space-x-4 items-center">
+        <div className="relative bg-white w-10 h-10 rounded-full">
+          <div className="w-full h-full flex items-center justify-center">
+            <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
+          </div>
+          <Badge total={'02'} />
         </div>
-        <Badge total={'02'} />
+        <div className="text-white flex flex-col justify-end">
+          <div className="uppercase text-sm font-semibold">my cart</div>
+          <div style={{ fontSize: 12 }}>($162.00)</div>
+        </div>
       </div>
-      <div className="text-white flex flex-col justify-end">
-        <div className="uppercase text-sm font-semibold">my cart</div>
-        <div style={{ fontSize: 12 }}>($162.00)</div>
-      </div>
-    </div>
+    </Dropdown>
   )
 }
 
