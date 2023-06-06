@@ -478,6 +478,18 @@ function Testimonials() {
   )
 }
 
+function MiniBanners() {
+  return (
+    <div className="grid grid-cols-5 gap-[30px]">
+      {[1, 2, 3, 4, 5].map((index) => (
+        <div key={index} className="h-[180px] cursor-pointer hover:opacity-80">
+          <img src="image/catalog/banners/cat1.jpg" className="w-full h-full" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -488,7 +500,7 @@ export default function Home() {
         </div>
       </div>
       <BestSelling />
-      <div className="col-span-3 flex space-x-8">
+      <div className="col-span-4 flex space-x-8">
         <div className="space-y-8" style={{ width: 237 }}>
           <div className="h-[390px] cursor-pointer">
             <img
@@ -510,7 +522,9 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-auto">main section</div>
+        <div className="flex-auto">
+          <MiniBanners />
+        </div>
       </div>
     </div>
   )
