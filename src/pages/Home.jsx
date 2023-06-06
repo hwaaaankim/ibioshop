@@ -490,6 +490,43 @@ function MiniBanners() {
   )
 }
 
+function FlashSale() {
+  const flashSaleRef = useRef()
+  const [width, setWidht] = useState(0)
+  useEffect(() => setWidht(flashSaleRef.current.clientWidth), [])
+  return (
+    <div className="">
+      <div className="flex space-x-4 items-center">
+        <div ref={flashSaleRef} className="py-1 uppercase text-xl font-bold">
+          flash sale
+        </div>
+
+        <div className="flex-auto flex space-x-2 items-center justify-between">
+          <div className="flex space-x-2 items-center">
+            {[1, 2, 3, 4].map((index) => (
+              <>
+                <div className="bg-primary text-white text-lg px-[10px] rounded">
+                  00
+                </div>
+                {index < 4 && <div className="text-lg font-bold">:</div>}
+              </>
+            ))}
+          </div>
+          <div className="flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
+            <div>View All</div>
+            <i className="fa fa-caret-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex">
+        <div className="border-b-2 border-primary" style={{ width }}></div>
+        <div className="flex-auto border-b-2 border-gray-300"></div>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -522,8 +559,9 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-auto">
+        <div className="flex-auto space-y-8">
           <MiniBanners />
+          <FlashSale />
         </div>
       </div>
     </div>
