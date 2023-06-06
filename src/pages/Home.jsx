@@ -149,7 +149,7 @@ function LatestProducts() {
   }
 
   return (
-    <div className="">
+    <div className="space-y-3">
       <div>
         <div className="uppercase font-semibold py-2">latest products</div>
         <div className="grid grid-cols-2">
@@ -285,6 +285,75 @@ function Features() {
   )
 }
 
+function Recommended() {
+  const [currentPage, setPage] = useState(1)
+  const product = {
+    id: 1,
+    picture: 'image/catalog/demo/product/270/e10.jpg',
+    name: 'Sausage Cowbee',
+    rate: 4,
+    price: 89,
+  }
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <div className="uppercase font-semibold py-2">recommended</div>
+        <div className="grid grid-cols-2">
+          <div className="border-b-2 border-primary"></div>
+          <div className="border-b-2 border-gray-400"></div>
+        </div>
+      </div>
+
+      <div className="space-y-2 items-center">
+        <div>
+          <img src={product.picture} className="w-full h-[246px]" />
+        </div>
+        <div className="flex flex-col items-center space-y-2">
+          <div className="flex space-x-1 items-center justify-center">
+            <i
+              className="fa fa-star text-[#fec42d]"
+              style={{ fontSize: 11 }}
+            ></i>
+            <i
+              className="fa fa-star text-[#fec42d]"
+              style={{ fontSize: 11 }}
+            ></i>
+            <i
+              className="fa fa-star text-[#fec42d]"
+              style={{ fontSize: 11 }}
+            ></i>
+            <i
+              className="fa fa-star text-[#fec42d]"
+              style={{ fontSize: 11 }}
+            ></i>
+            <i
+              className="fa fa-star text-[#fec42d]"
+              style={{ fontSize: 11 }}
+            ></i>
+          </div>
+          <div className="text-[13px] font-semibold">{product.name}</div>
+          <div className="text-primary font-semibold">${product.price}.00</div>
+        </div>
+      </div>
+
+      <div className="flex space-x-2 items-center ml-[80px]">
+        {[1, 2, 3].map((page) => (
+          <div
+            key={page}
+            className={
+              'h-[8px] cursor-pointer rounded-full bg-' +
+              (page === currentPage ? 'primary' : 'black')
+            }
+            style={{ width: page == currentPage ? 30 : 8 }}
+            onClick={() => setPage(page)}
+          ></div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -305,6 +374,7 @@ export default function Home() {
           </div>
           <LatestProducts />
           <Features />
+          <Recommended />
         </div>
         <div className="flex-auto">main section</div>
       </div>
