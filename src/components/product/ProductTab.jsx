@@ -1,7 +1,7 @@
 function ProductTab() {
 
   return (
-    <div className="my-10">
+    <div className="my-10 pr-[15px]">
       <div className="mt-20 float-left w-full">
         <ul className="bg-[#f5f5f5] p-4 rounded text-center">
           <li className="inline-flex mx-1.5 float-none">
@@ -190,10 +190,10 @@ function ProductTab() {
                 <div className="mb-4 space-x-1">
                   <b className="font-bold">Rating</b> <span>Bad</span>&nbsp;
                   <input type="radio" name="rating" value="1" className="my-1 leading-normal" /> &nbsp;
-                  <input type="radio" name="rating" value="2" className="my-1 leading-normal"/> &nbsp;
-                  <input type="radio" name="rating" value="3" className="my-1 leading-normal"/> &nbsp;
-                  <input type="radio" name="rating" value="4" className="my-1 leading-normal"/> &nbsp;
-                  <input type="radio" name="rating" value="5" className="my-1 leading-normal"/>
+                  <input type="radio" name="rating" value="2" className="my-1 leading-normal" /> &nbsp;
+                  <input type="radio" name="rating" value="3" className="my-1 leading-normal" /> &nbsp;
+                  <input type="radio" name="rating" value="4" className="my-1 leading-normal" /> &nbsp;
+                  <input type="radio" name="rating" value="5" className="my-1 leading-normal" />
                   &nbsp;<span>Good</span>
                 </div>
                 <div className="clear-both">

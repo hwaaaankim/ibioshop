@@ -3,14 +3,10 @@ import banner from '../../assets/images/banner-sidebar.jpg'
 function BannerSidebar() {
 
   return (
-    <div className="rounded w-full">
-      <div className="relative overflow-hidden block">
-        <div>
-          <a title="Banner Image" href="#" className='w-full align-middle cursor-pointer outline-none bg-transparent transit'>
-            <img src={banner} alt="Banner Image" />
-          </a>
-        </div>
-      </div>
+    <div className='w-full relative overflow-hidden mb-10 rounded-[3px]'>
+      <a title="Banner Image" href="#" className='text-[#555] cursor-pointer outline-none bg-transparent'>
+        <img src={banner} alt="Banner Image" className='w-full' />
+      </a>
     </div>
   )
 }

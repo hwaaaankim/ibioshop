@@ -11,12 +11,12 @@ function Product() {
     <div className="w-full p-10">
       <Breadcrumb />
       <div className="w-full flex">
-        <div className="w-3/4 flex flex-col">
+        <div className="w-[79%] flex flex-col">
           <ProductPreview />
           <ProductTab />
           <RelatedProducts />
         </div>
-        <div className="w-1/4 flex flex-col">
+        <div className="w-[21%] flex flex-col px-[15px]">
           <Categories />
           <LatestProducts />
           <BannerSidebar />

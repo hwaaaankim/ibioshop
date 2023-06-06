@@ -23,7 +23,7 @@ function App() {
     <div className="h-screen">
       {!header.hidden && <Header />}
       <Routes>
-        <Route exact path="/" element={<Protected component={<Home />} />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
