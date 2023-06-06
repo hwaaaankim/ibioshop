@@ -608,11 +608,14 @@ function FlashSale() {
       <div className="grid grid-cols-5 gap-[30px]">
         {products.map((product, index) => (
           <div key={index} className="space-y-2">
-            <div className="h-[180px] cursor-pointer group">
+            <div className="h-[180px] cursor-pointer group relative">
               <img
                 src={product.picture}
                 className="w-full h-full opacity-80 group-hover:opacity-100"
               />
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+                <div className="text-xs font-semibold">11%</div>
+              </div>
             </div>
             <div className="flex flex-col items-center space-y-2">
               <div className="flex space-x-2 items-center">
