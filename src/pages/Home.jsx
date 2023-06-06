@@ -306,7 +306,7 @@ function Recommended() {
       </div>
 
       <div className="space-y-2 items-center">
-        <div>
+        <div className="cursor-pointer hover:opacity-80">
           <img src={product.picture} className="w-full h-[246px]" />
         </div>
         <div className="flex flex-col items-center space-y-2">
