@@ -687,6 +687,32 @@ function CatalogBanners() {
   )
 }
 
+function ProductCategories() {
+  const categories = [
+    'Smartphone',
+    'Tablets',
+    'Computer',
+    'Accessories',
+    'Hitech',
+  ]
+  return (
+    <div className="space-y-4">
+      <div className="flex items-stretch justify-between">
+        <div className="bg-primary text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
+          Technology
+        </div>
+        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center justify-end">
+          {categories.map((category, index) => (
+            <div className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary">
+              {category}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -723,6 +749,7 @@ export default function Home() {
           <MiniBanners />
           <FlashSale />
           <CatalogBanners />
+          <ProductCategories />
         </div>
       </div>
     </div>
