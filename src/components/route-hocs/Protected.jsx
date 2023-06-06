@@ -6,5 +6,5 @@ export default function Protected({ component }) {
   if (!auth.signedIn) {
     return <Navigate to="/login" replace={true} />
   }
-  return component()
+  return <>{component}</>
 }
