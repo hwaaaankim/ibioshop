@@ -662,6 +662,31 @@ function FlashSale() {
   )
 }
 
+function CatalogBanners() {
+  return (
+    <div className="grid grid-cols-4 gap-3">
+      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+        <img
+          src="image/catalog/banners/banner3.jpg"
+          className="w-full h-full"
+        />
+      </div>
+      <div className="col-span-2 h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+        <img
+          src="image/catalog/banners/banner4.jpg"
+          className="w-full h-full"
+        />
+      </div>
+      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+        <img
+          src="image/catalog/banners/banner5.jpg"
+          className="w-full h-full"
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -697,6 +722,7 @@ export default function Home() {
         <div className="flex-auto space-y-8">
           <MiniBanners />
           <FlashSale />
+          <CatalogBanners />
         </div>
       </div>
     </div>
