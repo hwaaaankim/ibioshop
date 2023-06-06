@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 function ImageCarousel() {
+  const main = useRef()
+  const [mainWidth, setWidth] = useState(0)
   const images = [
     { id: 1, path: 'image/catalog/slideshow/home1/slider-1.jpg' },
     { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
@@ -12,21 +14,27 @@ function ImageCarousel() {
     setActiveIndex(index)
   }
 
+  useEffect(() => {
+    setWidth(main.current.clientWidth)
+  }, [])
+
   return (
     <div className="cursor-pointer w-full h-full relative overflow-x-hidden">
       <div className="absolute top-0 bottom-0 left-0 right-0">
         {images.map((image, index) => (
           <motion.img
-            animate={{ x: (index - activeIndex) * 832 }}
+            animate={{ x: (index - activeIndex) * mainWidth }}
             transition={{ ease: 'easeInOut', duration: 0.5 }}
             src={image.path}
-            className="h-full flex-shrink-0 object-cover absolute top-0 bottom-0 left-0 right-0"
-            style={{ width: 832 + 'px' }}
-            key={image.key}
+            className="h-full absolute top-0 bottom-0 left-0 right-0"
+            key={image.id}
           ></motion.img>
         ))}
       </div>
-      <div className="absolute bottom-0 right-0 left-0 flex space-x-2 items-center justify-center py-4 cursor-default">
+      <div
+        ref={main}
+        className="absolute bottom-0 right-0 left-0 flex space-x-2 items-center justify-center py-4 cursor-default"
+      >
         {[0, 1, 2].map((index) => (
           <div
             key={index}
@@ -64,11 +72,10 @@ function BestSelling() {
             <div
               key={page}
               className={
-                'w-[' +
-                (page == currentPage ? 30 : 8) +
-                'px] h-[8px] cursor-pointer rounded-full bg-' +
+                'h-[8px] cursor-pointer rounded-full bg-' +
                 (page === currentPage ? 'primary' : 'black')
               }
+              style={{ width: page == currentPage ? 30 : 8 }}
               onClick={() => setPage(page)}
             ></div>
           ))}
