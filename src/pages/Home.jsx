@@ -936,6 +936,19 @@ export default function Home() {
           <Technology />
           <FurnitureNdecor />
           <FashionNaccessories />
+          <div className="grid grid-cols-2 gap-[30px]">
+            {[1, 2].map((index) => (
+              <div
+                key={index}
+                className="h-[140px] opacity-80 hover:opacity-100 cursor-pointer"
+              >
+                <img
+                  src="image/catalog/banners/bn1.jpg"
+                  className="w-full h-full"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
