@@ -478,6 +478,579 @@ function Testimonials() {
   )
 }
 
+function MiniBanners() {
+  return (
+    <div className="grid grid-cols-5 gap-[30px]">
+      {[1, 2, 3, 4, 5].map((index) => (
+        <div key={index} className="h-[180px] cursor-pointer hover:opacity-80">
+          <img src="image/catalog/banners/cat1.jpg" className="w-full h-full" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function FlashSale() {
+  const flashSaleRef = useRef()
+  const [width, setWidht] = useState(0)
+  useEffect(() => setWidht(flashSaleRef.current.clientWidth), [])
+
+  const products = [
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 40,
+        percentage: 40,
+      },
+    },
+  ]
+  const ProgressBar = ({ progress }) => (
+    <div className="flex">
+      <div
+        className="h-[14px] bg-primary rounded-l-lg"
+        style={{ width: progress + '%' }}
+      ></div>
+      <div
+        className="h-[14px] bg-gray-200 rounded-r-lg"
+        style={{ width: 100 - progress + '%' }}
+      ></div>
+    </div>
+  )
+
+  return (
+    <div className="space-y-4">
+      <div className="flex space-x-4 items-center">
+        <div ref={flashSaleRef} className="py-1 uppercase text-xl font-bold">
+          flash sale
+        </div>
+
+        <div className="flex-auto flex space-x-2 items-center justify-between">
+          <div className="flex space-x-2 items-center">
+            {[1, 2, 3, 4].map((index) => (
+              <div key={index} className="flex space-x-2 items-center">
+                <div className="bg-primary text-white text-lg px-[10px] rounded">
+                  00
+                </div>
+                {index < 4 && <div className="text-lg font-bold">:</div>}
+              </div>
+            ))}
+          </div>
+          <div className="flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
+            <div>View All</div>
+            <i className="fa fa-caret-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex">
+        <div className="border-b-2 border-primary" style={{ width }}></div>
+        <div className="flex-auto border-b-2 border-gray-300"></div>
+      </div>
+
+      <div className="grid grid-cols-5 gap-[30px]">
+        {products.map((product, index) => (
+          <div key={index} className="space-y-2">
+            <div className="h-[180px] cursor-pointer group relative">
+              <img
+                src={product.picture}
+                className="w-full h-full opacity-80 group-hover:opacity-100"
+              />
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+                <div className="text-xs font-semibold">11%</div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="flex space-x-2 items-center">
+                <div className="flex space-x-1 items-center">
+                  {[1, 2, 3, 4, 5].map((sindex) => (
+                    <i
+                      key={sindex}
+                      className="fa fa-star text-[#fec42d]"
+                      style={{ fontSize: 12 }}
+                    ></i>
+                  ))}
+                </div>
+                <div className="text-[10px] text-[#333]">
+                  ({product.totalRatings})
+                </div>
+              </div>
+              <div className="text-[13px] text-[#333] font-medium">
+                {product.name}
+              </div>
+              <div className="flex space-x-2 items-center justify-center">
+                <div className="text-primary font-semibold">
+                  $
+                  {product.discounted ? product.discountedPrice : product.price}
+                  .00
+                </div>
+                <div className="line-through text-gray-600 text-sm">
+                  ${product.price}.00
+                </div>
+              </div>
+
+              <div className="w-full space-y-2">
+                <ProgressBar progress={product.totalSold.percentage} />
+                <div className="flex items-center justify-center">
+                  <div className="text-[#333] text-xs">Sold:&nbsp;</div>
+                  <div className="text-primary text-[13px] font-semibold">
+                    {product.totalSold.total}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function CatalogBanners() {
+  return (
+    <div className="grid grid-cols-4 gap-3">
+      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+        <img
+          src="image/catalog/banners/banner3.jpg"
+          className="w-full h-full"
+        />
+      </div>
+      <div className="col-span-2 h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+        <img
+          src="image/catalog/banners/banner4.jpg"
+          className="w-full h-full"
+        />
+      </div>
+      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+        <img
+          src="image/catalog/banners/banner5.jpg"
+          className="w-full h-full"
+        />
+      </div>
+    </div>
+  )
+}
+
+function ProductCategories({
+  category,
+  subCategories,
+  hasLeftBannner = false,
+  hasRightBanner = false,
+}) {
+  if (!category) category = 'Technology'
+  if (!subCategories)
+    subCategories = [
+      'Smartphone',
+      'Tablets',
+      'Computer',
+      'Accessories',
+      'Hitech',
+    ]
+  const products = [
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      isNew: true,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+  ]
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-stretch justify-between">
+        <div className="bg-primary text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
+          {category}
+        </div>
+        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center justify-end">
+          {subCategories.map((scategory, index) => (
+            <div className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary">
+              {scategory}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex space-x-2">
+        {hasLeftBannner && (
+          <div className="w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+            <img
+              src="image/catalog/demo/category/tab1.jpg"
+              className="w-full h-full"
+            />
+          </div>
+        )}
+
+        <div className="flex-auto grid grid-cols-4 gap-[30px]">
+          {products.map((product, index) => (
+            <div key={index} className="space-y-2">
+              <div className="h-[180px] cursor-pointer group relative">
+                <img
+                  src={product.picture}
+                  className="w-full h-full opacity-80 group-hover:opacity-100"
+                />
+                {product.discounted && (
+                  <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+                    <div className="text-xs font-semibold">11%</div>
+                  </div>
+                )}
+                {product.isNew && (
+                  <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[5px] top-[5px]">
+                    <div className="text-xs font-semibold">New</div>
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <div className="flex space-x-2 items-center">
+                  <div className="flex space-x-1 items-center">
+                    {[1, 2, 3, 4, 5].map((sindex) => (
+                      <i
+                        key={sindex}
+                        className="fa fa-star text-[#fec42d]"
+                        style={{ fontSize: 12 }}
+                      ></i>
+                    ))}
+                  </div>
+                  <div className="text-[10px] text-[#333]">
+                    ({product.totalRatings})
+                  </div>
+                </div>
+                <div className="text-[13px] text-[#333] font-medium">
+                  {product.name}
+                </div>
+                <div className="flex space-x-2 items-center justify-center">
+                  <div className="text-primary font-semibold">
+                    $
+                    {product.discounted
+                      ? product.discountedPrice
+                      : product.price}
+                    .00
+                  </div>
+                  {product.discounted && (
+                    <div className="line-through text-gray-600 text-sm">
+                      ${product.price}.00
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {hasRightBanner && (
+          <div className="w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+            <img
+              src="image/catalog/demo/category/tab1.jpg"
+              className="w-full h-full"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function Technology() {
+  const scategories = [
+    'Smartphone',
+    'Tablets',
+    'Computer',
+    'Accessories',
+    'Hitech',
+  ]
+  return (
+    <ProductCategories
+      category="Technology"
+      subCategories={scategories}
+      hasLeftBannner={true}
+    />
+  )
+}
+
+function FurnitureNdecor() {
+  const scategories = [
+    'Living room',
+    'Bathroom',
+    'Bedroom',
+    'Accessories',
+    'Decor',
+  ]
+  return (
+    <ProductCategories
+      category="Furniture & decor"
+      subCategories={scategories}
+      hasRightBanner={true}
+    />
+  )
+}
+
+function FashionNaccessories() {
+  const scategories = [
+    'Smartphone',
+    'Tablets',
+    'Computer',
+    'Accessories',
+    'Hitech',
+  ]
+  return (
+    <ProductCategories
+      category="Fashion & accessories"
+      subCategories={scategories}
+      hasLeftBannner={true}
+    />
+  )
+}
+
+function NewArrivals() {
+  const products = [
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 40,
+        percentage: 40,
+      },
+    },
+  ]
+
+  const [activeTab, setActiveTab] = useState(0)
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-stretch">
+        {['best seller', 'new arrivals', 'most rating'].map((title, index) => (
+          <div
+            key={index}
+            className={
+              'py-1 pr-12 uppercase text-lg font-semibold cursor-pointer hover:text-primary border-b-2 ' +
+              (activeTab !== index
+                ? 'border-gray-300'
+                : 'border-primary text-primary')
+            }
+            onClick={() => setActiveTab(index)}
+          >
+            {title}
+          </div>
+        ))}
+        <div className="flex-auto border-b-2 border-gray-300"></div>
+      </div>
+
+      <div className="grid grid-cols-5 gap-[30px]">
+        {products.map((product, index) => (
+          <div key={index} className="space-y-2">
+            <div className="h-[180px] cursor-pointer group relative">
+              <img
+                src={product.picture}
+                className="w-full h-full opacity-80 group-hover:opacity-100"
+              />
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+                <div className="text-xs font-semibold">11%</div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="flex space-x-2 items-center">
+                <div className="flex space-x-1 items-center">
+                  {[1, 2, 3, 4, 5].map((sindex) => (
+                    <i
+                      key={sindex}
+                      className="fa fa-star text-[#fec42d]"
+                      style={{ fontSize: 12 }}
+                    ></i>
+                  ))}
+                </div>
+                <div className="text-[10px] text-[#333]">
+                  ({product.totalRatings})
+                </div>
+              </div>
+              <div className="text-[13px] text-[#333] font-medium">
+                {product.name}
+              </div>
+              <div className="flex space-x-2 items-center justify-center">
+                <div className="text-primary font-semibold">
+                  $
+                  {product.discounted ? product.discountedPrice : product.price}
+                  .00
+                </div>
+                <div className="line-through text-gray-600 text-sm">
+                  ${product.price}.00
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function BrandsCarousel() {
+  return (
+    <div className="p-[30px] border border-gray-200 rounded grid grid-cols-7 gap-0">
+      {[1, 2, 3, 4, 5, 6, 7].map((index) => (
+        <div
+          key={index}
+          className="h-[71px] opacity-80 hover:opacity-100 cursor-pointer"
+        >
+          <img src="image/catalog/brands/b1.png" className="w-full h-full" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -488,7 +1061,7 @@ export default function Home() {
         </div>
       </div>
       <BestSelling />
-      <div className="col-span-3 flex space-x-8">
+      <div className="col-span-4 flex space-x-8">
         <div className="space-y-8" style={{ width: 237 }}>
           <div className="h-[390px] cursor-pointer">
             <img
@@ -510,7 +1083,30 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-auto">main section</div>
+        <div className="flex-auto space-y-8">
+          <MiniBanners />
+          <FlashSale />
+          <CatalogBanners />
+          <Technology />
+          <FurnitureNdecor />
+          <FashionNaccessories />
+          <div className="grid grid-cols-2 gap-[30px]">
+            {[1, 2].map((index) => (
+              <div
+                key={index}
+                className="h-[140px] opacity-80 hover:opacity-100 cursor-pointer"
+              >
+                <img
+                  src="image/catalog/banners/bn1.jpg"
+                  className="w-full h-full"
+                />
+              </div>
+            ))}
+          </div>
+
+          <NewArrivals />
+          <BrandsCarousel />
+        </div>
       </div>
     </div>
   )
