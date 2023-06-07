@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const footer = {
-  hidden: false,
+  hidden: true,
 }
 
 export const footerSlice = createSlice({

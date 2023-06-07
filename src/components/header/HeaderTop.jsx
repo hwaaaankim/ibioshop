@@ -150,19 +150,16 @@ function AccountNavs() {
 
 export default function HeaderTop() {
   return (
-    <div
-      className="flex space-x-2 items-center"
-      style={{ paddingLeft: 2.5 + '%', paddingRight: 2.5 + '%' }}
-    >
+    <div className="flex space-x-2 items-center px-[2.5%] py-2">
       <div
-        className="flex-auto leading-9 text-gray-500 hidden lg:flex"
+        className="flex-auto leading-9 text-gray-500 hidden min-[1200px]::flex"
         style={{ fontSize: 12 }}
       >
         Welcome to SuperMarket! Wrap new offers / gift every single day on
         Weekends - New Coupon code:&nbsp;
         <span className="text-primary">Happy2018</span>
       </div>
-      <div className="flex-auto flex lg:hidden">
+      <div className="flex-auto flex min-[1200px]::hidden">
         <AccountNavs />
       </div>
       <div className="flex space-x-5 items-center" style={{ fontSize: 12 }}>

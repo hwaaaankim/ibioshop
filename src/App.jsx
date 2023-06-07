@@ -30,11 +30,12 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="my_account" element={<MyAccount />} />
-        <Route path="cart" element={<Cart/>} />
+        <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="test" element={<Test />} />
+        <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}

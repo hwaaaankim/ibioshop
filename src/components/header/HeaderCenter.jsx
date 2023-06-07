@@ -3,7 +3,7 @@ import { Dropdown } from './HeaderTop'
 
 function Logo() {
   return (
-    <div>
+    <div className="flex md:block justify-center">
       <img src="image/catalog/logo.png" style={{ width: 189, height: 39 }} />
     </div>
   )
@@ -12,7 +12,10 @@ function Logo() {
 function CategoriesSelector({ category, setter }) {
   const categories = ['All Categories', 'Apparel', 'Cables and Connectors']
   return (
-    <div style={{ padding: '0 15px' }} className="bg-gray-100 rounded-l">
+    <div
+      style={{ padding: '0 15px' }}
+      className="bg-gray-100 rounded-l hidden min-[992px]:block"
+    >
       <select
         value={category}
         onChange={setter}
@@ -33,16 +36,16 @@ function FilterBar() {
   const [category, setCategory] = useState('All Categories')
   const [search, setSearch] = useState('')
   return (
-    <div className="flex-auto flex items-center">
+    <div className="flex-auto hidden md:flex items-center">
       <CategoriesSelector category={category} setter={setCategory} />
-      <div className="flex-auto bg-white p-0.5 rounded-r border-l border-gray-400">
+      <div className="min-[992px]:flex-auto bg-white p-0.5 rounded-l min-[992px]:rounded-l-none rounded-r border-l border-gray-400">
         <div className="flex">
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{ fontSize: 12 }}
-            className="flex-auto outline-none px-4 text-gray-500"
+            className="min-[992px]:flex-auto outline-none px-4 text-gray-500"
             placeholder="Keyword here..."
           />
           <div
@@ -148,7 +151,7 @@ function CartMini() {
           </div>
           <Badge total={'02'} />
         </div>
-        <div className="text-white flex flex-col justify-end">
+        <div className="text-white hidden min-[768]:flex flex-col justify-end">
           <div className="uppercase text-sm font-semibold">my cart</div>
           <div style={{ fontSize: 12 }}>($162.00)</div>
         </div>
@@ -159,10 +162,10 @@ function CartMini() {
 
 function RightNavs() {
   return (
-    <div className="flex space-x-6 pl-12 mx-4 items-center">
+    <div className="hidden md:flex min-[992px]:space-x-6 min-[992px]:pl-12 min-[992px]:mx-4 items-center">
       {[{ icon: 'refresh' }, { icon: 'heart' }].map((item, index) => (
         <div
-          className="cursor-pointer w-10 h-10 flex items-center justify-center"
+          className="cursor-pointer w-10 h-10 hidden min-[1200px]:flex items-center justify-center"
           key={index}
         >
           <i
@@ -171,6 +174,20 @@ function RightNavs() {
           />
         </div>
       ))}
+
+      <CartMini />
+    </div>
+  )
+}
+
+function CartNsearchMini() {
+  return (
+    <div className="flex md:hidden space-x-2 justify-between">
+      <div className="p-0 relative">
+        <div className="p-1 cursor-pointer text-white">
+          <i className="fa fa-search"></i>
+        </div>
+      </div>
       <CartMini />
     </div>
   )
@@ -178,18 +195,12 @@ function RightNavs() {
 
 export default function HeaderCenter() {
   return (
-    <div
-      style={{
-        paddingTop: 25,
-        paddingBottom: 16,
-        paddingLeft: 2.5 + '%',
-        paddingRight: 2.5 + '%',
-      }}
-    >
-      <div className="flex space-x-7 items-center">
+    <div className="px-[2.5%] pt-[25px] pb-[16px]">
+      <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 min-[992px]:space-x-7 items-center">
         <Logo />
         <FilterBar />
         <RightNavs />
+        <CartNsearchMini />
       </div>
     </div>
   )
