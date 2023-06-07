@@ -46,7 +46,7 @@ function Register() {
         <h2 className="mt-8 mb-2">Your Personal Details</h2>
         <hr className='mb-6'></hr>
         {/* PERSONAL DETAILS */}
-        <form onSubmit={handleSubmit(handleRegistration)}>
+    <form onSubmit={handleSubmit(handleRegistration)}>
             <div className='sm:flex mb-4 sm:space-x-4'>
                 <Label required={true} className='mt-4' name='Firstname'></Label>
                 <span className='flex flex-col w-full'>
