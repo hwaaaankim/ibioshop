@@ -9,9 +9,9 @@ function OrderHistory() {
   const { data } = order.getAllOrders()
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 text-xs text-gray-2 font-body leading-6 box-border mb-6">
+    <div className="px-4 sm:px-6 lg:px-8 text-xs text-gray-2 leading-6 mb-8">
       {/* Breadcrumb */}
-      <ul className="flex mt-6 mb-11 leading-normal text-gray-3 space-x-3 ">
+      <ul className="flex mt-6 leading-normal text-gray-3 space-x-3 ">
         <li>
           <a href="#">
             <i className="fa fa-home ml-2  hover:text-blue-3"></i>
@@ -25,34 +25,34 @@ function OrderHistory() {
         </li>
       </ul>
       <div className="flex">
-        <div className="w-full sm:w-3/4 pr-8 mb-7">
-          <h2 className="text-xl font-semibold mb-2">Order History</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full max-w-full border border-solid border-collapse border-spacing-0">
-              <thead className="bg-gray-1">
-                <tr className="font-bold">
-                  <td className="text-center border border-solid border-collapse border-spacing-0 p-1">
+        <div className="w-full sm:w-3/4 pr-7 mb-7">
+          <h2 className="text-xl font-medium mt-11 mb-3">Order History</h2>
+          <div className="overflow-x-auto min-h-[.01%]">
+            <table className="w-full max-w-full">
+              <thead>
+                <tr className="bg-gray-4 font-bold">
+                  <td className="text-center whitespace-nowrap border border-solid border-collapse border-spacing-0 px-1">
                     Image
                   </td>
-                  <td className="text-left border border-solid border-collapse border-spacing-0 p-1">
+                  <td className="text-left whitespace-nowrap border  border-solid border-collapse border-spacing-0 p-1">
                     Product Name
                   </td>
-                  <td className="text-center border border-solid border-collapse border-spacing-0 p-1">
+                  <td className="text-center whitespace-nowrap border border-solid border-collapse border-spacing-0 p-1">
                     Order Id
                   </td>
-                  <td className="text-center border border-solid border-collapse border-spacing-0 p-1">
+                  <td className="text-center whitespace-nowrap border border-solid border-collapse border-spacing-0 p-1 ">
                     Qty
                   </td>
-                  <td className="text-center border border-solid border-collapse border-spacing-0 p-1">
+                  <td className="text-center whitespace-nowrap border border-solid border-collapse border-spacing-0 p-1">
                     Status
                   </td>
-                  <td className="text-center border border-solid border-collapse border-spacing-0 p-1">
+                  <td className="text-center  border border-solid border-collapse border-spacing-0 p-1">
                     Date Added
                   </td>
-                  <td className="text-right border border-solid border-collapse border-spacing-0 p-1">
+                  <td className="text-right whitespace-nowrap border border-solid border-collapse border-spacing-0 p-1 ">
                     Total
                   </td>
-                  <td className="text-right border border-solid border-collapse border-spacing-0 p-1"></td>
+                  <td className="text-right whitespace-nowrap border border-solid border-collapse border-spacing-0 p-1"></td>
                 </tr>
               </thead>
               <tbody>

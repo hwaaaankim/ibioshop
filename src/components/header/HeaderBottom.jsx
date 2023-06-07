@@ -1,3 +1,5 @@
+import { Dropdown } from './HeaderTop'
+
 function CategoriesMenu() {
   return (
     <div>
@@ -13,13 +15,40 @@ function CategoriesMenu() {
 }
 
 function HomeDropDown() {
-  return (
-    <div>
-      <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
-        <div className="uppercase text-sm font-semibold">home</div>
-        <i className="fa fa-caret-down" />
-      </div>
+  const content = (
+    <div className="p-10 flex space-x-8">
+      {[
+        'Home page - (default)',
+        'Home page - layout 2',
+        'Home page - layout 3',
+        'Home page - rtl',
+      ].map((title, index) => (
+        <div key={index} className="w-[110px] space-y-2 cursor-pointer group">
+          <img
+            src="image/catalog/menu/home-1.jpg"
+            className="w-full h-[60px]"
+          />
+          <div className="uppercase text-center text-xs text-gray-700 font-semibold group-hover:text-primary">
+            {title}
+          </div>
+        </div>
+      ))}
     </div>
+  )
+  return (
+    <Dropdown
+      placement="bottom-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+    >
+      <div>
+        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+          <div className="uppercase text-sm font-semibold">home</div>
+          <i className="fa fa-caret-down" />
+        </div>
+      </div>
+    </Dropdown>
   )
 }
 
@@ -57,11 +86,19 @@ function CategoriesDropDown() {
 }
 
 function Accessories() {
-  return <div className="uppercase text-sm font-semibold">accessories</div>
+  return (
+    <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
+      accessories
+    </div>
+  )
 }
 
 function Blog() {
-  return <div className="uppercase text-sm font-semibold">blog</div>
+  return (
+    <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
+      blog
+    </div>
+  )
 }
 
 function AccountNav() {
