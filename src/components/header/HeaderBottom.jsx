@@ -129,13 +129,71 @@ function PagesDropDown() {
 }
 
 function CategoriesDropDown() {
-  return (
-    <div>
-      <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
-        <div className="uppercase text-sm font-semibold">categories</div>
-        <i className="fa fa-caret-down" />
-      </div>
+  const navs = [
+    {
+      title: 'Automotive',
+      links: [
+        'car alarms & security',
+        'car audio & speakers',
+        'Gadgets & auto parts',
+        'more car accessories',
+      ],
+    },
+    {
+      title: 'furnitures',
+      links: ['bathroom', 'bedroom', 'decor', 'living room'],
+    },
+    {
+      title: 'jewelry & watches',
+      links: ['earings', 'wedding rings', 'men watches'],
+    },
+    {
+      title: 'electronics',
+      links: ['computer', 'smartphone', 'tablets', 'monitors'],
+    },
+  ]
+  const content = (
+    <div className="p-10 flex space-x-8 items-start">
+      {navs.map((nav, nindex) => (
+        <div key={nindex} className="space-y-4">
+          <div className="opacity-80 hover:opacity-100 cursor-pointer w-[120px] h-[60px]">
+            <img
+              src="image/catalog/menu/megabanner/image-3.jpg"
+              className="w-full h-full"
+            />
+          </div>
+          <div className="uppercase text-gray-700 font-semibold cursor-pointer hover:text-primary border-b pb-2">
+            {nav.title}
+          </div>
+          <div className="space-y-2">
+            {nav.links.map((link, lindex) => (
+              <div
+                key={lindex}
+                className="capitalize text-sm cursor-pointer hover:text-primary"
+              >
+                {link}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
+  )
+
+  return (
+    <Dropdown
+      placement="bottom"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+    >
+      <div>
+        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+          <div className="uppercase text-sm font-semibold">categories</div>
+          <i className="fa fa-caret-down" />
+        </div>
+      </div>
+    </Dropdown>
   )
 }
 
