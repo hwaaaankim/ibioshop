@@ -33,29 +33,32 @@ function MyAccount() {
     }
     setLoading(false)
   }
-
   return (
-    <div className="px-8 sm:px-16 lg:px-8 sm:text-sm lg:text-xs my-account">
+    <div className="px-4 sm:px-6 lg:px-8 text-xs text-gray-2 font-body leading-6">
       {/* Breadcrumb */}
-      <ul className="flex flex-row mb-4 mt-7 text-gray-400">
+      <ul className="flex my-6 leading-normal text-gray-3 space-x-4 ">
         <li>
-          <a href="/">
-            <Icon className="" size="12" id="home"></Icon>
+          <a href="#">
+            <i className="fa fa-home ml-2  hover:text-blue-3"></i>
           </a>
         </li>
-        <Icon className="mt-2 mx-2" id="chevronRight" size="10"></Icon>
         <li>
-          <a href="/account">Account</a>
+          <Icon className="mt-2" id="chevronRight" size="8"></Icon>
         </li>
-        <Icon className="mt-2 mx-2" id="chevronRight" size="10"></Icon>
+        <li className=" hover:text-primary">
+          <a href="#">Account</a>
+        </li>
         <li>
+          <Icon className="mt-2 " id="chevronRight" size="8"></Icon>
+        </li>
+        <li className="text-primary">
           <a href="/my_account">My Account</a>
         </li>
       </ul>
       <div className="flex">
-        <div className="w-full sm:w-3/4 ">
+        <div className="w-full sm:w-3/4">
           <div className="text-xl mb-6 mt-5">
-            <h2 className="mb-2">My Account</h2>
+            <h2 className="mb-2 font-medium">My Account</h2>
             <p className="leading-normal">
               Hello, <span className="font-bold">{name}</span> - To update your
               account information.
@@ -295,9 +298,15 @@ function MyAccount() {
                       <option selected disabled>
                         Select your state
                       </option>
-                      <option value="North Chungcheong">North Chungcheong</option> 
-                      <option vaue="South Chungcheong">South Chungcheong</option>
-                      <option value="Gangwon, Gyeonggi">Gangwon, Gyeonggi</option>
+                      <option value="North Chungcheong">
+                        North Chungcheong
+                      </option>
+                      <option vaue="South Chungcheong">
+                        South Chungcheong
+                      </option>
+                      <option value="Gangwon, Gyeonggi">
+                        Gangwon, Gyeonggi
+                      </option>
                       <option value="North Gyeongsang">North Gyeongsang</option>
                       <option value="South Gyeongsang">South Gyeongsang</option>
                       <option value="North Jeolla">North Jeolla</option>
@@ -384,9 +393,15 @@ function MyAccount() {
                       <option selected disabled>
                         Select your state
                       </option>
-                      <option value="North Chungcheong">North Chungcheong</option> 
-                      <option vaue="South Chungcheong">South Chungcheong</option>
-                      <option value="Gangwon, Gyeonggi">Gangwon, Gyeonggi</option>
+                      <option value="North Chungcheong">
+                        North Chungcheong
+                      </option>
+                      <option vaue="South Chungcheong">
+                        South Chungcheong
+                      </option>
+                      <option value="Gangwon, Gyeonggi">
+                        Gangwon, Gyeonggi
+                      </option>
                       <option value="North Gyeongsang">North Gyeongsang</option>
                       <option value="South Gyeongsang">South Gyeongsang</option>
                       <option value="North Jeolla">North Jeolla</option>

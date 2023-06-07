@@ -1,33 +1,61 @@
 import Tippy from '@tippyjs/react/headless'
-import Icon from '../icon/Icon'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-function Currencies() {
-  const [initial, setInitial] = useState({})
-  const [final, setFinal] = useState({})
+export function Dropdown({
+  visible = false,
+  hasPadding = 'true',
+  content,
+  children,
+}) {
+  const initial = { animate: { rotateX: 90, originY: 0 } }
+  const [variants, setVariants] = useState(initial)
 
-  const onMount = () => {
-    setInitial({ rotateX: -90, height: 40 })
-    setFinal({ rotateX: 0, height: 'auto' })
+  const onShow = () => {
+    setVariants({ animate: { rotateX: 0 } })
   }
   const onHide = () => {
-    setInitial({ rotateX: 0, height: 'auto' })
-    setFinal({ rotateX: -90, height: 40 })
+    setVariants({ animate: { rotateX: 90 } })
   }
+
+  const contentAnimated = (attrs) => (
+    <motion.div
+      variants={variants}
+      animate="animate"
+      transition={{ duration: 0.2 }}
+      className={
+        'bg-white ' +
+        (hasPadding ? 'px-4 py-2' : '') +
+        ' shadow-lg border overflow-clip text-gray-500'
+      }
+      {...attrs}
+    >
+      {content}
+    </motion.div>
+  )
+
+  return (
+    <Tippy
+      render={contentAnimated}
+      placement="bottom-end"
+      interactive={true}
+      // visible={visible}
+      onShow={onShow}
+      onHide={onHide}
+    >
+      {children}
+    </Tippy>
+  )
+}
+
+function Currencies() {
   const currencies = [
     { icon: '€', name: 'Euro' },
     { icon: '€', name: 'Pounds' },
     { icon: '$', name: 'US Dollar' },
   ]
-  const content = (attrs) => (
-    <motion.div
-      initial={initial}
-      animate={final}
-      transition={{ duration: 0.1 }}
-      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
-      {...attrs}
-    >
+  const content = (
+    <div>
       {currencies.map((item, index) => (
         <div
           key={index}
@@ -39,44 +67,23 @@ function Currencies() {
           </a>
         </div>
       ))}
-    </motion.div>
+    </div>
   )
+
   return (
-    <Tippy
-      render={content}
-      placement="bottom-end"
-      interactive={true}
-      onMount={onMount}
-      onHide={onHide}
-    >
+    <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <div>$ US Dollar</div>
         <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
       </div>
-    </Tippy>
+    </Dropdown>
   )
 }
-function Languages() {
-  const [initial, setInitial] = useState({})
-  const [final, setFinal] = useState({})
 
-  const onMount = () => {
-    setInitial({ rotateX: -90, height: 40 })
-    setFinal({ rotateX: 0, height: 'auto' })
-  }
-  const onHide = () => {
-    setInitial({ rotateX: 0, height: 'auto' })
-    setFinal({ rotateX: -90, height: 40 })
-  }
+function Languages() {
   const languages = ['English', 'Arabic']
-  const content = (attrs) => (
-    <motion.div
-      initial={initial}
-      animate={final}
-      transition={{ duration: 0.1 }}
-      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
-      {...attrs}
-    >
+  const content = (
+    <div>
       {languages.map((language, index) => (
         <div
           key={index}
@@ -90,16 +97,10 @@ function Languages() {
           <a href="#">{language}</a>
         </div>
       ))}
-    </motion.div>
+    </div>
   )
   return (
-    <Tippy
-      render={content}
-      placement="bottom-end"
-      interactive={true}
-      onMount={onMount}
-      onHide={onHide}
-    >
+    <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
         <img
           src="image/catalog/flags/gb.png"
@@ -108,34 +109,17 @@ function Languages() {
         <div>English</div>
         <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
       </div>
-    </Tippy>
+    </Dropdown>
   )
 }
 
 function AccountNavs() {
-  const [initial, setInitial] = useState({})
-  const [final, setFinal] = useState({})
-
-  const onMount = () => {
-    setInitial({ rotateX: -90, height: 40 })
-    setFinal({ rotateX: 0, height: 'auto' })
-  }
-  const onHide = () => {
-    setInitial({ rotateX: 0, height: 'auto' })
-    setFinal({ rotateX: -90, height: 40 })
-  }
   const accountNavs = [
     { icon: 'user', title: 'Register' },
     { icon: 'pencil-square-o', title: 'Log in' },
   ]
-  const content = (attrs) => (
-    <motion.div
-      initial={initial}
-      animate={final}
-      transition={{ duration: 0.1 }}
-      className="bg-white px-4 py-2 shadow-lg border overflow-clip text-gray-500"
-      {...attrs}
-    >
+  const content = (
+    <div>
       {accountNavs.map((nav, index) => (
         <div
           key={index}
@@ -146,16 +130,11 @@ function AccountNavs() {
           <a href="#">{nav.title}</a>
         </div>
       ))}
-    </motion.div>
+    </div>
   )
+
   return (
-    <Tippy
-      render={content}
-      placement="bottom-end"
-      interactive={true}
-      onMount={onMount}
-      onHide={onHide}
-    >
+    <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
         <i className="fa fa-user" style={{ fontSize: 12 }} />
         <div className="hidden md:block" style={{ fontSize: 12 }}>
@@ -163,7 +142,7 @@ function AccountNavs() {
         </div>
         <i className="fa fa-caret-down" style={{ fontSize: 10 }} />
       </div>
-    </Tippy>
+    </Dropdown>
   )
 }
 
