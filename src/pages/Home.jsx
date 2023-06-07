@@ -897,6 +897,145 @@ function FashionNaccessories() {
   )
 }
 
+function NewArrivals() {
+  const products = [
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 40,
+        percentage: 40,
+      },
+    },
+  ]
+
+  const [activeTab, setActiveTab] = useState(0)
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-stretch">
+        {['best seller', 'new arrivals', 'most rating'].map((title, index) => (
+          <div
+            key={index}
+            className={
+              'py-1 pr-12 uppercase text-lg font-semibold cursor-pointer hover:text-primary border-b-2 ' +
+              (activeTab !== index
+                ? 'border-gray-300'
+                : 'border-primary text-primary')
+            }
+            onClick={() => setActiveTab(index)}
+          >
+            {title}
+          </div>
+        ))}
+        <div className="flex-auto border-b-2 border-gray-300"></div>
+      </div>
+
+      <div className="grid grid-cols-5 gap-[30px]">
+        {products.map((product, index) => (
+          <div key={index} className="space-y-2">
+            <div className="h-[180px] cursor-pointer group relative">
+              <img
+                src={product.picture}
+                className="w-full h-full opacity-80 group-hover:opacity-100"
+              />
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+                <div className="text-xs font-semibold">11%</div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="flex space-x-2 items-center">
+                <div className="flex space-x-1 items-center">
+                  {[1, 2, 3, 4, 5].map((sindex) => (
+                    <i
+                      key={sindex}
+                      className="fa fa-star text-[#fec42d]"
+                      style={{ fontSize: 12 }}
+                    ></i>
+                  ))}
+                </div>
+                <div className="text-[10px] text-[#333]">
+                  ({product.totalRatings})
+                </div>
+              </div>
+              <div className="text-[13px] text-[#333] font-medium">
+                {product.name}
+              </div>
+              <div className="flex space-x-2 items-center justify-center">
+                <div className="text-primary font-semibold">
+                  $
+                  {product.discounted ? product.discountedPrice : product.price}
+                  .00
+                </div>
+                <div className="line-through text-gray-600 text-sm">
+                  ${product.price}.00
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -949,6 +1088,8 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <NewArrivals />
         </div>
       </div>
     </div>
