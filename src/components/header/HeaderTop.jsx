@@ -5,6 +5,7 @@ import { useState } from 'react'
 export function Dropdown({
   placement = 'bottom-end',
   hasPadding = 'true',
+  bordered = true,
   content,
   children,
 }) {
@@ -25,8 +26,9 @@ export function Dropdown({
       transition={{ duration: 0.2 }}
       className={
         'bg-white ' +
+        (bordered ? 'border ' : '') +
         (hasPadding ? 'px-4 py-2' : '') +
-        ' shadow-lg border overflow-clip text-gray-500'
+        ' shadow-lg overflow-clip text-gray-500'
       }
       {...attrs}
     >
