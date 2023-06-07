@@ -14,6 +14,7 @@ import MyAccount from './pages/MyAccount'
 import Product from './pages/Product'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
+import Test from './components/product/QuickViewModal'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -31,6 +32,7 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
+        <Route path="test" element={<Test />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}
