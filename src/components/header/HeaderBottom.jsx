@@ -53,13 +53,67 @@ function HomeDropDown() {
 }
 
 function FeaturesDropDown() {
-  return (
-    <div>
-      <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
-        <div className="uppercase text-sm font-semibold">features</div>
-        <i className="fa fa-caret-down" />
-      </div>
+  const navs = [
+    {
+      title: 'Listing',
+      links: ['category page 1', 'category page 2', 'category page 3'],
+    },
+    {
+      title: 'product',
+      links: ['product page 1', 'product page 2'],
+    },
+    {
+      title: 'shopping',
+      links: ['shopping cart', 'page', 'checkout', 'compare', 'wishlist'],
+    },
+    {
+      title: 'my account',
+      links: [
+        'login',
+        'register',
+        'my account',
+        'order history',
+        'order information',
+        'product returns',
+        'gift voucher',
+      ],
+    },
+  ]
+  const content = (
+    <div className="p-10 flex space-x-8 items-start">
+      {navs.map((nav, nindex) => (
+        <div key={nindex} className="space-y-4">
+          <div className="uppercase text-gray-700 font-semibold cursor-pointer hover:text-primary border-b pb-2">
+            {nav.title}
+          </div>
+          <div className="space-y-2">
+            {nav.links.map((link, lindex) => (
+              <div
+                key={lindex}
+                className="capitalize text-xs cursor-pointer hover:text-primary"
+              >
+                {link}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
+  )
+  return (
+    <Dropdown
+      placement="bottom-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+    >
+      <div>
+        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+          <div className="uppercase text-sm font-semibold">features</div>
+          <i className="fa fa-caret-down" />
+        </div>
+      </div>
+    </Dropdown>
   )
 }
 
