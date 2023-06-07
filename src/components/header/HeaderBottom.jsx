@@ -57,11 +57,19 @@ function CategoriesDropDown() {
 }
 
 function Accessories() {
-  return <div className="uppercase text-sm font-semibold">accessories</div>
+  return (
+    <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
+      accessories
+    </div>
+  )
 }
 
 function Blog() {
-  return <div className="uppercase text-sm font-semibold">blog</div>
+  return (
+    <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
+      blog
+    </div>
+  )
 }
 
 function AccountNav() {
