@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import BaseInput from "../controlled/BaseInput";
 import { Disclosure, Transition } from '@headlessui/react'
 
-function CouponCode() {
+function GiftCertificate() {
 
     const {
         register,
@@ -10,18 +10,18 @@ function CouponCode() {
         formState: { errors },
     } = useForm();
 
-    const applyCoupon = async (data) => {
+    const applyGiftCertificate = async (data) => {
         console.log(data)
-        // await cart.applyCoupon(data)
+        // await cart.applyGiftCertificate(data)
     }
 
     return (
         <Disclosure>
-        <div className="w-full float-left relative box-border text-xs leading-5 mt-4">
+        <div className="w-full float-left relative box-border text-xs leading-5">
             <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
                 <Disclosure.Button className="w-full text-left px-2 py-2 bg-gray-100 border-b-transparent">
                     <h4 className="my-0 text-base font-medium">
-                    Use Coupon Code <i className="fa fa-caret-down"></i>
+                    Use Gift Certificate <i className="fa fa-caret-down"></i>
                     </h4>
                 </Disclosure.Button>
                 <Transition
@@ -32,24 +32,24 @@ function CouponCode() {
                     // leaveFrom="transform  opacity-100"
                     // leaveTo="transform opacity-0"
                 >
-                <Disclosure.Panel className="text-gray-500 py-0 mx-2 my-0">
+                <Disclosure.Panel className="text-gray-500 py-0 my-0 mx-2">
                     <div className="flex border-separate relative w-full">
-                        <form className="flex mt-2 justify-between w-full" onSubmit={handleSubmit(applyCoupon)}>
-                            <span className="mt-3 w-1/3 px-4">Enter your coupon here</span>
+                        <form className="flex mt-2 justify-between w-full" onSubmit={handleSubmit(applyGiftCertificate)}>
+                            <span className="mt-3 w-1/3 px-4">Enter your gift certificate code here</span>
                                 <div className="w-full">
                                     <BaseInput
                                         className='block h-9 w-full px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5'
-                                        {...register("coupon", { required: true })}
-                                        placeholder="Enter your coupon here"
+                                        {...register("giftCertificate", { required: true })}
+                                        placeholder="Enter your gift certificate code here"
                                     />
                                 </div>
                                     <input
                                         type="submit"
                                         className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
                 align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 px-2 h-9"
-                                        value="Apply Coupon"
+                                        value="Apply Gift Certificate"
                                     />
-                                {errors.coupon && <span className='text-red-400 mt-2 text-xs'>Please enter coupon code</span>}
+                                {errors.giftCertificate && <span className='text-red-400 mt-2 text-xs'>Please enter coupon code</span>}
                         </form>
                     </div>
                 </Disclosure.Panel>
@@ -59,4 +59,4 @@ function CouponCode() {
     </Disclosure>
     )
 }
-export default CouponCode
+export default GiftCertificate
