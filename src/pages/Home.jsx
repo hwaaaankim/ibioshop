@@ -1036,6 +1036,21 @@ function NewArrivals() {
   )
 }
 
+function BrandsCarousel() {
+  return (
+    <div className="p-[30px] border border-gray-200 rounded grid grid-cols-7 gap-0">
+      {[1, 2, 3, 4, 5, 6, 7].map((index) => (
+        <div
+          key={index}
+          className="h-[71px] opacity-80 hover:opacity-100 cursor-pointer"
+        >
+          <img src="image/catalog/brands/b1.png" className="w-full h-full" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
@@ -1090,6 +1105,7 @@ export default function Home() {
           </div>
 
           <NewArrivals />
+          <BrandsCarousel />
         </div>
       </div>
     </div>
