@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 export function Dropdown({
-  visible = false,
+  placement = 'bottom-end',
   hasPadding = 'true',
   content,
   children,
@@ -37,7 +37,7 @@ export function Dropdown({
   return (
     <Tippy
       render={contentAnimated}
-      placement="bottom-end"
+      placement={placement}
       interactive={true}
       // visible={visible}
       onShow={onShow}
