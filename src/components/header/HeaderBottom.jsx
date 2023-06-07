@@ -118,13 +118,43 @@ function FeaturesDropDown() {
 }
 
 function PagesDropDown() {
-  return (
-    <div>
-      <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
-        <div className="uppercase text-sm font-semibold">pages</div>
-        <i className="fa fa-caret-down" />
-      </div>
+  const navs = [
+    ['FAQ', 'Site Map', 'Contact us', 'Banner', 'Effect'],
+    ['About us 1', 'About us 2', 'About us 3', 'About us 4'],
+  ]
+  const content = (
+    <div className="p-10 flex space-x-8 items-start">
+      {navs.map((links, nindex) => (
+        <div key={nindex} className="space-y-4">
+          <div className="space-y-3">
+            {links.map((link, lindex) => (
+              <div
+                key={lindex}
+                className="text-xs cursor-pointer hover:text-primary"
+              >
+                {link}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
+  )
+
+  return (
+    <Dropdown
+      placement="bottom-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+    >
+      <div>
+        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+          <div className="uppercase text-sm font-semibold">pages</div>
+          <i className="fa fa-caret-down" />
+        </div>
+      </div>
+    </Dropdown>
   )
 }
 
