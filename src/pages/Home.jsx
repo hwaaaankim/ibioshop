@@ -121,7 +121,7 @@ function BestSelling() {
   ]
 
   const child = ({ item }) => (
-    <div className="w-full">
+    <div className="w-full grid lgp8:block grid-cols-2 mdp5:grid-cols-4 gap-2">
       {[1, 2, 3, 4].map((pitem, index) => (
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
@@ -173,7 +173,7 @@ function BestSelling() {
     </div>
   )
   return (
-    <div className="rounded border border-gray-50">
+    <div className="col-span-4 lgp8:col-span-1 rounded border border-gray-50">
       <div className="flex space-x-2 justify-between items-center bg-[#e9ecf1] rounded-t py-[6px] px-[20px]">
         <div className="flex-auto uppercase font-semibold">best selling</div>
         <div className="flex space-x-2 items-center">
@@ -1208,9 +1208,9 @@ function BrandsCarousel() {
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-4 gap-8 w-[95%] mx-auto py-8">
-      <div className="col-span-3 flex space-x-8">
-        <div className="" style={{ width: 237 }}></div>
+    <div className="grid grid-cols-4 gap-8 w-[80%] lgp8:w-[95%] mx-auto py-8">
+      <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
+        <div className="hidden lgp8:block" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">
           <ImageCarouse />
         </div>
