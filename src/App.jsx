@@ -17,6 +17,7 @@ import Cart from './pages/Cart'
 import Product from './pages/Product'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
+import Test from './components/product/QuickViewModal'
 import Category from './pages/Category'
 
 function App() {
@@ -27,19 +28,21 @@ function App() {
     <div className="h-screen">
       {!header.hidden && <Header />}
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Protected component={<Home />} />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
-        <Route path='wish_list' element={<WishList/>} />
-        <Route path='order_info' element={<OrderInfo/>} />
+        <Route path="wish_list" element={<WishList />} />
+        <Route path="order_info" element={<OrderInfo />} />
         <Route path="my_account" element={<MyAccount />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
+
+        <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
-        {/* <Route path="go-responsive" element={<div>here we go</div>} /> */}
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}
