@@ -161,15 +161,78 @@ function BestSelling() {
 
 function LatestProducts() {
   const [currentPage, setPage] = useState(1)
-  const product = {
-    id: 1,
-    picture: 'image/catalog/demo/product/80/1.jpg',
-    name: 'Sausage Cowbee',
-    rate: 4,
-    price: 89,
-    discounted: true,
-    discount: 80,
-  }
+  const products = [
+    {
+      id: 1,
+      picture: 'image/catalog/demo/product/80/1.jpg',
+      name: 'Sausage Cowbee',
+      rate: 4,
+      price: 89,
+      discounted: true,
+      discount: 80,
+    },
+    {
+      id: 2,
+      picture: 'image/catalog/demo/product/80/1.jpg',
+      name: 'Sausage Cowbee2',
+      rate: 4,
+      price: 89,
+      discounted: true,
+      discount: 80,
+    },
+  ]
+  const child = ({ item }) => (
+    <div className="space-y-3">
+      {[1, 2, 3, 4].map((pitem, index) => (
+        <div key={index} className="flex space-x-4 items-center">
+          <img src={item.picture} className="w-[80px] h-[80px]" />
+          <div className="flex-auto space-y-1">
+            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+              {item.name}
+            </div>
+            <div className="space-x-1">
+              <i
+                className="fa fa-star text-[#fec42d]"
+                style={{ fontSize: 12 }}
+              ></i>
+              <i
+                className="fa fa-star text-[#fec42d]"
+                style={{ fontSize: 12 }}
+              ></i>
+              <i
+                className="fa fa-star text-[#fec42d]"
+                style={{ fontSize: 12 }}
+              ></i>
+              <i
+                className="fa fa-star text-[#fec42d]"
+                style={{ fontSize: 12 }}
+              ></i>
+              <i
+                className="fa fa-star text-[#fec42d]"
+                style={{ fontSize: 12 }}
+              ></i>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {item.discounted && (
+                <div className="text-primary font-semibold">
+                  ${item.discount}.00
+                </div>
+              )}
+              <div
+                className={
+                  item.discounted
+                    ? 'line-through text-[14px] text-gray-500'
+                    : 'text-primary font-semibold'
+                }
+              >
+                ${item.price}.00
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 
   return (
     <div className="space-y-3">
@@ -181,59 +244,15 @@ function LatestProducts() {
         </div>
       </div>
 
-      <div className="space-y-3">
-        {[1, 2, 3, 4].map((item, index) => (
-          <div key={index} className="flex space-x-4 items-center">
-            <img src={product.picture} className="w-[80px] h-[80px]" />
-            <div className="flex-auto space-y-1">
-              <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
-                {product.name}
-              </div>
-              <div className="space-x-1">
-                <i
-                  className="fa fa-star text-[#fec42d]"
-                  style={{ fontSize: 12 }}
-                ></i>
-                <i
-                  className="fa fa-star text-[#fec42d]"
-                  style={{ fontSize: 12 }}
-                ></i>
-                <i
-                  className="fa fa-star text-[#fec42d]"
-                  style={{ fontSize: 12 }}
-                ></i>
-                <i
-                  className="fa fa-star text-[#fec42d]"
-                  style={{ fontSize: 12 }}
-                ></i>
-                <i
-                  className="fa fa-star text-[#fec42d]"
-                  style={{ fontSize: 12 }}
-                ></i>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                {product.discounted && (
-                  <div className="text-primary font-semibold">
-                    ${product.discount}.00
-                  </div>
-                )}
-                <div
-                  className={
-                    product.discounted
-                      ? 'line-through text-[14px] text-gray-500'
-                      : 'text-primary font-semibold'
-                  }
-                >
-                  ${product.price}.00
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Carousel
+        Child={child}
+        items={products}
+        index={currentPage}
+        hideBtns={true}
+      />
 
       <div className="flex space-x-2 items-center ml-[80px] pl-4 py-6">
-        {[1, 2].map((page) => (
+        {[0, 1].map((page) => (
           <div
             key={page}
             className={
