@@ -1,13 +1,3 @@
-.required::before{
-    content: '*';
-    font-size: medium;
-    color: red;
-    margin-right: 3px;
-    line-height: normal;
-    vertical-align: super;
-
-}
-
 select{
     -webkit-appearance: none;
     appearance: none;
@@ -20,8 +10,4 @@ select{
     max-width: 1650px;
     width: 95%;
     -webkit-text-size-adjust: 100%;
-}
-.breadcrumb{
-    line-height: 100%;
-    margin: 23px 0;
 }
