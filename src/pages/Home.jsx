@@ -1,36 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-function ImageCarousel() {
+function Carousel({ items, Child }) {
   const [currentIndex, setCurrentIndex] = useState(1)
   const [height, setHeight] = useState(0)
   const targetEl = useRef()
   useEffect(() => setHeight(targetEl.current.clientHeight), [])
-  const images = [
-    { id: 1, path: 'image/catalog/slideshow/home1/slider-1.jpg' },
-    { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
-    { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
-  ]
+
   return (
     <div className={'overflow-x-hidden relative h-[' + height + 'px]'}>
       <div className="relative h-full">
-        {images.map((image, index) => (
+        {items.map((item, index) => (
           <motion.div
             animate={{ x: (index - currentIndex) * 100 + '%' }}
             transition={{ ease: 'easeInOut', duration: 0.5 }}
             className="absolute right-0 left-0"
+            key={item.id}
           >
-            <img
-              ref={index === 0 ? targetEl : null}
-              key={image.id}
-              src={image.path}
-              className="w-full h-[300px]"
-            />
+            <div ref={index === 0 ? targetEl : null} className="w-full">
+              <Child item={item} />
+            </div>
           </motion.div>
         ))}
       </div>
       <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
-        {images.map((image, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className={
@@ -44,6 +38,18 @@ function ImageCarousel() {
       </div>
     </div>
   )
+}
+
+function ImageCarouse() {
+  const images = [
+    { id: 1, path: 'image/catalog/slideshow/home1/slider-1.jpg' },
+    { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
+    { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
+  ]
+  const child = ({ item }) => (
+    <img src={item.path} className="w-full h-[300px]" />
+  )
+  return <Carousel Child={child} items={images} />
 }
 
 function BestSelling() {
@@ -1052,7 +1058,7 @@ export default function Home() {
       <div className="col-span-3 flex space-x-8">
         <div className="" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">
-          <ImageCarousel />
+          <ImageCarouse />
         </div>
       </div>
       <BestSelling />
