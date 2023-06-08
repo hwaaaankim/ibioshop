@@ -253,15 +253,15 @@ function LatestProducts() {
 
       <div className="flex space-x-2 items-center ml-[80px] pl-4 py-6">
         {[0, 1].map((page) => (
-          <div
+          <motion.div
             key={page}
             className={
               'h-[8px] cursor-pointer rounded-full bg-' +
               (page === currentPage ? 'primary' : 'black')
             }
-            style={{ width: page == currentPage ? 30 : 8 }}
+            animate={{ width: page == currentPage ? 30 : 8 }}
             onClick={() => setPage(page)}
-          ></div>
+          ></motion.div>
         ))}
       </div>
     </div>
