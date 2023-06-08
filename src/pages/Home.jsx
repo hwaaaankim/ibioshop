@@ -8,6 +8,8 @@ function Carousel({
   hideBtns = false,
   showChevrons = false,
   chevronY = 0,
+  chevronlX = 0,
+  chevronrX = 0,
 }) {
   const [currentIndex, setCurrentIndex] = useState(index)
   const [height, setHeight] = useState(0)
@@ -53,7 +55,7 @@ function Carousel({
         <>
           <div className="absolute bottom-0 top-0 -left-[20px] z-20 flex items-center">
             <motion.div
-              animate={{ y: chevronY }}
+              animate={{ x: chevronlX, y: chevronY }}
               className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
@@ -66,7 +68,7 @@ function Carousel({
           </div>
           <div className="absolute bottom-0 top-0 -right-[20px] z-20 flex items-center">
             <motion.div
-              animate={{ y: chevronY }}
+              animate={{ x: chevronrX, y: chevronY }}
               className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
@@ -1178,8 +1180,8 @@ function NewArrivals() {
 }
 
 function BrandsCarousel() {
-  return (
-    <div className="p-[30px] border border-gray-200 rounded grid grid-cols-7 gap-0">
+  const child = ({ item }) => (
+    <div className="grid grid-cols-7 gap-0">
       {[1, 2, 3, 4, 5, 6, 7].map((index) => (
         <div
           key={index}
@@ -1188,6 +1190,18 @@ function BrandsCarousel() {
           <img src="image/catalog/brands/b1.png" className="w-full h-full" />
         </div>
       ))}
+    </div>
+  )
+  return (
+    <div className="p-[30px] border border-gray-200 rounded">
+      <Carousel
+        Child={child}
+        items={[1, 2, 3]}
+        hideBtns={true}
+        showChevrons={true}
+        chevronlX={-18}
+        chevronrX={18}
+      />
     </div>
   )
 }
