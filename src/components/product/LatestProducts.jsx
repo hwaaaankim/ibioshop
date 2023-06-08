@@ -37,7 +37,7 @@ function LatestProducts() {
     }
   ]
   return (
-    <div className="relative border border-[#d7d7d7] overflow-hidden mb-10 rounded">
+    <div className="w-full relative border border-[#d7d7d7] overflow-hidden mb-10 rounded">
       <h3 className="border-b border-[#d7d7d7] uppercase font-extrabold p-4 bg-[#f5f5f5]">
         <span>Latest products</span>
       </h3>

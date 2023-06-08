@@ -2,7 +2,7 @@ import Icon from '../icon/Icon'
 function Breadcrumb() {
 
   return (
-    <div className="text-base">
+    <div className="text-[14px]">
       <ul class="flex items-center text-[#999]">
         <li>
           <a href="#">

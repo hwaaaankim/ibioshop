@@ -97,6 +97,7 @@ const Disclosure = (props: Props) => {
             {props.body.map((faq, i) => (
               <a
                 href="#"
+                key={i}
                 className="flex flex-col py-1 text-[#333] hover:text-[#094bad] font-normal cursor-pointer"
               >
                 {faq}
@@ -160,8 +161,8 @@ export default function App() {
     { name: 'Wines & Spirits' },
   ]
   return (
-    <div className="border border-[#d7d7d7] overflow-hidden mb-10 rounded-[3px]">
-      <h3 className="border-b border-[#d7d7d7] text-[16px] text-[#222] font-extrabold uppercase bg-[#f5f5f5] p-[15px]">
+    <div className="border border-[#d7d7d7] overflow-hidden mb-10 mt-6 rounded-[3px]">
+      <h3 className="border-b border-[#d7d7d7] text-[16px] text-[#222] font-bold uppercase bg-[#f5f5f5] p-[15px]">
         Categories
       </h3>
       <div className="flex flex-col w-full p-5 justify-center items-center">

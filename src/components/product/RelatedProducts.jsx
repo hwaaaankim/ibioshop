@@ -52,10 +52,10 @@ function RelatedProducts() {
   return (
     <div className="pb-20">
       <h3 className="text-[16px] font-bold uppercase mb-2">Related Products</h3>
-      <div className="grid grid-cols-5 gap-[30px]">
+      <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
         {products.map((product, index) => (
           <div key={index} className="space-y-2">
-            <div className="h-[180px] cursor-pointer group relative">
+            <div className="lg:h-[180px] cursor-pointer group relative">
               <img
                 src={product.picture}
                 className="w-full h-full opacity-80 group-hover:opacity-100"
