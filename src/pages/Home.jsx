@@ -7,6 +7,7 @@ function Carousel({
   index = 0,
   hideBtns = false,
   showChevrons = false,
+  chevronY = 0,
 }) {
   const [currentIndex, setCurrentIndex] = useState(index)
   const [height, setHeight] = useState(0)
@@ -51,8 +52,9 @@ function Carousel({
       {showChevrons && (
         <>
           <div className="absolute bottom-0 top-0 -left-[20px] z-20 flex items-center">
-            <div
-              className="bg-white shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
+            <motion.div
+              animate={{ y: chevronY }}
+              className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
                   prevIndex - 1 < 0 ? prevIndex : prevIndex - 1
@@ -60,11 +62,12 @@ function Carousel({
               }
             >
               <i className="fa fa-caret-left" style={{ fontSize: 20 }}></i>
-            </div>
+            </motion.div>
           </div>
           <div className="absolute bottom-0 top-0 -right-[20px] z-20 flex items-center">
-            <div
-              className="bg-white shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
+            <motion.div
+              animate={{ y: chevronY }}
+              className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
                   prevIndex + 1 == totalPages ? prevIndex : prevIndex + 1
@@ -72,7 +75,7 @@ function Carousel({
               }
             >
               <i className="fa fa-caret-right" style={{ fontSize: 20 }}></i>
-            </div>
+            </motion.div>
           </div>
         </>
       )}
@@ -683,6 +686,62 @@ function FlashSale() {
     </div>
   )
 
+  const child = ({ item }) => (
+    <div className="grid grid-cols-5 gap-[30px]">
+      {products.map((product, index) => (
+        <div key={index} className="space-y-2">
+          <div className="h-[180px] cursor-pointer group relative">
+            <img
+              src={product.picture}
+              className="w-full h-full opacity-80 group-hover:opacity-100"
+            />
+            <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+              <div className="text-xs font-semibold">11%</div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center space-y-2">
+            <div className="flex space-x-2 items-center">
+              <div className="flex space-x-1 items-center">
+                {[1, 2, 3, 4, 5].map((sindex) => (
+                  <i
+                    key={sindex}
+                    className="fa fa-star text-[#fec42d]"
+                    style={{ fontSize: 12 }}
+                  ></i>
+                ))}
+              </div>
+              <div className="text-[10px] text-[#333]">
+                ({product.totalRatings})
+              </div>
+            </div>
+            <div className="text-[13px] text-[#333] font-medium">
+              {product.name}
+            </div>
+            <div className="flex space-x-2 items-center justify-center">
+              <div className="text-primary font-semibold">
+                ${product.discounted ? product.discountedPrice : product.price}
+                .00
+              </div>
+              <div className="line-through text-gray-600 text-sm">
+                ${product.price}.00
+              </div>
+            </div>
+
+            <div className="w-full space-y-2">
+              <ProgressBar progress={product.totalSold.percentage} />
+              <div className="flex items-center justify-center">
+                <div className="text-[#333] text-xs">Sold:&nbsp;</div>
+                <div className="text-primary text-[13px] font-semibold">
+                  {product.totalSold.total}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+
   return (
     <div className="space-y-4">
       <div className="flex space-x-4 items-center">
@@ -713,60 +772,13 @@ function FlashSale() {
         <div className="flex-auto border-b-2 border-gray-300"></div>
       </div>
 
-      <div className="grid grid-cols-5 gap-[30px]">
-        {products.map((product, index) => (
-          <div key={index} className="space-y-2">
-            <div className="h-[180px] cursor-pointer group relative">
-              <img
-                src={product.picture}
-                className="w-full h-full opacity-80 group-hover:opacity-100"
-              />
-              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
-                <div className="text-xs font-semibold">11%</div>
-              </div>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="flex space-x-2 items-center">
-                <div className="flex space-x-1 items-center">
-                  {[1, 2, 3, 4, 5].map((sindex) => (
-                    <i
-                      key={sindex}
-                      className="fa fa-star text-[#fec42d]"
-                      style={{ fontSize: 12 }}
-                    ></i>
-                  ))}
-                </div>
-                <div className="text-[10px] text-[#333]">
-                  ({product.totalRatings})
-                </div>
-              </div>
-              <div className="text-[13px] text-[#333] font-medium">
-                {product.name}
-              </div>
-              <div className="flex space-x-2 items-center justify-center">
-                <div className="text-primary font-semibold">
-                  $
-                  {product.discounted ? product.discountedPrice : product.price}
-                  .00
-                </div>
-                <div className="line-through text-gray-600 text-sm">
-                  ${product.price}.00
-                </div>
-              </div>
-
-              <div className="w-full space-y-2">
-                <ProgressBar progress={product.totalSold.percentage} />
-                <div className="flex items-center justify-center">
-                  <div className="text-[#333] text-xs">Sold:&nbsp;</div>
-                  <div className="text-primary text-[13px] font-semibold">
-                    {product.totalSold.total}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Carousel
+        Child={child}
+        items={[products, products, products]}
+        hideBtns={true}
+        showChevrons={true}
+        chevronY={-80}
+      />
     </div>
   )
 }
