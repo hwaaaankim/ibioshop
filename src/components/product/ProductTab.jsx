@@ -1,21 +1,27 @@
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+
 function ProductTab() {
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
     <div className="my-10 pr-[15px]">
       <div className="mt-20 float-left w-full">
-        <ul className="bg-[#f5f5f5] p-4 rounded text-center">
-          <li className="inline-flex mx-1.5 float-none">
-            <a data-toggle="tab" href="#tab-1" className="bg-[#fff] float-left text-sm text-[#222] py-3 px-4 cursor-pointer font-extrabold uppercase border border-[#e8e8e8] rounded-full hover:bg-[#f2f2f2] hover:border-[#222] hover:text-[#222]">Description</a>
-          </li>
-          <li className="inline-flex mx-1.5 float-none">
-            <a data-toggle="tab" href="#tab-review" className="bg-[#fff] float-left text-sm text-[#222] py-3 px-4 cursor-pointer font-extrabold uppercase border border-[#e8e8e8] rounded-full hover:bg-[#f2f2f2] hover:border-[#222] hover:text-[#222]">Reviews (1)</a>
-          </li>
-          <li className="inline-flex mx-1.5 float-none">
-            <a data-toggle="tab" href="#tab-4" className="bg-[#fff] float-left text-sm text-[#222] py-3 px-4 cursor-pointer font-extrabold uppercase border border-[#e8e8e8] rounded-full hover:bg-[#f2f2f2] hover:border-[#222] hover:text-[#222]">Tags</a>
-          </li>
-          <li className="inline-flex mx-1.5 float-none active">
-            <a data-toggle="tab" href="#tab-5" className="float-left text-sm text-[#222] py-3 px-4 cursor-pointer font-extrabold uppercase border rounded-full border-[#222] bg-[#f2f2f2]">Custom Tab</a>
-          </li>
+        <ul className="bg-[#f5f5f5] p-4 rounded text-center flex justify-center space-x-3">
+          {['Description', 'Reviews(1)', 'Tags', 'Custom Tab'].map((title, index) => (
+            <div
+              key={index}
+              className={
+                'bg-[#fff] float-left text-sm text-[#222] py-3 px-6 cursor-pointer font-extrabold uppercase border border-[#e8e8e8] rounded-full hover:bg-[#f2f2f2] hover:border-[#222] hover:text-[#222] ' +
+                (activeTab !== index
+                  ? 'border-[#e8e8e8]'
+                  : 'border-gray-900 bg-gray-100')
+              }
+              onClick={() => setActiveTab(index)}
+            >
+              {title}
+            </div>
+          ))}
         </ul>
         <div className="py-11 bg-white border-none text-[#666] leading-5">
           <div id="tab-1" className="tab-pane fade transition-opacity duration-75">
