@@ -2,48 +2,43 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 function ImageCarousel() {
-  const main = useRef()
-  const [mainWidth, setWidth] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(1)
+  const [height, setHeight] = useState(0)
+  const targetEl = useRef()
+  useEffect(() => setHeight(targetEl.current.clientHeight), [])
   const images = [
     { id: 1, path: 'image/catalog/slideshow/home1/slider-1.jpg' },
     { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
     { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
   ]
-  const [activeIndex, setActiveIndex] = useState(0)
-  const handleClick = (index) => {
-    setActiveIndex(index)
-  }
-
-  useEffect(() => {
-    setWidth(main.current.clientWidth)
-  }, [])
-
   return (
-    <div className="cursor-pointer w-full h-full relative overflow-x-hidden">
-      <div className="absolute top-0 bottom-0 left-0 right-0">
+    <div className={'overflow-x-hidden relative h-[' + height + 'px]'}>
+      <div className="relative h-full">
         {images.map((image, index) => (
-          <motion.img
-            animate={{ x: (index - activeIndex) * mainWidth }}
+          <motion.div
+            animate={{ x: (index - currentIndex) * 100 + '%' }}
             transition={{ ease: 'easeInOut', duration: 0.5 }}
-            src={image.path}
-            className="h-full absolute top-0 bottom-0 left-0 right-0"
-            key={image.id}
-          ></motion.img>
+            className="absolute right-0 left-0"
+          >
+            <img
+              ref={index === 0 ? targetEl : null}
+              key={image.id}
+              src={image.path}
+              className="w-full h-[300px]"
+            />
+          </motion.div>
         ))}
       </div>
-      <div
-        ref={main}
-        className="absolute bottom-0 right-0 left-0 flex space-x-2 items-center justify-center py-4 cursor-default"
-      >
-        {[0, 1, 2].map((index) => (
+      <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
+        {images.map((image, index) => (
           <div
             key={index}
             className={
               'w-[30px] h-[6px] ' +
-              (index === activeIndex ? 'bg-primary' : 'bg-white') +
+              (index === currentIndex ? 'bg-primary' : 'bg-white') +
               ' hover:bg-primary rounded cursor-pointer'
             }
-            onClick={() => handleClick(index)}
+            onClick={() => setCurrentIndex(index)}
           ></div>
         ))}
       </div>
@@ -69,15 +64,15 @@ function BestSelling() {
         <div className="flex-auto uppercase font-semibold">best selling</div>
         <div className="flex space-x-2 items-center">
           {[1, 2].map((page) => (
-            <div
+            <motion.div
               key={page}
               className={
                 'h-[8px] cursor-pointer rounded-full bg-' +
                 (page === currentPage ? 'primary' : 'black')
               }
-              style={{ width: page == currentPage ? 30 : 8 }}
+              animate={{ width: page == currentPage ? 30 : 8 }}
               onClick={() => setPage(page)}
-            ></div>
+            ></motion.div>
           ))}
         </div>
       </div>

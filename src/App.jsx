@@ -16,6 +16,7 @@ import Product from './pages/Product'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
+import GoCarousel from './pages/GoCarousel'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -35,7 +36,7 @@ function App() {
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="test" element={<Test />} />
-        <Route path="go-responsive" element={<div>here we go</div>} />
+        <Route path="go-responsive" element={<GoCarousel />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}
