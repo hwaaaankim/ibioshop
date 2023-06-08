@@ -16,8 +16,8 @@ function ProductPreview() {
   ]
 
   return (
-    <div className="flex mt-6 text-[#999]">
-      <div className='w-[50%] flex mr-4'>
+    <div className="xl:flex mt-6 text-[#999]">
+      <div className='xl:w-[50%] flex mr-4'>
         {/* sub-product-images */}
         <div className="flex flex-col mr-4">
           {slide.map((product, index) => (
@@ -34,7 +34,7 @@ function ProductPreview() {
         </div>
       </div>
       {/* product-detail */}
-      <div className='w-[50%] flex flex-col pr-[15px]'>
+      <div className='xl:w-[50%] flex flex-col pr-[15px]'>
         <div className='w-full'>
           <h2 className='text-[#444] font-medium mb-2.5 text-2xl'>Chicken swinesha</h2>
           <div className='flex'>

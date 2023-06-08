@@ -14,7 +14,7 @@ export default function RadioBox({ value, setter, title, selected }) {
         checked = {selected === value}
         type="radio"
         value={value}
-        onClick={(event) => setter(event.target.value)}
+        onChange={(event) => setter(event.target.value)}
         className="w-3 h-3"
         ref={radioboxRef}
       />

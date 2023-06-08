@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
 import CheckBox from '../components/controlled/CheckBox'
@@ -9,10 +10,10 @@ import '../App.css'
 
 function UserAccount() {
   const [userType, setUserType] = useState('guest')
-
+  const handleChange = () => {}
   return (
     <div className="inline-block rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
-      <div className="box-border px-2 py-2 bg-gray-100">
+      <div className="box-border border-solid px-2 py-3 bg-gray-100">
         <h4 className="text-base text-inherit flex gap-1 leading-none font-medium my-0">
           <i className="fa fa-sign-in"></i>
           Create an Account or Login
@@ -27,6 +28,7 @@ function UserAccount() {
                 value="register"
                 title="Register Account"
                 setter={setUserType}
+                onChange={handleChange}
               />
             </li>
             <li>
@@ -35,6 +37,7 @@ function UserAccount() {
                 selected={userType}
                 title="Guest Checkout"
                 setter={setUserType}
+                onChange={handleChange}
               />
             </li>
             <li>
@@ -43,6 +46,7 @@ function UserAccount() {
                 selected={userType}
                 title="Returning Customer"
                 setter={setUserType}
+                onChange={handleChange}
               />
             </li>
           </ul>
@@ -63,7 +67,7 @@ function PersonalDetail() {
 
   return (
     <div className="inline-block pb-5 rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
-      <div className="box-border px-2 py-2 bg-gray-100">
+      <div className="box-border px-2 py-3 bg-gray-100">
         <h4 className="text-base text-inherit flex gap-1 leading-none font-medium my-0">
           <i className="fa fa-user"></i>
           Your Personal Details
@@ -83,6 +87,9 @@ function PersonalDetail() {
                 required={true}
                 icon=""
                 placeholder="First Name"
+                onChange={(e) =>
+                  setUserData({ ...userData, fName: e.target.value })
+                }
               />
             </li>
             <li>
@@ -93,6 +100,9 @@ function PersonalDetail() {
                 setter={setUserData}
                 icon=""
                 placeholder="Last Name"
+                onChange={(e) =>
+                  setUserData({ ...userData, lName: e.target.value })
+                }
               />
             </li>
             <li>
@@ -103,6 +113,9 @@ function PersonalDetail() {
                 setter={setUserData}
                 icon=""
                 placeholder="E-mail"
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
               />
             </li>
             <li>
@@ -113,6 +126,9 @@ function PersonalDetail() {
                 icon=""
                 required={true}
                 placeholder="Telephone"
+                onChange={(e) =>
+                  setUserData({ ...userData, phne: e.target.value })
+                }
               />
             </li>
             <li>
@@ -122,6 +138,9 @@ function PersonalDetail() {
                 setter={setUserData}
                 icon=""
                 placeholder="Fax"
+                onChange={(e) =>
+                  setUserData({ ...userData, fax: e.target.value })
+                }
               />
             </li>
           </ul>
@@ -156,7 +175,7 @@ function PersonalAddress() {
 
   return (
     <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
-      <div className="box-border px-2 py-2 bg-gray-100">
+      <div className="box-border px-2 py-3 bg-gray-100">
         <h4 className="my-0">
           <i className="fa fa-book"></i>
           Your Address
@@ -172,7 +191,6 @@ function PersonalAddress() {
               <BaseInput
                 label="Company"
                 value={address.company}
-                // setter={handleChange}
                 icon=""
                 placeholder="Company"
                 onChange={(e) =>
@@ -185,8 +203,6 @@ function PersonalAddress() {
                 label="Address 1"
                 value={address.address1}
                 required={true}
-                setter={setAddress}
-                icon=""
                 placeholder="Address 1"
                 onChange={(e) =>
                   setAddress({ ...address, address1: e.target.value })
@@ -197,7 +213,6 @@ function PersonalAddress() {
               <BaseInput
                 label="Address 2"
                 value={address.address2}
-                setter={setAddress}
                 placeholder="Address 2"
                 onChange={(e) =>
                   setAddress({ ...address, address2: e.target.value })
@@ -210,7 +225,6 @@ function PersonalAddress() {
                 label="City"
                 value={address.city}
                 required={true}
-                setter={setAddress}
                 placeholder="City"
                 onChange={(e) =>
                   setAddress({ ...address, city: e.target.value })
@@ -221,7 +235,6 @@ function PersonalAddress() {
               <BaseInput
                 label="Post Code"
                 value={address.post}
-                setter={setAddress}
                 required={true}
                 placeholder="Post Code"
                 onChange={(e) =>
@@ -321,6 +334,7 @@ function DeliPayMethod() {
                 value="free"
                 title="Free Shipping - $0.00"
                 setter={setDelivery}
+                onChange={handleDeliveryMethod}
               />
             </div>
             <div className="relative block -mt-1 mb-2 ">
@@ -329,6 +343,7 @@ function DeliPayMethod() {
                 value="flat"
                 title="Flat Shipping Rate - $7.50"
                 setter={setDelivery}
+                onChange={handleDeliveryMethod}
               />
             </div>
           </div>
@@ -349,6 +364,7 @@ function DeliPayMethod() {
                 value="cash"
                 title="Cash On Delivery"
                 setter={setPayment}
+                onChange={handlePaymentMethod}
               />
             </div>
             <div className="relative block -mt-1 mb-2">
@@ -357,6 +373,7 @@ function DeliPayMethod() {
                 value="paypal"
                 title="Cash On Delivery"
                 setter={setPayment}
+                onChange={handlePaymentMethod}
               />
             </div>
           </div>
@@ -373,7 +390,7 @@ function CouponVoucher() {
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
-        <div className="px-2 py-2 bg-gray-100 border-b-transparent">
+        <div className="px-2 py-3 bg-gray-100 border-b-transparent">
           <h4 className="text-inherit text-base my-0 font-medium leading-tight">
             <i className="fa fa-ticket"></i> Do you Have a Coupon or Voucher?
           </h4>
@@ -385,6 +402,9 @@ function CouponVoucher() {
                 value={coupon}
                 setter={setCoupon}
                 placeholder="Enter your coupon here"
+                onChange={(e) => {
+                  setCoupon(e.target.value)
+                }}
               />
               <span className="whitespace-nowrap align-middle table-cell border-separate">
                 <input
@@ -402,6 +422,7 @@ function CouponVoucher() {
                 value={voucher}
                 setter={setVoucher}
                 placeholder="Enter your gift voucher code here"
+                onChange={(e) => setVoucher(e.target.value)}
               />
               <span className="whitespace-nowrap align-middle table-cell border-separate">
                 <input
@@ -426,7 +447,7 @@ function ShoppingCart() {
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
-        <div className="px-2 py-2 bg-gray-100 border-b-transparent">
+        <div className="px-2 py-3 bg-gray-100 border-b-transparent">
           <h4 className="text-base my-0 font-medium">
             <i className="fa fa-shopping-cart"></i> Shopping cart
           </h4>
@@ -434,18 +455,28 @@ function ShoppingCart() {
         <div className="p-4 box-border">
           <div className="overflow-x-auto">
             <table className="mb-3 w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
-              <thead className="px-2 py-2 bg-gray-100 border-b-transparent h-10">
+              <thead className="p-2 bg-gray-200 border-b-transparent h-10">
                 <tr className="font-bold ">
-                  <td className="text-center">Image</td>
-                  <td className="text-left">Product Name</td>
-                  <td className="text-left">Quantity</td>
-                  <td className="text-right">Unit Price</td>
-                  <td className="text-right">Total</td>
+                  <td className="text-center border border-solid align-top p-2 ">
+                    Image
+                  </td>
+                  <td className="text-left border border-solid align-top p-2 ">
+                    Product Name
+                  </td>
+                  <td className="text-left border border-solid align-top p-2 ">
+                    Quantity
+                  </td>
+                  <td className="text-right border border-solid align-top p-2">
+                    Unit Price
+                  </td>
+                  <td className="text-right border border-solid align-top p-2">
+                    Total
+                  </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-solid align-top leading-snug p-2 text-center box-border border-collapse border-spacing-0">
+                  <td className="border border-solid align-top p-2 text-center">
                     <a href="product.html">
                       <img
                         width="60px"
@@ -457,10 +488,10 @@ function ShoppingCart() {
                       />
                     </a>
                   </td>
-                  <td className="text-left border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
+                  <td className="text-left border border-solid align-top p-2">
                     <a href="product.html">Emasa rumas gacem</a>
                   </td>
-                  <td className="text-left border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
+                  <td className="text-left border border-solid align-top p-2">
                     <div className="border-separate table relative min-w-full">
                       <input
                         type="text"
@@ -493,7 +524,7 @@ function ShoppingCart() {
                             type="button"
                             data-toggle="tooltip"
                             title=""
-                            className="cursor-pointer bg-red-600 hover:bg-red-700 text-white align-middle text-center 
+                            className="cursor-pointer bg-red-1 hover:bg-red-2 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block  px-4 h-9"
                             onClick={handleRemove}
                           >
@@ -503,10 +534,10 @@ function ShoppingCart() {
                       </span>
                     </div>
                   </td>
-                  <td className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
+                  <td className="text-right border border-solid align-top p-2">
                     $114.35
                   </td>
-                  <td className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
+                  <td className="text-right border border-solid align-top p-2">
                     $114.35
                   </td>
                 </tr>
@@ -514,8 +545,8 @@ function ShoppingCart() {
               <tfoot>
                 <tr>
                   <td
-                    className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0"
-                    colspan="4"
+                    className="text-right border border-solid align-top p-2"
+                    colSpan="4"
                   >
                     <strong>Sub-Total:</strong>
                   </td>
@@ -523,34 +554,42 @@ function ShoppingCart() {
                 </tr>
                 <tr>
                   <td
-                    className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0"
-                    colspan="4"
+                    className="text-right border border-solid align-top p-2"
+                    colSpan="4"
                   >
                     <strong>Flat Shipping Rate:</strong>
                   </td>
-                  <td className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
+                  <td className="text-right border border-solid align-top p-2">
                     $4.69.00
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0"
-                    colspan="4"
+                    className="text-right border border-solid align-top p-2"
+                    colSpan="4"
                   >
                     <strong>Eco Tax (-2.00):</strong>
                   </td>
-                  <td className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
+                  <td className="text-right border border-solid align-top p-2">
                     $3.75.00
                   </td>
                 </tr>
                 <tr>
-                  <td className="text-right" colspan="4">
+                  <td
+                    className="text-right border border-solid align-top p-2"
+                    colSpan="4"
+                  >
                     <strong>VAT (20%):</strong>
                   </td>
-                  <td className="text-right">$19.68</td>
+                  <td className="text-right border border-solid align-top p-2">
+                    $19.68
+                  </td>
                 </tr>
                 <tr>
-                  <td className="text-right" colspan="4">
+                  <td
+                    className="text-right border border-solid align-top p-2"
+                    colSpan="4"
+                  >
                     <strong>Total:</strong>
                   </td>
                   <td className="text-right">$121.85</td>
@@ -570,7 +609,7 @@ function AddComment() {
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
-        <div className="px-2 py-2 bg-gray-100 border-b-transparent">
+        <div className="px-2 py-3 bg-gray-100 border-b-transparent">
           <h4 className="my-0 text-base font-medium">
             <i className="fa fa-pencil"></i> Add Comments About Your Order
           </h4>
@@ -623,22 +662,26 @@ function AddComment() {
 export default function Checkout() {
   return (
     <div
-      className="container p-0 overflow-visible mx-auto box-border text-gray-2 leading-6 text-sm justify-center"
+      className="container p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
-      <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
+      <ul className="flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
         <li className="relative py-0">
-          <a href="#">
+          <Link to="#">
             <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
-          </a>
+          </Link>
         </li>
-        <li>{'>'}</li>
+        <li>
+          <i className="fa fa-angle-right text-gray-400"></i>
+        </li>
         <li className="text-primary">
           <a href="#">Checkout</a>
         </li>
       </ul>
       <div className="w-full pb-0">
-        <h2 className="text-xl mt-9 font-light leading-none">Checkout</h2>
+        <h2 className="text-xl mt-9 font-normal text-gray-500 leading-none">
+          Checkout
+        </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-neutral-700 py-4 min-h-screen">
         <div className="col-span-3">

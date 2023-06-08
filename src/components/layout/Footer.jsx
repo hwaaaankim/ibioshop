@@ -229,7 +229,7 @@ function PoweredBy() {
 export default function Footer() {
   return (
     <div className="mt-[80px]">
-      <div className="bg-[#f5f5f5] mt-[50px] space-y-24">
+      <div className="bg-[#f5f5f5] space-y-10">
         <motion.div animate={{ y: -40 }} className="mt-[-50px] mb-[-15px] px-5">
           <SocialMedia />
         </motion.div>

@@ -1,44 +1,45 @@
+import { Link } from 'react-router-dom'
 export default function AccountSiteMap() {
   return (
     <aside>
-      <h2 className="text-xl mb-2 mt-5">Account</h2>
-      <div className="">
-        <ul>
+      <h2 className="text-xl leading-none  font-medium mb-2 mt-5">Account</h2>
+      <div className="text-xs font-light text-gray-700">
+        <ul className="leading-6">
           <li className="mb-3">
-            <a href="/login">Login</a>
+            <Link to="#">Login</Link>
           </li>
           <li className="mb-3">
-            <a href="/register">Register</a>
+            <Link to="#">Register</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Forgotten Password </a>
+            <Link to="#">Forgotten Password </Link>
           </li>
           <li className="mb-3">
-            <a href="/my_account">My Account</a>
+            <Link to="#">My Account</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Wish List</a>
+            <Link to="#">Wish List</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Order History</a>
+            <Link to="#">Order History</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Downloads</a>
+            <Link to="#">Downloads</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Reward Points</a>
+            <Link to="#">Reward Points</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Returns</a>
+            <Link to="#">Returns</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Transactions</a>
+            <Link to="#">Transactions</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Newsletter</a>
+            <Link to="#">Newsletter</Link>
           </li>
           <li className="mb-3">
-            <a href="#">Recurring payments</a>
+            <Link to="#">Recurring payments</Link>
           </li>
         </ul>
       </div>
