@@ -328,14 +328,49 @@ function Features() {
 }
 
 function Recommended() {
-  const [currentPage, setPage] = useState(1)
-  const product = {
-    id: 1,
-    picture: 'image/catalog/demo/product/270/e10.jpg',
-    name: 'Sausage Cowbee',
-    rate: 4,
-    price: 89,
-  }
+  const [currentPage, setPage] = useState(0)
+  const products = [
+    {
+      id: 1,
+      picture: 'image/catalog/demo/product/270/e10.jpg',
+      name: 'Sausage Cowbee',
+      rate: 4,
+      price: 89,
+    },
+    {
+      id: 2,
+      picture: 'image/catalog/demo/product/270/e10.jpg',
+      name: 'Sausage Cowbee2',
+      rate: 4,
+      price: 89,
+    },
+    {
+      id: 3,
+      picture: 'image/catalog/demo/product/270/e10.jpg',
+      name: 'Sausage Cowbee3',
+      rate: 4,
+      price: 89,
+    },
+  ]
+
+  const child = ({ item }) => (
+    <div className="space-y-2 items-center">
+      <div className="cursor-pointer hover:opacity-80">
+        <img src={item.picture} className="w-full h-[246px]" />
+      </div>
+      <div className="flex flex-col items-center space-y-2">
+        <div className="flex space-x-1 items-center justify-center">
+          <i className="fa fa-star text-[#fec42d]" style={{ fontSize: 11 }}></i>
+          <i className="fa fa-star text-[#fec42d]" style={{ fontSize: 11 }}></i>
+          <i className="fa fa-star text-[#fec42d]" style={{ fontSize: 11 }}></i>
+          <i className="fa fa-star text-[#fec42d]" style={{ fontSize: 11 }}></i>
+          <i className="fa fa-star text-[#fec42d]" style={{ fontSize: 11 }}></i>
+        </div>
+        <div className="text-[13px] font-semibold">{item.name}</div>
+        <div className="text-primary font-semibold">${item.price}.00</div>
+      </div>
+    </div>
+  )
 
   return (
     <div className="space-y-4">
@@ -347,40 +382,15 @@ function Recommended() {
         </div>
       </div>
 
-      <div className="space-y-2 items-center">
-        <div className="cursor-pointer hover:opacity-80">
-          <img src={product.picture} className="w-full h-[246px]" />
-        </div>
-        <div className="flex flex-col items-center space-y-2">
-          <div className="flex space-x-1 items-center justify-center">
-            <i
-              className="fa fa-star text-[#fec42d]"
-              style={{ fontSize: 11 }}
-            ></i>
-            <i
-              className="fa fa-star text-[#fec42d]"
-              style={{ fontSize: 11 }}
-            ></i>
-            <i
-              className="fa fa-star text-[#fec42d]"
-              style={{ fontSize: 11 }}
-            ></i>
-            <i
-              className="fa fa-star text-[#fec42d]"
-              style={{ fontSize: 11 }}
-            ></i>
-            <i
-              className="fa fa-star text-[#fec42d]"
-              style={{ fontSize: 11 }}
-            ></i>
-          </div>
-          <div className="text-[13px] font-semibold">{product.name}</div>
-          <div className="text-primary font-semibold">${product.price}.00</div>
-        </div>
-      </div>
+      <Carousel
+        Child={child}
+        items={products}
+        index={currentPage}
+        hideBtns={true}
+      />
 
       <div className="flex space-x-2 items-center ml-[80px]">
-        {[1, 2, 3].map((page) => (
+        {[0, 1, 2].map((page) => (
           <div
             key={page}
             className={
