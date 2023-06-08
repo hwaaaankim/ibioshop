@@ -7,6 +7,8 @@ import Home from './pages/Home.jsx'
 import Footer from './components/layout/Footer'
 import Login from './pages/Login'
 import Checkout from './pages/Checkout'
+import WishList from './pages/WishList'
+import OrderInfo from './pages/OrderInfo'
 import Protected from './components/route-hocs/Protected'
 import OnlyWhenLoggedOut from './components/route-hocs/OnlyWhenLoggedOut'
 import Register from './pages/Register'
@@ -29,6 +31,8 @@ function App() {
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path='wish_list' element={<WishList/>} />
+        <Route path='order_info' element={<OrderInfo/>} />
         <Route path="my_account" element={<MyAccount />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
