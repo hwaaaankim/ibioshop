@@ -1,43 +1,80 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-function Carousel({ items, Child, index = 0, hideBtns = false }) {
+function Carousel({
+  items,
+  Child,
+  index = 0,
+  hideBtns = false,
+  showChevrons = false,
+}) {
   const [currentIndex, setCurrentIndex] = useState(index)
   const [height, setHeight] = useState(0)
   const targetEl = useRef()
   useEffect(() => setHeight(targetEl.current.clientHeight), [])
   useEffect(() => setCurrentIndex(index), [index])
-
+  const totalPages = items.length
   return (
-    <div className={'overflow-x-hidden relative'} style={{ height }}>
-      <div className="relative h-full">
-        {items.map((item, index) => (
-          <motion.div
-            animate={{ x: (index - currentIndex) * 100 + '%' }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="absolute right-0 left-0"
-            key={index}
-          >
-            <div ref={index === 0 ? targetEl : null} className="w-full">
-              <Child item={item} />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      {!hideBtns && (
-        <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
+    <div className="relative">
+      <div className={'overflow-x-hidden relative'} style={{ height }}>
+        <div className="relative h-full">
           {items.map((item, index) => (
-            <div
+            <motion.div
+              animate={{ x: (index - currentIndex) * 100 + '%' }}
+              transition={{ ease: 'easeInOut', duration: 0.5 }}
+              className="absolute right-0 left-0"
               key={index}
-              className={
-                'w-[30px] h-[6px] ' +
-                (index === currentIndex ? 'bg-primary' : 'bg-white') +
-                ' hover:bg-primary rounded cursor-pointer'
-              }
-              onClick={() => setCurrentIndex(index)}
-            ></div>
+            >
+              <div ref={index === 0 ? targetEl : null} className="w-full">
+                <Child item={item} />
+              </div>
+            </motion.div>
           ))}
         </div>
+        {!hideBtns && (
+          <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={
+                  'w-[30px] h-[6px] ' +
+                  (index === currentIndex ? 'bg-primary' : 'bg-white') +
+                  ' hover:bg-primary rounded cursor-pointer'
+                }
+                onClick={() => setCurrentIndex(index)}
+              ></div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {showChevrons && (
+        <>
+          <div className="absolute bottom-0 top-0 -left-[20px] z-20 flex items-center">
+            <div
+              className="bg-white shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
+              onClick={() =>
+                setCurrentIndex((prevIndex) =>
+                  prevIndex - 1 < 0 ? prevIndex : prevIndex - 1
+                )
+              }
+            >
+              <i className="fa fa-caret-left" style={{ fontSize: 20 }}></i>
+            </div>
+          </div>
+          <div className="absolute bottom-0 top-0 -right-[20px] z-20 flex items-center">
+            <div
+              className="bg-white shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
+              onClick={() =>
+                setCurrentIndex((prevIndex) =>
+                  prevIndex + 1 == totalPages ? prevIndex : prevIndex + 1
+                )
+              }
+            >
+              <i className="fa fa-caret-right" style={{ fontSize: 20 }}></i>
+            </div>
+          </div>
+        </>
       )}
     </div>
   )
