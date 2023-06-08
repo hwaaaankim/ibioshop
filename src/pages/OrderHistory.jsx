@@ -1,12 +1,14 @@
 import Icon from '../components/icon/Icon'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
-import Tippy from '@tippyjs/react'
-import 'tippy.js/dist/tippy.css'
 import image from '../assets/images/1.jpg'
 import order from '../services/api/order'
 
 function OrderHistory() {
-  const { data } = order.getAllOrders()
+  // const orderHistories = {
+  //   {
+  //     image:""
+  //   }
+  // }
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 text-xs text-gray-2 leading-6 mb-8">
