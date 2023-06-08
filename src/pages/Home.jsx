@@ -1100,6 +1100,52 @@ function NewArrivals() {
 
   const [activeTab, setActiveTab] = useState(0)
 
+  const child = ({ item }) => (
+    <div className="grid grid-cols-5 gap-[30px]">
+      {products.map((product, index) => (
+        <div key={index} className="space-y-2">
+          <div className="h-[180px] cursor-pointer group relative">
+            <img
+              src={product.picture}
+              className="w-full h-full opacity-80 group-hover:opacity-100"
+            />
+            <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+              <div className="text-xs font-semibold">11%</div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center space-y-2">
+            <div className="flex space-x-2 items-center">
+              <div className="flex space-x-1 items-center">
+                {[1, 2, 3, 4, 5].map((sindex) => (
+                  <i
+                    key={sindex}
+                    className="fa fa-star text-[#fec42d]"
+                    style={{ fontSize: 12 }}
+                  ></i>
+                ))}
+              </div>
+              <div className="text-[10px] text-[#333]">
+                ({product.totalRatings})
+              </div>
+            </div>
+            <div className="text-[13px] text-[#333] font-medium">
+              {product.name}
+            </div>
+            <div className="flex space-x-2 items-center justify-center">
+              <div className="text-primary font-semibold">
+                ${product.discounted ? product.discountedPrice : product.price}
+                .00
+              </div>
+              <div className="line-through text-gray-600 text-sm">
+                ${product.price}.00
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+
   return (
     <div className="space-y-4">
       <div className="flex items-stretch">
@@ -1120,50 +1166,13 @@ function NewArrivals() {
         <div className="flex-auto border-b-2 border-gray-300"></div>
       </div>
 
-      <div className="grid grid-cols-5 gap-[30px]">
-        {products.map((product, index) => (
-          <div key={index} className="space-y-2">
-            <div className="h-[180px] cursor-pointer group relative">
-              <img
-                src={product.picture}
-                className="w-full h-full opacity-80 group-hover:opacity-100"
-              />
-              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
-                <div className="text-xs font-semibold">11%</div>
-              </div>
-            </div>
-            <div className="flex flex-col items-center space-y-2">
-              <div className="flex space-x-2 items-center">
-                <div className="flex space-x-1 items-center">
-                  {[1, 2, 3, 4, 5].map((sindex) => (
-                    <i
-                      key={sindex}
-                      className="fa fa-star text-[#fec42d]"
-                      style={{ fontSize: 12 }}
-                    ></i>
-                  ))}
-                </div>
-                <div className="text-[10px] text-[#333]">
-                  ({product.totalRatings})
-                </div>
-              </div>
-              <div className="text-[13px] text-[#333] font-medium">
-                {product.name}
-              </div>
-              <div className="flex space-x-2 items-center justify-center">
-                <div className="text-primary font-semibold">
-                  $
-                  {product.discounted ? product.discountedPrice : product.price}
-                  .00
-                </div>
-                <div className="line-through text-gray-600 text-sm">
-                  ${product.price}.00
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Carousel
+        Child={child}
+        items={[products, products, products]}
+        hideBtns={true}
+        showChevrons={true}
+        chevronY={-50}
+      />
     </div>
   )
 }
