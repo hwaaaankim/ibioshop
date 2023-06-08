@@ -13,6 +13,8 @@ module.exports = {
           1: '#ccc',
           2: '#666',
           3: '#ddd',
+          5:'#999',
+          4:'rgba(51, 51, 51, 0.1)'
           
         },
         'red':{
@@ -20,6 +22,9 @@ module.exports = {
           2: "#d43f3a"
         } 
       },
+      fontFamily: {
+        'body': [" 'Poppins' ", 'sans-serif'],
+      }
     },
   },
   plugins: []

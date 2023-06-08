@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 function SocialMedia() {
   return (
     <div className="flex space-x-10 items-center text-white bg-primary py-[30px] px-[15px] rounded">
@@ -226,11 +228,11 @@ function PoweredBy() {
 
 export default function Footer() {
   return (
-    <div>
-      <div className="bg-[#f5f5f5] mt-[50px] space-y-24">
-        <div className="mt-[-50px] mb-[-15px] px-5">
+    <div className="mt-[80px]">
+      <div className="bg-[#f5f5f5] space-y-10">
+        <motion.div animate={{ y: -40 }} className="mt-[-50px] mb-[-15px] px-5">
           <SocialMedia />
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-6 gap-6 pt-[55px] px-[30px]">
           <div className="col-span-6">

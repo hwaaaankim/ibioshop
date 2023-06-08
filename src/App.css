@@ -3,6 +3,15 @@ select{
     appearance: none;
 }
 
+.transit {
+    color: #555;
+    transition: color 0.3s ease-in-out;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    transition-property: color;
+}
+
 .main-container{
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     color: #666;
