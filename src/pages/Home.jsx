@@ -253,15 +253,15 @@ function LatestProducts() {
 
       <div className="flex space-x-2 items-center ml-[80px] pl-4 py-6">
         {[0, 1].map((page) => (
-          <div
+          <motion.div
             key={page}
             className={
               'h-[8px] cursor-pointer rounded-full bg-' +
               (page === currentPage ? 'primary' : 'black')
             }
-            style={{ width: page == currentPage ? 30 : 8 }}
+            animate={{ width: page == currentPage ? 30 : 8 }}
             onClick={() => setPage(page)}
-          ></div>
+          ></motion.div>
         ))}
       </div>
     </div>
@@ -391,15 +391,15 @@ function Recommended() {
 
       <div className="flex space-x-2 items-center ml-[80px]">
         {[0, 1, 2].map((page) => (
-          <div
+          <motion.div
             key={page}
             className={
               'h-[8px] cursor-pointer rounded-full bg-' +
               (page === currentPage ? 'primary' : 'black')
             }
-            style={{ width: page == currentPage ? 30 : 8 }}
+            animate={{ width: page == currentPage ? 30 : 8 }}
             onClick={() => setPage(page)}
-          ></div>
+          ></motion.div>
         ))}
       </div>
     </div>
@@ -469,13 +469,49 @@ function LatestPosts() {
 
 function Testimonials() {
   const [currentPage, setPage] = useState(1)
-  const product = {
-    id: 1,
-    picture: 'image/catalog/demo/product/270/e10.jpg',
-    name: 'Sausage Cowbee',
-    rate: 4,
-    price: 89,
-  }
+
+  const testimonials = [
+    {
+      author: 'Johny Walker',
+      quote:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
+    },
+    {
+      author: 'Johny Walker2',
+      quote:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
+    },
+    {
+      author: 'Johny Walker3',
+      quote:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
+    },
+  ]
+
+  const child = ({ item }) => (
+    <div className="space-y-4 flex flex-col items-center">
+      <div className="w-[86px] h-[86px] border-[3px] border-primary rounded-full cursor-pointer">
+        <img
+          src="image/catalog/demo/client/user-1.jpg"
+          className="w-full h-full rounded-full"
+        />
+      </div>
+      <div className="text-sm font-medium">{item.author}</div>
+      <div className="px-2 space-x-2">
+        <i
+          className="fa fa-quote-left text-gray-300"
+          style={{ fontSize: 22 }}
+        ></i>
+        <span className="text-xs text-gray-500 text-center">
+          “{item.quote}”
+        </span>
+        <i
+          className="fa fa-quote-right text-gray-300"
+          style={{ fontSize: 22 }}
+        ></i>
+      </div>
+    </div>
+  )
 
   return (
     <div className="space-y-6">
@@ -488,41 +524,24 @@ function Testimonials() {
       </div>
 
       <div className="space-y-4 px-2 py-6 border rounded-md">
-        <div className="space-y-4 flex flex-col items-center">
-          <div className="w-[86px] h-[86px] border-[3px] border-primary rounded-full cursor-pointer">
-            <img
-              src="image/catalog/demo/client/user-1.jpg"
-              className="w-full h-full rounded-full"
-            />
-          </div>
-          <div className="text-sm font-medium">Johny Walker</div>
-          <div className="px-2 space-x-2">
-            <i
-              className="fa fa-quote-left text-gray-300"
-              style={{ fontSize: 22 }}
-            ></i>
-            <span className="text-xs text-gray-500 text-center">
-              “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore”
-            </span>
-            <i
-              className="fa fa-quote-right text-gray-300"
-              style={{ fontSize: 22 }}
-            ></i>
-          </div>
-        </div>
+        <Carousel
+          Child={child}
+          items={testimonials}
+          index={currentPage}
+          hideBtns={true}
+        />
 
         <div className="flex space-x-2 items-center ml-[80px]">
-          {[1, 2, 3].map((page) => (
-            <div
+          {[0, 1, 2].map((page) => (
+            <motion.div
               key={page}
               className={
                 'h-[8px] cursor-pointer rounded-full bg-' +
                 (page === currentPage ? 'primary' : 'black')
               }
-              style={{ width: page == currentPage ? 30 : 8 }}
+              animate={{ width: page == currentPage ? 30 : 8 }}
               onClick={() => setPage(page)}
-            ></div>
+            ></motion.div>
           ))}
         </div>
       </div>
