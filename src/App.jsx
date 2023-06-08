@@ -18,7 +18,6 @@ import Product from './pages/Product'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
-import GoCarousel from './pages/GoCarousel'
 import Category from './pages/Category'
 
 function App() {
@@ -42,7 +41,6 @@ function App() {
         <Route path="contact_us" element={<Contact />} />
 
         <Route path="test" element={<Test />} />
-        <Route path="go-responsive" element={<GoCarousel />} />
         <Route path="category" element={<Category />} />
 
         <Route path="*" element={<NotFound />} />
