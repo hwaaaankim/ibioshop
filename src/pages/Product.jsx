@@ -10,13 +10,13 @@ function Product() {
   return (
     <div className="w-full p-10">
       <Breadcrumb />
-      <div className="w-full sm:flex">
+      <div className="w-full flex">
         <div className="w-[79%] flex flex-col">
           <ProductPreview />
           <ProductTab />
           <RelatedProducts />
         </div>
-        <div className="xl:w-[21%] flex flex-col px-[15px]">
+        <div className="w-[21%] flex flex-col px-[15px]">
           <Categories />
           <LatestProducts />
           <BannerSidebar />

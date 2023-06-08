@@ -39,7 +39,7 @@ function App() {
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="category" element={<Category />} />
-        <Route path="go-responsive" element={<div>here we go</div>} />
+        {/* <Route path="go-responsive" element={<div>here we go</div>} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}

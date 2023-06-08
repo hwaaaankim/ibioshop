@@ -16,8 +16,8 @@ function ProductPreview() {
   ]
 
   return (
-    <div className="xl:flex mt-6 text-[#999]">
-      <div className='xl:w-[50%] flex mr-4'>
+    <div className="flex mt-6 text-[#999]">
+      <div className='w-[50%] flex mr-4'>
         {/* sub-product-images */}
         <div className="flex flex-col mr-4">
           {slide.map((product, index) => (
@@ -34,7 +34,7 @@ function ProductPreview() {
         </div>
       </div>
       {/* product-detail */}
-      <div className='xl:w-[50%] flex flex-col pr-[15px]'>
+      <div className='w-[50%] flex flex-col pr-[15px]'>
         <div className='w-full'>
           <h2 className='text-[#444] font-medium mb-2.5 text-2xl'>Chicken swinesha</h2>
           <div className='flex'>
@@ -73,11 +73,11 @@ function ProductPreview() {
           <div className="border-y border-[#eee] py-2.5 px-5">
             <div className="relative text-[#666] text-xs leading-6">
               <div className='w-1 bg-[#094bad] h-full absolute -left-5 top-0'></div>
-              <div classNae=""><span className='font-bold'>Ex Tax:</span> $60.00</div>
-              <div classNae="reward"><span className='font-bold'>Price in reward points:</span> 400</div>
-              <div classNae="brand"><span className='font-bold'>Brand:</span><a href="#">Apple</a>		</div>
-              <div classNae="model"><span className='font-bold'>Product Code:</span> Product 15</div>
-              <div classNae="reward"><span className='font-bold'>Reward Points:</span> 100</div>
+              <div className=""><span className='font-bold'>Ex Tax:</span> $60.00</div>
+              <div className="reward"><span className='font-bold'>Price in reward points:</span> 400</div>
+              <div className="brand"><span className='font-bold'>Brand:</span><a href="#">Apple</a>		</div>
+              <div className="model"><span className='font-bold'>Product Code:</span> Product 15</div>
+              <div className="reward"><span className='font-bold'>Reward Points:</span> 100</div>
             </div>
           </div>
           <div className="text-[#666] text-left leading-6 mb-[15px]">

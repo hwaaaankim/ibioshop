@@ -71,11 +71,11 @@ function QuickView() {
             <div className="border-y border-[#eee] py-2.5 px-5">
               <div className="relative text-[#666] text-xs leading-6">
                 <div className='w-1 bg-[#094bad] h-full absolute -left-5 top-0'></div>
-                <div classNae=""><span className='font-bold'>Ex Tax:</span> $60.00</div>
-                <div classNae="reward"><span className='font-bold'>Price in reward points:</span> 400</div>
-                <div classNae="brand"><span className='font-bold'>Brand:</span><a href="#">Apple</a>		</div>
-                <div classNae="model"><span className='font-bold'>Product Code:</span> Product 15</div>
-                <div classNae="reward"><span className='font-bold'>Reward Points:</span> 100</div>
+                <div className=""><span className='font-bold'>Ex Tax:</span> $60.00</div>
+                <div className="reward"><span className='font-bold'>Price in reward points:</span> 400</div>
+                <div className="brand"><span className='font-bold'>Brand:</span><a href="#">Apple</a>		</div>
+                <div className="model"><span className='font-bold'>Product Code:</span> Product 15</div>
+                <div className="reward"><span className='font-bold'>Reward Points:</span> 100</div>
               </div>
             </div>
             <div className="mt-10">
