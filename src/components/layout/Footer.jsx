@@ -3,31 +3,31 @@ import { motion } from 'framer-motion'
 
 function SocialMedia() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-white bg-primary py-[30px] px-[15px] rounded">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-white bg-primary py-[30px] px-[25px] rounded items-center">
       <div className="flex">
         <div className="uppercase font-semibold text-xl xl:pr-3 xl:mt-1 xl:block hidden">
           follow socials
         </div>
-        <ul>
-          <li className="w-11 h-11 block float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
-            <i className={'text-[20px] fa fa-facebook'} />
+        <ul className='flex'>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'fa fa-facebook'} />
           </li>
-          <li className="w-11 h-11 block float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'text-[12px] fa fa-twitter'} />
           </li>
-          <li className="w-11 h-11 block float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'text-[12px] fa fa-google-plus'} />
           </li>
-          <li className="w-11 h-11 block float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'text-[12px] fa fa-pinterest'} />
           </li>
-          <li className="w-11 h-11 block float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'text-[12px] fa fa-youtube-play'} />
           </li>
-          <li className="w-11 h-11 sm:block hidden float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'text-[12px] fa fa-linkedin'} />
           </li>
-          <li className="sm:block hidden w-11 h-11  float-left  text-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+          <li className="sm:flex hidden w-11 h-11 justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'text-[12px] fa fa-skype'} />
           </li>
         </ul>

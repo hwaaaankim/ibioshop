@@ -1,5 +1,5 @@
-import React from "react";
-import { SVGProps } from "react";
+import React from 'react'
+import { SVGProps } from 'react'
 
 export const More = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
@@ -29,15 +29,14 @@ export const More = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
       strokeLinecap="round"
     />
   </svg>
-);
-
+)
 export const Less = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width="10"
     height="10"
     viewBox="0 0 20 20"
     fill="none"
-    className={`${className} text-black`}
+    className={`${className} text-gray-500`}
     stroke="currentcolor"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
@@ -51,6 +50,4 @@ export const Less = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
       strokeLinecap="round"
     />
   </svg>
-);
-
-  
+)

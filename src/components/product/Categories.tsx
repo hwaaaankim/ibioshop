@@ -161,7 +161,7 @@ export default function App() {
     { name: 'Wines & Spirits' },
   ]
   return (
-    <div className="border border-[#d7d7d7] overflow-hidden mb-10 mt-6 rounded-[3px]">
+    <div className="border border-[#d7d7d7] overflow-hidden mb-10 rounded-[3px]">
       <h3 className="border-b border-[#d7d7d7] text-[16px] text-[#222] font-bold uppercase bg-[#f5f5f5] p-[15px]">
         Categories
       </h3>

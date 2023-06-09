@@ -38,8 +38,8 @@ function LatestProducts() {
   ]
   return (
     <div className="w-full relative border border-[#d7d7d7] overflow-hidden mb-10 rounded">
-      <h3 className="border-b border-[#d7d7d7] uppercase font-extrabold p-4 bg-[#f5f5f5]">
-        <span>Latest products</span>
+      <h3 className="border-b border-[#d7d7d7] uppercase text-[16px] font-bold text-black p-4 bg-[#f5f5f5]">
+        Latest products
       </h3>
       <div className="py-4 px-2.5">
         {latestProducts.map((product, index) => (
