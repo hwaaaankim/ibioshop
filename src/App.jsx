@@ -42,6 +42,7 @@ function App() {
 
         <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
+        <Route path="go-responsive" element={<div>go responsive</div>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
