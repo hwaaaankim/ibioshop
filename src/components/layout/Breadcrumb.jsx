@@ -4,7 +4,7 @@ export default function Breadcrumb() {
   const breadcrumb = useSelector((state) => state.breadcrumb)
 
   return (
-    <ul className="mx-[2.5%] flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
+    <ul className="mx-[2.5%] flex items-center list-none my-6 leading-normal bg-transparent p-0 space-x-3">
       <li className="relative py-0">
         <div className="cursor-pointer hover:text-primary">
           <i
