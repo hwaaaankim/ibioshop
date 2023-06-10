@@ -3,12 +3,12 @@ import { Dropdown } from './HeaderTop'
 function CategoriesMenu() {
   return (
     <div>
-      <div className="flex space-x-12 items-center bg-black px-4 py-[10px] rounded-t">
+      <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
         <div className="flex space-x-2 items-center">
-          <i className="fa fa-bars" />
-          <div className="uppercase">all categories</div>
+          <i className="fa fa-bars" style={{ fontSize: 16 }} />
+          <div className="uppercase text-base font-medium">all categories</div>
         </div>
-        <i className="fa fa-angle-down" />
+        <i className="fa fa-angle-down" style={{ fontSize: 16 }} />
       </div>
     </div>
   )
