@@ -20,14 +20,17 @@ import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
+import Breadcrumb from './components/layout/Breadcrumb'
 
 function App() {
   const header = useSelector((state) => state.header)
   const footer = useSelector((state) => state.footer)
+  const breadcrumb = useSelector((state) => state.breadcrumb)
 
   return (
     <div className="h-screen">
       {!header.hidden && <Header />}
+      {!breadcrumb.hidden && <Breadcrumb />}
       <Routes>
         <Route exact path="/" element={<Protected component={<Home />} />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
