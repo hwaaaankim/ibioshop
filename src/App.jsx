@@ -19,6 +19,7 @@ import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
 import Category from './pages/Category'
+import Blog from './pages/Blog'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -42,6 +43,7 @@ function App() {
 
         <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
+        <Route path="blog" element={<Blog />} />
         <Route path="go-responsive" element={<div>go responsive</div>} />
 
         <Route path="*" element={<NotFound />} />
