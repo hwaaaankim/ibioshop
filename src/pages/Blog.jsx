@@ -53,7 +53,7 @@ function Articles() {
     comments: [],
   }))
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 mdp5:grid-cols-3 gap-4">
       {articles.map((article, index) => (
         <Article key={index} article={article} />
       ))}
@@ -78,8 +78,8 @@ export default function Blog() {
   }, [])
 
   return (
-    <div className="px-[2.5%] flex space-x-8">
-      <div className="w-[237px] flex-shrink-0">
+    <div className="px-[2.5%] md:flex space-y-3 md:space-y-0 md:space-x-8">
+      <div className="w-full md:w-[237px] flex-shrink-0">
         <div className="border rounded">
           <div className="uppercase font-bold p-[15px] bg-[#f5f5f5] border-b">
             blog category
