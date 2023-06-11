@@ -7,18 +7,28 @@ function Carousel({
   index = 0,
   hideBtns = false,
   showChevrons = false,
+  showChevronsConditionally = true,
   chevronY = 0,
   chevronlX = 0,
   chevronrX = 0,
 }) {
+  const [mouseIn, setMouseIn] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(index)
   const [height, setHeight] = useState(0)
   const targetEl = useRef()
   useEffect(() => setHeight(targetEl.current.clientHeight), [])
   useEffect(() => setCurrentIndex(index), [index])
   const totalPages = items.length
+  const makeChevronVisible =
+    showChevrons &&
+    (!showChevronsConditionally || (showChevronsConditionally && mouseIn))
+
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={() => setMouseIn(true)}
+      onMouseLeave={() => setMouseIn(false)}
+    >
       <div className={'overflow-x-hidden relative'} style={{ height }}>
         <div className="relative h-full">
           {items.map((item, index) => (
@@ -51,11 +61,12 @@ function Carousel({
         )}
       </div>
 
-      {showChevrons && (
+      {makeChevronVisible && (
         <>
           <div className="absolute bottom-0 top-0 -left-[20px] z-20 flex items-center">
             <motion.div
-              animate={{ x: chevronlX, y: chevronY }}
+              initial={{ x: chevronlX, y: chevronY, scale: 0 }}
+              animate={{ scale: 1 }}
               className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
@@ -68,7 +79,8 @@ function Carousel({
           </div>
           <div className="absolute bottom-0 top-0 -right-[20px] z-20 flex items-center">
             <motion.div
-              animate={{ x: chevronrX, y: chevronY }}
+              initial={{ x: chevronrX, y: chevronY, scale: 0 }}
+              animate={{ scale: 1 }}
               className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
@@ -1199,6 +1211,7 @@ function BrandsCarousel() {
         showChevrons={true}
         chevronlX={-18}
         chevronrX={18}
+        showChevronsConditionally={false}
       />
     </div>
   )
