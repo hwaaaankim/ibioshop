@@ -877,8 +877,9 @@ function FlashSale() {
         hideBtns={true}
         showChevrons={true}
         chevronY={-80}
-        index={3}
+        index={0}
         pageSize={4}
+        showChevronsConditionally={false}
       />
     </div>
   )
