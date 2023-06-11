@@ -629,9 +629,16 @@ function Product({ product, showProgress = false }) {
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
-        <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
-          <div className="text-xs font-semibold">11%</div>
-        </div>
+        {product.discounted && (
+          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+            <div className="text-xs font-semibold">11%</div>
+          </div>
+        )}
+        {product.isNew && (
+          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[5px] top-[5px]">
+            <div className="text-xs font-semibold">New</div>
+          </div>
+        )}
         <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
           <AnimatePresence>
             {mouseOver && (
