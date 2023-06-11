@@ -878,7 +878,7 @@ function FlashSale() {
         showChevrons={true}
         chevronY={-80}
         index={0}
-        pageSize={4}
+        pageSize={5}
         showChevronsConditionally={false}
       />
     </div>
@@ -1151,13 +1151,7 @@ function NewArrivals() {
 
   const [activeTab, setActiveTab] = useState(0)
 
-  const child = ({ item }) => (
-    <div className="grid grid-cols-5 gap-[30px]">
-      {products.map((product, index) => (
-        <Product product={product} key={index} />
-      ))}
-    </div>
-  )
+  const child = ({ item }) => <Product product={item} />
 
   return (
     <div className="space-y-4">
@@ -1181,10 +1175,12 @@ function NewArrivals() {
 
       <Carousel
         Child={child}
-        items={[products, products, products]}
+        items={[...products, ...products]}
         hideBtns={true}
         showChevrons={true}
         chevronY={-50}
+        index={0}
+        pageSize={5}
       />
     </div>
   )
