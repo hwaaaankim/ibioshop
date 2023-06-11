@@ -975,13 +975,7 @@ function ProductCategories({
     },
   ]
 
-  const child = ({ item }) => (
-    <div className="grid grid-cols-4 gap-[30px]">
-      {products.map((product, index) => (
-        <Product product={product} key={index} />
-      ))}
-    </div>
-  )
+  const child = ({ item }) => <Product product={item} />
 
   return (
     <div className="space-y-4">
@@ -1013,10 +1007,12 @@ function ProductCategories({
         <div className="flex-auto">
           <Carousel
             Child={child}
-            items={[products, products, products]}
+            items={[...products, ...products]}
             hideBtns={true}
             showChevrons={true}
             chevronY={-50}
+            index={0}
+            pageSize={4}
           />
         </div>
 
