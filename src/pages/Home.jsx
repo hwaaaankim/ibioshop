@@ -11,12 +11,18 @@ function Carousel({
   chevronY = 0,
   chevronlX = 0,
   chevronrX = 0,
+  pageSize = 1,
 }) {
   const [mouseIn, setMouseIn] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(index)
   const [height, setHeight] = useState(0)
+  const [width, setWidth] = useState(0)
   const targetEl = useRef()
-  useEffect(() => setHeight(targetEl.current.clientHeight), [])
+  const widthRef = useRef()
+  useEffect(() => {
+    setHeight(targetEl.current.clientHeight)
+    setWidth(widthRef.current.clientWidth)
+  }, [])
   useEffect(() => setCurrentIndex(index), [index])
   const totalPages = items.length
   const makeChevronVisible =
@@ -30,12 +36,13 @@ function Carousel({
       onMouseLeave={() => setMouseIn(false)}
     >
       <div className={'overflow-x-hidden relative'} style={{ height }}>
-        <div className="relative h-full">
+        <div className={'relative h-full'}>
           {items.map((item, index) => (
             <motion.div
-              animate={{ x: (index - currentIndex) * 100 + '%' }}
+              animate={{ x: (index - currentIndex) * (width / pageSize) }}
               transition={{ ease: 'easeInOut', duration: 0.5 }}
-              className="absolute right-0 left-0"
+              className={'absolute left-0'}
+              style={{ width: width / pageSize }}
               key={index}
             >
               <div ref={index === 0 ? targetEl : null} className="w-full">
@@ -44,6 +51,7 @@ function Carousel({
             </motion.div>
           ))}
         </div>
+        <div ref={widthRef} className="right-0 left-0 top-0"></div>
         {!hideBtns && (
           <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
             {items.map((item, index) => (
@@ -84,7 +92,7 @@ function Carousel({
               className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
-                  prevIndex + 1 == totalPages ? prevIndex : prevIndex + 1
+                  prevIndex + pageSize == totalPages ? prevIndex : prevIndex + 1
                 )
               }
             >
@@ -632,7 +640,7 @@ function Product({ product, showProgress = false }) {
 
   return (
     <div
-      className="space-y-2"
+      className="space-y-2 w-full px-[15px]"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
@@ -831,13 +839,7 @@ function FlashSale() {
     },
   ]
 
-  const child = ({ item }) => (
-    <div className="grid grid-cols-5 gap-[30px]">
-      {products.map((product, index) => (
-        <Product key={index} product={product} showProgress={true} />
-      ))}
-    </div>
-  )
+  const child = ({ item }) => <Product product={item} showProgress={true} />
 
   return (
     <div className="space-y-4">
@@ -871,10 +873,12 @@ function FlashSale() {
 
       <Carousel
         Child={child}
-        items={[products, products, products]}
+        items={[...products, ...products]}
         hideBtns={true}
         showChevrons={true}
         chevronY={-80}
+        index={3}
+        pageSize={4}
       />
     </div>
   )
