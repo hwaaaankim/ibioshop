@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Carousel({
   items,
@@ -603,6 +603,140 @@ function MiniBanners() {
   )
 }
 
+function Product({ product, showProgress = false }) {
+  const [mouseOver, setMouseOver] = useState(false)
+  const ProgressBar = ({ progress }) => (
+    <div className="flex">
+      <div
+        className="h-[14px] bg-primary rounded-l-lg"
+        style={{ width: progress + '%' }}
+      ></div>
+      <div
+        className="h-[14px] bg-gray-200 rounded-r-lg"
+        style={{ width: 100 - progress + '%' }}
+      ></div>
+    </div>
+  )
+
+  return (
+    <div
+      className="space-y-2"
+      onMouseEnter={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+    >
+      <div className="h-[180px] cursor-pointer group relative">
+        <img
+          src={product.picture}
+          className="w-full h-full opacity-80 group-hover:opacity-100"
+        />
+        <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
+          <div className="text-xs font-semibold">11%</div>
+        </div>
+        <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
+          <AnimatePresence>
+            {mouseOver && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
+              >
+                <i className="fa fa-eye"></i>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+      <div className="flex flex-col items-center space-y-2">
+        <div className="relative w-full">
+          <AnimatePresence>
+            {mouseOver && (
+              <motion.div
+                exit={{ y: -30, opacity: 0, transition: { duration: 0.1 } }}
+                className="absolute top-0 left-0 right-0 bottom-0 flex items-center z-10"
+              >
+                <div className="flex-auto flex space-x-2 items-center justify-between">
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs"
+                  >
+                    add to cart
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer"
+                  >
+                    <i className="fa fa-heart-o"></i>
+                  </motion.div>
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer"
+                  >
+                    <i className="fa fa-retweet"></i>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div
+            className={
+              'flex flex-col items-center space-y-2 ' +
+              (mouseOver ? 'opacity-0' : 'opacity-100')
+            }
+          >
+            <div className="flex space-x-2 items-center">
+              <div className="flex space-x-1 items-center">
+                {[1, 2, 3, 4, 5].map((sindex) => (
+                  <i
+                    key={sindex}
+                    className="fa fa-star text-[#fec42d]"
+                    style={{ fontSize: 12 }}
+                  ></i>
+                ))}
+              </div>
+              <div className="text-[10px] text-[#333]">
+                ({product.totalRatings})
+              </div>
+            </div>
+            <div className="text-[13px] text-[#333] font-medium">
+              {product.name}
+            </div>
+            <div className="flex space-x-2 items-center justify-center">
+              <div className="text-primary font-semibold">
+                ${product.discounted ? product.discountedPrice : product.price}
+                .00
+              </div>
+              <div className="line-through text-gray-600 text-sm">
+                ${product.price}.00
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {showProgress && (
+          <div className="w-full space-y-2">
+            <ProgressBar progress={product.totalSold.percentage} />
+            <div className="flex items-center justify-center">
+              <div className="text-[#333] text-xs">Sold:&nbsp;</div>
+              <div className="text-primary text-[13px] font-semibold">
+                {product.totalSold.total}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function FlashSale() {
   const flashSaleRef = useRef()
   const [width, setWidht] = useState(0)
@@ -675,71 +809,11 @@ function FlashSale() {
       },
     },
   ]
-  const ProgressBar = ({ progress }) => (
-    <div className="flex">
-      <div
-        className="h-[14px] bg-primary rounded-l-lg"
-        style={{ width: progress + '%' }}
-      ></div>
-      <div
-        className="h-[14px] bg-gray-200 rounded-r-lg"
-        style={{ width: 100 - progress + '%' }}
-      ></div>
-    </div>
-  )
 
   const child = ({ item }) => (
     <div className="grid grid-cols-5 gap-[30px]">
       {products.map((product, index) => (
-        <div key={index} className="space-y-2">
-          <div className="h-[180px] cursor-pointer group relative">
-            <img
-              src={product.picture}
-              className="w-full h-full opacity-80 group-hover:opacity-100"
-            />
-            <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
-              <div className="text-xs font-semibold">11%</div>
-            </div>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <div className="flex space-x-2 items-center">
-              <div className="flex space-x-1 items-center">
-                {[1, 2, 3, 4, 5].map((sindex) => (
-                  <i
-                    key={sindex}
-                    className="fa fa-star text-[#fec42d]"
-                    style={{ fontSize: 12 }}
-                  ></i>
-                ))}
-              </div>
-              <div className="text-[10px] text-[#333]">
-                ({product.totalRatings})
-              </div>
-            </div>
-            <div className="text-[13px] text-[#333] font-medium">
-              {product.name}
-            </div>
-            <div className="flex space-x-2 items-center justify-center">
-              <div className="text-primary font-semibold">
-                ${product.discounted ? product.discountedPrice : product.price}
-                .00
-              </div>
-              <div className="line-through text-gray-600 text-sm">
-                ${product.price}.00
-              </div>
-            </div>
-
-            <div className="w-full space-y-2">
-              <ProgressBar progress={product.totalSold.percentage} />
-              <div className="flex items-center justify-center">
-                <div className="text-[#333] text-xs">Sold:&nbsp;</div>
-                <div className="text-primary text-[13px] font-semibold">
-                  {product.totalSold.total}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Product key={index} product={product} showProgress={true} />
       ))}
     </div>
   )
