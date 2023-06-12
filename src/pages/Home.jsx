@@ -35,6 +35,7 @@ function Carousel({
       onMouseEnter={() => setMouseIn(true)}
       onMouseLeave={() => setMouseIn(false)}
     >
+      <div ref={widthRef} className="right-0 left-0 top-0"></div>
       <div className={'overflow-x-hidden relative'} style={{ height }}>
         <div className={'relative h-full'}>
           {items.map((item, index) => (
@@ -51,7 +52,6 @@ function Carousel({
             </motion.div>
           ))}
         </div>
-        <div ref={widthRef} className="right-0 left-0 top-0"></div>
         {!hideBtns && (
           <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
             {items.map((item, index) => (
