@@ -1,56 +1,207 @@
-import banner from '../../assets/images/e3.jpg'
-import banner1 from '../../assets/images/e3.jpg'
-import banner2 from '../../assets/images/e3.jpg'
-import banner3 from '../../assets/images/e3.jpg'
-import banner4 from '../../assets/images/e3.jpg'
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline'
 
-function RelatedProducts() {
-  const relatedProducts = [
-    {
-      banner: banner
-    },
-    {
-      banner: banner1
-    },
-    {
-      banner: banner2
-    },
-    {
-      banner: banner3
-    },
-    {
-      banner: banner4
-    }
-  ]
-
+function Carousel({
+  items,
+  Child,
+  index = 0,
+  hideBtns = false,
+  showChevrons = false,
+  chevronY = 0,
+  chevronlX = 0,
+  chevronrX = 0,
+}) {
+  const [currentIndex, setCurrentIndex] = useState(index)
+  const [height, setHeight] = useState(0)
+  const targetEl = useRef()
+  useEffect(() => setHeight(targetEl.current.clientHeight), [])
+  useEffect(() => setCurrentIndex(index), [index])
+  const totalPages = items.length
   return (
-    <div className="">
-      <div className="flex justify-between">
-        <span className="uppercase text-[16px] font-bold mt-5 mb-2.5">Related Products</span>
-        <div className="flex text-[#333] items-center">
-          <span className="border border-[#ccc] w-6 h-6 mr-1 hover:bg-blue-600 hover:text-white cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 opacity-50">
-              <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-            </svg>
-          </span>
-          <span className="border border-[#ccc] w-6 h-6 hover:bg-blue-600 hover:text-white cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 opacity-50">
-              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-            </svg>
-          </span>
+    <div className="relative">
+      <div className={'overflow-x-hidden overflow-y-hidden relative'} style={{ height }}>
+        <div className="relative h-full">
+          {items.map((item, index) => (
+            <motion.div
+              animate={{ x: (index - currentIndex) * 100 + '%' }}
+              transition={{ ease: 'easeInOut', duration: 0.5 }}
+              className="absolute right-0 left-0"
+              key={index}
+            >
+              <div ref={index === 0 ? targetEl : null} className="w-full">
+                <Child item={item} />
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </div>
-      <div className="flex space-x-8">
-        {relatedProducts.map((item, index) => (
-          <div key="item.id" className="">
-            <a title="Banner Image" href="#" className=''>
-              <img src={item.banner} alt="Banner Image" className="" />
-            </a>
+        {!hideBtns && (
+          <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={
+                  'w-[30px] h-[6px] ' +
+                  (index === currentIndex ? 'bg-primary' : 'bg-white') +
+                  ' hover:bg-primary rounded cursor-pointer'
+                }
+                onClick={() => setCurrentIndex(index)}
+              ></div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
+
+      {showChevrons && (
+        <>
+          <div className="absolute bottom-0 top-0 right-5 z-20 flex">
+            <motion.div
+              animate={{ x: chevronlX, y: chevronY }}
+              className="bg-white cursor-pointer  border text-gray-700 hover:bg-primary hover:text-white w-[20px] h-[30px] flex items-center justify-center mr-2"
+              onClick={() =>
+                setCurrentIndex((prevIndex) =>
+                  prevIndex - 1 < 0 ? prevIndex : prevIndex - 1
+                )
+              }
+            >
+              <ChevronLeftIcon />
+            </motion.div>
+          </div>
+          <div className="absolute bottom-0 top-0 right-0 z-20 flex">
+            <motion.div
+              animate={{ x: chevronrX, y: chevronY }}
+              className="bg-white cursor-pointer border text-gray-700 hover:bg-primary hover:text-white w-[20px] h-[30px] flex items-center justify-center"
+              onClick={() =>
+                setCurrentIndex((prevIndex) =>
+                  prevIndex + 1 == totalPages ? prevIndex : prevIndex + 1
+                )
+              }
+            >
+              <ChevronRightIcon />
+            </motion.div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
-
-export default RelatedProducts;
+export default function RelatedProducts() {
+  const products = [
+    {
+      name: 'Lastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 2,
+      price: 80,
+      discounted: false,
+      // discountedPrice: 85,
+    },
+    {
+      name: 'Exceerur sint occaecat',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 59,
+      discounted: true,
+      discountedPrice: 50,
+      discountPercent: '-15%',
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 5,
+      price: 60,
+      discounted: false,
+      discountedPrice: 85,
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 2,
+      price: 48,
+      discounted: false,
+      discountedPrice: 85,
+      isNew: true,
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 4,
+      price: 90,
+      discounted: false,
+      // discountedPrice: 85,
+    },
+  ]
+  const child = ({ item }) => (
+    <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
+      {products.map((product, index) => (
+        <div key={index} className="space-y-2">
+          <div className="lg:h-[180px] cursor-pointer group relative text-black">
+            <img
+              src={product.picture}
+              className="w-full h-full opacity-80 group-hover:opacity-100"
+            />
+            {product.discounted && (
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
+                <div className="text-xs font-semibold">{product.discountPercent}</div>
+              </div>
+            )}
+            {product.isNew && (
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
+                <div className="text-sm font-semibold uppercase">New</div>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col items-center space-y-2">
+            <div className="flex space-x-2 items-center">
+              <div className="flex space-x-1 items-center">
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <i
+                    key={index}
+                    className="fa fa-star text-[#fec42d]"
+                    style={{ fontSize: 12 }}
+                  ></i>
+                ))}
+              </div>
+              <div className="text-[10px] text-[#333]">
+                ({product.totalRatings})
+              </div>
+            </div>
+            <div className="text-[13px] text-[#333] font-medium">
+              {product.name}
+            </div>
+            <div className="flex space-x-2 items-center justify-center">
+              <div className="text-primary font-semibold">
+                $
+                {product.discounted
+                  ? product.discountedPrice
+                  : product.price}
+                .00
+              </div>
+              {product.discounted && (
+                <div className="line-through text-gray-600 text-sm">
+                  ${product.price}.00
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <div className="pb-20 pr-[15px]">
+      <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
+      <Carousel
+        Child={child}
+        items={[products, products, products]}
+        hideBtns={true}
+        showChevrons={true}
+        chevronY={-50}
+      />
+    </div>
+  )
+}

@@ -1,36 +1,44 @@
 import { motion } from 'framer-motion'
+//import { background } from 'public/image/icon/contact-icon.png'
 
 function SocialMedia() {
   return (
-    <div className="flex space-x-10 items-center text-white bg-primary py-[30px] px-[15px] rounded">
-      <div className="flex-auto flex space-x-6 items-center">
-        <div className="uppercase font-semibold">follow socials</div>
-
-        <div className="flex space-x-3 items-center">
-          {[
-            'facebook',
-            'twitter',
-            'google-plus',
-            'pinterest',
-            'youtube-play',
-            'linkedin',
-            'skype',
-          ].map((brand, key) => (
-            <div
-              key={key}
-              className="w-[42px] h-[42px] flex items-center justify-center cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm"
-            >
-              <i className={'text-[12px] fa fa-' + brand} />
-            </div>
-          ))}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-white bg-primary py-[30px] px-[25px] rounded items-center">
+      <div className="flex">
+        <div className="uppercase font-semibold text-xl xl:pr-3 xl:mt-1 xl:block hidden">
+          follow socials
         </div>
+        <ul className='flex'>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'fa fa-facebook'} />
+          </li>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'text-[12px] fa fa-twitter'} />
+          </li>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'text-[12px] fa fa-google-plus'} />
+          </li>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'text-[12px] fa fa-pinterest'} />
+          </li>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'text-[12px] fa fa-youtube-play'} />
+          </li>
+          <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'text-[12px] fa fa-linkedin'} />
+          </li>
+          <li className="sm:flex hidden w-11 h-11 justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
+            <i className={'text-[12px] fa fa-skype'} />
+          </li>
+        </ul>
       </div>
-
-      <div className="flex space-x-6 items-center">
-        <div className="uppercase font-semibold">signup for newsletter</div>
-        <div className="flex-auto flex items-stretch">
+      <div className="flex">
+        <div className="uppercase font-semibold pr-5 mt-2 lg:block hidden text-lg leading-10">
+          signup for newsletter
+        </div>
+        <div className="flex-auto flex">
           <input
-            className="flex-auto py-3 px-4 text-xs bg-white text-gray-700 rounded-l outline-none"
+            className="flex-auto py-2 px-2 text-xs bg-white text-gray-700 rounded-l outline-none"
             placeholder="Your email address..."
           />
           <div className="uppercase bg-[#222] text-white text-sm font-semibold px-4 flex items-center rounded-r">
@@ -53,42 +61,32 @@ function Logo() {
   )
 }
 
-function MiddleFooterTitles() {
-  return (
-    <div className="grid grid-cols-6 gap-6">
-      <Logo />
-      {[
-        'information',
-        'my account',
-        'categories',
-        'services',
-        'categories',
-      ].map((title, index) => (
-        <div key={index}>
-          <div className="uppercase font-semibold">{title}</div>
-          <div className="bg-primary w-[70px] h-[2px]"></div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function ContactInfo() {
   return (
-    <div className="flex space-x-3">
-      <img src="image/icon/icon-contact.png" />
-      <div className="flex-auto space-y-6 text-gray-700">
-        <div className="text-[11px]">
-          San Luis Potosí, Centro Historico, 78000 San Luis Potosí, SPL, Mexico
+    <div className="flex flex-col space-x-3">
+      <a href="#">
+        <img
+          className="max-w-[100%]"
+          src="image/catalog/logo-footer.png"
+          style={{ width: 203, height: 41 }}
+        />
+      </a>
+      <div className="flex mt-8">
+        <img src="image/icon/icon-contact.png" />
+        <div className="flex-auto space-y-6 text-gray-2 text-xs ml-3">
+          <div className="text-[11px]">
+            San Luis Potosí, Centro Historico, 78000 San Luis Potosí, SPL,
+            Mexico
+          </div>
+          <div className="text-[11px]">
+            (+0214)0 315 215 - (+0214)0 <br />
+            315 215
+          </div>
+          <div className="text-[11px] cursor-pointer">
+            Contact@Opencartworks.Com
+          </div>
+          <div className="text-[11px]">Open Time: 8:00AM - 6:00PM</div>
         </div>
-        <div className="text-[11px]">
-          (+0214)0 315 215 - (+0214)0 <br />
-          315 215
-        </div>
-        <div className="text-[11px] cursor-pointer">
-          Contact@Opencartworks.Com
-        </div>
-        <div className="text-[11px]">Open Time: 8:00AM - 6:00PM</div>
       </div>
     </div>
   )
@@ -113,10 +111,14 @@ function InformationNavs() {
     'Product Support',
   ]
   return (
-    <div className="space-y-5">
-      {titles.map((title, index) => (
-        <SpecialLink key={index} title={title} />
-      ))}
+    <div>
+      <div className="uppercase font-semibold">INFORMATION</div>
+      <div className="bg-primary w-[70px] h-[2px]"></div>
+      <div className="space-y-4 mt-8">
+        {titles.map((title, index) => (
+          <SpecialLink key={index} title={title} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -130,10 +132,14 @@ function AccountNavs() {
     'Custom Link',
   ]
   return (
-    <div className="space-y-5">
-      {titles.map((title, index) => (
-        <SpecialLink key={index} title={title} />
-      ))}
+    <div>
+      <div className="uppercase font-semibold">MY ACCOUNT</div>
+      <div className="bg-primary w-[70px] h-[2px]"></div>
+      <div className="space-y-4 mt-8">
+        {titles.map((title, index) => (
+          <SpecialLink key={index} title={title} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -147,10 +153,14 @@ function CategoryNavs() {
     'Kitchen & Dining',
   ]
   return (
-    <div className="space-y-5">
-      {titles.map((title, index) => (
-        <SpecialLink key={index} title={title} />
-      ))}
+    <div>
+      <div className="uppercase font-semibold">CATEGORIES</div>
+      <div className="bg-primary w-[70px] h-[2px]"></div>
+      <div className="space-y-4 mt-8">
+        {titles.map((title, index) => (
+          <SpecialLink key={index} title={title} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -164,10 +174,14 @@ function ServiceNavs() {
     'Custom Link',
   ]
   return (
-    <div className="space-y-5">
-      {titles.map((title, index) => (
-        <SpecialLink key={index} title={title} />
-      ))}
+    <div>
+      <div className="uppercase font-semibold">SERVICES</div>
+      <div className="bg-primary w-[70px] h-[2px]"></div>
+      <div className="space-y-4 mt-8">
+        {titles.map((title, index) => (
+          <SpecialLink key={index} title={title} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -182,35 +196,34 @@ function FooterBottom() {
     { title: 'contact us' },
   ]
   return (
-    <div className="flex flex-col space-y-12 items-center w-[919px] mx-auto">
-      <img
-        src="image/catalog/demo/payment/pay1.jpg"
-        className="w-[507px] h-[51]"
-      />
-      <div className="flex flex-col items-center space-y-12">
-        <div className="flex space-x-3 items-center">
-          {navs.map((nav, key) => (
-            <div
-              key={key}
-              className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer"
-            >
-              {nav.title}
-            </div>
-          ))}
-        </div>
+    <div className="border-t border-solid text-center mx-auto my-auto">
+      <div className="flex flex-col space-y-12 items-center w-[90%] sm:w-[750px] xl:w-[95%] md:w-[930px] pt-10 text-center pb-6 mx-0 my-auto">
+        <img
+          src="image/catalog/demo/payment/pay1.jpg"
+          className="w-[507px] h-[51]"
+        />
+        <div className="flex flex-col items-center space-y-12 sm:w-[80%] mx-auto">
+          <ul>
+            {navs.map((nav, key) => (
+              <li className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer inline-block px-3">
+                {nav.title}
+              </li>
+            ))}
+          </ul>
 
-        <div className="text-xs text-gray-700 text-center">
-          **$50 off orders $350+ with the code BOO50. $75 off orders $500+ with
-          the code BOO75. $150 off orders $1000+ with the code BOO150. Valid
-          from October 28, 2016 to October 31, 2016. Offer may not be combined
-          with any other offers or promotions, is non-exchangeable and
-          non-refundable. Offer valid within the US only.
+          <p className="text-xs text-gray-2 text-center">
+            **$50 off orders $350+ with the code BOO50. $75 off orders $500+
+            with the code BOO75. $150 off orders $1000+ with the code BOO150.
+            Valid from October 28, 2016 to October 31, 2016. Offer may not be
+            combined with any other offers or promotions, is non-exchangeable
+            and non-refundable. Offer valid within the US only.
+          </p>
         </div>
+        <img
+          src="image/catalog/demo/payment/pay1.jpg"
+          className="w-[507px] h-[40px]"
+        />
       </div>
-      <img
-        src="image/catalog/demo/payment/pay1.jpg"
-        className="w-[507px] h-[51]"
-      />
     </div>
   )
 }
@@ -225,20 +238,16 @@ function PoweredBy() {
     </div>
   )
 }
-
 export default function Footer() {
   return (
-    <div className="mt-[80px]">
-      <div className="bg-[#f5f5f5] mt-[50px] space-y-24">
-        <motion.div animate={{ y: -40 }} className="mt-[-50px] mb-[-15px] px-5">
+    <footer className="mt-32 bg-[#f5f5f5]">
+      <div className="sm:px-5">
+        <motion.div animate={{ y: -40 }} className="mt-[-50px] mb-[-15px]">
           <SocialMedia />
         </motion.div>
-
-        <div className="grid grid-cols-6 gap-6 pt-[55px] px-[30px]">
-          <div className="col-span-6">
-            <MiddleFooterTitles />
-          </div>
-
+      </div>
+      <div className="px-5">
+        <div className="pt-14 pb-8 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-3">
           <ContactInfo />
           <InformationNavs />
           <AccountNavs />
@@ -246,15 +255,9 @@ export default function Footer() {
           <ServiceNavs />
           <CategoryNavs />
         </div>
-
-        <hr className="mx-[30px]" />
-
-        <div>
-          <FooterBottom />
-
-          <PoweredBy />
-        </div>
+        <FooterBottom />
       </div>
-    </div>
+      <PoweredBy />
+    </footer>
   )
 }

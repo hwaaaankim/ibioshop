@@ -3,12 +3,12 @@ import { Dropdown } from './HeaderTop'
 function CategoriesMenu() {
   return (
     <div>
-      <div className="flex space-x-12 items-center bg-black px-4 py-[10px] rounded-t">
+      <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
         <div className="flex space-x-2 items-center">
-          <i className="fa fa-bars" />
-          <div className="uppercase">all categories</div>
+          <i className="fa fa-bars" style={{ fontSize: 16 }} />
+          <div className="uppercase text-base font-medium">all categories</div>
         </div>
-        <i className="fa fa-angle-down" />
+        <i className="fa fa-angle-down" style={{ fontSize: 16 }} />
       </div>
     </div>
   )
@@ -267,23 +267,29 @@ function AccountNav() {
 
 export default function HeaderBottom() {
   return (
-    <div
-      className="flex items-center space-x-8 text-white"
-      style={{ paddingLeft: 2.5 + '%', paddingRight: 2.5 + '%' }}
-    >
-      <div className="flex space-x-8 items-end">
+    <div className="flex items-center mdp5:space-x-8 text-white px-[2.5%]">
+      <div className="hidden mdp5:flex space-x-8 items-end">
         <CategoriesMenu />
         <HomeDropDown />
         <FeaturesDropDown />
         <PagesDropDown />
         <CategoriesDropDown />
       </div>
-      <div className="flex space-x-8 items-center">
+      <div className="hidden mdp5:flex space-x-8 items-center">
         <Accessories />
         <Blog />
       </div>
-      <div className="flex-auto pt-2">
+      <div className="flex-auto pt-2 hidden lgp8:block">
         <AccountNav />
+      </div>
+      <div className="flex-auto flex mdp5:hidden items-center justify-between">
+        <div className="flex space-x-2 items-center py-1 cursor-pointer">
+          <i className="fa fa-bars"></i>
+          <div className="uppercase text-sm">all categories</div>
+        </div>
+        <div className="py-1 px-2">
+          <i className="fa fa-bars" style={{ fontSize: 20 }}></i>
+        </div>
       </div>
     </div>
   )
