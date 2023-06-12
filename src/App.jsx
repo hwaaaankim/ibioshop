@@ -16,6 +16,7 @@ import Product from './pages/Product'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
+import Aboutus from './pages/Aboutus'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -31,6 +32,7 @@ function App() {
         <Route path="checkout" element={<Checkout />} />
         <Route path="my_account" element={<MyAccount />} />
         <Route path="cart" element={<Cart/>} />
+        <Route path="about" element={<Aboutus/>} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
