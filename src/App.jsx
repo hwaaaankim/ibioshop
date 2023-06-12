@@ -21,6 +21,7 @@ import Test from './components/product/QuickViewModal'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
 import Breadcrumb from './components/layout/Breadcrumb'
+import BlogDetail from './pages/BlogDetail'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -47,6 +48,7 @@ function App() {
         <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blog-detail" element={<BlogDetail />} />
         <Route path="go-responsive" element={<div>go responsive</div>} />
 
         <Route path="*" element={<NotFound />} />
