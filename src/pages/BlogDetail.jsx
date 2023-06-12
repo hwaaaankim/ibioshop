@@ -34,7 +34,7 @@ export default function BlogDetail() {
     comments: [],
   }
   return (
-    <div className="px-[2.5%]">
+    <div className="px-[2.5%] flex space-x-8">
       <div className="w-[237px] flex-shrink-0">
         <div className="border rounded">
           <div className="uppercase font-bold p-[15px] bg-[#f5f5f5] border-b">
@@ -59,7 +59,51 @@ export default function BlogDetail() {
           </div>
         </div>
       </div>
-      <div className="flex-auto space-y-6"></div>
+      <div className="flex-auto space-y-6">
+        <div className="uppercase text-gray-900 font-semibold">
+          {article.title}
+        </div>
+        <div className="flex space-x-2 items-center text-sm text-gray-500">
+          <div>Post by: {article.author}</div>
+          <div>
+            Created Date: {article.publishedAt.month} {article.publishedAt.day}
+          </div>
+          <div>{article.comments.length} Comments</div>
+        </div>
+        <div className="">
+          <img src={article.picture} />
+        </div>
+
+        <div className="text-xs space-y-2">
+          <p>
+            Morbi tempus, non ullamcorper euismod, erat odio suscipit purus, nec
+            ornare lacus turpis ac purus. Mauris cursus in mi vel dignissim.
+            Morbi mollis elit ipsum, a feugiat lectus gravida non. Aenean
+            molestie justo sed aliquam euismod. Maecenas laoreet bibendum
+            laoreet. Morbi tempor massa sit amet purus lobortis, non porta
+            tellus dignissim.
+          </p>
+          <p>
+            Proin dictum justo a nisl pellentesque egestas.Nulla commodo euismod
+            nisi ac bibendum. Mauris in pellentesque tellus, in cursus magna.
+            Sed volutpat dui bibendum mi molestie, at volutpat nunc dictum.
+            Fusce sagittis massa id eros scelerisque, eget accumsan magna
+            lacinia. Nullam posuere neque at neque dictum interdum
+          </p>
+          <p>
+            Mauris cursus in mi vel dignissim. Morbi mollis elit ipsum, a
+            feugiat lectus gravida non. Aenean molestie justo sed aliquam
+            euismod. Maecenas laoreet bibendum laoreet. Morbi tempor massa sit
+            amet purus lobortis, non porta tellus dignissim. Proin dictum justo
+            a nisl pellentesque egestas.Nulla commodo euismod nisi ac bibendum.
+            Mauris in pellentesque tellus, in cursus magna. Sed volutpat dui
+            bibendum mi molestie, at volutpat nunc dictum. Fusce sagittis massa
+            id eros scelerisque, eget accumsan magna lacinia. Nullam posuere
+            neque at neque dictum interdum
+          </p>
+        </div>
+        <hr />
+      </div>
     </div>
   )
 }
