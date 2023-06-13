@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline'
 
 function Carousel({
@@ -26,7 +26,7 @@ function Carousel({
             <motion.div
               animate={{ x: (index - currentIndex) * 100 + '%' }}
               transition={{ ease: 'easeInOut', duration: 0.5 }}
-              className="absolute right-0 left-0"
+              className="absolute left-0"
               key={index}
             >
               <div ref={index === 0 ? targetEl : null} className="w-full">
@@ -35,21 +35,6 @@ function Carousel({
             </motion.div>
           ))}
         </div>
-        {!hideBtns && (
-          <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
-            {items.map((item, index) => (
-              <div
-                key={index}
-                className={
-                  'w-[30px] h-[6px] ' +
-                  (index === currentIndex ? 'bg-primary' : 'bg-white') +
-                  ' hover:bg-primary rounded cursor-pointer'
-                }
-                onClick={() => setCurrentIndex(index)}
-              ></div>
-            ))}
-          </div>
-        )}
       </div>
 
       {showChevrons && (
@@ -82,6 +67,127 @@ function Carousel({
           </div>
         </>
       )}
+    </div>
+  )
+}
+function Product({ product }) {
+  const [mouseOver, setMouseOver] = useState(false)
+
+  return (
+    <div
+      className="space-y-2 w-full"
+      onMouseEnter={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+    >
+      <div className="lg:h-[180px] cursor-pointer group relative text-black">
+        <img
+          src={product.picture}
+          className="w-full h-full opacity-80 group-hover:opacity-100"
+        />
+        {product.discounted && (
+          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
+            <div className="text-xs font-semibold">{product.discountPercent}</div>
+          </div>
+        )}
+        {product.isNew && (
+          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
+            <div className="text-sm font-semibold uppercase">New</div>
+          </div>
+        )}
+        <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
+          <AnimatePresence>
+            {mouseOver && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
+              >
+                <i className="fa fa-eye"></i>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+      <div className="flex flex-col items-center space-y-2">
+        <div className="relative w-full">
+          <AnimatePresence>
+            {mouseOver && (
+              <motion.div
+                exit={{ y: -30, opacity: 0, transition: { duration: 0.1 } }}
+                className="absolute top-0 left-0 right-0 bottom-0 flex items-center z-10"
+              >
+                <div className="flex-auto flex items-center space-x-2 -mt-5 justify-center">
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
+                  >
+                    add to cart
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                  >
+                    <i className="fa fa-heart-o"></i>
+                  </motion.div>
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white" 
+                  >
+                    <i className="fa fa-retweet"></i>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div
+            className={
+              'flex flex-col items-center space-y-2 ' +
+              (mouseOver ? 'opacity-0' : 'opacity-100')
+            }
+          >
+            <div className="flex space-x-2 items-center">
+              <div className="flex space-x-1 items-center">
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <i
+                    key={index}
+                    className="fa fa-star text-[#fec42d]"
+                    style={{ fontSize: 12 }}
+                  ></i>
+                ))}
+              </div>
+              <div className="text-[10px] text-[#333]">
+                ({product.totalRatings})
+              </div>
+            </div>
+            <div className="text-[13px] text-[#333] font-medium">
+              {product.name}
+            </div>
+          </div>
+          <div className="flex space-x-2 items-center justify-center">
+            <div className="text-primary font-semibold">
+              $
+              {product.discounted
+                ? product.discountedPrice
+                : product.price}
+              .00
+            </div>
+            {product.discounted && (
+              <div className="line-through text-gray-600 text-sm">
+                ${product.price}.00
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -138,57 +244,7 @@ export default function RelatedProducts() {
   const child = ({ item }) => (
     <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
       {products.map((product, index) => (
-        <div key={index} className="space-y-2">
-          <div className="lg:h-[180px] cursor-pointer group relative text-black">
-            <img
-              src={product.picture}
-              className="w-full h-full opacity-80 group-hover:opacity-100"
-            />
-            {product.discounted && (
-              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
-                <div className="text-xs font-semibold">{product.discountPercent}</div>
-              </div>
-            )}
-            {product.isNew && (
-              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
-                <div className="text-sm font-semibold uppercase">New</div>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <div className="flex space-x-2 items-center">
-              <div className="flex space-x-1 items-center">
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <i
-                    key={index}
-                    className="fa fa-star text-[#fec42d]"
-                    style={{ fontSize: 12 }}
-                  ></i>
-                ))}
-              </div>
-              <div className="text-[10px] text-[#333]">
-                ({product.totalRatings})
-              </div>
-            </div>
-            <div className="text-[13px] text-[#333] font-medium">
-              {product.name}
-            </div>
-            <div className="flex space-x-2 items-center justify-center">
-              <div className="text-primary font-semibold">
-                $
-                {product.discounted
-                  ? product.discountedPrice
-                  : product.price}
-                .00
-              </div>
-              {product.discounted && (
-                <div className="line-through text-gray-600 text-sm">
-                  ${product.price}.00
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <Product product={product} key={index} />
       ))}
     </div>
   )
