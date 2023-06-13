@@ -113,7 +113,9 @@ export default function GiftVoucherForm() {
           <div className='w-full'>
             <span className='flex justify-end items-center text-xs'>
               <p className='mr-1'>I understand that gift certificates are non-refundable.</p>
-              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }}></CheckBox>
+              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }} {...register('accept', { required: true })}></CheckBox>
+              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }} {...register('accept', { required: true })}></CheckBox>
+              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }} {...register('accept', { required: true })}></CheckBox>
             </span>
             {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
           </div>
