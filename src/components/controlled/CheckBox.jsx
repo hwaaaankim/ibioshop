@@ -7,7 +7,7 @@ export default function CheckBox({ value, setter, title }) {
   return (
     <div
       className="flex space-x-2 items-baseline py-5 cursor-pointer"
-      style={{ width: 95 + '%', margin: '0 auto'}}
+      // style={{ width: 95 + '%', margin: '0 auto'}}
       onClick={clickTargeRef}
     >
       <input

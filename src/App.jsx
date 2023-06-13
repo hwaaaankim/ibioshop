@@ -15,6 +15,7 @@ import Register from './pages/Register'
 import MyAccount from './pages/MyAccount'
 import Cart from './pages/Cart'
 import Product from './pages/Product'
+import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
@@ -43,7 +44,7 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
-
+        <Route path="gift_voucher" element={<GiftVoucher />} />
         <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
         <Route path="blog" element={<Blog />} />
