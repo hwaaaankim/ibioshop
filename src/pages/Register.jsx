@@ -35,7 +35,7 @@ function Register() {
   }
 
   return (
-    <div className="sm:mx-10 mx-3 my-4 pb-2">
+    <div className="sm:mx-10 mx-3 my-4 pb-10">
       <ul className="flex flex-row mb-4 text-gray-400">
         <Icon className="mt-1.5" size="12" id="home"></Icon>
         <li>
@@ -283,16 +283,16 @@ function Register() {
             No
           </div>
         </div>
-        <div className="mb-10 sm:flex justify-end space-x-2 text-m">
-          <span>
-            I have read and agree to the<a href="/something">Pricing Tables</a>
+        <div className="sm:flex sm:float-right space-x-2 text-m">
+          <span className='w-full flex items-center'>
+            <p className='mr-1'>I have read and agree to the<a href="/something">Pricing Tables</a></p>
+            <CheckBox></CheckBox>
           </span>
-          <CheckBox></CheckBox>
           {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
           <button
             type="submit"
             value="Register"
-            className="xs:w-full -mr-8 bg-blue-2 px-5 h-10 font-thin text-sm ml-4 text-white py-0.5"
+            className="-mr-8 bg-blue-2 px-5 h-10 font-thin text-sm ml-4 text-white py-0.5"
           >
             Register
           </button>
