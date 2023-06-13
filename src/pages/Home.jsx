@@ -35,6 +35,7 @@ function Carousel({
       onMouseEnter={() => setMouseIn(true)}
       onMouseLeave={() => setMouseIn(false)}
     >
+      <div ref={widthRef} className="right-0 left-0 top-0"></div>
       <div className={'overflow-x-hidden relative'} style={{ height }}>
         <div className={'relative h-full'}>
           {items.map((item, index) => (
@@ -51,7 +52,6 @@ function Carousel({
             </motion.div>
           ))}
         </div>
-        <div ref={widthRef} className="right-0 left-0 top-0"></div>
         {!hideBtns && (
           <div className="absolute bottom-0 right-0 left-0 pb-4 flex space-x-2 items-center justify-center">
             {items.map((item, index) => (
@@ -878,7 +878,7 @@ function FlashSale() {
         showChevrons={true}
         chevronY={-80}
         index={0}
-        pageSize={4}
+        pageSize={5}
         showChevronsConditionally={false}
       />
     </div>
@@ -975,13 +975,7 @@ function ProductCategories({
     },
   ]
 
-  const child = ({ item }) => (
-    <div className="grid grid-cols-4 gap-[30px]">
-      {products.map((product, index) => (
-        <Product product={product} key={index} />
-      ))}
-    </div>
-  )
+  const child = ({ item }) => <Product product={item} />
 
   return (
     <div className="space-y-4">
@@ -1013,10 +1007,12 @@ function ProductCategories({
         <div className="flex-auto">
           <Carousel
             Child={child}
-            items={[products, products, products]}
+            items={[...products, ...products]}
             hideBtns={true}
             showChevrons={true}
             chevronY={-50}
+            index={0}
+            pageSize={4}
           />
         </div>
 
@@ -1155,13 +1151,7 @@ function NewArrivals() {
 
   const [activeTab, setActiveTab] = useState(0)
 
-  const child = ({ item }) => (
-    <div className="grid grid-cols-5 gap-[30px]">
-      {products.map((product, index) => (
-        <Product product={product} key={index} />
-      ))}
-    </div>
-  )
+  const child = ({ item }) => <Product product={item} />
 
   return (
     <div className="space-y-4">
@@ -1185,10 +1175,12 @@ function NewArrivals() {
 
       <Carousel
         Child={child}
-        items={[products, products, products]}
+        items={[...products, ...products]}
         hideBtns={true}
         showChevrons={true}
         chevronY={-50}
+        index={0}
+        pageSize={5}
       />
     </div>
   )

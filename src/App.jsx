@@ -19,9 +19,11 @@ import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
 import Test from './components/product/QuickViewModal'
+import Aboutus from './pages/Aboutus'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
 import Breadcrumb from './components/layout/Breadcrumb'
+import BlogDetail from './pages/BlogDetail'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -40,6 +42,8 @@ function App() {
         <Route path="wish_list" element={<WishList />} />
         <Route path="order_info" element={<OrderInfo />} />
         <Route path="my_account" element={<MyAccount />} />
+        <Route path="cart" element={<Cart/>} />
+        <Route path="about" element={<Aboutus/>} />
         <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
@@ -48,6 +52,7 @@ function App() {
         <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blog-detail" element={<BlogDetail />} />
         <Route path="go-responsive" element={<div>go responsive</div>} />
 
         <Route path="*" element={<NotFound />} />
