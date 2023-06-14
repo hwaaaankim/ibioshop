@@ -36,7 +36,7 @@ function MyAccount() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 text-xs text-gray-2 font-body leading-6">
       {/* Breadcrumb */}
-      <ul className="flex my-6 leading-normal text-gray-3 space-x-4 ">
+      <ul className="flex my-6 leading-normal text-gray-2 space-x-4 ">
         <li>
           <a href="#">
             <i className="fa fa-home ml-2  hover:text-blue-3"></i>

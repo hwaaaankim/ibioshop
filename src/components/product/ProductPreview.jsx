@@ -16,8 +16,9 @@ function ProductPreview() {
   ]
 
   return (
-    <div className="xl:flex mt-6 text-[#999]">
-      <div className='xl:w-[50%] flex mr-4'>
+    <div className="lg:flex lg:flex-row flex-col mt-6 text-[#999]">
+      {/* product image */}
+      <div className='lg:w-[50%] w-full flex mr-4'>
         {/* sub-product-images */}
         <div className="flex flex-col mr-4">
           {slide.map((product, index) => (
@@ -27,14 +28,14 @@ function ProductPreview() {
           ))}
         </div>
         {/* main-product-image */}
-        <div className='border border-[#e6e6e6] w-[369px] h-[368px] p-0.5'>
+        <div className='border border-[#e6e6e6] md:w-[369px] md:h-[368px] p-0.5'>
           <a title="Banner Image" href="#" className=''>
             <img src={pro} alt="Banner Image" />
           </a>
         </div>
       </div>
       {/* product-detail */}
-      <div className='xl:w-[50%] flex flex-col pr-[15px]'>
+      <div className='lg:w-[50%] flex flex-col pr-[15px] mt-12 lg:mt-0'>
         <div className='w-full'>
           <h2 className='text-[#444] font-medium mb-2.5 text-2xl'>Chicken swinesha</h2>
           <div className='flex'>
@@ -59,7 +60,7 @@ function ProductPreview() {
               <a className="px-2" href="">0 reviews</a>|
               <a className="write_review_buttonick">Write a review</a></span>
           </div>
-          <div className="flex justify-between items-center my-5">
+          <div className="lg:flex lg:justify-between items-center my-5">
             <div className="flex items-center font-semibold text-lg">
               <span className="text-[#094bad] mr-5" itemprop="price">$114.00</span>
               <span className="line-through text-sm font-normal">$122.00</span>
@@ -73,11 +74,11 @@ function ProductPreview() {
           <div className="border-y border-[#eee] py-2.5 px-5">
             <div className="relative text-[#666] text-xs leading-6">
               <div className='w-1 bg-[#094bad] h-full absolute -left-5 top-0'></div>
-              <div classNae=""><span className='font-bold'>Ex Tax:</span> $60.00</div>
-              <div classNae="reward"><span className='font-bold'>Price in reward points:</span> 400</div>
-              <div classNae="brand"><span className='font-bold'>Brand:</span><a href="#">Apple</a>		</div>
-              <div classNae="model"><span className='font-bold'>Product Code:</span> Product 15</div>
-              <div classNae="reward"><span className='font-bold'>Reward Points:</span> 100</div>
+              <div className=""><span className='font-bold'>Ex Tax:</span> $60.00</div>
+              <div className="reward"><span className='font-bold'>Price in reward points:</span> 400</div>
+              <div className="brand"><span className='font-bold'>Brand:</span><a href="#">Apple</a>		</div>
+              <div className="model"><span className='font-bold'>Product Code:</span> Product 15</div>
+              <div className="reward"><span className='font-bold'>Reward Points:</span> 100</div>
             </div>
           </div>
           <div className="text-[#666] text-left leading-6 mb-[15px]">

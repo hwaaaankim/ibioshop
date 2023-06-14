@@ -8,15 +8,15 @@ import BannerSidebar from "../components/product/BannerSidebar"
 
 function Product() {
   return (
-    <div className="w-full p-10">
+    <div className="w-full px-10 py-6">
       <Breadcrumb />
-      <div className="w-full sm:flex">
-        <div className="w-[79%] flex flex-col">
+      <div className="w-full md:flex md:flex-row flex-col">
+        <div className="xl:w-[79%] flex flex-col w-full">
           <ProductPreview />
           <ProductTab />
           <RelatedProducts />
         </div>
-        <div className="xl:w-[21%] flex flex-col px-[15px]">
+        <div className="xl:w-[21%] w-full flex flex-col lg:pl-[15px]">
           <Categories />
           <LatestProducts />
           <BannerSidebar />

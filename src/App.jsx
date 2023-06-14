@@ -16,19 +16,27 @@ import ProductReturn from './pages/ProductReturn'
 import MyAccount from './pages/MyAccount'
 import Cart from './pages/Cart'
 import Product from './pages/Product'
+import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
+import QuickView from './components/product/QuickViewModal'
+import Aboutus from './pages/Aboutus'
 import Category from './pages/Category'
+import Blog from './pages/Blog'
+import Breadcrumb from './components/layout/Breadcrumb'
+import BlogDetail from './pages/BlogDetail'
 
 function App() {
   const header = useSelector((state) => state.header)
   const footer = useSelector((state) => state.footer)
+  const breadcrumb = useSelector((state) => state.breadcrumb)
 
   return (
     <div className="h-screen">
       {!header.hidden && <Header />}
+      {!breadcrumb.hidden && <Breadcrumb />}
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Protected component={<Home />} />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
@@ -37,12 +45,20 @@ function App() {
         <Route path="product_return" element={<ProductReturn />} />
         <Route path="my_account" element={<MyAccount />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="about" element={<Aboutus />} />
+        <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
+        <Route path="gift_voucher" element={<GiftVoucher />} />
+        <Route path="quick_view" element={<QuickView />} />
         <Route path="category" element={<Category />} />
         {/* <Route path="test" element={<Test />} /> */}
         <Route path="go-responsive" element={<div>here we go</div>} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog-detail" element={<BlogDetail />} />
+        <Route path="go-responsive" element={<div>go responsive</div>} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!footer.hidden && <Footer />}

@@ -14,7 +14,7 @@ function CategoriesSelector({ category, setter }) {
   return (
     <div
       style={{ padding: '0 15px' }}
-      className="bg-gray-100 rounded-l hidden min-[992px]:block"
+      className="bg-gray-100 rounded-l hidden mdp5:block"
     >
       <select
         value={category}
@@ -38,14 +38,14 @@ function FilterBar() {
   return (
     <div className="flex-auto hidden md:flex items-center">
       <CategoriesSelector category={category} setter={setCategory} />
-      <div className="min-[992px]:flex-auto bg-white p-0.5 rounded-l min-[992px]:rounded-l-none rounded-r border-l border-gray-400">
+      <div className="mdp5:flex-auto bg-white p-0.5 rounded-l mdp5:rounded-l-none rounded-r border-l border-gray-400">
         <div className="flex">
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{ fontSize: 12 }}
-            className="min-[992px]:flex-auto outline-none px-4 text-gray-500"
+            className="mdp5:flex-auto outline-none px-4 text-gray-500"
             placeholder="Keyword here..."
           />
           <div
@@ -151,7 +151,7 @@ function CartMini() {
           </div>
           <Badge total={'02'} />
         </div>
-        <div className="text-white hidden min-[768]:flex flex-col justify-end">
+        <div className="text-white hidden md:flex flex-col justify-end">
           <div className="uppercase text-sm font-semibold">my cart</div>
           <div style={{ fontSize: 12 }}>($162.00)</div>
         </div>
@@ -162,10 +162,10 @@ function CartMini() {
 
 function RightNavs() {
   return (
-    <div className="hidden md:flex min-[992px]:space-x-6 min-[992px]:pl-12 min-[992px]:mx-4 items-center">
+    <div className="hidden md:flex mdp5:space-x-6 mdp5:pl-12 mdp5:mx-4 items-center">
       {[{ icon: 'refresh' }, { icon: 'heart' }].map((item, index) => (
         <div
-          className="cursor-pointer w-10 h-10 hidden min-[1200px]:flex items-center justify-center"
+          className="cursor-pointer w-10 h-10 hidden lgp8:flex items-center justify-center"
           key={index}
         >
           <i
@@ -196,7 +196,7 @@ function CartNsearchMini() {
 export default function HeaderCenter() {
   return (
     <div className="px-[2.5%] pt-[25px] pb-[16px]">
-      <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 min-[992px]:space-x-7 items-center">
+      <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 mdp5:space-x-7 items-center">
         <Logo />
         <FilterBar />
         <RightNavs />

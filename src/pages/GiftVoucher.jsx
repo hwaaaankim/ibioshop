@@ -1,9 +1,11 @@
-import Icon from '../icon/Icon'
-function Breadcrumb() {
+import AccountSiteMap from '../components/my_account/AccountSiteMap'
+import GiftVoucherForm from '../components/product/GiftVoucherForm'
+
+export default function GiftVoucher() {
 
   return (
-    <div className="text-[14px]">
-      <ul class="flex items-center text-[#999]">
+    <div className="px-10 leading-5">
+      <ul class="flex items-center text-[#999] my-[23px]">
         <li>
           <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -15,14 +17,19 @@ function Breadcrumb() {
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3 mx-2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
-        <li><a href="#" className='hover:text-[#094bad]'>Smartphone & Tablets</a></li>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3 mx-2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-        <li><a href="#" className='text-[#094bad]'>Chicken swinesha</a></li>
+        <li><a href="#" className='text-[#094bad] text-[14px] font-medium'>
+          Gift Voucher</a></li>
       </ul >
-    </div >
+      <div className="flex w-full">
+        <div className='w-[79%] pr-[15px]'>
+          <h2 className="font-medium mt-5 mb-2.5 text-xl">Purchase a Gift Card</h2>
+          <p className='mb-2.5 text-[12px]'>This gift card will be emailed to the recipient after your order has been paid for.</p>
+          <GiftVoucherForm />
+        </div>
+        <div className='w-[21%] pl-[15px]'>
+          <AccountSiteMap />
+        </div>
+      </div>
+    </div>
   )
 }
-
-export default Breadcrumb;

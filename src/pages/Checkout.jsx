@@ -694,7 +694,7 @@ function AddComment() {
 export default function Checkout() {
   return (
     <div
-      className="container p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
+      className="p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
       <ul className="flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
