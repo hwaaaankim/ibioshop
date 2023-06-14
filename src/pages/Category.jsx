@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Tab } from '@headlessui/react'
 
 import Categories from "../components/product/Categories"
@@ -88,7 +89,7 @@ const products = [
     rating: 4,
     totalRatings: 4,
     price: 90,
-    discounted: true,
+    // discounted: true,
     discountedPrice: 85,
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
   },
@@ -191,28 +192,90 @@ function ProductBanner() {
     </div>
   )
 }
-function GridProducts() {
+function Product({ product }) {
+  const [mouseOver, setMouseOver] = useState(false)
+
   return (
-    <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
-      {products.map((product, index) => (
-        <div key={index} className="space-y-2 mb-16">
-          <div className="lg:h-[180px] cursor-pointer group relative text-black">
-            <img
-              src={product.picture}
-              className="w-full h-full opacity-80 group-hover:opacity-100"
-            />
-            {product.discounted && (
-              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
-                <div className="text-xs font-semibold">{product.discountPercent}</div>
-              </div>
-            )}
-            {product.isNew && (
-              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
-                <div className="text-sm font-semibold uppercase">New</div>
-              </div>
-            )}
+    <div
+      className="space-y-2 w-full mb-20"
+      onMouseEnter={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+    >
+      <div className="lg:h-[180px] cursor-pointer group relative text-black">
+        <img
+          src={product.picture}
+          className="w-full h-full opacity-80 group-hover:opacity-100"
+        />
+        {product.discounted && (
+          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
+            <div className="text-xs font-semibold">{product.discountPercent}</div>
           </div>
-          <div className="flex flex-col items-center space-y-2">
+        )}
+        {product.isNew && (
+          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
+            <div className="text-sm font-semibold uppercase">New</div>
+          </div>
+        )}
+        <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
+          <AnimatePresence>
+            {mouseOver && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
+              >
+                <i className="fa fa-eye"></i>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+      <div className="flex flex-col items-center space-y-2">
+        <div className="relative w-full">
+          <AnimatePresence>
+            {mouseOver && (
+              <motion.div
+                exit={{ y: -30, opacity: 0, transition: { duration: 0.1 } }}
+                className="absolute top-0 left-0 right-0 bottom-0 flex items-center z-10"
+              >
+                <div className="flex-auto flex items-center space-x-2 -mt-5 justify-center">
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
+                  >
+                    add to cart
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                  >
+                    <i className="fa fa-heart-o"></i>
+                  </motion.div>
+                  <motion.div
+                    initial={{ y: -30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                  >
+                    <i className="fa fa-retweet"></i>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div
+            className={
+              'flex flex-col items-center space-y-2 ' +
+              (mouseOver ? 'opacity-0' : 'opacity-100')
+            }
+          >
             <div className="flex space-x-2 items-center">
               <div className="flex space-x-1 items-center">
                 {[1, 2, 3, 4, 5].map((index) => (
@@ -230,22 +293,31 @@ function GridProducts() {
             <div className="text-[13px] text-[#333] font-medium">
               {product.name}
             </div>
-            <div className="flex space-x-2 items-center justify-center">
-              <div className="text-primary font-semibold">
-                $
-                {product.discounted
-                  ? product.discountedPrice
-                  : product.price}
-                .00
-              </div>
-              {product.discounted && (
-                <div className="line-through text-gray-600 text-sm">
-                  ${product.price}.00
-                </div>
-              )}
+          </div>
+          <div className="flex space-x-2 items-center justify-center">
+            <div className="text-primary font-semibold">
+              $
+              {product.discounted
+                ? product.discountedPrice
+                : product.price}
+              .00
             </div>
+            {product.discounted && (
+              <div className="line-through text-gray-600 text-sm">
+                ${product.price}.00
+              </div>
+            )}
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+function GridProducts() {
+  return (
+    <div className="grid lg:grid-cols-5 sm:gap-[30px] sm:grid-cols-2">
+      {products.map((product, index) => (
+        <Product product={product} key={index} />
       ))}
     </div>
   )
@@ -254,9 +326,8 @@ function ListedProducts() {
   return (
     <div className="flex flex-col">
       {products.map((product, index) => (
-        <div key={index} className="w-full flex mb-8">
-          <div>
-            <div className="w-[268px] h-[268px] cursor-pointer group relative text-black">
+        <div key={index} className="w-full sm:flex mb-8">
+            <div className="flex flex-col sm:w-[268px] sm:h-[268px] cursor-pointer group relative text-black">
               <img
                 src={product.picture}
                 className="w-full h-full opacity-80 group-hover:opacity-100"
@@ -272,8 +343,7 @@ function ListedProducts() {
                 </div>
               )}
             </div>
-          </div>
-          <div className="flex flex-col space-y-2 text-left ml-[40px] pr-5">
+          <div className="flex flex-col space-y-2 text-left pt-5 sm:ml-[40px] pr-5">
             <div className="flex space-x-2">
               <div className="flex space-x-1 items-center">
                 {[1, 2, 3, 4, 5].map((index) => (
@@ -305,7 +375,7 @@ function ListedProducts() {
                 </div>
               )}
             </div>
-            <div className="text-[13px] text-[#666]">
+            <div className="hidden sm:block text-[13px] text-[#666]">
               {product.description}
             </div>
             <div className="list-block">
@@ -353,7 +423,7 @@ function ShowingPages() {
     <div div className="border-t border-[#ebebeb] pt-5 mt-5 mb-[30px]" >
       <div className="">
         {/* <div className="text-left px-[15px]"></div> */}
-        <div className="px-[15px] text-right">Showing 1 to 15 of 15 (1 Pages)</div>
+        <div className="px-[15px] text-right text-[12px]">Showing 1 to 15 of 15 (1 Pages)</div>
       </div>
     </div >
   )
@@ -361,21 +431,19 @@ function ShowingPages() {
 
 export default function Category() {
   return (
-    <div className="w-full px-10 py-8">
+    <div className="w-full sm:px-10 px-4 sm:py-8">
       <Breadcrumb />
-      <div className="flex mt-5">
-        <div className="w-[21%] flex flex-col pr-[15px]">
+      <div className="md:flex mt-5">
+        <div className="md:w-[21%] flex flex-col md:pr-[15px]">
           <Categories />
           <LatestProducts />
           <BannerSidebar />
         </div>
-        <div className="w-[79%] pl-[15px]">
+        <div className="md:w-[79%] md:pl-[15px]">
           <ProductBanner />
-          {/* <Tab className="bg-blue-600 mr-[1px] float-left w-[33px] h-[33px] leading-[34px] text-center text-white focus:outline-none" title="Grid"><i className="fa fa-th"></i></Tab>
-          <Tab className="bg-[#666] mr-[1px] float-left w-[33px] h-[33px] leading-[34px] text-center text-white hover:bg-blue-600 focus:outline-none" title="List"><i className="fa fa-th-list"></i></Tab> */}
           <Tab.Group>
             <Tab.List className="mb-[30px] text-[#666] text-[12px] leading-5">
-              <div className="flex justify-between">
+              <div className="md:flex justify-between">
                 <div className="list-view flex items-center">
                   <Tab
                     className={({ selected }) => classNames(
@@ -396,10 +464,10 @@ export default function Category() {
                     <i className="fa fa-th-list"></i>
                   </Tab>
                 </div>
-                <div className="flex items-center">
-                  <div className="ml-2.5">
+                <div className="md:flex items-center">
+                  <div className="md:ml-2.5 mb-6 md:mb-0">
                     <label className="text-[#444] mr-1" for="input-sort">Sort By:</label>
-                    <select className="border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
+                    <select className="w-full border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
                       <option value="" selected="selected">Default</option>
                       <option value="">Name (A - Z)</option>
                       <option value="">Name (Z - A)</option>
@@ -411,9 +479,9 @@ export default function Category() {
                       <option value="">Model (Z - A)</option>
                     </select>
                   </div>
-                  <div className="ml-2.5">
+                  <div className="md:ml-2.5">
                     <label className="text-[#444] mr-1" for="input-limit">Show:</label>
-                    <select className="border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
+                    <select className="w-full border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
                       <option value="" selected="selected">15</option>
                       <option value="">25</option>
                       <option value="">50</option>
@@ -431,6 +499,7 @@ export default function Category() {
           </Tab.Group>
           <ShowingPages />
         </div>
-      </div></div >
+      </div>
+    </div >
   )
 }
