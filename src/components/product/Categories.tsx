@@ -98,7 +98,7 @@ const Disclosure = (props: Props) => {
               <a
                 href="#"
                 key={i}
-                className="flex flex-col py-1 text-[#333] hover:text-[#094bad] font-normal cursor-pointer"
+                className="flex flex-col py-2 text-[#333] hover:text-[#094bad] text-xs font-normal cursor-pointer"
               >
                 {faq}
               </a>

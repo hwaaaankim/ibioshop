@@ -12,12 +12,14 @@ import OrderInfo from './pages/OrderInfo'
 import Protected from './components/route-hocs/Protected'
 import OnlyWhenLoggedOut from './components/route-hocs/OnlyWhenLoggedOut'
 import Register from './pages/Register'
+import ProductReturn from './pages/ProductReturn'
 import MyAccount from './pages/MyAccount'
 import Cart from './pages/Cart'
 import Product from './pages/Product'
+import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
-import Test from './components/product/QuickViewModal'
+import QuickView from './components/product/QuickViewModal'
 import Aboutus from './pages/Aboutus'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
@@ -41,16 +43,21 @@ function App() {
         <Route path="checkout" element={<Checkout />} />
         <Route path="wish_list" element={<WishList />} />
         <Route path="order_info" element={<OrderInfo />} />
+        <Route path="product_return" element={<ProductReturn />} />
         <Route path="my_account" element={<MyAccount />} />
-        <Route path="cart" element={<Cart/>} />
-        <Route path="about" element={<Aboutus/>} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="about" element={<Aboutus />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="compare" element={<ProductComparison />} />
         <Route path="test" element={<Test />} />
+        <Route path="gift_voucher" element={<GiftVoucher />} />
+        <Route path="quick_view" element={<QuickView />} />
         <Route path="category" element={<Category />} />
+        {/* <Route path="test" element={<Test />} /> */}
+        <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog-detail" element={<BlogDetail />} />
         <Route path="go-responsive" element={<div>go responsive</div>} />
