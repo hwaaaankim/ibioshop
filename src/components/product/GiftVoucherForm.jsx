@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import CheckBox from '../controlled/CheckBox'
-import RadioBox from '../controlled/RadioBox'
 import Label from '../controlled/Label'
 import BaseInput from '../controlled/BaseInput'
 
@@ -12,13 +11,13 @@ export default function GiftVoucherForm() {
   const { register, handleSubmit, formState: { errors }, } = useForm()
 
   return (
-    <div className="">
+    <div className="text-left">
       <form>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label required={true} className="mt-4" name="Recipient's Name"></Label>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label required={true} className="mt-4 text-[12px] " name="Recipient's Name"></Label>
           <span className="flex flex-col w-full">
             <BaseInput
-              sm={false}
+              md={false}
               {...register('recipientName', { required: true })}
             />
             {errors.recipientName && (
@@ -28,8 +27,8 @@ export default function GiftVoucherForm() {
             )}
           </span>
         </div>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label required={true} className="mt-4" name="Recipient's e-mail"></Label>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label required={true} className="mt-4 text-[12px]" name="Recipient's e-mail"></Label>
           <span className="flex flex-col w-full">
             <BaseInput
               sm={false}
@@ -42,8 +41,8 @@ export default function GiftVoucherForm() {
             )}
           </span>
         </div>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label required={true} className="mt-4" name="Your Name"></Label>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label required={true} className="mt-4 text-[12px]" name="Your Name"></Label>
           <span className="flex flex-col w-full">
             <BaseInput
               sm={false}
@@ -56,8 +55,8 @@ export default function GiftVoucherForm() {
             )}
           </span>
         </div>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label required={true} className="mt-4" name="Your e-mail"></Label>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label required={true} className="mt-4 text-[12px]" name="Your e-mail"></Label>
           <span className="flex flex-col w-full">
             <BaseInput
               sm={false}
@@ -70,23 +69,45 @@ export default function GiftVoucherForm() {
             )}
           </span>
         </div>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label required={true} className="w-full flex-nowrap" name="Gift Certificate Theme"></Label>
-          <span className="flex flex-col w-full space-y-2">
-            <RadioBox {...register('certificateTheme', { required: true })} title='General'></RadioBox>
-            <RadioBox {...register('certificateTheme', { required: true })} title='Birthday'></RadioBox>
-            <RadioBox {...register('certificateTheme', { required: true })} title='Birthday'></RadioBox>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label required={true} className="w-full flex-nowrap text-[12px]" name="Gift Certificate Theme"></Label>
+          <div className="flex flex-col w-full space-y-2 text-[12px]">
+            <span className='flex'>
+              <input
+                type="radio"
+                value="general"
+                className='mr-2'
+                {...register('certificateTheme', { required: true })}
+              />General
+            </span>
+            <span className='flex'>
+              <input
+                type="radio"
+                value="birthday"
+                className='mr-2'
+                {...register('certificateTheme', { required: true })}
+              />Birthday
+            </span>
+            <span className='flex'>
+              <input
+                type="radio"
+                value="christmas"
+                className='mr-2'
+                {...register('certificateTheme', { required: true })}
+              />
+              Christmas
+            </span>
             {errors.certificateTheme && (
               <span className="text-red-400 text-xs mt-2">
-                Your email is required
+                Certificate Theme is required
               </span>
             )}
-          </span>
+          </div>
         </div>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label className="mt-4" name="Message"></Label>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label className="mt-4 text-[12px]" name="Message"></Label>
           <span className="flex flex-col w-full">
-            <textarea className="resize-none block w-full px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" rows="5" cols="40" name="message"></textarea>
+            <textarea className="resize-none block w-full px-3 py-2 transition duration-150 ease-in-out border border-gray-1 rounded-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" rows="5" cols="40" name="message"></textarea>
             {errors.message && (
               <span className="text-red-400 text-xs mt-2">
                 Your message is required
@@ -94,8 +115,8 @@ export default function GiftVoucherForm() {
             )}
           </span>
         </div>
-        <div className="sm:flex mb-4 sm:space-x-4">
-          <Label className="mt-4" name="Amount"></Label>
+        <div className="md:flex mb-4 md:space-x-4">
+          <Label className="mt-4 text-[12px]" name="Amount"></Label>
           <span className="flex flex-col w-full">
             <BaseInput
               sm={false}
@@ -109,13 +130,11 @@ export default function GiftVoucherForm() {
             )}
           </span>
         </div>
-        <div className="w-full mb-10 sm:flex space-x-4 text-m">
+        <div className="w-full mb-10 sm:flex items-center md:space-x-4 text-m">
           <div className='w-full'>
             <span className='flex justify-end items-center text-xs'>
               <p className='mr-1'>I understand that gift certificates are non-refundable.</p>
-              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }} {...register('accept', { required: true })}></CheckBox>
-              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }} {...register('accept', { required: true })}></CheckBox>
-              <CheckBox classNamew="w-2 h-2" style={{ width: 0 }} {...register('accept', { required: true })}></CheckBox>
+              <CheckBox {...register('accept', { required: true })}></CheckBox>
             </span>
             {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
           </div>
@@ -123,10 +142,10 @@ export default function GiftVoucherForm() {
           <div>
             <button
               type="submit"
-              value="Register"
-              className="sm:w-full -mr-8 bg-blue-2 px-5 h-10 font-thin text-sm ml-4 text-white py-0.5"
+              value="continue"
+              className="w-full bg-blue-2 px-5 h-8 font-thin text-sm text-white focus:outline-none"
             >
-              Register
+              Continue
             </button>
             {loading && (
               <i
