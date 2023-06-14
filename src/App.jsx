@@ -23,6 +23,7 @@ import Category from './pages/Category'
 import Blog from './pages/Blog'
 import Breadcrumb from './components/layout/Breadcrumb'
 import BlogDetail from './pages/BlogDetail'
+import ProductComparison from './pages/ProductComparison'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -47,7 +48,7 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
-
+        <Route path="compare" element={<ProductComparison />} />
         <Route path="test" element={<Test />} />
         <Route path="category" element={<Category />} />
         <Route path="blog" element={<Blog />} />
