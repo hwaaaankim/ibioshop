@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import product1 from '../../assets/images/1.jpg'
 import product2 from '../../assets/images/1.jpg'
 import product3 from '../../assets/images/1.jpg'
@@ -20,11 +21,12 @@ function QuickView() {
       <div
         className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
       >
-        <div className='h-[535px] w-[1000px] m-auto p-5 bg-white'>
-          <div className="flex justify-center text-[#999] h-full overflow-y-auto">
-            <div className='w-full flex flex-col mr-5'>
+        <div className='md:h-[535px] md:w-[1000px] h-[450px] w-[400px] m-auto p-5 bg-white overflow-y-auto'>
+          <XMarkIcon onClick={() => setShowModal(false)} className="sm:w-6 sm:h-6 w-3 h-3 float-right cursor-pointer" />
+          <div className="flex sm:justify-center text-[#999] h-full w-full">
+            <div className='flex flex-col mr-5'>
               {/* main-product-image */}
-              <div className='border border-[#e6e6e6] w-[447px] h-[446px] p-0.5'>
+              <div className='border border-[#e6e6e6] md:w-[447px] md:h-[446px] sm:p-0.5 w-[160px] h-[160px]'>
                 <a title="Banner Image" href="#" className=''>
                   <img src={pro} alt="Banner Image" />
                 </a>
@@ -32,7 +34,7 @@ function QuickView() {
               {/* sub-product-images */}
               <div className="flex space-x-6 mt-4">
                 {slide.map((product, index) => (
-                  <Link key={index} className="mb-2.5 text-sm font-medium  hover:border hover:border-[#337ab7]">
+                  <Link key={index} className="hidden mb-2.5 text-sm font-medium  hover:border hover:border-[#337ab7]">
                     <img src={product.image} title="Chicken swinesha" alt="Chicken swinesha" className='w-[95px] h-[95px]' />
                   </Link>
                 ))}
@@ -41,9 +43,9 @@ function QuickView() {
             {/* product-detail */}
             <div className='w-full flex flex-col'>
               <div className='w-full'>
-                <h2 className='text-[#444] font-medium mb-2.5 text-2xl'>Chicken swinesha</h2>
-                <div className='flex'>
-                  <span className='flex space-x-1 mr-3'>
+                <h2 className='text-[#444] font-medium mb-2.5 sm:text-2xl text-sm'>Chicken swinesha</h2>
+                <div className='sm:flex'>
+                  <span className='flex space-x-1 sm:mr-3'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
                       <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
                     </svg>
@@ -206,7 +208,7 @@ function QuickView() {
                     </div>
                   </div>
 
-                  <div className="flex w-full mb-4">
+                  <div className="sm:flex w-full mb-4">
                     <div className="">
                       <div
                         className="bg-[#eee] relative py-1 px-2.5 border-separate table"
@@ -218,7 +220,7 @@ function QuickView() {
                         <span className="bg-[#444] text-xs absolute right-3 top-1 h-4 w-4 px-1 hover:bg-blue-600 cursor-pointer text-white">+</span>
                       </div>
                     </div>
-                    <div className="mr-2.5">
+                    <div className="mr-2.5 mb-5">
                       <input
                         type="button"
                         data-toggle="tooltip"
@@ -260,7 +262,7 @@ function QuickView() {
           </div >
         </div>
       </div>
-      <div className="opacity-10 fixed inset-0 z-40 bg-black"></div>
+      <div className="opacity-40 fixed inset-0 z-40 bg-black"></div>
     </>
   )
 }
