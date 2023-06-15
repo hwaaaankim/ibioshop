@@ -53,7 +53,7 @@ function App() {
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="faq" element={<Faq />} />
-        <Route path="test" element={<Test />} />
+        {/* <Route path="test" element={<Test />} /> */}
         <Route path="compare" element={<ProductComparison />} />
         {/* <Route path="test" element={<Test />} /> */}
         <Route path="gift_voucher" element={<GiftVoucher />} />

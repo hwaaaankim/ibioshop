@@ -20,14 +20,14 @@ function Aboutus() {
                 <a href="/cart">About us</a>
             </li>
         </ul>
-        <div className="sm:flex justify-between">
+        <div className="sm:flex sm:justify-between">
             <div className="sm:w-8/12">
                 <span className="flex">
                     <h1 className="text-gray-500 sm:text-2xl">Welcome To Shop</h1>
                     <hr className="w-8/12 ml-4 mt-4"></hr></span>
-                <div className="sm:flex sm:space-x-1 m-4 p-4">
+                <div className="sm:flex sm:space-x-1 sm:m-4 my-4 sm:p-4">
                     <img className="w-full" src={aboutus} />
-                    <div className="leading-5 pl-4 text-gray-6">
+                    <div className="leading-5 sm:pl-4 text-gray-6">
                         <div class="des-about-us text-xs mt-4 px-0">Nulla auctor mauris ut dui luctus semper. In hac habitasse platea dictumst. Duis pellentesque ligula a risus suscipit dignissim. Nunc non nisl lacus. Integer pharetra lacinia dapibus. Donec eu dolor dui, vel posuere mauris.
                             <br></br>
                             <br></br>Pellentesque semper congue sodales. In consequat, metus eget con sequat ornare, augue dolor blandit purus, vitae lacinia nisi tellus in erat. Nulla ac justo eget massa aliquet sodales. Maecenas mattis male suada sem, in fringilla massa dapibus quis. Suspendisse aliquam leo id neque auctor molestie. Etiam at nulla tellus.
@@ -69,7 +69,7 @@ function Aboutus() {
         </div>
         <div className="mx-auto w-full my-10">
             <span className="flex space-x-2"><hr className="w-5/12"></hr><h1 className="text-center -mt-3.5 sm:text-2xl text-xs mb-4">Our Members</h1><hr className="w-5/12"></hr></span>
-            <p className="text-center w-1/2 m-auto">Consectetur adipiscing elit. Donec pellentesque venenatis elit, quis aliquet mauris malesuada vel. Donec vitae libero dolor, eget dapibus justo.
+            <p className="text-center sm:w-1/2 m-auto">Consectetur adipiscing elit. Donec pellentesque venenatis elit, quis aliquet mauris malesuada vel. Donec vitae libero dolor, eget dapibus justo.
                 Aenean facilisis aliquet feugiat. Suspendisse lacinia congue est ac semper. Nulla ut elit magna, vitae volutpat magna.</p>
         </div>
         <div class='md:grid md:grid-cols-2 md:gap-8  w-full'>
