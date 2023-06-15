@@ -12,6 +12,7 @@ import OrderInfo from './pages/OrderInfo'
 import Protected from './components/route-hocs/Protected'
 import OnlyWhenLoggedOut from './components/route-hocs/OnlyWhenLoggedOut'
 import Register from './pages/Register'
+import ProductReturn from './pages/ProductReturn'
 import MyAccount from './pages/MyAccount'
 import Cart from './pages/Cart'
 import Product from './pages/Product'
@@ -24,6 +25,8 @@ import Category from './pages/Category'
 import Blog from './pages/Blog'
 import Breadcrumb from './components/layout/Breadcrumb'
 import BlogDetail from './pages/BlogDetail'
+import Faq from './pages/Faq'
+import ProductComparison from './pages/ProductComparison'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -41,16 +44,22 @@ function App() {
         <Route path="checkout" element={<Checkout />} />
         <Route path="wish_list" element={<WishList />} />
         <Route path="order_info" element={<OrderInfo />} />
+        <Route path="product_return" element={<ProductReturn />} />
         <Route path="my_account" element={<MyAccount />} />
-        <Route path="cart" element={<Cart/>} />
-        <Route path="about" element={<Aboutus/>} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="about" element={<Aboutus />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
+        <Route path="faq" element={<Faq />} />
+        {/* <Route path="test" element={<Test />} /> */}
+        <Route path="compare" element={<ProductComparison />} />
+        {/* <Route path="test" element={<Test />} /> */}
         <Route path="gift_voucher" element={<GiftVoucher />} />
         <Route path="quick_view" element={<QuickView />} />
         <Route path="category" element={<Category />} />
+        <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog-detail" element={<BlogDetail />} />
         <Route path="go-responsive" element={<div>go responsive</div>} />

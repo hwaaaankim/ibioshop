@@ -56,7 +56,7 @@ function UserAccount() {
   )
 }
 
-function PersonalDetail() {
+function PersonalDetail({ setter }) {
   const [userData, setUserData] = useState({
     fName: '',
     lName: '',
@@ -73,79 +73,101 @@ function PersonalDetail() {
           Your Personal Details
         </h4>
       </div>
-      <div className="w-full p-2 text-xs">
-        <span className="text-xl font-medium leading-tight text-neutral-600 dark:text-neutral-50">
-          <ul
-            className="space-y-5"
-            style={{ width: 95 + '%', margin: '0 auto' }}
-          >
-            <li className="mt-3">
-              <BaseInput
-                label="First Name"
-                value={userData.fName}
-                setter={setUserData}
-                required={true}
-                icon=""
-                placeholder="First Name"
-                onChange={(e) =>
-                  setUserData({ ...userData, fName: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="Last Name"
-                value={userData.lName}
-                required={true}
-                setter={setUserData}
-                icon=""
-                placeholder="Last Name"
-                onChange={(e) =>
-                  setUserData({ ...userData, lName: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="E-mail"
-                value={userData.email}
-                required={true}
-                setter={setUserData}
-                icon=""
-                placeholder="E-mail"
-                onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="Telephone"
-                value={userData.phne}
-                setter={setUserData}
-                icon=""
-                required={true}
-                placeholder="Telephone"
-                onChange={(e) =>
-                  setUserData({ ...userData, phne: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="Fax"
-                value={userData.fax}
-                setter={setUserData}
-                icon=""
-                placeholder="Fax"
-                onChange={(e) =>
-                  setUserData({ ...userData, fax: e.target.value })
-                }
-              />
-            </li>
-          </ul>
-        </span>
-      </div>
+      <form>
+        <div className="w-full p-2 text-xs">
+          <span className="text-xl font-medium leading-tight text-neutral-600 dark:text-neutral-50">
+            <ul
+              className="space-y-5"
+              style={{ width: 95 + '%', margin: '0 auto' }}
+            >
+              <li className="mt-3">
+                <BaseInput
+                  label="First Name"
+                  value={userData.fName}
+                  setter={setUserData}
+                  required={true}
+                  icon=""
+                  placeholder="First Name"
+                  onChange={(e) =>
+                    setUserData({ ...userData, fName: e.target.value })
+                  }
+                />
+                {/* {errors.firstName && (
+                  <span className="text-red-400 mt-2 text-xs">
+                    First name is required
+                  </span>
+                )} */}
+              </li>
+              <li>
+                <BaseInput
+                  label="Last Name"
+                  value={userData.lName}
+                  required={true}
+                  setter={setUserData}
+                  icon=""
+                  placeholder="Last Name"
+                  onChange={(e) =>
+                    setUserData({ ...userData, lName: e.target.value })
+                  }
+                />
+                {/* {errors.lastName && (
+                  <span className="text-red-400 mt-2 text-xs">
+                    Last name is required
+                  </span>
+                )} */}
+              </li>
+              <li>
+                <BaseInput
+                  label="E-mail"
+                  value={userData.email}
+                  required={true}
+                  setter={setUserData}
+                  icon=""
+                  placeholder="E-mail"
+                  onChange={(e) =>
+                    setUserData({ ...userData, email: e.target.value })
+                  }
+                />
+                {/* {errors.email && (
+                  <span className="text-red-400 mt-2 text-xs">
+                    Email is required
+                  </span>
+                )} */}
+              </li>
+              <li>
+                <BaseInput
+                  label="Telephone"
+                  value={userData.phne}
+                  setter={setUserData}
+                  icon=""
+                  required={true}
+                  placeholder="Telephone"
+                  onChange={(e) =>
+                    setUserData({ ...userData, phne: e.target.value })
+                  }
+                />
+                {/* {errors.phone && (
+                  <span className="text-red-400 mt-2 text-xs">
+                    Phone is required
+                  </span>
+                )} */}
+              </li>
+              <li>
+                <BaseInput
+                  label="Fax"
+                  value={userData.fax}
+                  setter={setUserData}
+                  icon=""
+                  placeholder="Fax"
+                  onChange={(e) =>
+                    setUserData({ ...userData, fax: e.target.value })
+                  }
+                />
+              </li>
+            </ul>
+          </span>
+        </div>
+      </form>
     </div>
   )
 }
@@ -181,119 +203,123 @@ function PersonalAddress() {
           Your Address
         </h4>
       </div>
-      <div className="w-full p-2 text-xs">
-        <span className="text-xl font-medium leading-tight text-neutral-600 dark:text-neutral-50">
-          <ul
-            className="space-y-5 mb-3"
-            style={{ width: 95 + '%', margin: '0 auto' }}
-          >
-            <li className="mt-3">
-              <BaseInput
-                label="Company"
-                value={address.company}
-                icon=""
-                placeholder="Company"
-                onChange={(e) =>
-                  setAddress({ ...address, company: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="Address 1"
-                value={address.address1}
-                required={true}
-                placeholder="Address 1"
-                onChange={(e) =>
-                  setAddress({ ...address, address1: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="Address 2"
-                value={address.address2}
-                placeholder="Address 2"
-                onChange={(e) =>
-                  setAddress({ ...address, address2: e.target.value })
-                }
-              />
-            </li>
+      <form>
+        <div className="w-full p-2 text-xs">
+          <span className="text-xl font-medium leading-tight text-neutral-600 dark:text-neutral-50">
+            <ul
+              className="space-y-5 mb-3"
+              style={{ width: 95 + '%', margin: '0 auto' }}
+            >
+              <li className="mt-3">
+                <BaseInput
+                  label="Company"
+                  value={address.company}
+                  icon=""
+                  placeholder="Company"
+                  onChange={(e) =>
+                    setAddress({ ...address, company: e.target.value })
+                  }
+                />
+              </li>
+              <li>
+                <BaseInput
+                  label="Address 1"
+                  value={address.address1}
+                  required={true}
+                  placeholder="Address 1"
+                  onChange={(e) =>
+                    setAddress({ ...address, address1: e.target.value })
+                  }
+                />
+              </li>
+              <li>
+                <BaseInput
+                  label="Address 2"
+                  value={address.address2}
+                  placeholder="Address 2"
+                  onChange={(e) =>
+                    setAddress({ ...address, address2: e.target.value })
+                  }
+                />
+              </li>
 
-            <li>
-              <BaseInput
-                label="City"
-                value={address.city}
-                required={true}
-                placeholder="City"
-                onChange={(e) =>
-                  setAddress({ ...address, city: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <BaseInput
-                label="Post Code"
-                value={address.post}
-                required={true}
-                placeholder="Post Code"
-                onChange={(e) =>
-                  setAddress({ ...address, post: e.target.value })
-                }
-              />
-            </li>
-            <li>
-              <label className="block text-sm text-neutral-500">Country</label>
-              <select
-                onChange={(e) =>
-                  setAddress({ ...address, country: e.target.value })
-                }
-                name="country-id"
-                id="country"
-                className="bg-white border-gray-1 inset-px
+              <li>
+                <BaseInput
+                  label="City"
+                  value={address.city}
+                  required={true}
+                  placeholder="City"
+                  onChange={(e) =>
+                    setAddress({ ...address, city: e.target.value })
+                  }
+                />
+              </li>
+              <li>
+                <BaseInput
+                  label="Post Code"
+                  value={address.post}
+                  required={true}
+                  placeholder="Post Code"
+                  onChange={(e) =>
+                    setAddress({ ...address, post: e.target.value })
+                  }
+                />
+              </li>
+              <li>
+                <label className="block text-sm text-neutral-500">
+                  Country
+                </label>
+                <select
+                  onChange={(e) =>
+                    setAddress({ ...address, country: e.target.value })
+                  }
+                  name="country-id"
+                  id="country"
+                  className="bg-white border-gray-1 inset-px
                            p-2 text-sm block w-full px-3 mt-1 transition duration-150 ease-in-out border rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none 
                            focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-              >
-                {countries.map((country) => (
-                  <option key={country.value} value={country.value}>
-                    {' '}
-                    {country.name}
-                  </option>
-                ))}
-              </select>
-            </li>
-            <li>
-              <label className="block text-sm text-neutral-500">
-                Region / State
-              </label>
-              <select
-                onChange={(e) =>
-                  setAddress({ ...address, state: e.target.value })
-                }
-                name="zone-id"
-                id="state"
-                className="p-2 text-sm block w-full px-3 mt-1 transition bg-white duration-150 ease-in-out border 
+                >
+                  {countries.map((country) => (
+                    <option key={country.value} value={country.value}>
+                      {' '}
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              </li>
+              <li>
+                <label className="block text-sm text-neutral-500">
+                  Region / State
+                </label>
+                <select
+                  onChange={(e) =>
+                    setAddress({ ...address, state: e.target.value })
+                  }
+                  name="zone-id"
+                  id="state"
+                  className="p-2 text-sm block w-full px-3 mt-1 transition bg-white duration-150 ease-in-out border 
                            border-gray-1 inset-px rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none 
                            focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-              >
-                {states.map((state) => (
-                  <option key={state.value} value={state.value}>
-                    {' '}
-                    {state.name}
-                  </option>
-                ))}
-              </select>
-            </li>
-          </ul>
-          <CheckBox
-            checked={address.box === true}
-            title="My delivery and billing addresses are the same."
-            onClick={(e) => {
-              setAddress({ ...address, box: !address.box })
-            }}
-          />
-        </span>
-      </div>
+                >
+                  {states.map((state) => (
+                    <option key={state.value} value={state.value}>
+                      {' '}
+                      {state.name}
+                    </option>
+                  ))}
+                </select>
+              </li>
+            </ul>
+            <CheckBox
+              checked={address.box === true}
+              title="My delivery and billing addresses are the same."
+              onClick={(e) => {
+                setAddress({ ...address, box: !address.box })
+              }}
+            />
+          </span>
+        </div>
+      </form>
     </div>
   )
 }
@@ -606,6 +632,7 @@ function ShoppingCart() {
 function AddComment() {
   const handleConfirm = () => {}
   const [comment, setComment] = useState('')
+  const [agreeBox, setAgreeBox] = useState(false)
   return (
     <div className="w-full float-left px-4 relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
@@ -630,7 +657,12 @@ function AddComment() {
           ></textarea>
 
           <label>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              onChange={() => {
+                setAgreeBox((prev) => !prev)
+              }}
+            />
             <span className="text-neutral-600 ml-1">
               I have read and agree to the
               <a
@@ -662,7 +694,7 @@ function AddComment() {
 export default function Checkout() {
   return (
     <div
-      className="container p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
+      className="p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
       <ul className="flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
