@@ -59,7 +59,7 @@ function ProductComparison() {
                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                         </div>
-                        </td>
+                    </td>
                     <td className='border pl-3 text-xs font-normal py-3'>
                         <div className='text-yellow-500'>
                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -68,7 +68,7 @@ function ProductComparison() {
                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                         </div>
-                        </td>
+                    </td>
                     <td className='border pl-3 text-xs font-normal py-3'>
                         <div className=''>
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -77,7 +77,7 @@ function ProductComparison() {
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                         </div>
-                        </td>
+                    </td>
                 </tr>
                 <tr>
                     <td className='border pl-3 text-xs font-normal py-3'>Summary</td>
@@ -97,7 +97,64 @@ function ProductComparison() {
                     <td className='border pl-3 text-xs font-normal py-3'>0.00mm x 0.00mm x 0.00mm</td>
                     <td className='border pl-3 text-xs font-normal py-3'>0.00cm x 0.00cm x 0.00cm</td>
                 </tr>
-            </tbody>
+                </tbody>
+                <thead className='comparison-thead w-screen'>
+                    <tr className='table-row '>
+                        <td className='border pl-3 text-xs font-normal py-3'>
+                            <strong>Processor</strong>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className='border pl-3 text-xs font-normal py-3'>Clockspeed</td>
+                        <td className='border pl-3 text-xs font-normal py-3'>100mhz</td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                    </tr>
+                </tbody>
+                <thead className='comparison-thead'>
+                    <tr>
+                        <td className='border pl-3 text-xs font-normal py-3'>
+                            <strong>Memory</strong>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className='border pl-3 text-xs font-normal py-3'>test 1</td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                        <td className='border pl-3 text-xs font-normal py-3'>Hammered metal outer - Semi-precious stone embellishments
+                        </td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                    </tr>
+
+                    <tr>
+                        <td className='border pl-3 text-xs font-normal py-3'>test 2</td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                        <td className='border pl-3 text-xs font-normal py-3'>H: 11cm/4" W: 12cm/5" D: 5cm/2"
+                        </td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                    </tr>
+
+                    <tr>
+                        <td className='border pl-3 text-xs font-normal py-3'>test 3</td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                        <td className='border pl-3 text-xs font-normal py-3'>Green - Black - Brown
+                        </td>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                    </tr>
+
+                    <tr>
+                        <td className='border pl-3 text-xs font-normal py-3'></td>
+                        <td className='border pl-3 text-xs font-normal py-3'><input type="button" onclick="" className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3" value="Add to Cart"></input>
+                            <a className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3" href="#">Remove</a></td>
+                        <td className='border pl-3 text-xs font-normal py-3'><input type="button" onclick="" className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3" value="Add to Cart"></input>
+                            <a className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3" href="#">Remove</a></td>
+                        <td className='border pl-3 text-xs font-normal py-3'><input type="button" onclick="" className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3" value="Add to Cart"></input>
+                            <a className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3" href="#">Remove</a></td>
+                    </tr>
+                </tbody>
         </table>
     </div>
 
