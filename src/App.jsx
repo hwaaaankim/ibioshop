@@ -19,7 +19,6 @@ import Product from './pages/Product'
 import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
-import QuickView from './components/product/QuickViewModal'
 import Aboutus from './pages/Aboutus'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
@@ -53,7 +52,6 @@ function App() {
         <Route path="contact_us" element={<Contact />} />
         <Route path="compare" element={<ProductComparison />} />
         <Route path="gift_voucher" element={<GiftVoucher />} />
-        <Route path="quick_view" element={<QuickView />} />
         <Route path="category" element={<Category />} />
         <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />

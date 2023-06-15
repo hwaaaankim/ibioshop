@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { React, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Tab } from '@headlessui/react'
 
 import Categories from "../components/product/Categories"
 import LatestProducts from "../components/product/LatestProducts"
 import BannerSidebar from "../components/product/BannerSidebar"
+import QuickView from '../components/product/QuickViewModal'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -193,6 +194,7 @@ function ProductBanner() {
   )
 }
 function Product({ product }) {
+  const [showModal, setShowModal] = useState(false);
   const [mouseOver, setMouseOver] = useState(false)
 
   return (
@@ -200,7 +202,9 @@ function Product({ product }) {
       className="space-y-2 w-full mb-20"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
+      onClick={() => setShowModal(true)}
     >
+      <>{showModal ? (<QuickView />) : null}</>
       <div className="lg:h-[180px] cursor-pointer group relative text-black">
         <img
           src={product.picture}
@@ -327,22 +331,22 @@ function ListedProducts() {
     <div className="flex flex-col">
       {products.map((product, index) => (
         <div key={index} className="w-full sm:flex mb-8">
-            <div className="flex flex-col sm:w-[268px] sm:h-[268px] cursor-pointer group relative text-black">
-              <img
-                src={product.picture}
-                className="w-full h-full opacity-80 group-hover:opacity-100"
-              />
-              {product.discounted && (
-                <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
-                  <div className="text-xs font-semibold">{product.discountPercent}</div>
-                </div>
-              )}
-              {product.isNew && (
-                <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
-                  <div className="text-sm font-semibold uppercase">New</div>
-                </div>
-              )}
-            </div>
+          <div className="flex flex-col sm:w-[268px] sm:h-[268px] cursor-pointer group relative text-black">
+            <img
+              src={product.picture}
+              className="w-full h-full opacity-80 group-hover:opacity-100"
+            />
+            {product.discounted && (
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
+                <div className="text-xs font-semibold">{product.discountPercent}</div>
+              </div>
+            )}
+            {product.isNew && (
+              <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#53d542] absolute left-[8px] top-[8px]">
+                <div className="text-sm font-semibold uppercase">New</div>
+              </div>
+            )}
+          </div>
           <div className="flex flex-col space-y-2 text-left pt-5 sm:ml-[40px] pr-5">
             <div className="flex space-x-2">
               <div className="flex space-x-1 items-center">
