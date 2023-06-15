@@ -12,7 +12,9 @@ function AccountRegistrationIntro() {
       <div className="space-y-5 p-5 my-5 text-gray-600">
         <div className="flex items-center space-x-1">
           <i className="fa fa-file-o" style={{ fontSize: 14 }} />
-          <div className="uppercase text-gray-800 text-sm">new customer</div>
+          <div className="uppercase text-gray-800 text-sm">
+            new customer updated
+          </div>
         </div>
         <div className="text-sm">
           By creating an account you will be able to shop faster, be up to date
