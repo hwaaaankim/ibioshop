@@ -7,17 +7,17 @@ function classNames(...classes) {
 
 export default function ProductTab() {
   return (
-    <div className="my-10 pr-[15px]">
+    <div className="my-10 sm:pr-[15px]">
       <div className="mt-20 float-left w-full">
         <Tab.Group>
-          <Tab.List className="bg-[#f5f5f5] p-4 rounded text-center flex justify-center space-x-3">
+          <Tab.List className="bg-[#f5f5f5] sm:p-4 p-3 space-y-2 rounded text-center flex flex-col sm:flex-row justify-center space-x-3">
             {['Description', 'Reviews(1)', 'Tags', 'Custom Tab'].map((title, index) => (
               <Tab
                 key={index}
                 className={({ selected }) => classNames(
-                  'float-left text-sm text-[#222] py-3 px-6 cursor-pointer uppercase border border-[#e8e8e8] rounded-full',
+                  'text-sm text-[#222] py-3 px-6 cursor-pointer uppercase border border-[#e8e8e8] rounded-full',
                   ' bg-[#fff] hover:border-[#222] hover:text-[#222] hover:bg-[#f2f2f2]',
-                  selected ? 'bg-gray-100 border-[#222]' : ''
+                  selected ? 'bg-gray-100 border-[#222222]' : ''
                 )
                 }
               >

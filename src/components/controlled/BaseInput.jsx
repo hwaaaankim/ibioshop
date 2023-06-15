@@ -1,14 +1,15 @@
-import { color } from 'framer-motion'
 import React from 'react'
 
 const BaseInput = React.forwardRef(
-  ({ type = 'text', label, placeholder, setter, required, ...rest }, ref) => {
-    
+  ({ type = 'text', label, placeholder, required, ...rest }, ref) => {
     return (
       <div className="">
-       
-       {label && <div className='text-neutral-500' style={{ fontSize: 14, }}> 
-        <span style={{color: 'red'}}> {required && '*'} </span>{label}</div>}
+        {label && (
+          <div className="text-neutral-500" style={{ fontSize: 14 }}>
+            <span style={{ color: 'red' }}> {required && '*'} </span>
+            {label}
+          </div>
+        )}
         <input
           type={type}
           placeholder={placeholder}
