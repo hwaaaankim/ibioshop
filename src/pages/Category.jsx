@@ -331,11 +331,13 @@ function ListedProducts() {
     <div className="flex flex-col">
       {products.map((product, index) => (
         <div key={index} className="w-full sm:flex mb-8">
-          <div className="flex flex-col sm:w-[268px] sm:h-[268px] cursor-pointer group relative text-black">
-            <img
-              src={product.picture}
-              className="w-full h-full opacity-80 group-hover:opacity-100"
-            />
+          <div className="cursor-pointer group relative text-black">
+            <div className='sm:w-[268px] sm:h-[268px]'>
+              <img
+                src={product.picture}
+                className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
+              />
+            </div>
             {product.discounted && (
               <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
                 <div className="text-xs font-semibold">{product.discountPercent}</div>
