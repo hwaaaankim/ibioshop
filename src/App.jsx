@@ -52,11 +52,9 @@ function App() {
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="compare" element={<ProductComparison />} />
-        {/* <Route path="test" element={<Test />} /> */}
         <Route path="gift_voucher" element={<GiftVoucher />} />
         <Route path="quick_view" element={<QuickView />} />
         <Route path="category" element={<Category />} />
-        {/* <Route path="test" element={<Test />} /> */}
         <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog-detail" element={<BlogDetail />} />
