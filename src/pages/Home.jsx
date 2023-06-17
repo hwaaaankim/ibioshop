@@ -35,7 +35,7 @@ function Carousel({
       onMouseEnter={() => setMouseIn(true)}
       onMouseLeave={() => setMouseIn(false)}
     >
-      <div ref={widthRef} className="right-0 left-0 top-0"></div>
+      <div ref={widthRef} className="right-0 left-0 top-0 bottom-0"></div>
       <div className={'overflow-x-hidden relative'} style={{ height }}>
         <div className={'relative h-full'}>
           {items.map((item, index) => (
