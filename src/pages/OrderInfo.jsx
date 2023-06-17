@@ -287,7 +287,7 @@ export default function OrderInfo() {
       </ul>
       <div className="w-full bg-transparent my-3 mx-0 rounded list-none box-border flex gap-4 text-neutral-700 p-0 min-h-fit">
         <div
-          className="float-left relative space-y-2 w-[79 '%'] md: w-full"
+          className="float-left relative space-y-2 w-[79 '%'] sm: w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <OrderDetails />
@@ -305,7 +305,7 @@ export default function OrderInfo() {
           </div>
         </div>
         <div
-          className="hidden md:relative box-border float-left mb-3 px-4 sm:block text-gray-600"
+          className="hidden sm:relative box-border float-left mb-3 px-4 sm:block text-gray-600"
           style={{ width: 21 + '%', margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />

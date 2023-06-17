@@ -98,7 +98,7 @@ function WishListTable() {
                     )}
                   </div>
                 </td>
-                <td className="text-right border border-solid p-2 flex flex-col space-y-1 md:space-y-0 md:flex-row">
+                <td className="text-right border border-solid p-2 flex flex-col space-y-1 sm:space-y-0 sm:flex-row">
                   <Tippy
                     content={<span className="text-xs"> Add to Cart</span>}
                   >
@@ -156,15 +156,15 @@ export default function WishList() {
           <a href="#">My Wish List</a>
         </li>
       </ul>
-      <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col md:flex-row gap-8 p-0 min-h-fit">
+      <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col sm:flex-row gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative w-[79 '%'] md: w-full"
+          className="mb-2 float-left relative w-[79 '%'] sm:w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <WishListTable />
         </div>
         <div
-          className="hidden md:relative sm:w-1/4 sm:block text-gray-2"
+          className="hidden sm:relative sm:w-1/4 sm:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />

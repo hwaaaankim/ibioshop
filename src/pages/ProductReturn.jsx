@@ -47,7 +47,7 @@ export default function ProductReturn() {
       </ul>
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative w-[79 '%'] md: w-full"
+          className="mb-2 float-left relative sm:w-[79 '%'] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           {/* main page start */}
@@ -145,13 +145,13 @@ export default function ProductReturn() {
                 </span>
               </div>
               <div className="sm:flex mb-4 sm:space-x-4">
-                <Label className="mt-4" name="Date"></Label>
+                <Label className="mt-4" name="Order Date"></Label>
                 <span className="flex w-full">
                   <DatePicker
                     selected={startDate}
                     name="startDate"
-                    className="block w-fit h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-                    dateFormat="MM/dd/yyyy"
+                    className="block w-full h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                    dateFormat="yyyy-MM-dd"
                     placeholderText={'Order Date'}
                     onClickOutside={() => {
                       setdatePickerIsOpen((prev) => !prev)
@@ -164,7 +164,7 @@ export default function ProductReturn() {
                     {...register('date')}
                   />
                   <button
-                    className="leading-normal inline-block mt-1 hover:bg-primary hover:text-white -ml-[1] h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
+                    className="leading-normal inline-block mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
                     cursor-pointer align-middle whitespace-nowrap text-center font-normal py-[6px] px-3 border-collapse box-border"
                     type="button"
                     onClick={() => {
