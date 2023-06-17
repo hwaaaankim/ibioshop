@@ -40,10 +40,20 @@ function Carousel({
         <div className={'relative h-full'}>
           {items.map((item, index) => (
             <motion.div
-              animate={{ x: (index - currentIndex) * (width / pageSize) }}
+              animate={{
+                x:
+                  (index - currentIndex) *
+                  (width / pageSize + (pageSize === 1 ? 0 : 30 / pageSize)),
+              }}
               transition={{ ease: 'easeInOut', duration: 0.5 }}
               className={'absolute left-0'}
-              style={{ width: width / pageSize }}
+              style={{
+                width:
+                  width / pageSize -
+                  (pageSize === 1 ? 0 : 30) +
+                  (pageSize === 1 ? 0 : 30 / pageSize),
+                marginRight: pageSize === 1 ? 0 : 30,
+              }}
               key={index}
             >
               <div ref={index === 0 ? targetEl : null} className="w-full">
@@ -640,7 +650,7 @@ function Product({ product, showProgress = false }) {
 
   return (
     <div
-      className="space-y-2 w-full px-[15px]"
+      className="space-y-2 w-full"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
@@ -766,7 +776,7 @@ function Product({ product, showProgress = false }) {
   )
 }
 
-function FlashSale() {
+function FlashSale({ currentWidth }) {
   const flashSaleRef = useRef()
   const [width, setWidht] = useState(0)
   useEffect(() => setWidht(flashSaleRef.current.clientWidth), [])
@@ -878,7 +888,7 @@ function FlashSale() {
         showChevrons={true}
         chevronY={-80}
         index={0}
-        pageSize={5}
+        pageSize={currentWidth >= 1200 ? 5 : 3}
         showChevronsConditionally={false}
       />
     </div>
@@ -1215,6 +1225,15 @@ function BrandsCarousel() {
 }
 
 export default function Home() {
+  const [currentWidth, setCurrentWidth] = useState()
+  const handleResize = function () {
+    setCurrentWidth(document.body.clientWidth)
+  }
+
+  useEffect(() => {
+    setCurrentWidth(document.body.clientWidth)
+    window.addEventListener('resize', handleResize)
+  }, [])
   return (
     <div className="grid grid-cols-4 gap-8 w-[80%] lgp8:w-[95%] mx-auto py-8">
       <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
@@ -1248,7 +1267,7 @@ export default function Home() {
         </div>
         <div className="flex-auto space-y-8">
           <MiniBanners />
-          <FlashSale />
+          <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
           <Technology />
           <FurnitureNdecor />
