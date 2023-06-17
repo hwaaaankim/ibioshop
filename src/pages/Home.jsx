@@ -921,6 +921,7 @@ function CatalogBanners() {
 }
 
 function ProductCategories({
+  currentWidth,
   category,
   subCategories,
   hasLeftBannner = false,
@@ -1022,7 +1023,7 @@ function ProductCategories({
             showChevrons={true}
             chevronY={-50}
             index={0}
-            pageSize={4}
+            pageSize={currentWidth >= 1200 ? 4 : 2}
           />
         </div>
 
@@ -1039,7 +1040,7 @@ function ProductCategories({
   )
 }
 
-function Technology() {
+function Technology({ currentWidth }) {
   const scategories = [
     'Smartphone',
     'Tablets',
@@ -1052,11 +1053,12 @@ function Technology() {
       category="Technology"
       subCategories={scategories}
       hasLeftBannner={true}
+      currentWidth={currentWidth}
     />
   )
 }
 
-function FurnitureNdecor() {
+function FurnitureNdecor({ currentWidth }) {
   const scategories = [
     'Living room',
     'Bathroom',
@@ -1069,11 +1071,12 @@ function FurnitureNdecor() {
       category="Furniture & decor"
       subCategories={scategories}
       hasRightBanner={true}
+      currentWidth={currentWidth}
     />
   )
 }
 
-function FashionNaccessories() {
+function FashionNaccessories({ currentWidth }) {
   const scategories = [
     'Smartphone',
     'Tablets',
@@ -1086,6 +1089,7 @@ function FashionNaccessories() {
       category="Fashion & accessories"
       subCategories={scategories}
       hasLeftBannner={true}
+      currentWidth={currentWidth}
     />
   )
 }
@@ -1269,9 +1273,9 @@ export default function Home() {
           <MiniBanners />
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
-          <Technology />
-          <FurnitureNdecor />
-          <FashionNaccessories />
+          <Technology currentWidth={currentWidth} />
+          <FurnitureNdecor currentWidth={currentWidth} />
+          <FashionNaccessories currentWidth={currentWidth} />
           <div className="grid grid-cols-2 gap-[30px]">
             {[1, 2].map((index) => (
               <div
