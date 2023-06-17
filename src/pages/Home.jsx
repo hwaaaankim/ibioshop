@@ -151,7 +151,7 @@ function BestSelling() {
   ]
 
   const child = ({ item }) => (
-    <div className="w-full grid lgp8:block grid-cols-2 mdp5:grid-cols-4 gap-2">
+    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-2">
       {[1, 2, 3, 4].map((pitem, index) => (
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
@@ -1239,7 +1239,7 @@ export default function Home() {
     window.addEventListener('resize', handleResize)
   }, [])
   return (
-    <div className="grid grid-cols-4 gap-8 w-[80%] lgp8:w-[95%] mx-auto py-8">
+    <div className="grid grid-cols-4 gap-8 w-full px-[15px] md:px-0 md:w-[80%] lgp8:w-[95%] mx-auto py-8">
       <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
         <div className="hidden lgp8:block" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">
@@ -1247,8 +1247,11 @@ export default function Home() {
         </div>
       </div>
       <BestSelling />
-      <div className="col-span-4 flex space-x-8">
-        <div className="space-y-8" style={{ width: 237 }}>
+      <div className="col-span-4 md:flex md:space-x-8">
+        <div
+          className="space-y-8"
+          style={{ width: currentWidth >= 768 ? 237 : '' }}
+        >
           <div className="h-[390px] cursor-pointer">
             <img
               src="image/catalog/banners/banner1.jpg"
@@ -1269,7 +1272,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-auto space-y-8">
+        <div className="md:flex-auto space-y-8">
           <MiniBanners />
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
