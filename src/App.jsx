@@ -19,12 +19,13 @@ import Product from './pages/Product'
 import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
-import QuickView from './components/product/QuickViewModal'
 import Aboutus from './pages/Aboutus'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
 import Breadcrumb from './components/layout/Breadcrumb'
 import BlogDetail from './pages/BlogDetail'
+import Faq from './pages/Faq'
+import ProductComparison from './pages/ProductComparison'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -50,10 +51,12 @@ function App() {
         <Route path="product" element={<Product />} />
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
-        <Route path="gift_voucher" element={<GiftVoucher />} />
-        <Route path="quick_view" element={<QuickView />} />
-        <Route path="category" element={<Category />} />
+        <Route path="faq" element={<Faq />} />
         {/* <Route path="test" element={<Test />} /> */}
+        <Route path="compare" element={<ProductComparison />} />
+        {/* <Route path="test" element={<Test />} /> */}
+        <Route path="gift_voucher" element={<GiftVoucher />} />
+        <Route path="category" element={<Category />} />
         <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog-detail" element={<BlogDetail />} />

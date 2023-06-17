@@ -2,6 +2,72 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
 
+import { useForm } from 'react-hook-form'
+import BaseInput from '../components/controlled/BaseInput'
+import BaseTextArea from '../components/controlled/BaseTextArea'
+
+function FeedbackForm() {
+  const {
+    register,
+    formState: { errors },
+  } = useForm()
+  return (
+    <div className="space-y-2">
+      <div>Leave your comment</div>
+
+      <div className="grid grid-cols-2">
+        <div>
+          <BaseInput
+            label="Your Name:"
+            sm={false}
+            {...register('name', { required: true })}
+          />
+          {errors.name && (
+            <span className="text-xs text-red-600">Your name is required</span>
+          )}
+        </div>
+      </div>
+      <div className="space-y-1">
+        <BaseTextArea
+          label="Your Comment:"
+          sm={false}
+          {...register('comment', { required: true })}
+        />
+        <div className="text-xs">Note: HTML is not translated!</div>
+        {errors.comment && (
+          <span className="text-xs text-red-600">Comment is required</span>
+        )}
+      </div>
+      <div className="grid grid-cols-3">
+        <div>
+          <BaseInput
+            label="Enter the code the box below:"
+            sm={false}
+            {...register('code', { required: true })}
+          />
+          {errors.code && (
+            <span className="text-xs text-red-600">
+              You need to put the code in the box below
+            </span>
+          )}
+        </div>
+      </div>
+      <img
+        src="image/demo/content/captcha.jpg"
+        style={{ width: 150, height: 35 }}
+      />
+      <div className="flex">
+        <div
+          className="bg-[#555] text-white py-2 text-center rounded text-sm"
+          style={{ width: 150 }}
+        >
+          Submit
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function BlogDetail() {
   const dispatch = useDispatch()
 
@@ -103,6 +169,7 @@ export default function BlogDetail() {
           </p>
         </div>
         <hr />
+        <FeedbackForm />
       </div>
     </div>
   )
