@@ -888,7 +888,7 @@ function FlashSale({ currentWidth }) {
         showChevrons={true}
         chevronY={-80}
         index={0}
-        pageSize={currentWidth >= 1200 ? 5 : 3}
+        pageSize={currentWidth >= 1200 ? 5 : currentWidth >= 992 ? 3 : 2}
         showChevronsConditionally={false}
       />
     </div>
