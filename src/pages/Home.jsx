@@ -1094,7 +1094,7 @@ function FashionNaccessories({ currentWidth }) {
   )
 }
 
-function NewArrivals() {
+function NewArrivals({ currentWidth }) {
   const products = [
     {
       name: 'Pastrami bacon',
@@ -1194,7 +1194,7 @@ function NewArrivals() {
         showChevrons={true}
         chevronY={-50}
         index={0}
-        pageSize={5}
+        pageSize={currentWidth >= 1200 ? 5 : currentWidth >= 992 ? 3 : 2}
       />
     </div>
   )
@@ -1290,7 +1290,7 @@ export default function Home() {
             ))}
           </div>
 
-          <NewArrivals />
+          <NewArrivals currentWidth={currentWidth} />
           <BrandsCarousel />
         </div>
       </div>
