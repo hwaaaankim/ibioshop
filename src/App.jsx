@@ -37,7 +37,7 @@ function App() {
       {!header.hidden && <Header />}
       {!breadcrumb.hidden && <Breadcrumb />}
       <Routes>
-        <Route exact path="/" element={<Protected component={<Home />} />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
@@ -52,9 +52,7 @@ function App() {
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="faq" element={<Faq />} />
-        {/* <Route path="test" element={<Test />} /> */}
         <Route path="compare" element={<ProductComparison />} />
-        {/* <Route path="test" element={<Test />} /> */}
         <Route path="gift_voucher" element={<GiftVoucher />} />
         <Route path="category" element={<Category />} />
         <Route path="go-responsive" element={<div>here we go</div>} />
