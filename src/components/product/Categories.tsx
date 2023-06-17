@@ -17,7 +17,7 @@ const Disclosure = (props: Props) => {
       <button
         aria-controls={props.title}
         aria-expanded={isOpen}
-        className="flex items-center justify-between w-full m-0"
+        className="flex text-left items-center justify-between w-full m-0"
       >
         <div className="text-[#333] font-normal capitalize hover:text-[#094bad] text-[12px]">
           {props.title}
@@ -165,7 +165,7 @@ export default function App() {
       <h3 className="border-b border-[#d7d7d7] text-[16px] text-[#222] font-bold uppercase bg-[#f5f5f5] p-[15px]">
         Categories
       </h3>
-      <div className="flex flex-col w-full p-5 justify-center items-center">
+      <div className="flex flex-col w-full p-5 justify-center items-center text-left">
         {categories.map((faq, i) => (
           <Disclosure key={i} title={faq.name} body={faq.sub} />
         ))}

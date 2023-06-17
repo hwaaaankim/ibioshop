@@ -165,9 +165,9 @@ function Aboutus() {
         <div className="border my-5 p-5">
             <h1 className="happy-customer-span mb-4">Happy Customers Say</h1>
             <div>
-            <span class='block mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis neque eget nulla. Curabitur dictum consectetur metus nec dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis.</span>
-            <span className="text-blue-800 text-base font-semibold mt-5"> -Join Doe</span>
-            <span className="font-normal"> - Social Media Strategist</span>
+                <span class='block mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis neque eget nulla. Curabitur dictum consectetur metus nec dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis.</span>
+                <span className="text-blue-800 text-base font-semibold mt-5"> -Join Doe</span>
+                <span className="font-normal"> - Social Media Strategist</span>
             </div>
         </div>
     </div>
