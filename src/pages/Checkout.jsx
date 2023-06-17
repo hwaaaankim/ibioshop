@@ -421,8 +421,8 @@ function CouponVoucher() {
             <i className="fa fa-ticket"></i> Do you Have a Coupon or Voucher?
           </h4>
         </div>
-        <div className="p-4 -mx-4 leading-6">
-          <div className="float-left w-1/2 px-4 relative box-border ">
+        <div className="flex flex-col md:flex-row pt-3 leading-6">
+          <div className="float-left w-full mx-0 md:w-1/2 px-4 relative box-border ">
             <div className="border-separate table relative w-full">
               <BaseInput
                 value={coupon}
@@ -442,7 +442,7 @@ function CouponVoucher() {
               </span>
             </div>
           </div>
-          <div className="float-left w-1/2 relative box-border ">
+          <div className="float-left px-4 w-full mx-0 md:w-1/2 relative box-border ">
             <div className="border-separate table w-full relative">
               <BaseInput
                 value={voucher}
@@ -716,12 +716,12 @@ export default function Checkout() {
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-neutral-700 py-4 min-h-screen">
-        <div className="col-span-3">
+        <div className="md:col-span-3">
           <UserAccount />
           <PersonalDetail />
           <PersonalAddress />
         </div>
-        <div className="col-span-9">
+        <div className="md:col-span-9">
           <DeliPayMethod />
           <CouponVoucher />
           <ShoppingCart />

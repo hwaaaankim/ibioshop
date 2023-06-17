@@ -1,12 +1,15 @@
 import React from 'react'
+import DatePicker from 'react-datepicker'
+
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import RadioBox from '../components/controlled/RadioBox'
-
 import Label from '../components/controlled/Label'
 import BaseInput from '../components/controlled/BaseInput'
+
+import 'react-datepicker/dist/react-datepicker.css'
 import '../App.css'
 
 export default function ProductReturn() {
@@ -19,8 +22,10 @@ export default function ProductReturn() {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const setDate = () => {}
+  const [datePickerIsOpen, setdatePickerIsOpen] = useState(false)
+  const [startDate, setStartDate] = useState('')
   const handleReturn = async (data) => {}
+  const handleChange = () => {}
   return (
     <div
       className="overflow-visible box-border text-gray-400 p-0 leading-6 text-sm justify-center"
@@ -42,11 +47,11 @@ export default function ProductReturn() {
       </ul>
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative"
-          style={{ minHeight: 1 + 'px', width: 79 + '%', margin: '0 auto' }}
+          className="mb-2 float-left relative w-[79 '%'] md: w-full"
+          style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           {/* main page start */}
-          <div>
+          <div className="w-full">
             <h2 className="text-gray-700 font-normal ">Product Returns</h2>
             <p className="mt-2 text-xs">
               Please complete the form below to request product returns.
@@ -142,19 +147,32 @@ export default function ProductReturn() {
               <div className="sm:flex mb-4 sm:space-x-4">
                 <Label className="mt-4" name="Date"></Label>
                 <span className="flex w-full">
-                  <input
-                    type="text"
-                    placeholder="Date"
-                    className="block h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                  <DatePicker
+                    selected={startDate}
+                    name="startDate"
+                    className="block w-fit h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                    dateFormat="MM/dd/yyyy"
+                    placeholderText={'Order Date'}
+                    onClickOutside={() => {
+                      setdatePickerIsOpen((prev) => !prev)
+                    }}
+                    open={datePickerIsOpen}
+                    onChange={(date) => {
+                      setdatePickerIsOpen((prev) => !prev)
+                      setStartDate(date)
+                    }}
                     {...register('date')}
                   />
                   <button
-                    class="leading-normal inline-block mt-1 hover:bg-primary hover:text-white -ml-[1] h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
+                    className="leading-normal inline-block mt-1 hover:bg-primary hover:text-white -ml-[1] h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
                     cursor-pointer align-middle whitespace-nowrap text-center font-normal py-[6px] px-3 border-collapse box-border"
                     type="button"
-                    onClick={setDate}
+                    onClick={() => {
+                      setStartDate(new Date())
+                      setdatePickerIsOpen((prev) => !prev)
+                    }}
                   >
-                    <i class="fa fa-calendar"></i>
+                    <i className="fa fa-calendar"></i>
                   </button>
                 </span>
               </div>
@@ -220,6 +238,7 @@ export default function ProductReturn() {
                     setter={setReason}
                     value="deadOnArrival"
                     title="Dead On Arrival"
+                    onChange={handleChange}
                     {...register('reason', { required: true })}
                   />
                   <RadioBox
@@ -227,6 +246,7 @@ export default function ProductReturn() {
                     selected={reason}
                     setter={setReason}
                     title="Order Error"
+                    onChange={handleChange}
                     {...register('reason', { required: true })}
                   />
                   <RadioBox
@@ -234,6 +254,7 @@ export default function ProductReturn() {
                     setter={setReason}
                     value="wrongItem"
                     title="Received Wrong Item"
+                    onChange={handleChange}
                     {...register('reason', { required: true })}
                   />
                   <RadioBox
@@ -241,6 +262,7 @@ export default function ProductReturn() {
                     setter={setReason}
                     value="other"
                     title="Other"
+                    onChange={handleChange}
                     {...register('reason', { required: true })}
                   />
                 </div>
@@ -258,6 +280,7 @@ export default function ProductReturn() {
                     setter={setStatus}
                     value="yes"
                     title="Yes"
+                    onChange={handleChange}
                     {...register('reason', { required: true })}
                   />
                   <RadioBox
@@ -265,6 +288,7 @@ export default function ProductReturn() {
                     setter={setStatus}
                     value="no"
                     title="No"
+                    onChange={handleChange}
                     {...register('reason', { required: true })}
                   />
                 </span>
@@ -273,7 +297,7 @@ export default function ProductReturn() {
                 <Label className="mt-4" name="other datails"></Label>
                 <span className="flex gap-4 w-full mt-1">
                   <textarea
-                    class="px-3 mb-5 resize-none overflow-auto m-0 border-solid text-xs
+                    className="px-3 mb-5 resize-none overflow-auto m-0 border-solid text-xs
                     border-gray-1 bg-none block h-auto w-full py-1 transition duration-15 
                     ease-in-out border rounded shadow-sm focus:shadow-blue-300 focus:outline-none 
                      focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
@@ -284,18 +308,18 @@ export default function ProductReturn() {
                   ></textarea>
                 </span>
               </div>
-              <div className="mb-10 sm:flex justify-between space-x-2 text-m">
+              <div className="mb-10 flex justify-between space-x-2 text-m">
                 <button
                   type="back"
                   value="back"
-                  className="xs:w-full bg-[#555] px-5 h-10 hover:bg-primary rounded-sm font-thin text-sm text-white py-0.5"
+                  className="bg-[#555] px-5 h-10 hover:bg-primary rounded-sm font-thin text-sm text-white py-0.5"
                 >
                   Back
                 </button>
                 <button
                   type="submit"
                   value="Return"
-                  className="xs:w-full bg-blue-1 hover:bg-blue-2 border-blue-2 px-5 h-10 font-thin text-sm ml-4 text-white py-0.5"
+                  className=" bg-blue-1 hover:bg-blue-2 border-blue-2 px-5 h-10 font-thin text-sm ml-4 text-white py-0.5"
                 >
                   Submit
                 </button>
