@@ -1013,9 +1013,9 @@ function ProductCategories({
           ))}
         </div>
       </div>
-      <div className="flex space-x-2">
+      <div className="md:flex md:space-x-2 space-y-2 md:space-y-0">
         {hasLeftBannner && (
-          <div className="w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
@@ -1023,7 +1023,7 @@ function ProductCategories({
           </div>
         )}
 
-        <div className="flex-auto">
+        <div className="md:flex-auto">
           <Carousel
             Child={child}
             items={[...products, ...products]}
@@ -1031,12 +1031,22 @@ function ProductCategories({
             showChevrons={true}
             chevronY={-50}
             index={0}
-            pageSize={currentWidth >= 1200 ? 4 : 2}
+            pageSize={
+              currentWidth >= 1200
+                ? 4
+                : currentWidth >= 992
+                ? 2
+                : currentWidth >= 768
+                ? 1
+                : currentWidth >= 480
+                ? 2
+                : 1
+            }
           />
         </div>
 
         {hasRightBanner && (
-          <div className="w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
