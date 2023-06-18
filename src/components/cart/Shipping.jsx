@@ -18,7 +18,7 @@ function Shipping() {
 
     return (
         <Disclosure>
-            <div className="w-full float-left relative box-border text-xs leading-5">
+            <div className="w-full float-left box-border text-xs leading-5">
                 <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
                     <Disclosure.Button className="w-full text-left px-2 py-2 bg-gray-100 border-b-transparent">
                         <h4 className="my-0 text-base font-medium">
