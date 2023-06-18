@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 
 function CategoriesMenu() {
@@ -44,7 +45,7 @@ function HomeDropDown() {
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
-          <div className="uppercase text-sm font-semibold">home</div>
+          <Link to="/" className="uppercase text-sm font-semibold">home</Link>
           <i className="fa fa-caret-down" />
         </div>
       </div>
@@ -56,26 +57,36 @@ function FeaturesDropDown() {
   const navs = [
     {
       title: 'Listing',
-      links: ['category page 1', 'category page 2', 'category page 3'],
+      links: [
+        { name: 'category page 1', path: 'category' },
+        { name: 'category page 2', path: 'catrgory_two' },
+        { name: 'category page 3', path: 'catrgory_three' },
+      ],
     },
     {
       title: 'product',
-      links: ['product page 1', 'product page 2'],
+      links: [
+        { name: 'product page 1', path: 'product_one' },
+        { name: 'product page 2', path: 'product' },]
     },
     {
       title: 'shopping',
-      links: ['shopping cart', 'page', 'checkout', 'compare', 'wishlist'],
+      links: [
+        { name: 'shopping cart', path: 'cart' },
+        { name: 'checkout', path: 'checkout' },
+        { name: 'compare', path: 'compare' },
+        { name: 'wishlist', path: 'wish_list' }],
     },
     {
       title: 'my account',
       links: [
-        'login',
-        'register',
-        'my account',
-        'order history',
-        'order information',
-        'product returns',
-        'gift voucher',
+        { name: 'login', path: 'login' },
+        { name: 'register', path: 'register' },
+        { name: 'my account', path: 'my_account' },
+        { name: 'order history', path: 'order_history' },
+        { name: 'order information', path: 'order_info' },
+        { name: 'product returns', path: 'product_return' },
+        { name: 'gift voucher', path: 'gift_voucher' },
       ],
     },
   ]
@@ -86,13 +97,13 @@ function FeaturesDropDown() {
           <div className="uppercase text-gray-700 font-semibold cursor-pointer hover:text-primary border-b pb-2">
             {nav.title}
           </div>
-          <div className="space-y-2">
+          <div className="space-y-4">
             {nav.links.map((link, lindex) => (
               <div
                 key={lindex}
                 className="capitalize text-xs cursor-pointer hover:text-primary"
               >
-                {link}
+                <Link to={link.path}>{link.name}</Link>
               </div>
             ))}
           </div>
@@ -119,20 +130,35 @@ function FeaturesDropDown() {
 
 function PagesDropDown() {
   const navs = [
-    ['FAQ', 'Site Map', 'Contact us', 'Banner', 'Effect'],
-    ['About us 1', 'About us 2', 'About us 3', 'About us 4'],
+    {
+      links: [
+        { name: 'FAQ', path: 'faq' },
+        { name: 'Site Map' },
+        { name: 'Contact us', path: 'contact_us' },
+        { name: 'Banner', },
+        { name: 'Effect' },
+      ],
+    },
+    {
+      links: [
+        { name: 'About us 1', path: 'about' },
+        { name: 'About us 2', path: '' },
+        { name: 'About us 3', path: '' },
+        { name: 'About us 4', path: '' },
+      ],
+    },
   ]
   const content = (
     <div className="p-10 flex space-x-8 items-start">
-      {navs.map((links, nindex) => (
+      {navs.map((nav, nindex) => (
         <div key={nindex} className="space-y-4">
-          <div className="space-y-3">
-            {links.map((link, lindex) => (
+          <div className="space-y-4">
+            {nav.links.map((link, lindex) => (
               <div
                 key={lindex}
                 className="text-xs cursor-pointer hover:text-primary"
               >
-                {link}
+                <Link to={link.path}>{link.name}</Link>
               </div>
             ))}
           </div>
@@ -238,7 +264,7 @@ function Accessories() {
 function Blog() {
   return (
     <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
-      blog
+      <Link to='blog'>Blog</Link>
     </div>
   )
 }

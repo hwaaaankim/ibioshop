@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 function Article({ article }) {
   return (
@@ -14,7 +15,7 @@ function Article({ article }) {
         <img src={article.picture} className="w-full h-full" />
       </div>
       <div className="p-[15px] space-y-4">
-        <div className="text-[15px] font-medium">{article.title}</div>
+        <div className="text-[15px] font-medium"><Link to="/blog-detail">{article.title}</Link></div>
         <div className="flex space-x-2 items-center justify-between text-gray-400 text-[13px]">
           <div className="flex space-x-2 items-center">
             <i className="fa fa-user"></i>
