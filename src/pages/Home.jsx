@@ -623,9 +623,9 @@ function Testimonials() {
 
 function MiniBanners() {
   return (
-    <div className="grid grid-cols-5 gap-[30px]">
+    <div className="grid grid-cols-2 md:grid-cols-3 mdp5:grid-cols-5 gap-[30px]">
       {[1, 2, 3, 4, 5].map((index) => (
-        <div key={index} className="h-[180px] cursor-pointer hover:opacity-80">
+        <div key={index} className="h-auto cursor-pointer hover:opacity-80">
           <img src="image/catalog/banners/cat1.jpg" className="w-full h-full" />
         </div>
       ))}
@@ -853,12 +853,12 @@ function FlashSale({ currentWidth }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex space-x-4 items-center">
+      <div className="block xs:flex space-y-1 xs:space-y-0 xs:space-x-4 items-center">
         <div ref={flashSaleRef} className="py-1 uppercase text-xl font-bold">
           flash sale
         </div>
 
-        <div className="flex-auto flex space-x-2 items-center justify-between">
+        <div className="xs:flex-auto xs:flex xs:space-x-2 items-center justify-between">
           <div className="flex space-x-2 items-center">
             {[1, 2, 3, 4].map((index) => (
               <div key={index} className="flex space-x-2 items-center">
@@ -869,14 +869,14 @@ function FlashSale({ currentWidth }) {
               </div>
             ))}
           </div>
-          <div className="flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
+          <div className="hidden xs:flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
             <div>View All</div>
             <i className="fa fa-caret-right"></i>
           </div>
         </div>
       </div>
 
-      <div className="flex">
+      <div className="hidden xs:flex">
         <div className="border-b-2 border-primary" style={{ width }}></div>
         <div className="flex-auto border-b-2 border-gray-300"></div>
       </div>
@@ -888,7 +888,15 @@ function FlashSale({ currentWidth }) {
         showChevrons={true}
         chevronY={-80}
         index={0}
-        pageSize={currentWidth >= 1200 ? 5 : currentWidth >= 992 ? 3 : 2}
+        pageSize={
+          currentWidth >= 1200
+            ? 5
+            : currentWidth >= 992
+            ? 3
+            : currentWidth >= 480
+            ? 2
+            : 1
+        }
         showChevronsConditionally={false}
       />
     </div>
