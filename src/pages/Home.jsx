@@ -906,19 +906,19 @@ function FlashSale({ currentWidth }) {
 function CatalogBanners() {
   return (
     <div className="grid grid-cols-4 gap-3">
-      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
         <img
           src="image/catalog/banners/banner3.jpg"
           className="w-full h-full"
         />
       </div>
-      <div className="col-span-2 h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+      <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer opacity-80 hover:opacity-100">
         <img
           src="image/catalog/banners/banner4.jpg"
           className="w-full h-full"
         />
       </div>
-      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
         <img
           src="image/catalog/banners/banner5.jpg"
           className="w-full h-full"
