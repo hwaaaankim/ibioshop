@@ -19,7 +19,6 @@ import Product from './pages/Product'
 import GiftVoucher from './pages/GiftVoucher'
 import OrderHistory from './pages/OrderHistory'
 import Contact from './pages/Contact'
-import QuickView from './components/product/QuickViewModal'
 import Aboutus from './pages/Aboutus'
 import Category from './pages/Category'
 import Blog from './pages/Blog'
@@ -38,7 +37,7 @@ function App() {
       {!header.hidden && <Header />}
       {!breadcrumb.hidden && <Breadcrumb />}
       <Routes>
-        <Route exact path="/" element={<Protected component={<Home />} />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="login" element={<OnlyWhenLoggedOut component={Login} />} />
         <Route path="register" element={<Register />} />
         <Route path="checkout" element={<Checkout />} />
@@ -53,11 +52,8 @@ function App() {
         <Route path="order_history" element={<OrderHistory />} />
         <Route path="contact_us" element={<Contact />} />
         <Route path="faq" element={<Faq />} />
-        {/* <Route path="test" element={<Test />} /> */}
         <Route path="compare" element={<ProductComparison />} />
-        {/* <Route path="test" element={<Test />} /> */}
         <Route path="gift_voucher" element={<GiftVoucher />} />
-        <Route path="quick_view" element={<QuickView />} />
         <Route path="category" element={<Category />} />
         <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />
