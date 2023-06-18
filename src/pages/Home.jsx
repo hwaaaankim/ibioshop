@@ -1256,10 +1256,7 @@ export default function Home() {
       </div>
       <BestSelling />
       <div className="col-span-4 md:flex md:space-x-8 space-y-4 md:space-y-0">
-        <div
-          className="space-y-8"
-          style={{ width: currentWidth >= 768 ? 237 : '' }}
-        >
+        <div className="space-y-8 md:w-[237px] shrink-0">
           <div className="h-[390px] cursor-pointer">
             <img
               src="image/catalog/banners/banner1.jpg"
