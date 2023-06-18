@@ -1,24 +1,19 @@
+import React from 'react'
 import { useRef } from 'react'
 
-export default function CheckBox({ value, setter, title }) {
-  const checkboxRef = useRef(null)
-  const clickTargeRef = () => checkboxRef.current.click()
-
+const CheckBox = React.forwardRef(({ value, setter, title }, ref) => {
   return (
-    <div
-      className="flex space-x-2 items-baseline py-5 cursor-pointer"
-      // style={{ width: 95 + '%', margin: '0 auto' }}
-      // style={{ width: 95 + '%', margin: '0 auto'}}
-      onClick={clickTargeRef}
-    >
+    <div className="flex space-x-2 items-baseline py-5 cursor-pointer">
       <input
         type="checkbox"
         value={value}
         onClick={() => (checked = !checked)}
         className="w-3 h-3"
-        ref={checkboxRef}
+        ref={ref}
       />
       <div className="text-sm text-gray-500">{title}</div>
     </div>
   )
-}
+})
+
+export default CheckBox

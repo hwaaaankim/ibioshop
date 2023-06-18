@@ -31,6 +31,7 @@ function WishListTable() {
   ]
   const handleRemove = () => {}
   const handleUpdate = () => {}
+  const [[imgWidth, imgHeight], setImgDimension] = useState(['80px', '80px'])
   return (
     <>
       <div className="w-full">
@@ -39,35 +40,40 @@ function WishListTable() {
         </h2>
       </div>
       <div
-        className="overflow-x-auto box-border leading-6 text-xs text-gray-2"
+        className="overflow-x-auto box-border min-h-[0.01%] leading-6 text-xs text-gray-2"
         style={{ minHeight: 0.1 + '%' }}
       >
         <table className="mb-3 w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border ">
-          <thead className="px-2 py-2 bg-gray-200 border-b-transparent h-8">
+          <thead className="py-1 bg-zinc-200 border-b-transparent">
             <tr className="font-bold align-top">
-              <td className="text-center border border-solid p-2">Image</td>
-              <td className="text-left border border-solid p-2">
+              <td className="text-center border border-solid px-2">Image</td>
+              <td className="text-left border border-solid px-2">
                 Product Name
               </td>
-              <td className="text-left border border-solid p-2">Model</td>
-              <td className="text-right border border-solid p-2">Stock</td>
-              <td className="text-right border border-solid p-2">Unit Price</td>
-              <td className="text-right border border-solid p-2">Action</td>
+              <td className="text-left border border-solid px-2">Model</td>
+              <td className="text-right border border-solid px-2">Stock</td>
+              <td className="text-right border border-solid px-2">
+                Unit Price
+              </td>
+              <td className="text-right border border-solid px-2">Action</td>
             </tr>
           </thead>
           <tbody>
             {whishs.map((wish) => (
-              <tr key={wish.id} className="hover:bg-gray-100 align-top">
+              <tr
+                key={wish.id}
+                className="hover:bg-gray-100 align-top border border-solid"
+              >
                 <td className="border border-solid p-2 text-center">
                   <a href="product.html">
                     <img
-                      width="60px"
-                      height="40px"
                       src={image}
+                      width={imgWidth}
+                      height={imgHeight}
                       alt="Xitefun Causal Wear Fancy Shoes"
                       title="Xitefun Causal Wear Fancy Shoes"
-                      className="transition-all rounded p-1 border-solid border-gray-400
-                            max-w-full inline-block align-middle w-20 cursor-pointer"
+                      className="transition-all rounded object-cover p-1 border-solid border-gray-400
+                            max-w-full inline-block align-middle cursor-pointer"
                     />
                   </a>
                 </td>
@@ -98,7 +104,7 @@ function WishListTable() {
                     )}
                   </div>
                 </td>
-                <td className="text-right border border-solid p-2 flex flex-col space-y-1 sm:space-y-0 sm:flex-row">
+                <td className="flex float-right p-2">
                   <Tippy
                     content={<span className="text-xs"> Add to Cart</span>}
                   >
@@ -164,7 +170,7 @@ export default function WishList() {
           <WishListTable />
         </div>
         <div
-          className="hidden sm:relative sm:w-1/4 sm:block text-gray-2"
+          className="hidden sm:relative sm:w-1/4 md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />
