@@ -1,6 +1,6 @@
 
 function Total() {
-    return<table className="float-right w-1/3 font-normal">
+    return<table className="sm:float-right sm:w-1/3 text-xs sm:text-sm w-full mb-4 font-normal">
         <tfoot className="">
                 <tr>
                   <td
