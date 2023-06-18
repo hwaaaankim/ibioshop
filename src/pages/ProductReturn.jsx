@@ -23,7 +23,7 @@ export default function ProductReturn() {
     formState: { errors },
   } = useForm()
   const [datePickerIsOpen, setdatePickerIsOpen] = useState(false)
-  const [startDate, setStartDate] = useState('')
+  const [date, setDate] = useState('')
   const handleReturn = async (data) => {}
   const handleChange = () => {}
   return (
@@ -60,7 +60,7 @@ export default function ProductReturn() {
             <hr className="mb-6"></hr>
             {/* PERSONAL DETAILS */}
             <form onSubmit={handleSubmit(handleReturn)}>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -78,7 +78,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -96,7 +96,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label required={true} className="mt-4" name="E-mail"></Label>
                 <span className="flex flex-col w-full">
                   <BaseInput
@@ -110,7 +110,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -129,7 +129,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label required={true} className="mt-4" name="Order ID"></Label>
                 <span className="flex flex-col w-full">
                   <BaseInput
@@ -144,41 +144,42 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label className="mt-4" name="Order Date"></Label>
-                <span className="flex w-full">
+                <div className="flex w-full mr-4">
                   <DatePicker
-                    selected={startDate}
-                    name="startDate"
-                    className="block w-full h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                    selected={date}
+                    name="date"
+                    className="block w-[420px] md:w-[270px]  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
                     dateFormat="yyyy-MM-dd"
                     placeholderText={'Order Date'}
                     onClickOutside={() => {
                       setdatePickerIsOpen((prev) => !prev)
                     }}
                     open={datePickerIsOpen}
-                    onChange={(date) => {
-                      setdatePickerIsOpen((prev) => !prev)
-                      setStartDate(date)
+                    onSelect={(date) => {
+                      // setdatePickerIsOpen((prev) => !prev)
+                      setDate(date)
                     }}
                     {...register('date')}
                   />
+
                   <button
-                    className="leading-normal inline-block mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
-                    cursor-pointer align-middle whitespace-nowrap text-center font-normal py-[6px] px-3 border-collapse box-border"
+                    className="leading-normal border-collapse rounded-l-none -ml-[1px] justify-self-end inline-block mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
+                    cursor-pointer align-middle whitespace-nowrap text-center font-normal py-[6px] px-3 box-border"
                     type="button"
                     onClick={() => {
-                      setStartDate(new Date())
+                      setDate(new Date())
                       setdatePickerIsOpen((prev) => !prev)
                     }}
                   >
                     <i className="fa fa-calendar"></i>
                   </button>
-                </span>
+                </div>
               </div>
               <h2 className="mt-8 mb-2">Product Information</h2>
               <hr className="mb-6"></hr>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -196,7 +197,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -214,7 +215,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label className="mt-4" name="Quantity"></Label>
                 <span className="flex flex-col w-full">
                   <BaseInput
@@ -225,7 +226,7 @@ export default function ProductReturn() {
                   />
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   className="inline-block max-w-full text-right"
                   style={{ width: 16.6667 + '%' }}
@@ -268,7 +269,7 @@ export default function ProductReturn() {
                 </div>
               </div>
 
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label
                   className="mt-4"
                   required={true}
@@ -293,7 +294,7 @@ export default function ProductReturn() {
                   />
                 </span>
               </div>
-              <div className="sm:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 sm:space-x-4">
                 <Label className="mt-4" name="other datails"></Label>
                 <span className="flex gap-4 w-full mt-1">
                   <textarea
@@ -335,7 +336,7 @@ export default function ProductReturn() {
           {/* main page end */}
         </div>
         <div
-          className="relative sm:w-1/4 hidden sm:block text-gray-2"
+          className="relative sm:w-1/4 hidden md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />
