@@ -998,11 +998,11 @@ function ProductCategories({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-stretch justify-between">
-        <div className="bg-primary text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
+      <div className="block mdp5:flex items-stretch justify-between space-y-2 mdp5:space-y-0">
+        <div className="bg-primary inline-block text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
           {category}
         </div>
-        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center justify-end">
+        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center mdp5:justify-end">
           {subCategories.map((scategory, index) => (
             <div
               key={index}
