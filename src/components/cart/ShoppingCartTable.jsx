@@ -14,7 +14,7 @@ function ShoppingCartTable() {
     }
 
     return<div>
-            <table className="mb-3 w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
+            <table className="mb-3 w-full text-xs sm:text-sm max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
               <thead className="px-2 py-2 bg-gray-100 border-b-transparent h-10">
                 <tr className="font-bold ">
                   <td className="text-center">Image</td>
