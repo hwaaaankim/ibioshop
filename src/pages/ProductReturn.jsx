@@ -158,7 +158,7 @@ export default function ProductReturn() {
                     }}
                     open={datePickerIsOpen}
                     onSelect={(date) => {
-                      // setdatePickerIsOpen((prev) => !prev)
+                      setdatePickerIsOpen((prev) => !prev)
                       setDate(date)
                     }}
                     {...register('date')}

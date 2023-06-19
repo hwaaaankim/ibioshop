@@ -191,10 +191,15 @@ function PersonalAddress() {
 
   const states = [
     { name: '--- Please Select ---', value: '' },
-    { name: 'Aaland Islands', value: 244 },
-    { name: 'Bahrain', value: 17 },
+    { name: 'Jeju', value: 'Jeju' },
+    { name: 'South Jeolla', value: 'South Jeolla' },
+    { name: 'North Jeolla', value: 'North Jeolla' },
+    { name: 'South Gyeongsang', value: 'South Gyeongsang' },
+    { name: 'North Gyeongsang', value: 'North Gyeongsang' },
+    { name: 'Gangwon, Gyeonggi', value: 'Gangwon, Gyeonggi' },
+    { name: 'South Chungcheong', value: 'South Chungcheong' },
+    { name: 'North Chungcheong', value: 'North Chungcheong' },
   ]
-
   return (
     <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-3 bg-gray-100">
