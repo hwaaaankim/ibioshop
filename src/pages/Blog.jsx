@@ -1,12 +1,20 @@
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function Article({ article }) {
+  const navigate = useNavigate()
+
+  const openBlogDetail = () => {
+    navigate('/blog-detail')
+  }
   return (
     <div className="">
-      <div className="relative h-[218px] cursor-pointer hover:opacity-80 overflow-hidden">
+      <div
+        className="relative h-[218px] cursor-pointer hover:opacity-80 overflow-hidden"
+        onClick={openBlogDetail}
+      >
         <div className="absolute top-0 left-0 -translate-x-[50%] -translate-y-[50%] w-[140px] h-[140px] bg-white -rotate-45"></div>
         <div className="absolute top-0 left-0 p-2">
           <div className="text-2xl font-bold">{article.publishedAt.day}</div>
@@ -15,7 +23,9 @@ function Article({ article }) {
         <img src={article.picture} className="w-full h-full" />
       </div>
       <div className="p-[15px] space-y-4">
-        <div className="text-[15px] font-medium"><Link to="/blog-detail">{article.title}</Link></div>
+        <div className="text-[15px] font-medium cursor-pointer hover:text-primary">
+          <Link to="/blog-detail">{article.title}</Link>
+        </div>
         <div className="flex space-x-2 items-center justify-between text-gray-400 text-[13px]">
           <div className="flex space-x-2 items-center">
             <i className="fa fa-user"></i>
@@ -70,7 +80,7 @@ export default function Blog() {
     dispatch(setPath({ path: [] }))
   }
   const showBreadCrumb = () => {
-    dispatch(setPath({ path: ['Blog'] }))
+    dispatch(setPath({ path: [{ title: 'Blog', path: '/blog' }] }))
     dispatch(toggleVisibility({ hidden: false }))
   }
   useEffect(() => {

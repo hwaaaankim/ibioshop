@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -110,12 +111,9 @@ function PricingTable() {
           Order Information
         </h2>
       </div>
-      <div
-        className="overflow-x-auto box-border leading-6 text-xs text-gray-2"
-        style={{ minHeight: 0.1 + '%' }}
-      >
+      <div className="box-border overflow-x-auto leading-6 text-xs text-gray-2 min-h-[0.01%]">
         <table
-          className="box-border border-solid border border-gray-3 mb-5 w-full max-w-full bg-transparent 
+          className="box-border border-solid border border-gray-3 min-w-[600px] mb-5 w-full max-w-full bg-transparent 
                         border-collapse text-xs border-spacing-0 "
         >
           <thead className="px-2 py-2 bg-gray-200 border-b-transparent text-sm font-semibold h-8">
@@ -273,9 +271,9 @@ export default function OrderInfo() {
     >
       <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
-          <a href="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
-          </a>
+          <Link to="#">
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
+          </Link>
         </li>
         <li>
           <i className="fa fa-angle-right text-gray-400"></i>
@@ -305,7 +303,7 @@ export default function OrderInfo() {
           </div>
         </div>
         <div
-          className="hidden sm:relative box-border float-left mb-3 px-4 sm:block text-gray-600"
+          className="hidden sm:relative box-border float-left mb-3 px-4 md:block text-gray-600"
           style={{ width: 21 + '%', margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />
