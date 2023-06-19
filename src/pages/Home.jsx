@@ -492,6 +492,7 @@ function Recommended() {
 }
 
 function LatestPosts() {
+  const navigate = useNavigate()
   const posts = [
     {
       title: 'Biten demons lector in henderit in vulp nemusa tumps',
@@ -531,7 +532,10 @@ function LatestPosts() {
                 'space-y-2 pb-4' + (index + 1 < posts.length ? ' border-b' : '')
               }
             >
-              <div className="text-[13px] font-[600] cursor-pointer hover:text-primary">
+              <div
+                className="text-[13px] font-[600] cursor-pointer hover:text-primary"
+                onClick={() => navigate('/blog-detail')}
+              >
                 {post.title}
               </div>
               <div className="flex space-x-2 items-center justify-between text-[#999] text-xs">
