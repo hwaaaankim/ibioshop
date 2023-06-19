@@ -1,6 +1,7 @@
 import Tippy from '@tippyjs/react/headless'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export function Dropdown({
   placement = 'bottom-end',
@@ -117,8 +118,8 @@ function Languages() {
 
 function AccountNavs() {
   const accountNavs = [
-    { icon: 'user', title: 'Register' },
-    { icon: 'pencil-square-o', title: 'Log in' },
+    { icon: 'user', title: 'Register', path: 'register' },
+    { icon: 'pencil-square-o', title: 'Log in', path: 'login' },
   ]
   const content = (
     <div>
@@ -129,7 +130,7 @@ function AccountNavs() {
           style={{ fontSize: 12 }}
         >
           <i className={'fa fa-' + nav.icon} style={{ fontSize: 12 }} />
-          <a href="#">{nav.title}</a>
+          <Link to={nav.path}>{nav.title}</Link>
         </div>
       ))}
     </div>
