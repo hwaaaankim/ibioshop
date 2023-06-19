@@ -5,7 +5,7 @@ import whyList from "../assets/images/icon-whylist.png"
 
 function Aboutus() {
     return <div className="flex flex-col sm:mx-10 mx-3 my-4 pb-2 sm:text-sm lg:text-xs">
-        <ul className="flex flex-row mb-4 mt-7 text-base text-gray-400">
+        <ul className="flex flex-row mb-4 mt-7 text-xs text-gray-400">
             <li className='mt-0.5'>
                 <a href="/">
                     <Icon className="" size="12" id="home"></Icon>
@@ -13,11 +13,11 @@ function Aboutus() {
             </li>
             <Icon className="mt-1 mx-2" id="chevronRight" size="10"></Icon>
             <li className="">
-                <a href="/cart">Page</a>
+                <a href="/">Page</a>
             </li>
             <Icon className="mt-1 mx-2" id="chevronRight" size="10"></Icon>
             <li className="">
-                <a href="/cart">About us</a>
+                <a href="/about">About us</a>
             </li>
         </ul>
         <div className="sm:flex sm:justify-between">
