@@ -80,7 +80,7 @@ export default function Blog() {
     dispatch(setPath({ path: [] }))
   }
   const showBreadCrumb = () => {
-    dispatch(setPath({ path: ['Blog'] }))
+    dispatch(setPath({ path: [{ title: 'Blog', path: '/blog' }] }))
     dispatch(toggleVisibility({ hidden: false }))
   }
   useEffect(() => {

@@ -77,7 +77,15 @@ export default function BlogDetail() {
   }
   const showBreadCrumb = () => {
     dispatch(
-      setPath({ path: ['Blog', 'Duis autem vel eum irure sed diam nonumy'] })
+      setPath({
+        path: [
+          { title: 'Blog', path: '/blog' },
+          {
+            title: 'Duis autem vel eum irure sed diam nonumy',
+            path: '/blog-detail',
+          },
+        ],
+      })
     )
     dispatch(toggleVisibility({ hidden: false }))
   }
