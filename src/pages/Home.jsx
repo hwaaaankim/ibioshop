@@ -238,6 +238,7 @@ function BestSelling() {
 
 function LatestProducts() {
   const [currentPage, setPage] = useState(1)
+  const navigate = useNavigate()
   const products = [
     {
       id: 1,
@@ -264,7 +265,10 @@ function LatestProducts() {
         <div key={index} className="flex space-x-4 items-center">
           <img src={item.picture} className="w-[80px] h-[80px]" />
           <div className="flex-auto space-y-1">
-            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+            <div
+              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              onClick={() => navigate('/product')}
+            >
               {item.name}
             </div>
             <div className="space-x-1">
