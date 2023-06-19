@@ -1212,7 +1212,15 @@ function NewArrivals({ currentWidth }) {
         showChevrons={true}
         chevronY={-50}
         index={0}
-        pageSize={currentWidth >= 1200 ? 5 : currentWidth >= 992 ? 3 : 2}
+        pageSize={
+          currentWidth >= 1200
+            ? 5
+            : currentWidth >= 992
+            ? 3
+            : currentWidth >= 768
+            ? 2
+            : 1
+        }
       />
     </div>
   )
@@ -1294,11 +1302,11 @@ export default function Home() {
           <Technology currentWidth={currentWidth} />
           <FurnitureNdecor currentWidth={currentWidth} />
           <FashionNaccessories currentWidth={currentWidth} />
-          <div className="grid grid-cols-2 gap-[30px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
             {[1, 2].map((index) => (
               <div
                 key={index}
-                className="h-[140px] opacity-80 hover:opacity-100 cursor-pointer"
+                className="opacity-80 hover:opacity-100 cursor-pointer"
               >
                 <img
                   src="image/catalog/banners/bn1.jpg"
