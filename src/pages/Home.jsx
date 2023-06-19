@@ -1212,7 +1212,15 @@ function NewArrivals({ currentWidth }) {
         showChevrons={true}
         chevronY={-50}
         index={0}
-        pageSize={currentWidth >= 1200 ? 5 : currentWidth >= 992 ? 3 : 2}
+        pageSize={
+          currentWidth >= 1200
+            ? 5
+            : currentWidth >= 992
+            ? 3
+            : currentWidth >= 768
+            ? 2
+            : 1
+        }
       />
     </div>
   )
