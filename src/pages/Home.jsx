@@ -410,6 +410,7 @@ function Features() {
 
 function Recommended() {
   const [currentPage, setPage] = useState(0)
+  const navigate = useNavigate()
   const products = [
     {
       id: 1,
@@ -436,7 +437,10 @@ function Recommended() {
 
   const child = ({ item }) => (
     <div className="space-y-2 items-center">
-      <div className="cursor-pointer hover:opacity-80">
+      <div
+        className="cursor-pointer hover:opacity-80"
+        onClick={() => navigate('/product')}
+      >
         <img src={item.picture} className="w-full h-[246px]" />
       </div>
       <div className="flex flex-col items-center space-y-2">
