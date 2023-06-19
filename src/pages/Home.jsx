@@ -640,6 +640,7 @@ function MiniBanners() {
 
 function Product({ product, showProgress = false }) {
   const [mouseOver, setMouseOver] = useState(false)
+  const navigate = useNavigate()
   const ProgressBar = ({ progress }) => (
     <div className="flex">
       <div
@@ -659,7 +660,10 @@ function Product({ product, showProgress = false }) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <div className="h-[180px] cursor-pointer group relative">
+      <div
+        className="h-[180px] cursor-pointer group relative"
+        onClick={() => navigate('/product')}
+      >
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
