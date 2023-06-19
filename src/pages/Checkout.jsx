@@ -191,10 +191,15 @@ function PersonalAddress() {
 
   const states = [
     { name: '--- Please Select ---', value: '' },
-    { name: 'Aaland Islands', value: 244 },
-    { name: 'Bahrain', value: 17 },
+    { name: 'Jeju', value: 'Jeju' },
+    { name: 'South Jeolla', value: 'South Jeolla' },
+    { name: 'North Jeolla', value: 'North Jeolla' },
+    { name: 'South Gyeongsang', value: 'South Gyeongsang' },
+    { name: 'North Gyeongsang', value: 'North Gyeongsang' },
+    { name: 'Gangwon, Gyeonggi', value: 'Gangwon, Gyeonggi' },
+    { name: 'South Chungcheong', value: 'South Chungcheong' },
+    { name: 'North Chungcheong', value: 'North Chungcheong' },
   ]
-
   return (
     <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-3 bg-gray-100">
@@ -702,7 +707,7 @@ export default function Checkout() {
       <ul className="flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
         <li className="relative py-0">
           <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
           </Link>
         </li>
         <li>

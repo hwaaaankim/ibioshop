@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -144,22 +145,24 @@ export default function WishList() {
     >
       <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
-          <a href="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
-          </a>
+          <Link to="#">
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
+          </Link>
         </li>
         <li>
           <i className="fa fa-angle-right text-gray-400"></i>
         </li>
         <li>
-          <a href="#">Account</a>
+          <Link to="#" className="hover:text-blue-2">
+            Account
+          </Link>
         </li>
         <li>
           <i className="fa fa-angle-right text-gray-400"></i>
         </li>
 
         <li className="text-primary">
-          <a href="#">My Wish List</a>
+          <Link href="#">My Wish List</Link>
         </li>
       </ul>
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col sm:flex-row gap-8 p-0 min-h-fit">
