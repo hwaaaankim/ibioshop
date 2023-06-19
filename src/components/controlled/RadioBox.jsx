@@ -1,24 +1,18 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 
-export default function RadioBox({ value, setter, title, selected }) {
-  const radioboxRef = useRef(null)
-  const clickTargeRef = () => radioboxRef.current.click()
-  
+const RadioBox = React.forwardRef(({ value, setter, title, selected }, ref) => {
   return (
-    
-    <div
-      className="flex space-x-1 items-center py-0 cursor-pointer"
-      onClick={clickTargeRef}
-    >
+    <div className="flex space-x-1 items-center py-0 cursor-pointer">
       <input
-        checked = {selected === value}
+        checked={selected === value}
         type="radio"
         value={value}
         onChange={(event) => setter(event.target.value)}
         className="w-3 h-3"
-        ref={radioboxRef}
+        ref={ref}
       />
       <div className="text-xs text-gray-500">{title}</div>
     </div>
   )
-}
+})
+export default RadioBox

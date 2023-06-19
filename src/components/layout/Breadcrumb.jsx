@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 export default function Breadcrumb() {
   const breadcrumb = useSelector((state) => state.breadcrumb)
+  const navigate = useNavigate()
 
   return (
     <ul className="mx-[2.5%] flex items-center list-none my-6 leading-normal bg-transparent p-0 space-x-3">
@@ -29,8 +31,9 @@ export default function Breadcrumb() {
             <div
               className="cursor-pointer hover:text-primary"
               style={{ fontSize: 14 }}
+              onClick={() => navigate(nav.path)}
             >
-              {nav}
+              {nav.title}
             </div>
           </li>
         </>

@@ -191,10 +191,15 @@ function PersonalAddress() {
 
   const states = [
     { name: '--- Please Select ---', value: '' },
-    { name: 'Aaland Islands', value: 244 },
-    { name: 'Bahrain', value: 17 },
+    { name: 'Jeju', value: 'Jeju' },
+    { name: 'South Jeolla', value: 'South Jeolla' },
+    { name: 'North Jeolla', value: 'North Jeolla' },
+    { name: 'South Gyeongsang', value: 'South Gyeongsang' },
+    { name: 'North Gyeongsang', value: 'North Gyeongsang' },
+    { name: 'Gangwon, Gyeonggi', value: 'Gangwon, Gyeonggi' },
+    { name: 'South Chungcheong', value: 'South Chungcheong' },
+    { name: 'North Chungcheong', value: 'North Chungcheong' },
   ]
-
   return (
     <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
       <div className="box-border px-2 py-3 bg-gray-100">
@@ -342,7 +347,7 @@ function DeliPayMethod() {
     }
   }
   return (
-    <div className="relative text-neutral-600 w-full float-left px-4 box-border">
+    <div className="relative text-neutral-600 w-full float-left box-border">
       <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
         <div className="w-1/2 float-left px-4 relative ">
           <div className="px-3 py-2">
@@ -414,47 +419,49 @@ function CouponVoucher() {
   const [voucher, setVoucher] = useState('')
 
   return (
-    <div className="w-full float-left px-4 relative box-border text-xs leading-5">
-      <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
+    <div className="w-full float-left relative box-border text-xs leading-5">
+      <div className="inline-block rounded box-border bg-white border border-solid mb-5 px-0 shadow-sm w-full">
         <div className="px-2 py-3 bg-gray-100 border-b-transparent">
           <h4 className="text-inherit text-base my-0 font-medium leading-tight">
             <i className="fa fa-ticket"></i> Do you Have a Coupon or Voucher?
           </h4>
         </div>
-        <div className="flex flex-col md:flex-row pt-3 leading-6">
-          <div className="float-left w-full mx-0 md:w-1/2 px-4 relative box-border ">
-            <div className="border-separate table relative w-full">
-              <BaseInput
+        <div className="flex flex-col sm:flex-row w-full py-3 px-4 box-border gap-8 leading-6">
+          <div className="float-left w-full sm:w-1/2 relative box-border border-separate table">
+            <div className="border-separate flex relative w-full">
+              <input
+                type="text"
                 value={coupon}
-                setter={setCoupon}
+                className="h-8 w-full px-3 py-1.5 mt-1 z-[2] relative transition duration-150 ease-in-out border border-gray-1 rounded-l-sm rounded-r-none table-cell inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-xs sm:text-sm sm:leading-5"
                 placeholder="Enter your coupon here"
                 onChange={(e) => {
                   setCoupon(e.target.value)
                 }}
               />
-              <span className="whitespace-nowrap align-middle table-cell border-separate">
+              <span className="whitespace-normal relative border-separate align-middle mr-0 inline-block w-fit">
                 <input
                   type="button"
-                  className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
-                    align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 px-2 h-9"
+                  className="cursor-pointer  float-right bg-blue-1 hover:bg-blue-2 text-white border-transparent 
+                    align-middle text-center leading-normal font-normal text-sm inline-block mt-1 px-2 h-8"
                   value="Apply Coupon"
                 />
               </span>
             </div>
           </div>
-          <div className="float-left px-4 w-full mx-0 md:w-1/2 relative box-border ">
-            <div className="border-separate table w-full relative">
-              <BaseInput
+          <div className="float-right w-full sm:w-1/2 relative box-border border-separate table">
+            <div className="border-separate w-full flex relative">
+              <input
+                type="text"
                 value={voucher}
-                setter={setVoucher}
+                className="h-8 w-full px-3 py-1.5 mt-1 z-[2] relative transition duration-150 ease-in-out border border-gray-1 rounded-l-sm rounded-r-none table-cell inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-xs sm:text-sm sm:leading-5"
                 placeholder="Enter your gift voucher code here"
                 onChange={(e) => setVoucher(e.target.value)}
               />
-              <span className="whitespace-nowrap align-middle table-cell border-separate">
+              <span className="whitespace-nowrap inline-block w-fit align-middle border-separate">
                 <input
                   type="button"
                   className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
-                    leading-normal font-normal text-sm inline-block mt-1 -ml-1 px-2 h-9"
+                    leading-normal font-normal float-right text-sm inline-block mt-1 px-2 h-8"
                   value="Apply Voucher"
                 />
               </span>
@@ -471,7 +478,7 @@ function ShoppingCart() {
   const handleRemove = () => {}
   const handleUpdate = () => {}
   return (
-    <div className="w-full float-left px-4 relative box-border text-xs leading-5">
+    <div className="w-full float-left relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
         <div className="px-2 py-3 bg-gray-100 border-b-transparent">
           <h4 className="text-base my-0 font-medium">
@@ -479,20 +486,20 @@ function ShoppingCart() {
           </h4>
         </div>
         <div className="p-4 box-border">
-          <div className="overflow-x-auto">
-            <table className="mb-3 w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
+          <div className="overflow-x-auto ">
+            <table className="mb-3 w-full min-w-[600px] max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
               <thead className="p-2 bg-gray-200 border-b-transparent h-10">
                 <tr className="font-bold ">
-                  <td className="text-center border border-solid align-top p-2 ">
+                  <td className="text-center whitespace-nowrap border border-solid align-top p-2 ">
                     Image
                   </td>
-                  <td className="text-left border border-solid align-top p-2 ">
+                  <td className="text-left border border-solid whitespace-nowrap align-top p-2 ">
                     Product Name
                   </td>
                   <td className="text-left border border-solid align-top p-2 ">
                     Quantity
                   </td>
-                  <td className="text-right border border-solid align-top p-2">
+                  <td className="text-right border border-solid align-top whitespace-nowrap p-2">
                     Unit Price
                   </td>
                   <td className="text-right border border-solid align-top p-2">
@@ -634,7 +641,7 @@ function AddComment() {
   const [comment, setComment] = useState('')
   const [agreeBox, setAgreeBox] = useState(false)
   return (
-    <div className="w-full float-left px-4 relative box-border text-xs leading-5">
+    <div className="w-full float-left relative box-border text-xs leading-5">
       <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
         <div className="px-2 py-3 bg-gray-100 border-b-transparent">
           <h4 className="my-0 text-base font-medium">
@@ -700,7 +707,7 @@ export default function Checkout() {
       <ul className="flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
         <li className="relative py-0">
           <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
           </Link>
         </li>
         <li>
@@ -715,13 +722,13 @@ export default function Checkout() {
           Checkout
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-neutral-700 py-4 min-h-screen">
-        <div className="md:col-span-3">
+      <div className="flex flex-col sm:flex-row gap-8 text-neutral-700 py-4 min-h-screen">
+        <div className="w-full sm:w-1/4">
           <UserAccount />
           <PersonalDetail />
           <PersonalAddress />
         </div>
-        <div className="md:col-span-9">
+        <div className="w-full sm:w-3/4">
           <DeliPayMethod />
           <CouponVoucher />
           <ShoppingCart />

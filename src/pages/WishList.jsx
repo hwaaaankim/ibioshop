@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -31,6 +32,7 @@ function WishListTable() {
   ]
   const handleRemove = () => {}
   const handleUpdate = () => {}
+  const [[imgWidth, imgHeight], setImgDimension] = useState(['80px', '80px'])
   return (
     <>
       <div className="w-full">
@@ -39,35 +41,40 @@ function WishListTable() {
         </h2>
       </div>
       <div
-        className="overflow-x-auto box-border leading-6 text-xs text-gray-2"
+        className="overflow-x-auto box-border min-h-[0.01%] leading-6 text-xs text-gray-2"
         style={{ minHeight: 0.1 + '%' }}
       >
         <table className="mb-3 w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border ">
-          <thead className="px-2 py-2 bg-gray-200 border-b-transparent h-8">
+          <thead className="py-1 bg-zinc-200 border-b-transparent">
             <tr className="font-bold align-top">
-              <td className="text-center border border-solid p-2">Image</td>
-              <td className="text-left border border-solid p-2">
+              <td className="text-center border border-solid px-2">Image</td>
+              <td className="text-left border border-solid px-2">
                 Product Name
               </td>
-              <td className="text-left border border-solid p-2">Model</td>
-              <td className="text-right border border-solid p-2">Stock</td>
-              <td className="text-right border border-solid p-2">Unit Price</td>
-              <td className="text-right border border-solid p-2">Action</td>
+              <td className="text-left border border-solid px-2">Model</td>
+              <td className="text-right border border-solid px-2">Stock</td>
+              <td className="text-right border border-solid px-2">
+                Unit Price
+              </td>
+              <td className="text-right border border-solid px-2">Action</td>
             </tr>
           </thead>
           <tbody>
             {whishs.map((wish) => (
-              <tr key={wish.id} className="hover:bg-gray-100 align-top">
+              <tr
+                key={wish.id}
+                className="hover:bg-gray-100 align-top border border-solid"
+              >
                 <td className="border border-solid p-2 text-center">
                   <a href="product.html">
                     <img
-                      width="60px"
-                      height="40px"
                       src={image}
+                      width={imgWidth}
+                      height={imgHeight}
                       alt="Xitefun Causal Wear Fancy Shoes"
                       title="Xitefun Causal Wear Fancy Shoes"
-                      className="transition-all rounded p-1 border-solid border-gray-400
-                            max-w-full inline-block align-middle w-20 cursor-pointer"
+                      className="transition-all rounded object-cover p-1 border-solid border-gray-400
+                            max-w-full inline-block align-middle cursor-pointer"
                     />
                   </a>
                 </td>
@@ -98,7 +105,7 @@ function WishListTable() {
                     )}
                   </div>
                 </td>
-                <td className="text-right border border-solid p-2 flex flex-col space-y-1 md:space-y-0 md:flex-row">
+                <td className="flex float-right p-2">
                   <Tippy
                     content={<span className="text-xs"> Add to Cart</span>}
                   >
@@ -138,33 +145,35 @@ export default function WishList() {
     >
       <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
-          <a href="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
-          </a>
+          <Link to="#">
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
+          </Link>
         </li>
         <li>
           <i className="fa fa-angle-right text-gray-400"></i>
         </li>
         <li>
-          <a href="#">Account</a>
+          <Link to="#" className="hover:text-blue-2">
+            Account
+          </Link>
         </li>
         <li>
           <i className="fa fa-angle-right text-gray-400"></i>
         </li>
 
         <li className="text-primary">
-          <a href="#">My Wish List</a>
+          <Link href="#">My Wish List</Link>
         </li>
       </ul>
-      <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col md:flex-row gap-8 p-0 min-h-fit">
+      <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col sm:flex-row gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative w-[79 '%'] md: w-full"
+          className="mb-2 float-left relative w-[79 '%'] sm:w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <WishListTable />
         </div>
         <div
-          className="hidden md:relative sm:w-1/4 sm:block text-gray-2"
+          className="hidden sm:relative sm:w-1/4 md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />

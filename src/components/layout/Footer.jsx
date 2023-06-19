@@ -8,7 +8,7 @@ function SocialMedia() {
         <div className="uppercase font-semibold text-xl xl:pr-3 xl:mt-1 xl:block hidden">
           follow socials
         </div>
-        <ul className='flex'>
+        <ul className="flex">
           <li className="w-11 h-11 flex justify-center float-let items-center mx-1 cursor-pointer bg-[#00000033] hover:bg-white hover:text-primary rounded-sm">
             <i className={'fa fa-facebook'} />
           </li>
@@ -205,7 +205,10 @@ function FooterBottom() {
         <div className="flex flex-col items-center space-y-12 sm:w-[80%] mx-auto">
           <ul>
             {navs.map((nav, key) => (
-              <li className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer inline-block px-3">
+              <li
+                key={key}
+                className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer inline-block px-3"
+              >
                 {nav.title}
               </li>
             ))}

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
 import auth from '../services/api/auth'
+import { Link } from 'react-router-dom'
 
 function AccountRegistrationIntro() {
   return (
@@ -22,9 +23,11 @@ function AccountRegistrationIntro() {
       </div>
 
       <div className="flex justify-end p-2 py-3 bg-gray-100">
-        <div className="py-2 px-4 rounded text-white text-sm bg-[#333] hover:bg-primary cursor-pointer">
-          Continue
-        </div>
+        <Link to="/register">
+          <div className="py-2 px-4 rounded text-white text-sm bg-[#333] hover:bg-primary cursor-pointer">
+            Continue
+          </div>
+        </Link>
       </div>
     </div>
   )

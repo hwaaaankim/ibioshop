@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 function Carousel({
   items,
@@ -35,15 +36,25 @@ function Carousel({
       onMouseEnter={() => setMouseIn(true)}
       onMouseLeave={() => setMouseIn(false)}
     >
-      <div ref={widthRef} className="right-0 left-0 top-0"></div>
+      <div ref={widthRef} className="right-0 left-0 top-0 bottom-0"></div>
       <div className={'overflow-x-hidden relative'} style={{ height }}>
         <div className={'relative h-full'}>
           {items.map((item, index) => (
             <motion.div
-              animate={{ x: (index - currentIndex) * (width / pageSize) }}
+              animate={{
+                x:
+                  (index - currentIndex) *
+                  (width / pageSize + (pageSize === 1 ? 0 : 30 / pageSize)),
+              }}
               transition={{ ease: 'easeInOut', duration: 0.5 }}
               className={'absolute left-0'}
-              style={{ width: width / pageSize }}
+              style={{
+                width:
+                  width / pageSize -
+                  (pageSize === 1 ? 0 : 30) +
+                  (pageSize === 1 ? 0 : 30 / pageSize),
+                marginRight: pageSize === 1 ? 0 : 30,
+              }}
               key={index}
             >
               <div ref={index === 0 ? targetEl : null} className="w-full">
@@ -119,6 +130,7 @@ function ImageCarouse() {
 
 function BestSelling() {
   const [currentPage, setPage] = useState(1)
+  const navigate = useNavigate()
   const bestSellingItems = [
     {
       id: 1,
@@ -141,12 +153,15 @@ function BestSelling() {
   ]
 
   const child = ({ item }) => (
-    <div className="w-full grid lgp8:block grid-cols-2 mdp5:grid-cols-4 gap-2">
+    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-2">
       {[1, 2, 3, 4].map((pitem, index) => (
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
           <div className="flex-auto -space-y-1">
-            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+            <div
+              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              onClick={() => navigate('/product')}
+            >
               {item.name}
             </div>
             <div className="space-x-1">
@@ -223,6 +238,7 @@ function BestSelling() {
 
 function LatestProducts() {
   const [currentPage, setPage] = useState(1)
+  const navigate = useNavigate()
   const products = [
     {
       id: 1,
@@ -249,7 +265,10 @@ function LatestProducts() {
         <div key={index} className="flex space-x-4 items-center">
           <img src={item.picture} className="w-[80px] h-[80px]" />
           <div className="flex-auto space-y-1">
-            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+            <div
+              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              onClick={() => navigate('/product')}
+            >
               {item.name}
             </div>
             <div className="space-x-1">
@@ -391,6 +410,7 @@ function Features() {
 
 function Recommended() {
   const [currentPage, setPage] = useState(0)
+  const navigate = useNavigate()
   const products = [
     {
       id: 1,
@@ -417,7 +437,10 @@ function Recommended() {
 
   const child = ({ item }) => (
     <div className="space-y-2 items-center">
-      <div className="cursor-pointer hover:opacity-80">
+      <div
+        className="cursor-pointer hover:opacity-80"
+        onClick={() => navigate('/product')}
+      >
         <img src={item.picture} className="w-full h-[246px]" />
       </div>
       <div className="flex flex-col items-center space-y-2">
@@ -469,6 +492,7 @@ function Recommended() {
 }
 
 function LatestPosts() {
+  const navigate = useNavigate()
   const posts = [
     {
       title: 'Biten demons lector in henderit in vulp nemusa tumps',
@@ -508,7 +532,10 @@ function LatestPosts() {
                 'space-y-2 pb-4' + (index + 1 < posts.length ? ' border-b' : '')
               }
             >
-              <div className="text-[13px] font-[600] cursor-pointer hover:text-primary">
+              <div
+                className="text-[13px] font-[600] cursor-pointer hover:text-primary"
+                onClick={() => navigate('/blog-detail')}
+              >
                 {post.title}
               </div>
               <div className="flex space-x-2 items-center justify-between text-[#999] text-xs">
@@ -613,9 +640,9 @@ function Testimonials() {
 
 function MiniBanners() {
   return (
-    <div className="grid grid-cols-5 gap-[30px]">
+    <div className="grid grid-cols-2 md:grid-cols-3 mdp5:grid-cols-5 gap-[30px]">
       {[1, 2, 3, 4, 5].map((index) => (
-        <div key={index} className="h-[180px] cursor-pointer hover:opacity-80">
+        <div key={index} className="h-auto cursor-pointer hover:opacity-80">
           <img src="image/catalog/banners/cat1.jpg" className="w-full h-full" />
         </div>
       ))}
@@ -625,6 +652,7 @@ function MiniBanners() {
 
 function Product({ product, showProgress = false }) {
   const [mouseOver, setMouseOver] = useState(false)
+  const navigate = useNavigate()
   const ProgressBar = ({ progress }) => (
     <div className="flex">
       <div
@@ -640,11 +668,14 @@ function Product({ product, showProgress = false }) {
 
   return (
     <div
-      className="space-y-2 w-full px-[15px]"
+      className="space-y-2 w-full"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <div className="h-[180px] cursor-pointer group relative">
+      <div
+        className="h-[180px] cursor-pointer group relative"
+        onClick={() => navigate('/product')}
+      >
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
@@ -766,7 +797,7 @@ function Product({ product, showProgress = false }) {
   )
 }
 
-function FlashSale() {
+function FlashSale({ currentWidth }) {
   const flashSaleRef = useRef()
   const [width, setWidht] = useState(0)
   useEffect(() => setWidht(flashSaleRef.current.clientWidth), [])
@@ -843,12 +874,12 @@ function FlashSale() {
 
   return (
     <div className="space-y-4">
-      <div className="flex space-x-4 items-center">
+      <div className="block xs:flex space-y-1 xs:space-y-0 xs:space-x-4 items-center">
         <div ref={flashSaleRef} className="py-1 uppercase text-xl font-bold">
           flash sale
         </div>
 
-        <div className="flex-auto flex space-x-2 items-center justify-between">
+        <div className="xs:flex-auto xs:flex xs:space-x-2 items-center justify-between">
           <div className="flex space-x-2 items-center">
             {[1, 2, 3, 4].map((index) => (
               <div key={index} className="flex space-x-2 items-center">
@@ -859,14 +890,14 @@ function FlashSale() {
               </div>
             ))}
           </div>
-          <div className="flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
+          <div className="hidden xs:flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
             <div>View All</div>
             <i className="fa fa-caret-right"></i>
           </div>
         </div>
       </div>
 
-      <div className="flex">
+      <div className="hidden xs:flex">
         <div className="border-b-2 border-primary" style={{ width }}></div>
         <div className="flex-auto border-b-2 border-gray-300"></div>
       </div>
@@ -878,7 +909,15 @@ function FlashSale() {
         showChevrons={true}
         chevronY={-80}
         index={0}
-        pageSize={5}
+        pageSize={
+          currentWidth >= 1200
+            ? 5
+            : currentWidth >= 992
+            ? 3
+            : currentWidth >= 480
+            ? 2
+            : 1
+        }
         showChevronsConditionally={false}
       />
     </div>
@@ -888,19 +927,19 @@ function FlashSale() {
 function CatalogBanners() {
   return (
     <div className="grid grid-cols-4 gap-3">
-      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
         <img
           src="image/catalog/banners/banner3.jpg"
           className="w-full h-full"
         />
       </div>
-      <div className="col-span-2 h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+      <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer opacity-80 hover:opacity-100">
         <img
           src="image/catalog/banners/banner4.jpg"
           className="w-full h-full"
         />
       </div>
-      <div className="h-[225px] cursor-pointer opacity-80 hover:opacity-100">
+      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
         <img
           src="image/catalog/banners/banner5.jpg"
           className="w-full h-full"
@@ -911,6 +950,7 @@ function CatalogBanners() {
 }
 
 function ProductCategories({
+  currentWidth,
   category,
   subCategories,
   hasLeftBannner = false,
@@ -979,11 +1019,11 @@ function ProductCategories({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-stretch justify-between">
-        <div className="bg-primary text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
+      <div className="block mdp5:flex items-stretch justify-between space-y-2 mdp5:space-y-0">
+        <div className="bg-primary inline-block text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
           {category}
         </div>
-        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center justify-end">
+        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center mdp5:justify-end">
           {subCategories.map((scategory, index) => (
             <div
               key={index}
@@ -994,9 +1034,9 @@ function ProductCategories({
           ))}
         </div>
       </div>
-      <div className="flex space-x-2">
+      <div className="md:flex md:space-x-2 space-y-2 md:space-y-0">
         {hasLeftBannner && (
-          <div className="w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
@@ -1004,7 +1044,7 @@ function ProductCategories({
           </div>
         )}
 
-        <div className="flex-auto">
+        <div className="md:flex-auto">
           <Carousel
             Child={child}
             items={[...products, ...products]}
@@ -1012,12 +1052,22 @@ function ProductCategories({
             showChevrons={true}
             chevronY={-50}
             index={0}
-            pageSize={4}
+            pageSize={
+              currentWidth >= 1200
+                ? 4
+                : currentWidth >= 992
+                ? 2
+                : currentWidth >= 768
+                ? 1
+                : currentWidth >= 480
+                ? 2
+                : 1
+            }
           />
         </div>
 
         {hasRightBanner && (
-          <div className="w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
@@ -1029,7 +1079,7 @@ function ProductCategories({
   )
 }
 
-function Technology() {
+function Technology({ currentWidth }) {
   const scategories = [
     'Smartphone',
     'Tablets',
@@ -1042,11 +1092,12 @@ function Technology() {
       category="Technology"
       subCategories={scategories}
       hasLeftBannner={true}
+      currentWidth={currentWidth}
     />
   )
 }
 
-function FurnitureNdecor() {
+function FurnitureNdecor({ currentWidth }) {
   const scategories = [
     'Living room',
     'Bathroom',
@@ -1059,11 +1110,12 @@ function FurnitureNdecor() {
       category="Furniture & decor"
       subCategories={scategories}
       hasRightBanner={true}
+      currentWidth={currentWidth}
     />
   )
 }
 
-function FashionNaccessories() {
+function FashionNaccessories({ currentWidth }) {
   const scategories = [
     'Smartphone',
     'Tablets',
@@ -1076,11 +1128,12 @@ function FashionNaccessories() {
       category="Fashion & accessories"
       subCategories={scategories}
       hasLeftBannner={true}
+      currentWidth={currentWidth}
     />
   )
 }
 
-function NewArrivals() {
+function NewArrivals({ currentWidth }) {
   const products = [
     {
       name: 'Pastrami bacon',
@@ -1180,7 +1233,15 @@ function NewArrivals() {
         showChevrons={true}
         chevronY={-50}
         index={0}
-        pageSize={5}
+        pageSize={
+          currentWidth >= 1200
+            ? 5
+            : currentWidth >= 992
+            ? 3
+            : currentWidth >= 768
+            ? 2
+            : 1
+        }
       />
     </div>
   )
@@ -1215,8 +1276,17 @@ function BrandsCarousel() {
 }
 
 export default function Home() {
+  const [currentWidth, setCurrentWidth] = useState()
+  const handleResize = function () {
+    setCurrentWidth(document.body.clientWidth)
+  }
+
+  useEffect(() => {
+    setCurrentWidth(document.body.clientWidth)
+    window.addEventListener('resize', handleResize)
+  }, [])
   return (
-    <div className="grid grid-cols-4 gap-8 w-[80%] lgp8:w-[95%] mx-auto py-8">
+    <div className="grid grid-cols-4 gap-8 w-full px-[15px] md:px-0 md:w-[80%] lgp8:w-[95%] mx-auto py-8">
       <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
         <div className="hidden lgp8:block" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">
@@ -1224,8 +1294,8 @@ export default function Home() {
         </div>
       </div>
       <BestSelling />
-      <div className="col-span-4 flex space-x-8">
-        <div className="space-y-8" style={{ width: 237 }}>
+      <div className="col-span-4 md:flex md:space-x-8 space-y-4 md:space-y-0">
+        <div className="space-y-8 md:w-[237px] shrink-0">
           <div className="h-[390px] cursor-pointer">
             <img
               src="image/catalog/banners/banner1.jpg"
@@ -1246,18 +1316,18 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-auto space-y-8">
+        <div className="md:flex-auto space-y-8">
           <MiniBanners />
-          <FlashSale />
+          <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
-          <Technology />
-          <FurnitureNdecor />
-          <FashionNaccessories />
-          <div className="grid grid-cols-2 gap-[30px]">
+          <Technology currentWidth={currentWidth} />
+          <FurnitureNdecor currentWidth={currentWidth} />
+          <FashionNaccessories currentWidth={currentWidth} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
             {[1, 2].map((index) => (
               <div
                 key={index}
-                className="h-[140px] opacity-80 hover:opacity-100 cursor-pointer"
+                className="opacity-80 hover:opacity-100 cursor-pointer"
               >
                 <img
                   src="image/catalog/banners/bn1.jpg"
@@ -1267,7 +1337,7 @@ export default function Home() {
             ))}
           </div>
 
-          <NewArrivals />
+          <NewArrivals currentWidth={currentWidth} />
           <BrandsCarousel />
         </div>
       </div>

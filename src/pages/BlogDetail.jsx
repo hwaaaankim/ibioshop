@@ -15,7 +15,7 @@ function FeedbackForm() {
     <div className="space-y-2">
       <div>Leave your comment</div>
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 mdp5:grid-cols-2">
         <div>
           <BaseInput
             label="Your Name:"
@@ -38,7 +38,7 @@ function FeedbackForm() {
           <span className="text-xs text-red-600">Comment is required</span>
         )}
       </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 mdp5:grid-cols-3">
         <div>
           <BaseInput
             label="Enter the code the box below:"
@@ -56,7 +56,7 @@ function FeedbackForm() {
         src="image/demo/content/captcha.jpg"
         style={{ width: 150, height: 35 }}
       />
-      <div className="flex">
+      <div className="flex pt-8">
         <div
           className="bg-[#555] text-white py-2 text-center rounded text-sm"
           style={{ width: 150 }}
@@ -77,7 +77,15 @@ export default function BlogDetail() {
   }
   const showBreadCrumb = () => {
     dispatch(
-      setPath({ path: ['Blog', 'Duis autem vel eum irure sed diam nonumy'] })
+      setPath({
+        path: [
+          { title: 'Blog', path: '/blog' },
+          {
+            title: 'Duis autem vel eum irure sed diam nonumy',
+            path: '/blog-detail',
+          },
+        ],
+      })
     )
     dispatch(toggleVisibility({ hidden: false }))
   }
@@ -100,8 +108,8 @@ export default function BlogDetail() {
     comments: [],
   }
   return (
-    <div className="px-[2.5%] flex space-x-8">
-      <div className="w-[237px] flex-shrink-0">
+    <div className="px-[2.5%] md:flex md:space-x-8 space-y-8 md:space-y-0">
+      <div className="md:w-[237px] md:flex-shrink-0">
         <div className="border rounded">
           <div className="uppercase font-bold p-[15px] bg-[#f5f5f5] border-b">
             blog category
@@ -125,7 +133,7 @@ export default function BlogDetail() {
           </div>
         </div>
       </div>
-      <div className="flex-auto space-y-6">
+      <div className="md:flex-auto space-y-6">
         <div className="uppercase text-gray-900 font-semibold">
           {article.title}
         </div>
