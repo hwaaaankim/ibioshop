@@ -34,7 +34,7 @@ export default function ProductReturn() {
       <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
           <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
           </Link>
         </li>
         <li>
