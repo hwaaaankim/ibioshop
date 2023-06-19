@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 //import { background } from 'public/image/icon/contact-icon.png'
+import { useNavigate } from 'react-router-dom'
 
 function SocialMedia() {
   return (
@@ -92,9 +93,13 @@ function ContactInfo() {
   )
 }
 
-function SpecialLink({ title }) {
+function SpecialLink({ title, to }) {
+  const navigate = useNavigate()
   return (
-    <div className="flex space-x-2 items-center cursor-pointer text-gray-700 hover:text-primary">
+    <div
+      className="flex space-x-2 items-center cursor-pointer text-gray-700 hover:text-primary"
+      onClick={() => (!to ? null : navigate(to))}
+    >
       <i className="fa fa-dot-circle-o" style={{ fontSize: 8 }} />
       <div className="text-xs">{title}</div>
     </div>
@@ -102,42 +107,42 @@ function SpecialLink({ title }) {
 }
 
 function InformationNavs() {
-  const titles = [
-    'About Us',
-    'FAQ',
-    'Warranty And Services',
-    'Support 24/7 page',
-    'Product Registration',
-    'Product Support',
+  const navs = [
+    { path: '/about', title: 'About Us' },
+    { path: '/faq', title: 'FAQ' },
+    { path: '', title: 'Warranty And Services' },
+    { path: '', title: 'Support 24/7 page' },
+    { path: '', title: 'Product Registration' },
+    { path: '', title: 'Product Support' },
   ]
   return (
     <div>
       <div className="uppercase font-semibold">INFORMATION</div>
       <div className="bg-primary w-[70px] h-[2px]"></div>
       <div className="space-y-4 mt-8">
-        {titles.map((title, index) => (
-          <SpecialLink key={index} title={title} />
+        {navs.map((nav, index) => (
+          <SpecialLink key={index} title={nav.title} to={nav.path} />
         ))}
       </div>
     </div>
   )
 }
 function AccountNavs() {
-  const titles = [
-    'Brands',
-    'Gift Certificates',
-    'Affiliates',
-    'Specials',
-    'FAQs',
-    'Custom Link',
+  const navs = [
+    { path: '', title: 'Brands' },
+    { path: '', title: 'Gift Certificates' },
+    { path: '', title: 'Affiliates' },
+    { path: '', title: 'Specials' },
+    { path: '/faq', title: 'FAQs' },
+    { path: '', title: 'Custom Link' },
   ]
   return (
     <div>
       <div className="uppercase font-semibold">MY ACCOUNT</div>
       <div className="bg-primary w-[70px] h-[2px]"></div>
       <div className="space-y-4 mt-8">
-        {titles.map((title, index) => (
-          <SpecialLink key={index} title={title} />
+        {navs.map((nav, index) => (
+          <SpecialLink key={index} title={nav.title} to={nav.path} />
         ))}
       </div>
     </div>
@@ -165,21 +170,21 @@ function CategoryNavs() {
   )
 }
 function ServiceNavs() {
-  const titles = [
-    'Contact Us',
-    'Returns',
-    'Support',
-    'Site Map',
-    'Customer Service',
-    'Custom Link',
+  const navs = [
+    { path: '/contact_us', title: 'Contact Us' },
+    { path: '/product_return', title: 'Returns' },
+    { path: '', title: 'Support' },
+    { path: '', title: 'Site Map' },
+    { path: '', title: 'Customer Service' },
+    { path: '', title: 'Custom Link' },
   ]
   return (
     <div>
       <div className="uppercase font-semibold">SERVICES</div>
       <div className="bg-primary w-[70px] h-[2px]"></div>
       <div className="space-y-4 mt-8">
-        {titles.map((title, index) => (
-          <SpecialLink key={index} title={title} />
+        {navs.map((nav, index) => (
+          <SpecialLink key={index} title={nav.title} to={nav.path} />
         ))}
       </div>
     </div>
@@ -187,13 +192,14 @@ function ServiceNavs() {
 }
 
 function FooterBottom() {
+  const navigate = useNavigate()
   const navs = [
-    { title: 'about us' },
-    { title: 'customer service' },
-    { title: 'privacy policy' },
-    { title: 'site map' },
-    { title: 'orders and returns' },
-    { title: 'contact us' },
+    { path: '/about', title: 'about us' },
+    { path: '', title: 'customer service' },
+    { path: '', title: 'privacy policy' },
+    { path: '', title: 'site map' },
+    { path: '/order_history', title: 'orders and returns' },
+    { path: '/contact_us', title: 'contact us' },
   ]
   return (
     <div className="border-t border-solid text-center mx-auto my-auto">
@@ -208,6 +214,7 @@ function FooterBottom() {
               <li
                 key={key}
                 className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer inline-block px-3"
+                onClick={() => (!nav.path ? null : navigate(nav.path))}
               >
                 {nav.title}
               </li>

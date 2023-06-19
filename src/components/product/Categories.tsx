@@ -20,7 +20,7 @@ const Disclosure = (props: Props) => {
         className="flex text-left items-center justify-between w-full m-0"
       >
         <div className="text-[#333] font-normal capitalize hover:text-[#094bad] text-[12px]">
-          {props.title}
+          <a href="category">{props.title}</a>
         </div>
         {props.body ? (
           <div onClick={() => setIsOpen((prev) => !prev)}>
@@ -100,7 +100,7 @@ const Disclosure = (props: Props) => {
                 key={i}
                 className="flex flex-col py-2 text-[#333] hover:text-[#094bad] text-xs font-normal cursor-pointer"
               >
-                {faq}
+                <a href="category">{faq}</a>
               </a>
             ))}
           </div>
