@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -270,9 +271,9 @@ export default function OrderInfo() {
     >
       <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
         <li className="relative py-0">
-          <a href="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-3"></i>
-          </a>
+          <Link to="#">
+            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
+          </Link>
         </li>
         <li>
           <i className="fa fa-angle-right text-gray-400"></i>
