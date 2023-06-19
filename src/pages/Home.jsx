@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 function Carousel({
   items,
@@ -129,6 +130,7 @@ function ImageCarouse() {
 
 function BestSelling() {
   const [currentPage, setPage] = useState(1)
+  const navigate = useNavigate()
   const bestSellingItems = [
     {
       id: 1,
@@ -156,7 +158,10 @@ function BestSelling() {
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
           <div className="flex-auto -space-y-1">
-            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+            <div
+              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              onClick={() => navigate('/product')}
+            >
               {item.name}
             </div>
             <div className="space-x-1">
@@ -233,6 +238,7 @@ function BestSelling() {
 
 function LatestProducts() {
   const [currentPage, setPage] = useState(1)
+  const navigate = useNavigate()
   const products = [
     {
       id: 1,
@@ -259,7 +265,10 @@ function LatestProducts() {
         <div key={index} className="flex space-x-4 items-center">
           <img src={item.picture} className="w-[80px] h-[80px]" />
           <div className="flex-auto space-y-1">
-            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+            <div
+              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              onClick={() => navigate('/product')}
+            >
               {item.name}
             </div>
             <div className="space-x-1">
@@ -401,6 +410,7 @@ function Features() {
 
 function Recommended() {
   const [currentPage, setPage] = useState(0)
+  const navigate = useNavigate()
   const products = [
     {
       id: 1,
@@ -427,7 +437,10 @@ function Recommended() {
 
   const child = ({ item }) => (
     <div className="space-y-2 items-center">
-      <div className="cursor-pointer hover:opacity-80">
+      <div
+        className="cursor-pointer hover:opacity-80"
+        onClick={() => navigate('/product')}
+      >
         <img src={item.picture} className="w-full h-[246px]" />
       </div>
       <div className="flex flex-col items-center space-y-2">
@@ -479,6 +492,7 @@ function Recommended() {
 }
 
 function LatestPosts() {
+  const navigate = useNavigate()
   const posts = [
     {
       title: 'Biten demons lector in henderit in vulp nemusa tumps',
@@ -518,7 +532,10 @@ function LatestPosts() {
                 'space-y-2 pb-4' + (index + 1 < posts.length ? ' border-b' : '')
               }
             >
-              <div className="text-[13px] font-[600] cursor-pointer hover:text-primary">
+              <div
+                className="text-[13px] font-[600] cursor-pointer hover:text-primary"
+                onClick={() => navigate('/blog-detail')}
+              >
                 {post.title}
               </div>
               <div className="flex space-x-2 items-center justify-between text-[#999] text-xs">
@@ -635,6 +652,7 @@ function MiniBanners() {
 
 function Product({ product, showProgress = false }) {
   const [mouseOver, setMouseOver] = useState(false)
+  const navigate = useNavigate()
   const ProgressBar = ({ progress }) => (
     <div className="flex">
       <div
@@ -654,7 +672,10 @@ function Product({ product, showProgress = false }) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <div className="h-[180px] cursor-pointer group relative">
+      <div
+        className="h-[180px] cursor-pointer group relative"
+        onClick={() => navigate('/product')}
+      >
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"

@@ -45,7 +45,9 @@ function HomeDropDown() {
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
-          <Link to="/" className="uppercase text-sm font-semibold">home</Link>
+          <Link to="/" className="uppercase text-sm font-semibold">
+            home
+          </Link>
           <i className="fa fa-caret-down" />
         </div>
       </div>
@@ -67,7 +69,8 @@ function FeaturesDropDown() {
       title: 'product',
       links: [
         { name: 'product page 1', path: 'product_one' },
-        { name: 'product page 2', path: 'product' },]
+        { name: 'product page 2', path: 'product' },
+      ],
     },
     {
       title: 'shopping',
@@ -75,7 +78,8 @@ function FeaturesDropDown() {
         { name: 'shopping cart', path: 'cart' },
         { name: 'checkout', path: 'checkout' },
         { name: 'compare', path: 'compare' },
-        { name: 'wishlist', path: 'wish_list' }],
+        { name: 'wishlist', path: 'wish_list' },
+      ],
     },
     {
       title: 'my account',
@@ -135,7 +139,7 @@ function PagesDropDown() {
         { name: 'FAQ', path: 'faq' },
         { name: 'Site Map' },
         { name: 'Contact us', path: 'contact_us' },
-        { name: 'Banner', },
+        { name: 'Banner' },
         { name: 'Effect' },
       ],
     },
@@ -264,7 +268,7 @@ function Accessories() {
 function Blog() {
   return (
     <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
-      <Link to='blog'>Blog</Link>
+      <Link to="blog">Blog</Link>
     </div>
   )
 }
@@ -275,10 +279,14 @@ function AccountNav() {
       <div className="flex space-x-2 items-center">
         <div className="flex space-x-1 items-center cursor-pointer hover:text-black">
           <i className="fa fa-lock" />
-          <div>Login</div>
+          <Link to="/login">
+            <div>Login</div>
+          </Link>
         </div>
         <div>or</div>
-        <div className="cursor-pointer hover:text-black">Register</div>
+        <Link to="/register">
+          <div className="cursor-pointer hover:text-black">Register</div>
+        </Link>
       </div>
 
       <div className="border border-l h-4 border-white"></div>
