@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Dropdown } from './HeaderTop'
+import { useNavigate } from 'react-router-dom'
 
 function Logo() {
   return (
@@ -89,6 +90,7 @@ function Product({ product, light = false }) {
   )
 }
 function CartContent() {
+  const navigate = useNavigate()
   const products = [
     { id: 1, name: 'Yutculpa ullamco', size: 'xl', price: 80.0 },
     { id: 2, name: 'Xancetta bresao', size: 'xl', price: 60.0 },
@@ -118,11 +120,17 @@ function CartContent() {
           <div className="text-right">$162.00</div>
         </div>
         <div className="flex space-x-[12px] items-center justify-end py-2">
-          <div className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary">
+          <div
+            className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary"
+            onClick={() => navigate('/cart')}
+          >
             <i className="fa fa-shopping-cart"></i>
             <div>View Cart</div>
           </div>
-          <div className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary">
+          <div
+            className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary"
+            onClick={() => navigate('/checkout')}
+          >
             <i className="fa fa-share"></i>
             <div>Checkout</div>
           </div>
