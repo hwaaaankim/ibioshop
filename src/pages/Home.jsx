@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 function Carousel({
   items,
@@ -129,6 +130,7 @@ function ImageCarouse() {
 
 function BestSelling() {
   const [currentPage, setPage] = useState(1)
+  const navigate = useNavigate()
   const bestSellingItems = [
     {
       id: 1,
@@ -156,7 +158,10 @@ function BestSelling() {
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
           <div className="flex-auto -space-y-1">
-            <div className="text-[13px] pt-2 cursor-pointer hover:text-primary">
+            <div
+              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              onClick={() => navigate('/product')}
+            >
               {item.name}
             </div>
             <div className="space-x-1">
