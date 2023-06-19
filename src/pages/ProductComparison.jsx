@@ -4,6 +4,17 @@ function ProductComparison() {
 
     return <div className="py-10 pl-5 mx-5 overflow-x-auto">
         <h1 className="text-lg ">Product Comparison</h1>
+        <ul className="flex flex-row mb-4 mt-7 text-gray-400">
+        <li>
+          <a href="/">
+            <Icon className="" size="12" id="home"></Icon>
+          </a>
+        </li>
+        <Icon className="mt-0.5 mx-2" id="chevronRight" size="10"></Icon>
+        <li className="/">
+          <a href="/compare">Product Comparison</a>
+        </li>
+      </ul>
         <table className="">
             <thead className='py-2 comparison-thead'>
                 <tr className='border'>

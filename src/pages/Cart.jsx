@@ -16,7 +16,7 @@ function Cart() {
           </a>
         </li>
         <Icon className="mt-0.5 mx-2" id="chevronRight" size="10"></Icon>
-        <li className="">
+        <li className="/">
           <a href="/cart">Shopping Cart</a>
         </li>
       </ul>
@@ -33,10 +33,10 @@ function Cart() {
         <Total></Total>
         </div>
         <div className="space-x-2 justify-around"> 
-          <button className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
-                align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 px-2 h-9">Continue Shopping</button>
-          <button className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
-                align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 px-2 h-9">Checkout</button>
+          <a href='/' className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
+                align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 pt-2 px-2 h-9">Continue Shopping</a>
+          <a href='/checkout' className="cursor-pointer  bg-blue-1 hover:bg-blue-2 text-white border-transparent 
+                align-middle text-center leading-normal font-normal text-sm inline-block -ml-1 mt-1 pt-2 px-2 h-9">Checkout</a>
         </div>
         </div>
         <div className="h-60"></div>
