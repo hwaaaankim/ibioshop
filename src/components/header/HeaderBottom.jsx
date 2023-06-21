@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function GiftNToys() {
   const categories = [
@@ -274,7 +274,7 @@ function SmartphoneNTablets() {
   )
 }
 
-function CategoriesMenu() {
+function CategoriesMenu({ currentWidth }) {
   const Content = () => {
     const [initial, setInitial] = useState(true)
     const [showMoreCategories, setShowMore] = useState(false)
@@ -414,7 +414,7 @@ function CategoriesMenu() {
       hasPadding={false}
       content={<Content />}
       offset={0}
-      visible={true}
+      visible={currentWidth >= 1200}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
@@ -714,10 +714,20 @@ function AccountNav() {
 }
 
 export default function HeaderBottom() {
+  const [currentWidth, setCurrentWidth] = useState()
+  const handleResize = function () {
+    setCurrentWidth(document.body.clientWidth)
+  }
+
+  useEffect(() => {
+    setCurrentWidth(document.body.clientWidth)
+    window.addEventListener('resize', handleResize)
+  }, [])
+
   return (
     <div className="flex items-center mdp5:space-x-8 text-white px-[2.5%]">
       <div className="hidden mdp5:flex space-x-8 items-end">
-        <CategoriesMenu />
+        <CategoriesMenu currentWidth={currentWidth} />
         <HomeDropDown />
         <FeaturesDropDown />
         <PagesDropDown />
