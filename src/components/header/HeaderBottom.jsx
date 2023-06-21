@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 function GiftNToys() {
   const categories = [
@@ -720,19 +721,27 @@ function Drawer({ content, children }) {
   return (
     <div className="">
       <div onClick={() => setShowDrawer(true)}>{children}</div>
-      {showDrawer && (
-        <div className="fixed left-0 top-0 bottom-0 z-20 bg-[#333] text-white space-y-2 p-4">
-          <div className="flex justify-end">
-            <div
-              className="cursor-pointer p-2"
-              onClick={() => setShowDrawer(false)}
-            >
-              <i className="fa fa-times"></i>
+      <AnimatePresence>
+        {showDrawer && (
+          <motion.div
+            initial={{ x: -100 + '%' }}
+            animate={{ x: 0 }}
+            exit={{ x: -100 + '%' }}
+            transition={{ ease: 'easeInOut' }}
+            className="fixed left-0 top-0 bottom-0 z-20 bg-[#333] text-white space-y-2 p-4"
+          >
+            <div className="flex justify-end">
+              <div
+                className="cursor-pointer p-2"
+                onClick={() => setShowDrawer(false)}
+              >
+                <i className="fa fa-times"></i>
+              </div>
             </div>
-          </div>
-          {content}
-        </div>
-      )}
+            {content}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
