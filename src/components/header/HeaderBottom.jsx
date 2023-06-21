@@ -1,17 +1,431 @@
 import { Link } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
+import { useState } from 'react'
+
+function GiftNToys() {
+  const categories = [
+    {
+      category: 'Apparel',
+      subcategories: [
+        'Accessories for Tablet PC',
+        'Accessories for iPad',
+        'Accessories for iPhone',
+        'Bags, Holiday Supplies',
+        'Car Alarms and Security',
+        'Car Audio & Speakers',
+      ],
+    },
+    {
+      category: 'Camping and hiking',
+      subcategories: [
+        'Earings',
+        'Shaving & Hair',
+        'Removal',
+        'Salon & Spa Equipment',
+      ],
+    },
+    {
+      category: 'Holiday supplies',
+      subcategories: [
+        'Batteries and Chargers',
+        'Bath & Body',
+        'Headphones & Headsets',
+        'Home Audio',
+      ],
+    },
+    {
+      category: 'cables & connectors',
+      subcategories: ['Cameras & Photo', 'Electronics', 'Outdoor & Traveling'],
+    },
+    {
+      category: 'smartphone & tablets',
+      subcategories: [
+        'Sports & Outdoors',
+        'Bath & Body',
+        'Gadgets & Auto Parts',
+      ],
+    },
+  ]
+  const content = (
+    <div className="py-12 px-6 grid grid-cols-3 gap-4 w-[650px]">
+      {categories.map((item, index) => (
+        <div key={index} className="space-y-3">
+          <div className="font-bold uppercase">{item.category}</div>
+          <div className="space-y-2">
+            {item.subcategories.map((subItem, sindex) => (
+              <div
+                key={sindex}
+                className="text-sm cursor-pointer hover:text-primary"
+              >
+                {subItem}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico10.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Gifts & Toys
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
+function Electronics() {
+  const categories = [
+    {
+      category: 'smartphone',
+      subcategories: ['Esdipiscing', 'Scanners', 'Apple', 'Dell', 'Scanners'],
+    },
+    {
+      category: 'Electronics',
+      subcategories: ['Asdipiscing', 'Diam Sit', 'Labore et', 'Monitors'],
+    },
+  ]
+  const content = (
+    <div className="py-12 px-6 grid grid-cols-2 gap-4 w-[350px]">
+      <div className="space-y-4">
+        {categories.map((item, index) => (
+          <div key={index} className="space-y-3">
+            <div className="font-bold uppercase">{item.category}</div>
+            <div className="space-y-2">
+              {item.subcategories.map((subItem, sindex) => (
+                <div
+                  key={sindex}
+                  className="text-sm cursor-pointer hover:text-primary"
+                >
+                  {subItem}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <img src="image/catalog/menu/megabanner/vbanner1.jpg" alt="" />
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico9.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Electronic
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
+function HealthNBeauty() {
+  const categories = [
+    {
+      category: 'car alarms and security',
+      subcategories: [
+        'Accessories for Tablet PC',
+        'Accessories for iPad',
+        'Accessories for iPhone',
+        'Bags, Holiday Supplies',
+        'Car Alarms and Security',
+        'Car Audio & Speakers',
+      ],
+    },
+    {
+      category: 'electronics',
+      subcategories: [
+        'Earings',
+        'Shaving & Hair',
+        'Removal',
+        'Salon & Spa Equipment',
+      ],
+    },
+    {
+      category: 'more car accessories',
+      subcategories: [
+        'Batteries and Chargers',
+        'Bath & Body',
+        'Headphones & Headsets',
+        'Home Audio',
+      ],
+    },
+    {
+      category: 'health & beauty',
+      subcategories: ['Cameras & Photo', 'Electronics', 'Outdoor & Traveling'],
+    },
+    {
+      category: 'sports & outdoors',
+      subcategories: [
+        'Sports & Outdoors',
+        'Bath & Body',
+        'Gadgets & Auto Parts',
+      ],
+    },
+    {
+      category: 'gadgets & auto parts',
+      subcategories: [
+        'Sports & Outdoors',
+        'Bath & Body',
+        'Gadgets & Auto Parts',
+      ],
+    },
+  ]
+  const content = (
+    <div className="py-12 px-6 grid grid-cols-3 gap-4 w-[650px]">
+      {categories.map((item, index) => (
+        <div key={index} className="space-y-3">
+          <div className="font-bold uppercase">{item.category}</div>
+          <div className="space-y-2">
+            {item.subcategories.map((subItem, sindex) => (
+              <div
+                key={sindex}
+                className="text-sm cursor-pointer hover:text-primary"
+              >
+                {subItem}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico7.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Health & Beauty
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
+function SmartphoneNTablets() {
+  const categories = [
+    'Headphones & Headsets',
+    'Home Audio',
+    'Health & Beauty',
+    'Helicopters & Parts',
+    'Helicopters & Parts',
+  ]
+  const content = (
+    <div className="py-4 px-4 space-y-2">
+      {categories.map((category, index) => (
+        <div key={index} className="text-sm cursor-pointer hover:text-primary">
+          {category}
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico6.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Smartphone & Tablets
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
 
 function CategoriesMenu() {
-  return (
-    <div>
-      <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
-        <div className="flex space-x-2 items-center">
-          <i className="fa fa-bars" style={{ fontSize: 16 }} />
-          <div className="uppercase text-base font-medium">all categories</div>
+  const Content = () => {
+    const [initial, setInitial] = useState(true)
+    const [showMoreCategories, setShowMore] = useState(false)
+    const handleToggle = () => {
+      if (initial) setInitial(false)
+      setShowMore((prev) => !prev)
+    }
+    return (
+      <div className="pl-2 pr-4 pb-3 bg-[#f5f5f5] w-[237px]">
+        <GiftNToys />
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico1.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Fashion & Accessories
+          </div>
         </div>
-        <i className="fa fa-angle-down" style={{ fontSize: 16 }} />
+        <Electronics />
+
+        <HealthNBeauty />
+
+        <SmartphoneNTablets />
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico5.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Health & Beauty
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico4.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Bathroom
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico3.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Metallurgy
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico2.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Bedroom
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico1.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Health & Beauty
+          </div>
+        </div>
+
+        {showMoreCategories && (
+          <>
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico12.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Jewelry & Watches
+              </div>
+            </div>
+
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico9.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Home & Lights
+              </div>
+            </div>
+
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico6.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Metallurgy
+              </div>
+            </div>
+          </>
+        )}
+
+        <div
+          className="flex space-x-3 items-center cursor-pointer pl-2 py-[3px]"
+          onClick={handleToggle}
+        >
+          <i
+            className={
+              'fa fa-' +
+              (showMoreCategories ? 'minus' : 'plus') +
+              '-square' +
+              (initial ? '-o' : '') +
+              ' text-primary'
+            }
+          ></i>
+          <div className="text-sm flex-auto text-primary">
+            {initial ? 'More' : showMoreCategories ? 'Close' : 'Open'}{' '}
+            Categories
+          </div>
+        </div>
       </div>
-    </div>
+    )
+  }
+
+  return (
+    <Dropdown
+      placement="bottom-start"
+      bordered={false}
+      hasPadding={false}
+      content={<Content />}
+      offset={0}
+      visible={true}
+    >
+      <div>
+        <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
+          <div className="flex space-x-2 items-center">
+            <i className="fa fa-bars" style={{ fontSize: 16 }} />
+            <div className="uppercase text-sm font-bold">all categories</div>
+          </div>
+          <i className="fa fa-angle-down" style={{ fontSize: 16 }} />
+        </div>
+      </div>
+    </Dropdown>
   )
 }
 
