@@ -142,6 +142,99 @@ function Electronics() {
   )
 }
 
+function HealthNBeauty() {
+  const categories = [
+    {
+      category: 'car alarms and security',
+      subcategories: [
+        'Accessories for Tablet PC',
+        'Accessories for iPad',
+        'Accessories for iPhone',
+        'Bags, Holiday Supplies',
+        'Car Alarms and Security',
+        'Car Audio & Speakers',
+      ],
+    },
+    {
+      category: 'electronics',
+      subcategories: [
+        'Earings',
+        'Shaving & Hair',
+        'Removal',
+        'Salon & Spa Equipment',
+      ],
+    },
+    {
+      category: 'more car accessories',
+      subcategories: [
+        'Batteries and Chargers',
+        'Bath & Body',
+        'Headphones & Headsets',
+        'Home Audio',
+      ],
+    },
+    {
+      category: 'health & beauty',
+      subcategories: ['Cameras & Photo', 'Electronics', 'Outdoor & Traveling'],
+    },
+    {
+      category: 'sports & outdoors',
+      subcategories: [
+        'Sports & Outdoors',
+        'Bath & Body',
+        'Gadgets & Auto Parts',
+      ],
+    },
+    {
+      category: 'gadgets & auto parts',
+      subcategories: [
+        'Sports & Outdoors',
+        'Bath & Body',
+        'Gadgets & Auto Parts',
+      ],
+    },
+  ]
+  const content = (
+    <div className="py-12 px-6 grid grid-cols-3 gap-4 w-[650px]">
+      {categories.map((item, index) => (
+        <div key={index} className="space-y-3">
+          <div className="font-bold uppercase">{item.category}</div>
+          <div className="space-y-2">
+            {item.subcategories.map((subItem, sindex) => (
+              <div
+                key={sindex}
+                className="text-sm cursor-pointer hover:text-primary"
+              >
+                {subItem}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico7.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Health & Beauty
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
 function CategoriesMenu() {
   const Content = () => {
     const [initial, setInitial] = useState(true)
@@ -165,16 +258,7 @@ function CategoriesMenu() {
         </div>
         <Electronics />
 
-        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
-          <img
-            src="image/catalog/menu/icons/ico7.png"
-            className="w-[26px] h-[26px]"
-          />
-          <div className="text-sm flex-auto group-hover:text-primary">
-            Health & Beauty
-          </div>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </div>
+        <HealthNBeauty />
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
