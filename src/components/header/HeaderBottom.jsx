@@ -2,6 +2,91 @@ import { Link } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useState } from 'react'
 
+function GiftNToys() {
+  const categories = [
+    {
+      category: 'Apparel',
+      subcategories: [
+        'Accessories for Tablet PC',
+        'Accessories for iPad',
+        'Accessories for iPhone',
+        'Bags, Holiday Supplies',
+        'Car Alarms and Security',
+        'Car Audio & Speakers',
+      ],
+    },
+    {
+      category: 'Camping and hiking',
+      subcategories: [
+        'Earings',
+        'Shaving & Hair',
+        'Removal',
+        'Salon & Spa Equipment',
+      ],
+    },
+    {
+      category: 'Holiday supplies',
+      subcategories: [
+        'Batteries and Chargers',
+        'Bath & Body',
+        'Headphones & Headsets',
+        'Home Audio',
+      ],
+    },
+    {
+      category: 'cables & connectors',
+      subcategories: ['Cameras & Photo', 'Electronics', 'Outdoor & Traveling'],
+    },
+    {
+      category: 'smartphone & tablets',
+      subcategories: [
+        'Sports & Outdoors',
+        'Bath & Body',
+        'Gadgets & Auto Parts',
+      ],
+    },
+  ]
+  const content = (
+    <div className="py-12 px-6 grid grid-cols-3 gap-4 w-[650px]">
+      {categories.map((item, index) => (
+        <div key={index} className="space-y-3">
+          <div className="font-bold uppercase">{item.category}</div>
+          <div className="space-y-2">
+            {item.subcategories.map((subItem, sindex) => (
+              <div
+                key={sindex}
+                className="text-sm cursor-pointer hover:text-primary"
+              >
+                {subItem}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico10.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Gifts & Toys
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
 function CategoriesMenu() {
   const Content = () => {
     const [initial, setInitial] = useState(true)
@@ -12,16 +97,7 @@ function CategoriesMenu() {
     }
     return (
       <div className="pl-2 pr-4 pb-3 bg-[#f5f5f5] w-[237px]">
-        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
-          <img
-            src="image/catalog/menu/icons/ico10.png"
-            className="w-[26px] h-[26px]"
-          />
-          <div className="text-sm flex-auto group-hover:text-primary">
-            Gifts & Toys
-          </div>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </div>
+        <GiftNToys />
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
