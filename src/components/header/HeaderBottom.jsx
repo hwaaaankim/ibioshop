@@ -880,6 +880,30 @@ function CategoriesMenuDrawer() {
   )
 }
 
+function MainMenuDrawer() {
+  const Content = () => (
+    <div className="min-w-[200px]">
+      {['Home', 'features', 'pages', 'categories', 'accessories', 'blog'].map(
+        (nav, index) => (
+          <div
+            className="uppercase p-1 cursor-pointer border-t border-gray-500"
+            key={index}
+          >
+            {nav}
+          </div>
+        )
+      )}
+    </div>
+  )
+  return (
+    <Drawer content={<Content />}>
+      <div className="py-1 px-2">
+        <i className="fa fa-bars" style={{ fontSize: 20 }}></i>
+      </div>
+    </Drawer>
+  )
+}
+
 export default function HeaderBottom() {
   const [currentWidth, setCurrentWidth] = useState()
   const handleResize = function () {
@@ -909,9 +933,7 @@ export default function HeaderBottom() {
       </div>
       <div className="flex-auto flex mdp5:hidden items-center justify-between">
         <CategoriesMenuDrawer />
-        <div className="py-1 px-2">
-          <i className="fa fa-bars" style={{ fontSize: 20 }}></i>
-        </div>
+        <MainMenuDrawer />
       </div>
     </div>
   )
