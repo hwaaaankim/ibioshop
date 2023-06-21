@@ -87,6 +87,61 @@ function GiftNToys() {
   )
 }
 
+function Electronics() {
+  const categories = [
+    {
+      category: 'smartphone',
+      subcategories: ['Esdipiscing', 'Scanners', 'Apple', 'Dell', 'Scanners'],
+    },
+    {
+      category: 'Electronics',
+      subcategories: ['Asdipiscing', 'Diam Sit', 'Labore et', 'Monitors'],
+    },
+  ]
+  const content = (
+    <div className="py-12 px-6 grid grid-cols-2 gap-4 w-[350px]">
+      <div className="space-y-4">
+        {categories.map((item, index) => (
+          <div key={index} className="space-y-3">
+            <div className="font-bold uppercase">{item.category}</div>
+            <div className="space-y-2">
+              {item.subcategories.map((subItem, sindex) => (
+                <div
+                  key={sindex}
+                  className="text-sm cursor-pointer hover:text-primary"
+                >
+                  {subItem}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <img src="image/catalog/menu/megabanner/vbanner1.jpg" alt="" />
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico9.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Electronic
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
 function CategoriesMenu() {
   const Content = () => {
     const [initial, setInitial] = useState(true)
@@ -108,17 +163,7 @@ function CategoriesMenu() {
             Fashion & Accessories
           </div>
         </div>
-
-        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
-          <img
-            src="image/catalog/menu/icons/ico9.png"
-            className="w-[26px] h-[26px]"
-          />
-          <div className="text-sm flex-auto group-hover:text-primary">
-            Electronic
-          </div>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </div>
+        <Electronics />
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
