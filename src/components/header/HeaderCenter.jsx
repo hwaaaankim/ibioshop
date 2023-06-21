@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Dropdown } from './HeaderTop'
 import { useNavigate } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 
 function Logo() {
   return (
@@ -188,14 +189,46 @@ function RightNavs() {
   )
 }
 
+function SearchMini() {
+  const [showSearch, setShowSearch] = useState(false)
+  return (
+    <div className="p-0 relative">
+      <div
+        className="p-1 cursor-pointer text-white"
+        onClick={() => setShowSearch((prev) => !prev)}
+      >
+        <i className={'fa fa-' + (showSearch ? 'times' : 'search')}></i>
+      </div>
+      <AnimatePresence>
+        {showSearch && (
+          <motion.div
+            initial={{ scaleY: 0, originY: 0 }}
+            animate={{ scaleY: 1 }}
+            exit={{ scaleY: 0 }}
+            transition={{ ease: 'easeInOut' }}
+            className="absolute mt-[6px] py-1 pl-[20px] pr-[10px] bg-white rounded"
+          >
+            <div className="flex items-center w-full">
+              <input
+                type="text"
+                className="flex-auto outline-none py-1  px-2 text-xs"
+                placeholder="Keyword here..."
+              />
+              <div className="p-1">
+                <i className="fa fa-search"></i>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 function CartNsearchMini() {
   return (
     <div className="flex md:hidden space-x-2 justify-between">
-      <div className="p-0 relative">
-        <div className="p-1 cursor-pointer text-white">
-          <i className="fa fa-search"></i>
-        </div>
-      </div>
+      <SearchMini />
       <CartMini />
     </div>
   )
