@@ -715,6 +715,171 @@ function AccountNav() {
   )
 }
 
+function Drawer({ content, children }) {
+  const [showDrawer, setShowDrawer] = useState(false)
+  return (
+    <div className="">
+      <div onClick={() => setShowDrawer(true)}>{children}</div>
+      {showDrawer && (
+        <div className="fixed left-0 top-0 bottom-0 z-20 bg-[#333] text-white space-y-2 p-4">
+          <div className="flex justify-end">
+            <div
+              className="cursor-pointer p-2"
+              onClick={() => setShowDrawer(false)}
+            >
+              <i className="fa fa-times"></i>
+            </div>
+          </div>
+          {content}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function CategoriesMenuDrawer() {
+  const Content = () => {
+    const [initial, setInitial] = useState(true)
+    const [showMoreCategories, setShowMore] = useState(false)
+    const handleToggle = () => {
+      if (initial) setInitial(false)
+      setShowMore((prev) => !prev)
+    }
+    return (
+      <div className="pl-2 pr-4 pb-3 w-[237px]">
+        {/* <GiftNToys /> */}
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico1.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Fashion & Accessories
+          </div>
+        </div>
+        {/* <Electronics /> */}
+
+        {/* <HealthNBeauty /> */}
+
+        {/* <SmartphoneNTablets /> */}
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico5.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Health & Beauty
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico4.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Bathroom
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico3.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Metallurgy
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico2.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Bedroom
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico1.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Health & Beauty
+          </div>
+        </div>
+
+        {showMoreCategories && (
+          <>
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico12.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Jewelry & Watches
+              </div>
+            </div>
+
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico9.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Home & Lights
+              </div>
+            </div>
+
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico6.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Metallurgy
+              </div>
+            </div>
+          </>
+        )}
+
+        <div
+          className="flex space-x-3 items-center cursor-pointer pl-2 py-[3px]"
+          onClick={handleToggle}
+        >
+          <i
+            className={
+              'fa fa-' +
+              (showMoreCategories ? 'minus' : 'plus') +
+              '-square' +
+              (initial ? '-o' : '') +
+              ' text-primary'
+            }
+          ></i>
+          <div className="text-sm flex-auto text-primary">
+            {initial ? 'More' : showMoreCategories ? 'Close' : 'Open'}{' '}
+            Categories
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <Drawer content={<Content />}>
+      <div className="flex space-x-2 items-center py-1 cursor-pointer">
+        <i className="fa fa-bars"></i>
+        <div className="uppercase text-sm">all categories</div>
+      </div>
+    </Drawer>
+  )
+}
+
 export default function HeaderBottom() {
   const [currentWidth, setCurrentWidth] = useState()
   const handleResize = function () {
@@ -743,10 +908,7 @@ export default function HeaderBottom() {
         <AccountNav />
       </div>
       <div className="flex-auto flex mdp5:hidden items-center justify-between">
-        <div className="flex space-x-2 items-center py-1 cursor-pointer">
-          <i className="fa fa-bars"></i>
-          <div className="uppercase text-sm">all categories</div>
-        </div>
+        <CategoriesMenuDrawer />
         <div className="py-1 px-2">
           <i className="fa fa-bars" style={{ fontSize: 20 }}></i>
         </div>
