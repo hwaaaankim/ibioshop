@@ -235,6 +235,45 @@ function HealthNBeauty() {
   )
 }
 
+function SmartphoneNTablets() {
+  const categories = [
+    'Headphones & Headsets',
+    'Home Audio',
+    'Health & Beauty',
+    'Helicopters & Parts',
+    'Helicopters & Parts',
+  ]
+  const content = (
+    <div className="py-4 px-4 space-y-2">
+      {categories.map((category, index) => (
+        <div key={index} className="text-sm cursor-pointer hover:text-primary">
+          {category}
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <Dropdown
+      placement="right-start"
+      bordered={false}
+      hasPadding={false}
+      content={content}
+      offset={[0, 16]}
+    >
+      <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+        <img
+          src="image/catalog/menu/icons/ico6.png"
+          className="w-[26px] h-[26px]"
+        />
+        <div className="text-sm flex-auto group-hover:text-primary">
+          Smartphone & Tablets
+        </div>
+        <i className="fa fa-angle-right text-gray-400"></i>
+      </div>
+    </Dropdown>
+  )
+}
+
 function CategoriesMenu() {
   const Content = () => {
     const [initial, setInitial] = useState(true)
@@ -260,16 +299,7 @@ function CategoriesMenu() {
 
         <HealthNBeauty />
 
-        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
-          <img
-            src="image/catalog/menu/icons/ico6.png"
-            className="w-[26px] h-[26px]"
-          />
-          <div className="text-sm flex-auto group-hover:text-primary">
-            Smartphone & Tablets
-          </div>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </div>
+        <SmartphoneNTablets />
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
