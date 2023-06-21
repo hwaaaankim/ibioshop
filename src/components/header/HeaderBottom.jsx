@@ -407,6 +407,8 @@ function CategoriesMenu({ currentWidth }) {
     )
   }
 
+  const visibility = currentWidth >= 1200 ? { visible: true } : {}
+
   return (
     <Dropdown
       placement="bottom-start"
@@ -414,7 +416,7 @@ function CategoriesMenu({ currentWidth }) {
       hasPadding={false}
       content={<Content />}
       offset={0}
-      visible={currentWidth >= 1200}
+      {...visibility}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
