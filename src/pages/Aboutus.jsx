@@ -2,8 +2,42 @@ import Icon from "../components/icon/Icon"
 import aboutus from "../assets/images/about-us.jpg"
 import e10 from "../assets/images/e10.jpg"
 import whyList from "../assets/images/icon-whylist.png"
+import { useState } from "react"
+
+const testimonials = [
+    {
+        client: 'John Doe',
+        testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis neque eget nulla. Curabitur dictum consectetur metus nec dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis.',
+        jobTitle: 'Social Media Strategist'
+    },
+    {
+        client: 'Mama Doe',
+        testimony: 'In congue, justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis neque eget nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dictum consectetur metus nec dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis.',
+        jobTitle: 'Social Media Strategist'
+    },
+    {
+        client: 'John Doe',
+        testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis neque eget nulla. Curabitur dictum consectetur metus nec dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis.',
+        jobTitle: 'Social Media Strategist'
+    }
+]
+
+
 
 function Aboutus() {
+
+    const [index, setIndex] = useState(0)
+
+    // const previousTestimony = () => {
+    //     let i = index
+    //     setIndex(i--)
+    // }
+
+    // const nextTestimony = () => {
+    //     let i = index
+    //     setIndex(i++)
+    // }
+
     return <div className="flex flex-col sm:mx-10 mx-3 my-4 pb-2 sm:text-sm lg:text-xs">
         <ul className="flex flex-row mb-4 mt-7 text-xs text-gray-400">
             <li className='mt-0.5'>
@@ -28,7 +62,7 @@ function Aboutus() {
                 <div className="sm:flex sm:space-x-1 sm:m-4 my-4 sm:p-4">
                     <img className="w-full" src={aboutus} />
                     <div className="leading-5 sm:pl-4 text-gray-6">
-                        <div class="des-about-us text-xs mt-4 px-0">Nulla auctor mauris ut dui luctus semper. In hac habitasse platea dictumst. Duis pellentesque ligula a risus suscipit dignissim. Nunc non nisl lacus. Integer pharetra lacinia dapibus. Donec eu dolor dui, vel posuere mauris.
+                        <div className="des-about-us text-xs mt-4 px-0">Nulla auctor mauris ut dui luctus semper. In hac habitasse platea dictumst. Duis pellentesque ligula a risus suscipit dignissim. Nunc non nisl lacus. Integer pharetra lacinia dapibus. Donec eu dolor dui, vel posuere mauris.
                             <br></br>
                             <br></br>Pellentesque semper congue sodales. In consequat, metus eget con sequat ornare, augue dolor blandit purus, vitae lacinia nisi tellus in erat. Nulla ac justo eget massa aliquet sodales. Maecenas mattis male suada sem, in fringilla massa dapibus quis. Suspendisse aliquam leo id neque auctor molestie. Etiam at nulla tellus.
                             <br></br>
@@ -73,7 +107,7 @@ function Aboutus() {
                 Aenean facilisis aliquet feugiat. Suspendisse lacinia congue est ac semper. Nulla ut elit magna, vitae volutpat magna.</p>
         </div>
         <div class='md:grid md:grid-cols-2 md:gap-8  w-full'>
-            <div class='flex p-4 border border-gray-200'>
+            <div class='flex p-4 border border-gray-200 mb-4'>
                 <img src={e10}></img>
                 <span className="ml-5">
                     <h2 class='uppercase mb-2 font-bold sm:text-base'>Jennifer Lawrence</h2>
@@ -95,7 +129,7 @@ function Aboutus() {
                     </ul>
                 </span>
             </div>
-            <div class='flex p-4 border border-gray-200'>
+            <div class='flex p-4 border border-gray-200 mb-4'>
                 <img src={e10}></img>
                 <span className="ml-4">
                     <h2 class='uppercase mb-2 font-bold text-base'>Jennifer Lawrence</h2>
@@ -117,7 +151,7 @@ function Aboutus() {
                     </ul>
                 </span>
             </div>
-            <div class='flex p-4 border border-gray-200'>
+            <div class='flex p-4 border border-gray-200 mb-4'>
                 <img src={e10}></img>
                 <span className="ml-4">
                     <h2 class='uppercase mb-2 font-bold text-base'>Jennifer Lawrence</h2>
@@ -139,7 +173,7 @@ function Aboutus() {
                     </ul>
                 </span>
             </div>
-            <div class='flex p-4 border border-gray-200'>
+            <div class='flex p-4 border border-gray-200 mb-4'>
                 <img src={e10}></img>
                 <span className="ml-4">
                     <h2 class='uppercase mb-2 font-bold text-base'>Jennifer Lawrence</h2>
@@ -162,12 +196,18 @@ function Aboutus() {
                 </span>
             </div>
         </div>
-        <div className="border my-5 p-5">
-            <h1 className="happy-customer-span mb-4">Happy Customers Say</h1>
+        <div className="border my-5 px-7 py-10 relative">
+            <div className="title-happy-about">
+                <h2 className="happy-customer-span mb-4 relative bottom-24">Happy Customers Say</h2>
+            </div>
+            <div className="btns-happy-about">
+                <button onClick={() => index != 0 ? setIndex((prevCount) => prevCount-1) : setIndex(0)} className="btn-happy-about h-6 w-6 rounded-full right-1 border-2 border-gray-200 text-gray-200"><i className='fa fa-minus'></i></button>
+                <button onClick={() => index == testimonials.length - 1 ? setIndex(testimonials.length - 1) : setIndex((prevCount) => prevCount+1) } className="btn-happy-about h-6 w-6 rounded-full right-0 border-2 border-gray-200 text-gray-200"><i className='fa fa-plus'></i></button>
+            </div>
             <div>
-                <span class='block mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis neque eget nulla. Curabitur dictum consectetur metus nec dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue, justo non cursus adipiscing, dui nibh scelerisque justo non cursus adipiscing, dui nibh scelerisque justo, quis pretium turpis.</span>
-                <span className="text-blue-800 text-base font-semibold mt-5"> -Join Doe</span>
-                <span className="font-normal"> - Social Media Strategist</span>
+                <span className='block mb-4 text-gray-400 px-3 leading-5'>{testimonials[index].testimony}</span>
+                <span className="text-blue-500 text-base font-semibold mt-5"> -{testimonials[index].client}</span>
+                <span className="font-normal"> - {testimonials[index].jobTitle}</span>
             </div>
         </div>
     </div>
