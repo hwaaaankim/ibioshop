@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useMediaQuery } from 'react-responsive'
 
 function GiftNToys() {
   const categories = [
@@ -275,7 +276,7 @@ function SmartphoneNTablets() {
   )
 }
 
-function CategoriesMenu({ currentWidth }) {
+function CategoriesMenu({ isBigScreen }) {
   const Content = () => {
     const [initial, setInitial] = useState(true)
     const [showMoreCategories, setShowMore] = useState(false)
@@ -408,8 +409,6 @@ function CategoriesMenu({ currentWidth }) {
     )
   }
 
-  const visibility = currentWidth >= 1200 ? { visible: true } : {}
-
   return (
     <Dropdown
       placement="bottom-start"
@@ -417,7 +416,7 @@ function CategoriesMenu({ currentWidth }) {
       hasPadding={false}
       content={<Content />}
       offset={0}
-      {...visibility}
+      visible={isBigScreen ? true : undefined}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
@@ -914,20 +913,12 @@ function MainMenuDrawer() {
 }
 
 export default function HeaderBottom() {
-  const [currentWidth, setCurrentWidth] = useState()
-  const handleResize = function () {
-    setCurrentWidth(document.body.clientWidth)
-  }
-
-  useEffect(() => {
-    setCurrentWidth(document.body.clientWidth)
-    window.addEventListener('resize', handleResize)
-  }, [])
+  const islgp8 = useMediaQuery({ query: '(min-width: 1200px)' })
 
   return (
     <div className="flex items-center mdp5:space-x-8 text-white px-[2.5%]">
       <div className="hidden mdp5:flex space-x-8 items-end">
-        <CategoriesMenu currentWidth={currentWidth} />
+        <CategoriesMenu isBigScreen={islgp8} />
         <HomeDropDown />
         <FeaturesDropDown />
         <PagesDropDown />
