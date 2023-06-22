@@ -277,11 +277,17 @@ function SmartphoneNTablets() {
 }
 
 function CategoriesMenu({ isBigScreen }) {
-  const Content = () => {
+  const [hidden, setHidden] = useState(false)
+  const Content = ({ setHidden, isHome }) => {
     const [initial, setInitial] = useState(true)
     const [showMoreCategories, setShowMore] = useState(false)
     const handleToggle = () => {
       if (initial) setInitial(false)
+      else {
+        if (showMoreCategories && !isHome) {
+          setHidden(true)
+        }
+      }
       setShowMore((prev) => !prev)
     }
     return (
@@ -410,14 +416,22 @@ function CategoriesMenu({ isBigScreen }) {
   }
   const location = useLocation()
   const isHome = location.pathname === '/'
+  const isVTrue = isBigScreen && isHome
+  const isVFalse = hidden
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
   return (
     <Dropdown
       placement="bottom-start"
       bordered={false}
       hasPadding={false}
-      content={<Content />}
+      content={<Content setHidden={setHidden} isHome={isHome} />}
       offset={0}
-      visible={isBigScreen && isHome ? true : undefined}
+      visible={isVFalse ? false : isVTrue ? true : undefined}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
