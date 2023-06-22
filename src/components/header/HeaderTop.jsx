@@ -49,6 +49,7 @@ export function Dropdown({
       onHide={onHide}
       offset={offset}
       visible={visible}
+      key={visible ? 'visible' : 'hidden'}
     >
       {children}
     </Tippy>

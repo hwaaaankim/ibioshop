@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -408,7 +408,8 @@ function CategoriesMenu({ isBigScreen }) {
       </div>
     )
   }
-
+  const location = useLocation()
+  const isHome = location.pathname === '/'
   return (
     <Dropdown
       placement="bottom-start"
@@ -416,7 +417,7 @@ function CategoriesMenu({ isBigScreen }) {
       hasPadding={false}
       content={<Content />}
       offset={0}
-      visible={isBigScreen ? true : undefined}
+      visible={isBigScreen && isHome ? true : undefined}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
