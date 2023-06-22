@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useMediaQuery } from 'react-responsive'
 
 function GiftNToys() {
   const categories = [
@@ -275,12 +276,18 @@ function SmartphoneNTablets() {
   )
 }
 
-function CategoriesMenu({ currentWidth }) {
-  const Content = () => {
+function CategoriesMenu({ isBigScreen }) {
+  const [hidden, setHidden] = useState(false)
+  const Content = ({ setHidden, isHome }) => {
     const [initial, setInitial] = useState(true)
     const [showMoreCategories, setShowMore] = useState(false)
     const handleToggle = () => {
       if (initial) setInitial(false)
+      else {
+        if (showMoreCategories && !isHome) {
+          setHidden(true)
+        }
+      }
       setShowMore((prev) => !prev)
     }
     return (
@@ -407,17 +414,24 @@ function CategoriesMenu({ currentWidth }) {
       </div>
     )
   }
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const isVTrue = isBigScreen && isHome
+  const isVFalse = hidden
 
-  const visibility = currentWidth >= 1200 ? { visible: true } : {}
-
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
   return (
     <Dropdown
       placement="bottom-start"
       bordered={false}
       hasPadding={false}
-      content={<Content />}
+      content={<Content setHidden={setHidden} isHome={isHome} />}
       offset={0}
-      {...visibility}
+      visible={isVFalse ? false : isVTrue ? true : undefined}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
@@ -914,20 +928,12 @@ function MainMenuDrawer() {
 }
 
 export default function HeaderBottom() {
-  const [currentWidth, setCurrentWidth] = useState()
-  const handleResize = function () {
-    setCurrentWidth(document.body.clientWidth)
-  }
-
-  useEffect(() => {
-    setCurrentWidth(document.body.clientWidth)
-    window.addEventListener('resize', handleResize)
-  }, [])
+  const islgp8 = useMediaQuery({ query: '(min-width: 1200px)' })
 
   return (
     <div className="flex items-center mdp5:space-x-8 text-white px-[2.5%]">
       <div className="hidden mdp5:flex space-x-8 items-end">
-        <CategoriesMenu currentWidth={currentWidth} />
+        <CategoriesMenu isBigScreen={islgp8} />
         <HomeDropDown />
         <FeaturesDropDown />
         <PagesDropDown />
