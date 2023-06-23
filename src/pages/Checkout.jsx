@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
 import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
@@ -426,7 +430,7 @@ function CouponVoucher() {
             <i className="fa fa-ticket"></i> Do you Have a Coupon or Voucher?
           </h4>
         </div>
-        <div className="flex flex-col sm:flex-row w-full py-3 px-4 box-border gap-8 leading-6">
+        <div className="flex flex-col sm:flex-row w-full py-3 px-4 box-border sm:gap-8 leading-6">
           <div className="float-left w-full sm:w-1/2 relative box-border border-separate table">
             <div className="border-separate flex relative w-full">
               <input
@@ -534,9 +538,9 @@ function ShoppingCart() {
                         id="input-voucher"
                         placeholder="Enter your gift voucher code here"
                         name="quantity"
-                        value="1"
+                        value={quantity}
                         size="1"
-                        onChange={(e) => setQauntity(e, target.value)}
+                        onChange={(e) => setQauntity(e.target.value)}
                       />
                       <span
                         className="whitespace-nowrap align-middle table-cell"
@@ -699,36 +703,42 @@ function AddComment() {
 }
 
 export default function Checkout() {
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [{ title: 'Checkout', path: '/checkout' }],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+
   return (
     <div
       className="p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
-      <ul className="flex flex-row list-none my-6 leading-normal bg-transparent p-0 space-x-3 w-full">
-        <li className="relative py-0">
-          <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
-          </Link>
-        </li>
-        <li>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </li>
-        <li className="text-primary">
-          <a href="#">Checkout</a>
-        </li>
-      </ul>
       <div className="w-full pb-0">
         <h2 className="text-xl mt-9 font-normal text-gray-500 leading-none">
           Checkout
         </h2>
       </div>
-      <div className="flex flex-col sm:flex-row gap-8 text-neutral-700 py-4 min-h-screen">
-        <div className="w-full sm:w-1/4">
+      <div className="flex flex-col md:flex-row gap-8 text-neutral-700 py-4 min-h-screen">
+        <div className="w-full md:w-1/4">
           <UserAccount />
           <PersonalDetail />
           <PersonalAddress />
         </div>
-        <div className="w-full sm:w-3/4">
+        <div className="w-full md:w-3/4">
           <DeliPayMethod />
           <CouponVoucher />
           <ShoppingCart />
