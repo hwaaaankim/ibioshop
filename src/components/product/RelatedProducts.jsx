@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline'
+
+import QuickView from '../../components/product/QuickViewModal'
 
 function Carousel({
   items,
@@ -72,13 +75,27 @@ function Carousel({
 }
 function Product({ product }) {
   const [mouseOver, setMouseOver] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // history.push(`/product/${product.id}`);
+    navigate('product');
+  };
+
+  const handleEyeClick = (e) => {
+    e.stopPropagation();
+    setShowModal(true);
+  };
 
   return (
     <div
       className="space-y-2 w-full"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
+      onClick={handleCardClick}
     >
+      {/* <>{showModal ? (<QuickView />) : null}</> */}
       <div className="lg:h-[180px] cursor-pointer group relative text-black">
         <img
           src={product.picture}
@@ -104,7 +121,7 @@ function Product({ product }) {
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
               >
-                <i className="fa fa-eye"></i>
+                <i className="fa fa-eye" onClick={handleEyeClick}></i>
               </motion.div>
             )}
           </AnimatePresence>
@@ -140,7 +157,7 @@ function Product({ product }) {
                     initial={{ y: -30 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
-                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white" 
+                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
                   >
                     <i className="fa fa-retweet"></i>
                   </motion.div>

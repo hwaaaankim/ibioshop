@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
@@ -32,7 +36,6 @@ function WishListTable() {
   ]
   const handleRemove = () => {}
   const handleUpdate = () => {}
-  const [[imgWidth, imgHeight], setImgDimension] = useState(['80px', '80px'])
   return (
     <>
       <div className="w-full">
@@ -41,12 +44,12 @@ function WishListTable() {
         </h2>
       </div>
       <div
-        className="overflow-x-auto box-border min-h-[0.01%] leading-6 text-xs text-gray-2"
+        className="box-border overflow-x-auto min-h-[0.01%] leading-6 text-xs text-gray-2"
         style={{ minHeight: 0.1 + '%' }}
       >
-        <table className="mb-3 w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border ">
-          <thead className="py-1 bg-zinc-200 border-b-transparent">
-            <tr className="font-bold align-top">
+        <table className="mb-3 min-w-[500px] w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
+          <thead className="py-2 bg-zinc-200 border-b-transparent h-9">
+            <tr className="font-bold align-middle">
               <td className="text-center border border-solid px-2">Image</td>
               <td className="text-left border border-solid px-2">
                 Product Name
@@ -63,17 +66,16 @@ function WishListTable() {
             {whishs.map((wish) => (
               <tr
                 key={wish.id}
-                className="hover:bg-gray-100 align-top border border-solid"
+                className="hover:bg-gray-100 align-top border border-solid whitespace-nowrap"
               >
                 <td className="border border-solid p-2 text-center">
                   <a href="product.html">
                     <img
                       src={image}
-                      width={imgWidth}
-                      height={imgHeight}
+                      // width="70px"
                       alt="Xitefun Causal Wear Fancy Shoes"
                       title="Xitefun Causal Wear Fancy Shoes"
-                      className="transition-all rounded object-cover p-1 border-solid border-gray-400
+                      className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
                             max-w-full inline-block align-middle cursor-pointer"
                     />
                   </a>
@@ -138,42 +140,45 @@ function WishListTable() {
   )
 }
 export default function WishList() {
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [
+          { title: 'Account', path: '/account' },
+          {
+            title: 'My Wish List',
+            path: '/wish_list',
+          },
+        ],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+
   return (
     <div
-      className="overflow-visible box-border text-gray-400 p-0 leading-6 text-sm justify-center"
+      className="box-border text-gray-400 p-0 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
-      <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
-        <li className="relative py-0">
-          <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
-          </Link>
-        </li>
-        <li>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </li>
-        <li>
-          <Link to="#" className="hover:text-blue-2">
-            Account
-          </Link>
-        </li>
-        <li>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </li>
-
-        <li className="text-primary">
-          <Link href="#">My Wish List</Link>
-        </li>
-      </ul>
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col sm:flex-row gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative w-[79 '%'] sm:w-full"
+          className="mb-2 float-left relative sm:w-[79 '%'] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <WishListTable />
         </div>
         <div
-          className="hidden sm:relative sm:w-1/4 md:block text-gray-2"
+          className="hidden sm:w-1/4 md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />

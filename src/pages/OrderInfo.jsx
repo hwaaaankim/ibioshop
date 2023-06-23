@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
@@ -113,7 +117,7 @@ function PricingTable() {
       </div>
       <div className="box-border overflow-x-auto leading-6 text-xs text-gray-2 min-h-[0.01%]">
         <table
-          className="box-border border-solid border border-gray-3 min-w-[600px] mb-5 w-full max-w-full bg-transparent 
+          className="box-border border-solid border border-gray-3 min-w-[550px] mb-5 w-full max-w-full bg-transparent 
                         border-collapse text-xs border-spacing-0 "
         >
           <thead className="px-2 py-2 bg-gray-200 border-b-transparent text-sm font-semibold h-8">
@@ -263,29 +267,34 @@ function OrderHistory() {
 }
 
 export default function OrderInfo() {
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [{ title: 'Order Information', path: '/order_info' }],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+
   const handleSubmit = () => {}
   return (
     <div
       className="overflow-visible box-border pb-8 text-gray-400 p-0 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
-      <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
-        <li className="relative py-0">
-          <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
-          </Link>
-        </li>
-        <li>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </li>
-
-        <li className="text-primary">
-          <a href="#">Order Information</a>
-        </li>
-      </ul>
       <div className="w-full bg-transparent my-3 mx-0 rounded list-none box-border flex gap-4 text-neutral-700 p-0 min-h-fit">
         <div
-          className="float-left relative space-y-2 w-[79 '%'] sm: w-full"
+          className="float-left relative space-y-2 sm:w-[79 '%'] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <OrderDetails />

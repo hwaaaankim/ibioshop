@@ -11,7 +11,7 @@ function Product() {
     <div className="w-full sm:px-8 px-3 py-6">
       <Breadcrumb />
       <div className="w-full md:flex md:flex-row flex-col">
-        <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col w-full">
+        <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col">
           <ProductPreview />
           <ProductTab />
           <RelatedProducts />
