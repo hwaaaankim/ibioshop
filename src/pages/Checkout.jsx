@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
 import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
 import CheckBox from '../components/controlled/CheckBox'
@@ -491,7 +490,7 @@ function ShoppingCart() {
         </div>
         <div className="p-4 box-border">
           <div className="overflow-x-auto ">
-            <table className="mb-3 w-full min-w-[600px] max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
+            <table className="mb-3 w-full min-w-[490px] max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
               <thead className="p-2 bg-gray-200 border-b-transparent h-10">
                 <tr className="font-bold ">
                   <td className="text-center whitespace-nowrap border border-solid align-top p-2 ">

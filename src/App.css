@@ -116,3 +116,7 @@ select{
     top: -8px;
 }
 
+
+.react-datepicker-wrapper{
+    width: 100%;
+}   
