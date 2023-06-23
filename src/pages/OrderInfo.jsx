@@ -2,11 +2,9 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import Icon from '../components/icon/Icon'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import '../App.css'
 
