@@ -28,16 +28,7 @@ function Aboutus() {
 
     const [index, setIndex] = useState(0)
 
-    // const previousTestimony = () => {
-    //     let i = index
-    //     setIndex(i--)
-    // }
-
-    // const nextTestimony = () => {
-    //     let i = index
-    //     setIndex(i++)
-    // }
-
+    
     return <div className="flex flex-col sm:mx-10 mx-3 my-4 pb-2 sm:text-sm lg:text-xs">
         <ul className="flex flex-row mb-4 mt-7 text-xs text-gray-400">
             <li className='mt-0.5'>
