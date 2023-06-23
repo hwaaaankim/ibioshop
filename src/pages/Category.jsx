@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Tab } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 
 import Categories from "../components/product/Categories"
 import LatestProducts from "../components/product/LatestProducts"
@@ -195,16 +196,28 @@ function ProductBanner() {
 }
 function Product({ product }) {
   const [showModal, setShowModal] = useState(false);
-  const [mouseOver, setMouseOver] = useState(false)
+  const [mouseOver, setMouseOver] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // history.push(`/product/${product.id}`);
+    navigate('/product');
+  };
+
+  const handleEyeClick = (e) => {
+    e.stopPropagation();
+    setShowModal(true);
+  };
 
   return (
     <div
       className="space-y-2 w-full mb-20"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      onClick={() => setShowModal(true)}
+      onClick={handleCardClick}
     >
       <>{showModal ? (<QuickView />) : null}</>
+
       <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] cursor-pointer group relative text-black">
         <img
           src={product.picture}
@@ -230,12 +243,16 @@ function Product({ product }) {
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
               >
-                <i className="fa fa-eye"></i>
+                <button>
+                  <i className="fa fa-eye"
+                    onClick={handleEyeClick}></i>
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </div>
+
       <div className="flex flex-col items-center space-y-2">
         <div className="relative w-full">
           <AnimatePresence>
@@ -327,8 +344,21 @@ function GridProducts() {
   )
 }
 function ListedProducts() {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // history.push(`/product/${product.id}`);
+    navigate('/product');
+  };
+
+  const handleEyeClick = (e) => {
+    e.stopPropagation();
+    setShowModal(true);
+  };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" onClick={handleCardClick}>
+      <>{showModal ? (<QuickView />) : null}</>
       {products.map((product, index) => (
         <div key={index} className="w-full sm:flex mb-8">
           <div className="cursor-pointer group relative text-black">
@@ -410,10 +440,8 @@ function ListedProducts() {
                 <i className="fa fa-refresh"></i>
               </button>
               <a
-                className="bg-white border border-[#eaeaea] text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[10px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
-                href="quickview.html"
-                title="Quick view"
-                data-fancybox-type="iframe"
+                onClick={handleEyeClick}
+                className="bg-white border border-[#eaeaea] cursor-pointer text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[10px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
               ><i className="fa fa-eye"></i
               ></a>
             </div>
