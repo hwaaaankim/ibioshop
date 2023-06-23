@@ -19,7 +19,7 @@ function Shipping() {
     return (
         <Disclosure>
             <div className="w-full float-left box-border text-xs leading-5">
-                <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
+                <div className="box-border bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-1.5">
                     <Disclosure.Button className="w-full text-left px-2 py-2 bg-gray-100 border-b-transparent">
                         <h4 className="my-0 text-base font-medium">
                             Estimate Shipping & Taxes <i className="fa fa-caret-down"></i>
@@ -33,7 +33,7 @@ function Shipping() {
                     // leaveFrom="transform  opacity-100"
                     // leaveTo="transform opacity-0"
                     >
-                        <Disclosure.Panel className="text-gray-500 py-0 my-0">
+                        <Disclosure.Panel className="text-gray-500 pb-4 my-0">
                             <div className="border-separate relative pt-2 w-full">
                                 <span className="px-5 mt-4">Enter your destination to get a shipping estimate.</span>
                                 <form className="mt-2 px-4 justify-between w-full" onSubmit={handleSubmit(estimateShipping)}>
