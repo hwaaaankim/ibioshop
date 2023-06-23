@@ -80,7 +80,7 @@ function Product({ product }) {
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
-    navigate('/product');
+    navigate('product');
   };
 
   const handleEyeClick = (e) => {
