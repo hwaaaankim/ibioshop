@@ -6,9 +6,13 @@ import product3 from '../../assets/images/1.jpg'
 import product4 from '../../assets/images/1.jpg'
 import product5 from '../../assets/images/1.jpg'
 import pro from '../../assets/images/1 (1).jpg'
-import Notice from '../Notice'
+import Notice from '../Notification/Notice'
+import Wishlist from '../Notification/Wishlist'
+import Compare from '../Notification/Compare'
 function ProductPreview() {
   const [showNotification, setShowNotification] = useState(false);
+  const [showWishlistNotification, setWishShowNotification] = useState(false);
+  const [showCompareNotification, setCompareShowNotification] = useState(false);
   const [value, setValue] = useState(1);
 
   const handleInputChange = (event) => {
@@ -30,6 +34,18 @@ function ProductPreview() {
       setShowNotification(false);
     }, 3000); // hide the notification after 3 seconds
   };
+  const handleAddToWishlist = () => {
+    setWishShowNotification(true);
+    setTimeout(() => {
+      setWishShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+  const handleAddToCompare = () => {
+    setCompareShowNotification(true);
+    setTimeout(() => {
+      setCompareShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
 
   const slide = [
     { image: product1 },
@@ -43,6 +59,8 @@ function ProductPreview() {
     <div className="lg:flex lg:flex-row flex-col mt-6 text-[#999]">
       {/* product image */}
       <>{showNotification ? (<Notice />) : null}</>
+      <>{showWishlistNotification ? (<Wishlist />) : null}</>
+      <>{showCompareNotification ? (<Compare />) : null}</>
       <div className='lg:w-[50%] w-full flex mr-4'>
         {/* sub-product-images */}
         <div className="flex flex-col mr-4">
@@ -179,7 +197,7 @@ function ProductPreview() {
                   className="bg-[#eee] relative py-1 px-2.5 border-separate table"
                 >
                   <label className='font-normal mt-2 pr-1 mb-1'>Qty</label>
-                  <input type="text" value={value} onChange={handleInputChange}  className='h-8 leading-8 mr-4 px-2.5 w-9 border border-[#bdc2c9] z0' />
+                  <input type="text" value={value} onChange={handleInputChange} className='h-8 leading-8 mr-4 px-2.5 w-9 border border-[#bdc2c9] z0' />
                   <span onClick={handleMinusClick} className="bg-[#444] text-xs px-1 absolute top-5 right-3 w-4 h-4 leading-4 hover:bg-blue-600 cursor-pointer text-white">−</span>
                   <span onClick={handlePlusClick} className="bg-[#444] text-xs absolute right-3 top-1 h-4 w-4 px-1 hover:bg-blue-600 cursor-pointer text-white">+</span>
                 </div>
@@ -188,7 +206,7 @@ function ProductPreview() {
                 <input
                   type="button"
                   data-toggle="tooltip"
-                  title=""
+                  title="Add to cart"
                   value="Add to Cart"
                   className="bg-[#094bad] text-xs hover:bg-[#666] cursor-pointer font-extrabold py-3 px-4 leading-tight text-white uppercase"
                   onClick={handleAddToCart}
@@ -200,9 +218,8 @@ function ProductPreview() {
                     <a
                       className="py-2.5 px-3.5 text-[#666] border border-[#e6e6e6] text-sm hover:border-[#094bad] hover:text-[#094bad] cursor-pointer"
                       data-toggle="tooltip"
-                      title=""
-                      onclick="wishlist.add('50');"
-                      data-original-title="Add to Wish List"
+                      title="Add to Wish list"
+                      onClick={handleAddToWishlist}
                     ><i className="fa fa-heart"></i>
                     </a>
                   </li>
@@ -210,9 +227,8 @@ function ProductPreview() {
                     <a
                       className="py-2.5 px-3.5 text-[#666] border border-[#e6e6e6] text-sm hover:border-[#094bad] hover:text-[#094bad] cursor-pointer"
                       data-toggle="tooltip"
-                      title=""
-                      onclick="compare.add('50');"
-                      data-original-title="Compare this Product"
+                      title="Compare this product"
+                      onClick={handleAddToCompare}
                     ><i className="fa fa-exchange"></i>
                     </a>
                   </li>
