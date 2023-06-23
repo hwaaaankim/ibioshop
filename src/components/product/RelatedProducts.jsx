@@ -95,7 +95,7 @@ function Product({ product }) {
       onMouseLeave={() => setMouseOver(false)}
       onClick={handleCardClick}
     >
-      <>{showModal ? (<QuickView />) : null}</>
+      {/* <>{showModal ? (<QuickView />) : null}</> */}
       <div className="lg:h-[180px] cursor-pointer group relative text-black">
         <img
           src={product.picture}
