@@ -1,3 +1,4 @@
+import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 import product1 from '../../assets/images/1.jpg'
 import product2 from '../../assets/images/1.jpg'
@@ -5,7 +6,30 @@ import product3 from '../../assets/images/1.jpg'
 import product4 from '../../assets/images/1.jpg'
 import product5 from '../../assets/images/1.jpg'
 import pro from '../../assets/images/1 (1).jpg'
+import Notice from '../Notice'
 function ProductPreview() {
+  const [showNotification, setShowNotification] = useState(false);
+  const [value, setValue] = useState(1);
+
+  const handleInputChange = (event) => {
+    setValue(parseInt(event.target.value) || '');
+  };
+
+  const handleMinusClick = () => {
+    setValue(value - 1);
+  };
+
+  const handlePlusClick = () => {
+    setValue(value + 1);
+  };
+
+
+  const handleAddToCart = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
 
   const slide = [
     { image: product1 },
@@ -18,6 +42,7 @@ function ProductPreview() {
   return (
     <div className="lg:flex lg:flex-row flex-col mt-6 text-[#999]">
       {/* product image */}
+      <>{showNotification ? (<Notice />) : null}</>
       <div className='lg:w-[50%] w-full flex mr-4'>
         {/* sub-product-images */}
         <div className="flex flex-col mr-4">
@@ -154,10 +179,9 @@ function ProductPreview() {
                   className="bg-[#eee] relative py-1 px-2.5 border-separate table"
                 >
                   <label className='font-normal mt-2 pr-1 mb-1'>Qty</label>
-                  <input className="h-8 leading-8 mr-4 px-2.5 w-9 border border-[#bdc2c9] z-0 table-cell" type="text" name="quantity" value="1" />
-                  <input type="hidden" name="product_id" value="50" />
-                  <span className="bg-[#444] text-xs px-1 absolute top-5 right-3 w-4 h-4 leading-4 hover:bg-blue-600 cursor-pointer text-white">−</span>
-                  <span className="bg-[#444] text-xs absolute right-3 top-1 h-4 w-4 px-1 hover:bg-blue-600 cursor-pointer text-white">+</span>
+                  <input type="text" value={value} onChange={handleInputChange}  className='h-8 leading-8 mr-4 px-2.5 w-9 border border-[#bdc2c9] z0' />
+                  <span onClick={handleMinusClick} className="bg-[#444] text-xs px-1 absolute top-5 right-3 w-4 h-4 leading-4 hover:bg-blue-600 cursor-pointer text-white">−</span>
+                  <span onClick={handlePlusClick} className="bg-[#444] text-xs absolute right-3 top-1 h-4 w-4 px-1 hover:bg-blue-600 cursor-pointer text-white">+</span>
                 </div>
               </div>
               <div className="mr-2.5">
@@ -167,8 +191,7 @@ function ProductPreview() {
                   title=""
                   value="Add to Cart"
                   className="bg-[#094bad] text-xs hover:bg-[#666] cursor-pointer font-extrabold py-3 px-4 leading-tight text-white uppercase"
-                  onclick="cart.add('42', '1');"
-                  data-original-title="Add to Cart"
+                  onClick={handleAddToCart}
                 />
               </div>
               <div className="flex items-center">

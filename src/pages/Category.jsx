@@ -7,6 +7,7 @@ import Categories from "../components/product/Categories"
 import LatestProducts from "../components/product/LatestProducts"
 import BannerSidebar from "../components/product/BannerSidebar"
 import QuickView from '../components/product/QuickViewModal'
+import Notice from '../components/Notice'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -197,6 +198,7 @@ function ProductBanner() {
 function Product({ product }) {
   const [showModal, setShowModal] = useState(false);
   const [mouseOver, setMouseOver] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -209,16 +211,24 @@ function Product({ product }) {
     setShowModal(true);
   };
 
+  const handleAddToCart = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
   return (
     <div
       className="space-y-2 w-full mb-20"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      onClick={handleCardClick}
     >
       <>{showModal ? (<QuickView />) : null}</>
-
-      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] cursor-pointer group relative text-black">
+      <>{showNotification ? (<Notice />) : null}</>
+      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] cursor-pointer group relative text-black"
+        onClick={handleCardClick}
+      >
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
@@ -267,6 +277,7 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
+                    onClick={handleAddToCart}
                   >
                     add to cart
                   </motion.div>
@@ -331,7 +342,7 @@ function Product({ product }) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 function GridProducts() {
@@ -345,6 +356,7 @@ function GridProducts() {
 }
 function ListedProducts() {
   const [showModal, setShowModal] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -356,9 +368,18 @@ function ListedProducts() {
     e.stopPropagation();
     setShowModal(true);
   };
+
+  const handleAddToCart = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
   return (
-    <div className="flex flex-col" onClick={handleCardClick}>
+    <div className="flex flex-col">
       <>{showModal ? (<QuickView />) : null}</>
+      <>{showNotification ? (<Notice />) : null}</>
       {products.map((product, index) => (
         <div key={index} className="w-full sm:flex mb-8">
           <div className="cursor-pointer group relative text-black">
@@ -366,6 +387,7 @@ function ListedProducts() {
               <img
                 src={product.picture}
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
+                onClick={handleCardClick}
               />
             </div>
             {product.discounted && (
@@ -419,7 +441,7 @@ function ListedProducts() {
                 className="bg-[#094bad] border border-[#094bad] text-white rounded-[3px] text-[12px] uppercase mr-[5px] py-[7px] px-[15px] text-center"
                 type="button"
                 title="Add to Cart"
-                onclick="cart.add('101', '1');"
+                onClick={handleAddToCart}
               >
                 <i className="fa fa-shopping-basket"></i>
               </button>
