@@ -18,7 +18,7 @@ function CouponCode() {
     return (
         <Disclosure>
         <div className="w-full float-left relative box-border text-xs leading-5 mt-4">
-            <div className="box-border pb-4 bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-5">
+            <div className="box-border bg-white border border-solid px-0 shadow-sm inline-block w-full rounded mb-1.5">
                 <Disclosure.Button className="w-full text-left px-2 py-2 bg-gray-100 border-b-transparent">
                     <h4 className="my-0 text-base font-medium">
                     Use Coupon Code <i className="fa fa-caret-down"></i>
@@ -32,7 +32,7 @@ function CouponCode() {
                     // leaveFrom="transform  opacity-100"
                     // leaveTo="transform opacity-0"
                 >
-                <Disclosure.Panel className="text-gray-500 py-0 mx-2 my-0">
+                <Disclosure.Panel className="text-gray-500 pb-4 mx-2 my-0">
                     <div className="flex border-separate relative w-full">
                         <form className="flex mt-2 justify-between w-full" onSubmit={handleSubmit(applyCoupon)}>
                             <span className="mt-3 w-1/3 px-4">Enter your coupon here</span>
