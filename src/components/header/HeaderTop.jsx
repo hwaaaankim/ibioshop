@@ -9,6 +9,8 @@ export function Dropdown({
   bordered = true,
   content,
   children,
+  offset = undefined,
+  visible = undefined,
 }) {
   const initial = { animate: { rotateX: 90, originY: 0 } }
   const [variants, setVariants] = useState(initial)
@@ -45,6 +47,8 @@ export function Dropdown({
       // visible={visible}
       onShow={onShow}
       onHide={onHide}
+      offset={offset}
+      visible={visible}
     >
       {children}
     </Tippy>
