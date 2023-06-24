@@ -6,40 +6,40 @@ export default function AccountSiteMap() {
       <div className="text-xs font-light text-gray-700">
         <ul className="leading-6">
           <li className="mb-3">
-            <Link to="#">Login</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Register</Link>
+            <Link to="/register">Register</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Forgotten Password </Link>
+            <Link to="/">Forgotten Password </Link>
           </li>
           <li className="mb-3">
-            <Link to="#">My Account</Link>
+            <Link to="/my_account">My Account</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Wish List</Link>
+            <Link to="/wish_list">Wish List</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Order History</Link>
+            <Link to="/order_history">Order History</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Downloads</Link>
+            <Link to="/">Downloads</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Reward Points</Link>
+            <Link to="/">Reward Points</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Returns</Link>
+            <Link to="/product_return">Returns</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Transactions</Link>
+            <Link to="/">Transactions</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Newsletter</Link>
+            <Link to="/blog">Newsletter</Link>
           </li>
           <li className="mb-3">
-            <Link to="#">Recurring payments</Link>
+            <Link to="/">Recurring payments</Link>
           </li>
         </ul>
       </div>
