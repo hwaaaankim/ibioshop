@@ -26,6 +26,7 @@ import Breadcrumb from './components/layout/Breadcrumb'
 import BlogDetail from './pages/BlogDetail'
 import Faq from './pages/Faq'
 import ProductComparison from './pages/ProductComparison'
+import ScrollToTop from './components/layout/ScrollToTop'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="h-screen">
+      <ScrollToTop />
       {!header.hidden && <Header />}
       {!breadcrumb.hidden && <Breadcrumb />}
       <Routes>

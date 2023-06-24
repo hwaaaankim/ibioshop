@@ -1,8 +1,11 @@
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
+
 import React from 'react'
 import DatePicker from 'react-datepicker'
 
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import RadioBox from '../components/controlled/RadioBox'
@@ -26,25 +29,31 @@ export default function ProductReturn() {
   const [date, setDate] = useState('')
   const handleReturn = async (data) => {}
   const handleChange = () => {}
+
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [{ title: 'Return', path: '/product_return' }],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+
   return (
     <div
       className="overflow-visible box-border text-gray-400 p-0 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
-      <ul className="flex list-none my-6 leading-normal rounded bg-transparent p-0 space-x-3 w-full ">
-        <li className="relative py-0">
-          <Link to="#">
-            <i className="fa fa-home ml-2 text-gray-400 hover:text-blue-2"></i>
-          </Link>
-        </li>
-        <li>
-          <i className="fa fa-angle-right text-gray-400"></i>
-        </li>
-
-        <li className="text-primary">
-          <Link to="#">Return</Link>
-        </li>
-      </ul>
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex gap-8 p-0 min-h-fit">
         <div
           className="mb-2 float-left relative sm:w-[79 '%'] w-full"
@@ -60,7 +69,7 @@ export default function ProductReturn() {
             <hr className="mb-6"></hr>
             {/* PERSONAL DETAILS */}
             <form onSubmit={handleSubmit(handleReturn)}>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -78,7 +87,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -96,7 +105,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label required={true} className="mt-4" name="E-mail"></Label>
                 <span className="flex flex-col w-full">
                   <BaseInput
@@ -110,7 +119,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -129,7 +138,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label required={true} className="mt-4" name="Order ID"></Label>
                 <span className="flex flex-col w-full">
                   <BaseInput
@@ -144,42 +153,46 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label className="mt-4" name="Order Date"></Label>
-                <div className="flex w-full mr-4">
-                  <DatePicker
-                    selected={date}
-                    name="date"
-                    className="block w-[420px] md:w-[270px]  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-                    dateFormat="yyyy-MM-dd"
-                    placeholderText={'Order Date'}
-                    onClickOutside={() => {
-                      setdatePickerIsOpen((prev) => !prev)
-                    }}
-                    open={datePickerIsOpen}
-                    onSelect={(date) => {
-                      setdatePickerIsOpen((prev) => !prev)
-                      setDate(date)
-                    }}
-                    {...register('date')}
-                  />
+                <span className="flex w-full mr-4">
+                  <div className=" w-full md:w-[270px]">
+                    <DatePicker
+                      selected={date}
+                      name="date"
+                      className="block w-full z-20  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText={'Order Date'}
+                      onClickOutside={() => {
+                        setdatePickerIsOpen((prev) => !prev)
+                      }}
+                      open={datePickerIsOpen}
+                      onSelect={(date) => {
+                        setdatePickerIsOpen((prev) => !prev)
+                        setDate(date)
+                      }}
+                      {...register('date')}
+                    />
+                  </div>
 
-                  <button
-                    className="leading-normal border-collapse rounded-l-none -ml-[1px] justify-self-end inline-block mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
-                    cursor-pointer align-middle whitespace-nowrap text-center font-normal py-[6px] px-3 box-border"
-                    type="button"
-                    onClick={() => {
-                      setDate(new Date())
-                      setdatePickerIsOpen((prev) => !prev)
-                    }}
-                  >
-                    <i className="fa fa-calendar"></i>
-                  </button>
-                </div>
+                  <span className="whitespace-nowrap relative align-middle table-cell box-border border-collapse">
+                    <button
+                      className="leading-normal z-[2] rounded-none border-collapse rounded-l-none -ml-[1px] mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
+                    cursor-pointer align-middle text-center font-normal py-[6px] px-3 box-border"
+                      type="button"
+                      onClick={() => {
+                        setDate(new Date().dateFormat('yyyy-mm-dd'))
+                        setdatePickerIsOpen((prev) => !prev)
+                      }}
+                    >
+                      <i className="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </span>
               </div>
               <h2 className="mt-8 mb-2">Product Information</h2>
               <hr className="mb-6"></hr>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -197,7 +210,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   required={true}
                   className="mt-4"
@@ -215,7 +228,7 @@ export default function ProductReturn() {
                   )}
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label className="mt-4" name="Quantity"></Label>
                 <span className="flex flex-col w-full">
                   <BaseInput
@@ -226,7 +239,7 @@ export default function ProductReturn() {
                   />
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   className="inline-block max-w-full text-right"
                   style={{ width: 16.6667 + '%' }}
@@ -269,7 +282,7 @@ export default function ProductReturn() {
                 </div>
               </div>
 
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label
                   className="mt-4"
                   required={true}
@@ -294,7 +307,7 @@ export default function ProductReturn() {
                   />
                 </span>
               </div>
-              <div className="md:flex mb-4 sm:space-x-4">
+              <div className="md:flex mb-4 md:space-x-4">
                 <Label className="mt-4" name="other datails"></Label>
                 <span className="flex gap-4 w-full mt-1">
                   <textarea
@@ -311,7 +324,7 @@ export default function ProductReturn() {
               </div>
               <div className="mb-10 flex justify-between space-x-2 text-m">
                 <button
-                  type="back"
+                  type="button"
                   value="back"
                   className="bg-[#555] px-5 h-10 hover:bg-primary rounded-sm font-thin text-sm text-white py-0.5"
                 >

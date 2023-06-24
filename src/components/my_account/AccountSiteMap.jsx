@@ -11,38 +11,38 @@ export default function AccountSiteMap() {
           <li className="mb-2">
             <Link to="/register">Register</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/forget_password">Forgotten Password </Link>
+          <li className="mb-3">
+            <Link to="#">Register</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/my_account">My Account</Link>
+          <li className="mb-3">
+            <Link to="#">Forgotten Password </Link>
           </li>
-          <li className="mb-2">
-            <Link to="/address_book">Address Books</Link>
+          <li className="mb-3">
+            <Link to="#">My Account</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/wish_list">Wish List</Link>
+          <li className="mb-3">
+            <Link to="#">Wish List</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/order_history">Order History</Link>
+          <li className="mb-3">
+            <Link to="#">Order History</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/downloads">Downloads</Link>
+          <li className="mb-3">
+            <Link to="#">Downloads</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/reward_point">Reward Points</Link>
+          <li className="mb-3">
+            <Link to="#">Reward Points</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/product_return">Returns</Link>
+          <li className="mb-3">
+            <Link to="#">Returns</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/transaction">Transactions</Link>
+          <li className="mb-3">
+            <Link to="#">Transactions</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/newsletter">Newsletter</Link>
+          <li className="mb-3">
+            <Link to="#">Newsletter</Link>
           </li>
-          <li className="mb-2">
-            <Link to="/recurring_payment">Recurring payments</Link>
+          <li className="mb-3">
+            <Link to="#">Recurring payments</Link>
           </li>
         </ul>
       </div>

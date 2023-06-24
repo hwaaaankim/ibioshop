@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useMediaQuery } from 'react-responsive'
 
 function GiftNToys() {
   const categories = [
@@ -274,12 +276,18 @@ function SmartphoneNTablets() {
   )
 }
 
-function CategoriesMenu({ currentWidth }) {
-  const Content = () => {
+function CategoriesMenu({ isBigScreen }) {
+  const [hidden, setHidden] = useState(false)
+  const Content = ({ setHidden, isHome }) => {
     const [initial, setInitial] = useState(true)
     const [showMoreCategories, setShowMore] = useState(false)
     const handleToggle = () => {
       if (initial) setInitial(false)
+      else {
+        if (showMoreCategories && !isHome) {
+          setHidden(true)
+        }
+      }
       setShowMore((prev) => !prev)
     }
     return (
@@ -406,17 +414,24 @@ function CategoriesMenu({ currentWidth }) {
       </div>
     )
   }
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const isVTrue = isBigScreen && isHome
+  const isVFalse = hidden
 
-  const visibility = currentWidth >= 1200 ? { visible: true } : {}
-
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
   return (
     <Dropdown
       placement="bottom-start"
       bordered={false}
       hasPadding={false}
-      content={<Content />}
+      content={<Content setHidden={setHidden} isHome={isHome} />}
       offset={0}
-      {...visibility}
+      visible={isVFalse ? false : isVTrue ? true : undefined}
     >
       <div>
         <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
@@ -432,6 +447,14 @@ function CategoriesMenu({ currentWidth }) {
 }
 
 function HomeDropDown() {
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8">
       {[
@@ -440,7 +463,11 @@ function HomeDropDown() {
         'Home page - layout 3',
         'Home page - rtl',
       ].map((title, index) => (
-        <div key={index} className="w-[110px] space-y-2 cursor-pointer group">
+        <div
+          key={index}
+          className="w-[110px] space-y-2 cursor-pointer group"
+          onClick={() => setHidden(true)}
+        >
           <img
             src="image/catalog/menu/home-1.jpg"
             className="w-full h-[60px]"
@@ -458,6 +485,7 @@ function HomeDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -510,6 +538,19 @@ function FeaturesDropDown() {
       ],
     },
   ]
+  const navigate = useNavigate()
+  const [hidden, setHidden] = useState(false)
+  const handleNavigation = (path) => {
+    navigate(path)
+    setHidden(true)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -522,8 +563,9 @@ function FeaturesDropDown() {
               <div
                 key={lindex}
                 className="capitalize text-xs cursor-pointer hover:text-primary"
+                onClick={() => handleNavigation(link.path)}
               >
-                <Link to={link.path}>{link.name}</Link>
+                {link.name}
               </div>
             ))}
           </div>
@@ -537,6 +579,7 @@ function FeaturesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -568,6 +611,20 @@ function PagesDropDown() {
       ],
     },
   ]
+
+  const navigate = useNavigate()
+  const [hidden, setHidden] = useState(false)
+  const handleNavigation = (path) => {
+    navigate(path)
+    setHidden(true)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -577,8 +634,9 @@ function PagesDropDown() {
               <div
                 key={lindex}
                 className="text-xs cursor-pointer hover:text-primary"
+                onClick={() => handleNavigation(link.path)}
               >
-                <Link to={link.path}>{link.name}</Link>
+                {link.name}
               </div>
             ))}
           </div>
@@ -593,6 +651,7 @@ function PagesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -628,6 +687,15 @@ function CategoriesDropDown() {
       links: ['computer', 'smartphone', 'tablets', 'monitors'],
     },
   ]
+
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -646,6 +714,7 @@ function CategoriesDropDown() {
               <div
                 key={lindex}
                 className="capitalize text-sm cursor-pointer hover:text-primary"
+                onClick={() => setHidden(true)}
               >
                 {link}
               </div>
@@ -662,6 +731,7 @@ function CategoriesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -715,21 +785,210 @@ function AccountNav() {
   )
 }
 
-export default function HeaderBottom() {
-  const [currentWidth, setCurrentWidth] = useState()
-  const handleResize = function () {
-    setCurrentWidth(document.body.clientWidth)
+function Drawer({ content, children }) {
+  const [showDrawer, setShowDrawer] = useState(false)
+  return (
+    <div className="">
+      <div onClick={() => setShowDrawer(true)}>{children}</div>
+      <AnimatePresence>
+        {showDrawer && (
+          <motion.div
+            initial={{ x: -100 + '%' }}
+            animate={{ x: 0 }}
+            exit={{ x: -100 + '%' }}
+            transition={{ ease: 'easeInOut' }}
+            className="fixed left-0 top-0 bottom-0 z-20 bg-[#333] text-white space-y-2 p-4"
+          >
+            <div className="flex justify-end">
+              <div
+                className="cursor-pointer p-2"
+                onClick={() => setShowDrawer(false)}
+              >
+                <i className="fa fa-times"></i>
+              </div>
+            </div>
+            {content}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+function CategoriesMenuDrawer() {
+  const Content = () => {
+    const [initial, setInitial] = useState(true)
+    const [showMoreCategories, setShowMore] = useState(false)
+    const handleToggle = () => {
+      if (initial) setInitial(false)
+      setShowMore((prev) => !prev)
+    }
+    return (
+      <div className="pl-2 pr-4 pb-3 w-[237px]">
+        {/* <GiftNToys /> */}
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico1.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Fashion & Accessories
+          </div>
+        </div>
+        {/* <Electronics /> */}
+
+        {/* <HealthNBeauty /> */}
+
+        {/* <SmartphoneNTablets /> */}
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico5.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Health & Beauty
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico4.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Bathroom
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico3.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Metallurgy
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico2.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Bedroom
+          </div>
+        </div>
+
+        <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+          <img
+            src="image/catalog/menu/icons/ico1.png"
+            className="w-[26px] h-[26px]"
+          />
+          <div className="text-sm flex-auto group-hover:text-primary">
+            Health & Beauty
+          </div>
+        </div>
+
+        {showMoreCategories && (
+          <>
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico12.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Jewelry & Watches
+              </div>
+            </div>
+
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico9.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Home & Lights
+              </div>
+            </div>
+
+            <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
+              <img
+                src="image/catalog/menu/icons/ico6.png"
+                className="w-[26px] h-[26px]"
+              />
+              <div className="text-sm flex-auto group-hover:text-primary">
+                Metallurgy
+              </div>
+            </div>
+          </>
+        )}
+
+        <div
+          className="flex space-x-3 items-center cursor-pointer pl-2 py-[3px]"
+          onClick={handleToggle}
+        >
+          <i
+            className={
+              'fa fa-' +
+              (showMoreCategories ? 'minus' : 'plus') +
+              '-square' +
+              (initial ? '-o' : '') +
+              ' text-primary'
+            }
+          ></i>
+          <div className="text-sm flex-auto text-primary">
+            {initial ? 'More' : showMoreCategories ? 'Close' : 'Open'}{' '}
+            Categories
+          </div>
+        </div>
+      </div>
+    )
   }
 
-  useEffect(() => {
-    setCurrentWidth(document.body.clientWidth)
-    window.addEventListener('resize', handleResize)
-  }, [])
+  return (
+    <Drawer content={<Content />}>
+      <div className="flex space-x-2 items-center py-1 cursor-pointer">
+        <i className="fa fa-bars"></i>
+        <div className="uppercase text-sm">all categories</div>
+      </div>
+    </Drawer>
+  )
+}
+
+function MainMenuDrawer() {
+  const Content = () => (
+    <div className="min-w-[200px]">
+      {['Home', 'features', 'pages', 'categories', 'accessories', 'blog'].map(
+        (nav, index) => (
+          <div
+            className="uppercase p-1 cursor-pointer border-t border-gray-500"
+            key={index}
+          >
+            {nav}
+          </div>
+        )
+      )}
+    </div>
+  )
+  return (
+    <Drawer content={<Content />}>
+      <div className="py-1 px-2">
+        <i className="fa fa-bars" style={{ fontSize: 20 }}></i>
+      </div>
+    </Drawer>
+  )
+}
+
+export default function HeaderBottom() {
+  const islgp8 = useMediaQuery({ query: '(min-width: 1200px)' })
 
   return (
     <div className="flex items-center mdp5:space-x-8 text-white px-[2.5%]">
       <div className="hidden mdp5:flex space-x-8 items-end">
-        <CategoriesMenu currentWidth={currentWidth} />
+        <CategoriesMenu isBigScreen={islgp8} />
         <HomeDropDown />
         <FeaturesDropDown />
         <PagesDropDown />
@@ -743,13 +1002,8 @@ export default function HeaderBottom() {
         <AccountNav />
       </div>
       <div className="flex-auto flex mdp5:hidden items-center justify-between">
-        <div className="flex space-x-2 items-center py-1 cursor-pointer">
-          <i className="fa fa-bars"></i>
-          <div className="uppercase text-sm">all categories</div>
-        </div>
-        <div className="py-1 px-2">
-          <i className="fa fa-bars" style={{ fontSize: 20 }}></i>
-        </div>
+        <CategoriesMenuDrawer />
+        <MainMenuDrawer />
       </div>
     </div>
   )
