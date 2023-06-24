@@ -1,28 +1,43 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Dropdown } from './HeaderTop'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 function Logo() {
+  const navigate = useNavigate()
   return (
-    <div className="flex md:block justify-center">
+    <div
+      className="flex md:block justify-center cursor-pointer"
+      onClick={() => navigate('/')}
+    >
       <img src="image/catalog/logo.png" style={{ width: 189, height: 39 }} />
     </div>
   )
 }
 
 function CategoriesSelector({ category, setter }) {
-  const categories = ['All Categories', 'Apparel', 'Cables and Connectors']
+  const selectRef = useRef(null)
+  const categories = [
+    'All Categories',
+    'Apparel',
+    'Cables & Connectors',
+    'Cameras & Photo',
+    'Flashlights & Lamps',
+    'Mobile Accessories',
+    'Video Games',
+    'Jewelry & Watches',
+    'Earings',
+    'Wedding Rings',
+    'Men Watches',
+  ]
   return (
-    <div
-      style={{ padding: '0 15px' }}
-      className="bg-gray-100 rounded-l hidden mdp5:block"
-    >
+    <div className="relative flex-shrink-0">
       <select
+        ref={selectRef}
         value={category}
-        onChange={setter}
-        style={{ height: 40, fontSize: 12 }}
-        className="rounded-l outline-none bg-gray-100"
+        onChange={(event) => setter(event.target.value)}
+        style={{ height: 40, fontSize: 12, padding: '0 31px 0 15px' }}
+        className="rounded-l bg-gray-100 hidden mdp5:block"
       >
         {categories.map((item, index) => (
           <option value={item} key={index} style={{ fontSize: 12 }}>
@@ -30,6 +45,9 @@ function CategoriesSelector({ category, setter }) {
           </option>
         ))}
       </select>
+      <div className="absolute right-0 top-0 bottom-0 pr-2 flex items-center justify-center">
+        <i className="fa fa-chevron-down" style={{ fontSize: 8 }}></i>
+      </div>
     </div>
   )
 }
@@ -37,6 +55,11 @@ function CategoriesSelector({ category, setter }) {
 function FilterBar() {
   const [category, setCategory] = useState('All Categories')
   const [search, setSearch] = useState('')
+  const navigate = useNavigate()
+  const handleSearch = () => {
+    navigate('/?category=' + category + '&search=' + search)
+    window.location.reload()
+  }
   return (
     <div className="flex-auto hidden md:flex items-center">
       <CategoriesSelector category={category} setter={setCategory} />
@@ -53,6 +76,7 @@ function FilterBar() {
           <div
             style={{ width: 81, height: 36 }}
             className="flex items-center justify-center bg-black cursor-pointer hover:bg-red-500 rounded-r"
+            onClick={handleSearch}
           >
             <i className="fa fa-search text-white" style={{ fontSize: 12 }} />
           </div>

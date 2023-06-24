@@ -6,7 +6,6 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import RadioBox from '../components/controlled/RadioBox'
@@ -156,38 +155,40 @@ export default function ProductReturn() {
               </div>
               <div className="md:flex mb-4 md:space-x-4">
                 <Label className="mt-4" name="Order Date"></Label>
-                <div className="flex w-full mr-4">
-                  <DatePicker
-                    selected={date}
-                    name="date"
-                    className="block w-[420px] md:w-[270px] z-20  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-                    dateFormat="yyyy-MM-dd"
-                    placeholderText={'Order Date'}
-                    onClickOutside={() => {
-                      setdatePickerIsOpen((prev) => !prev)
-                    }}
-                    open={datePickerIsOpen}
-                    onSelect={(date) => {
-                      setdatePickerIsOpen((prev) => !prev)
-                      setDate(date)
-                    }}
-                    {...register('date')}
-                  />
+                <span className="flex w-full mr-4">
+                  <div className=" w-full md:w-[270px]">
+                    <DatePicker
+                      selected={date}
+                      name="date"
+                      className="block w-full z-20  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText={'Order Date'}
+                      onClickOutside={() => {
+                        setdatePickerIsOpen((prev) => !prev)
+                      }}
+                      open={datePickerIsOpen}
+                      onSelect={(date) => {
+                        setdatePickerIsOpen((prev) => !prev)
+                        setDate(date)
+                      }}
+                      {...register('date')}
+                    />
+                  </div>
 
-                  <span className="whitespace-nowrap relative align-middle w-[1%] table-cell box-border border-collapse">
+                  <span className="whitespace-nowrap relative align-middle table-cell box-border border-collapse">
                     <button
-                      className="leading-normal z-[2] rounded-none border-collapse rounded-l-none -ml-[1px] justify-self-end inline-block mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
-                    cursor-pointer align-middle whitespace-nowrap text-center font-normal py-[6px] px-3 box-border"
+                      className="leading-normal z-[2] rounded-none border-collapse rounded-l-none -ml-[1px] mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
+                    cursor-pointer align-middle text-center font-normal py-[6px] px-3 box-border"
                       type="button"
                       onClick={() => {
-                        setDate(new Date())
+                        setDate(new Date().dateFormat('yyyy-mm-dd'))
                         setdatePickerIsOpen((prev) => !prev)
                       }}
                     >
                       <i className="fa fa-calendar"></i>
                     </button>
                   </span>
-                </div>
+                </span>
               </div>
               <h2 className="mt-8 mb-2">Product Information</h2>
               <hr className="mb-6"></hr>

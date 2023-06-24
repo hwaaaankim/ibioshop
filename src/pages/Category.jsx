@@ -7,6 +7,9 @@ import Categories from "../components/product/Categories"
 import LatestProducts from "../components/product/LatestProducts"
 import BannerSidebar from "../components/product/BannerSidebar"
 import QuickView from '../components/product/QuickViewModal'
+import Notice from '../components/Notification/Notice'
+import Wishlist from '../components/Notification/Wishlist'
+import Compare from '../components/Notification/Compare'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -197,6 +200,9 @@ function ProductBanner() {
 function Product({ product }) {
   const [showModal, setShowModal] = useState(false);
   const [mouseOver, setMouseOver] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [showWishlistNotification, setWishShowNotification] = useState(false);
+  const [showCompareNotification, setCompareShowNotification] = useState(false);
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -209,16 +215,39 @@ function Product({ product }) {
     setShowModal(true);
   };
 
+  const handleAddToCart = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
+  const handleAddToWishlist = () => {
+    setWishShowNotification(true);
+    setTimeout(() => {
+      setWishShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+  const handleAddToCompare = () => {
+    setCompareShowNotification(true);
+    setTimeout(() => {
+      setCompareShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
   return (
     <div
       className="space-y-2 w-full mb-20"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      onClick={handleCardClick}
     >
       <>{showModal ? (<QuickView />) : null}</>
-
-      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] cursor-pointer group relative text-black">
+      <>{showNotification ? (<Notice />) : null}</>
+      <>{showWishlistNotification ? (<Wishlist />) : null}</>
+      <>{showCompareNotification ? (<Compare />) : null}</>
+      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] cursor-pointer group relative text-black"
+        onClick={handleCardClick}
+      >
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
@@ -243,7 +272,7 @@ function Product({ product }) {
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
               >
-                <button>
+                <button title='Quick View'>
                   <i className="fa fa-eye"
                     onClick={handleEyeClick}></i>
                 </button>
@@ -267,6 +296,8 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
+                    onClick={handleAddToCart}
+                    title='Add to cart'
                   >
                     add to cart
                   </motion.div>
@@ -276,6 +307,8 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                    onClick={handleAddToWishlist}
+                    title='Add to Wish List'
                   >
                     <i className="fa fa-heart-o"></i>
                   </motion.div>
@@ -284,6 +317,8 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                    onClick={handleAddToCompare}
+                    title='Compare this product'
                   >
                     <i className="fa fa-retweet"></i>
                   </motion.div>
@@ -331,7 +366,7 @@ function Product({ product }) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 function GridProducts() {
@@ -345,6 +380,9 @@ function GridProducts() {
 }
 function ListedProducts() {
   const [showModal, setShowModal] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [showWishlistNotification, setWishShowNotification] = useState(false);
+  const [showCompareNotification, setCompareShowNotification] = useState(false);
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -356,9 +394,33 @@ function ListedProducts() {
     e.stopPropagation();
     setShowModal(true);
   };
+
+  const handleAddToCart = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
+  const handleAddToWishlist = () => {
+    setWishShowNotification(true);
+    setTimeout(() => {
+      setWishShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+  const handleAddToCompare = () => {
+    setCompareShowNotification(true);
+    setTimeout(() => {
+      setCompareShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
   return (
-    <div className="flex flex-col" onClick={handleCardClick}>
+    <div className="flex flex-col">
       <>{showModal ? (<QuickView />) : null}</>
+      <>{showNotification ? (<Notice />) : null}</>
+      <>{showWishlistNotification ? (<Wishlist />) : null}</>
+      <>{showCompareNotification ? (<Compare />) : null}</>
       {products.map((product, index) => (
         <div key={index} className="w-full sm:flex mb-8">
           <div className="cursor-pointer group relative text-black">
@@ -366,6 +428,7 @@ function ListedProducts() {
               <img
                 src={product.picture}
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
+                onClick={handleCardClick}
               />
             </div>
             {product.discounted && (
@@ -419,7 +482,7 @@ function ListedProducts() {
                 className="bg-[#094bad] border border-[#094bad] text-white rounded-[3px] text-[12px] uppercase mr-[5px] py-[7px] px-[15px] text-center"
                 type="button"
                 title="Add to Cart"
-                onclick="cart.add('101', '1');"
+                onClick={handleAddToCart}
               >
                 <i className="fa fa-shopping-basket"></i>
               </button>
@@ -427,7 +490,7 @@ function ListedProducts() {
                 className="bg-white border border-[#eaeaea] text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[7px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
                 type="button"
                 title="Add to Wish List"
-                onclick="wishlist.add('101');"
+                onClick={handleAddToWishlist}
               >
                 <i className="fa fa-heart"></i>
               </button>
@@ -435,12 +498,13 @@ function ListedProducts() {
                 className="bg-white border border-[#eaeaea] text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[7px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
                 type="button"
                 title="Compare this Product"
-                onclick="compare.add('101');"
+                onClick={handleAddToCompare}
               >
                 <i className="fa fa-refresh"></i>
               </button>
               <a
                 onClick={handleEyeClick}
+                title='Quick View'
                 className="bg-white border border-[#eaeaea] cursor-pointer text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[10px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
               ><i className="fa fa-eye"></i
               ></a>
