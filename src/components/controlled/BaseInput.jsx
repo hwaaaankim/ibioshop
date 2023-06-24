@@ -5,7 +5,7 @@ const BaseInput = React.forwardRef(
     return (
       <div className="">
         {label && (
-          <div className="text-neutral-500" style={{ fontSize: 14 }}>
+          <div className="text-gray-2 mb-1 leading-6 text-xs font-normal">
             <span style={{ color: 'red' }}> {required && '*'} </span>
             {label}
           </div>
