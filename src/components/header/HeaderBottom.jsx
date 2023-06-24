@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -447,6 +447,14 @@ function CategoriesMenu({ isBigScreen }) {
 }
 
 function HomeDropDown() {
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8">
       {[
@@ -455,7 +463,11 @@ function HomeDropDown() {
         'Home page - layout 3',
         'Home page - rtl',
       ].map((title, index) => (
-        <div key={index} className="w-[110px] space-y-2 cursor-pointer group">
+        <div
+          key={index}
+          className="w-[110px] space-y-2 cursor-pointer group"
+          onClick={() => setHidden(true)}
+        >
           <img
             src="image/catalog/menu/home-1.jpg"
             className="w-full h-[60px]"
@@ -473,6 +485,7 @@ function HomeDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -525,6 +538,19 @@ function FeaturesDropDown() {
       ],
     },
   ]
+  const navigate = useNavigate()
+  const [hidden, setHidden] = useState(false)
+  const handleNavigation = (path) => {
+    navigate(path)
+    setHidden(true)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -537,8 +563,9 @@ function FeaturesDropDown() {
               <div
                 key={lindex}
                 className="capitalize text-xs cursor-pointer hover:text-primary"
+                onClick={() => handleNavigation(link.path)}
               >
-                <Link to={link.path}>{link.name}</Link>
+                {link.name}
               </div>
             ))}
           </div>
@@ -552,6 +579,7 @@ function FeaturesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -583,6 +611,20 @@ function PagesDropDown() {
       ],
     },
   ]
+
+  const navigate = useNavigate()
+  const [hidden, setHidden] = useState(false)
+  const handleNavigation = (path) => {
+    navigate(path)
+    setHidden(true)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -592,8 +634,9 @@ function PagesDropDown() {
               <div
                 key={lindex}
                 className="text-xs cursor-pointer hover:text-primary"
+                onClick={() => handleNavigation(link.path)}
               >
-                <Link to={link.path}>{link.name}</Link>
+                {link.name}
               </div>
             ))}
           </div>
@@ -608,6 +651,7 @@ function PagesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
@@ -643,6 +687,15 @@ function CategoriesDropDown() {
       links: ['computer', 'smartphone', 'tablets', 'monitors'],
     },
   ]
+
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -661,6 +714,7 @@ function CategoriesDropDown() {
               <div
                 key={lindex}
                 className="capitalize text-sm cursor-pointer hover:text-primary"
+                onClick={() => setHidden(true)}
               >
                 {link}
               </div>
@@ -677,6 +731,7 @@ function CategoriesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">

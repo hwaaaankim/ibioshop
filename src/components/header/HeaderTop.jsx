@@ -19,7 +19,7 @@ export function Dropdown({
     setVariants({ animate: { rotateX: 0 } })
   }
   const onHide = () => {
-    setVariants({ animate: { rotateX: 90 } })
+    setVariants({ animate: { rotateX: 90, originY: 0 } })
   }
 
   const contentAnimated = (attrs) => (

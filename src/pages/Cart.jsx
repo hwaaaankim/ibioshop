@@ -5,6 +5,7 @@ import CouponCode from "../components/cart/CouponCode"
 import Shipping from "../components/cart/Shipping"
 import GiftCertificate from "../components/cart/GiftCertificate"
 import image from '../assets/images/10.jpg';
+import { useState } from 'react'
 
 const cartItems = [
   {
@@ -13,6 +14,7 @@ const cartItems = [
     quantity: 1,
     model: 'Pt001',
     unitPrice: 20,
+    total: 20,
   },
   {
     image: image,
@@ -20,10 +22,19 @@ const cartItems = [
     quantity: 1,
     model: 'Pt001',
     unitPrice: 20,
+    total: 20
   }
 ]
 
 function Cart() {
+
+  // const [couponClosed, toggleCoupon] = setState(true)
+  // const [shippingClosed, toggleShipping] = setState(false)
+  // const [giftClosed, toggleCertificate] = setState(false)
+
+  // const hideOthers = (disc) => {
+    
+  // }
 
 
   return <div className="flex flex-col sm:mx-10 mx-3 mb-4 pb-2 sm:text-sm lg:text-xs">
@@ -44,8 +55,8 @@ function Cart() {
         <ShoppingCartTable cartItems={cartItems}></ShoppingCartTable>
         <h2 className="text-lg font-normal mt-5 text-gray-500">What would you like to do next?</h2>
         <span>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</span>
-        <CouponCode></CouponCode>
-        <Shipping></Shipping>
+        <CouponCode ></CouponCode>
+        <Shipping ></Shipping>
         <GiftCertificate  />
         <div>
           <Total></Total>

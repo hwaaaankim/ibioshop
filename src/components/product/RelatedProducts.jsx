@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline'
 
 import QuickView from '../../components/product/QuickViewModal'
+import Notice from '../Notification/Notice'
+import Wishlist from '../Notification/Wishlist'
+import Compare from '../Notification/Compare'
 
 function Carousel({
   items,
@@ -76,11 +79,14 @@ function Carousel({
 function Product({ product }) {
   const [mouseOver, setMouseOver] = useState(false)
   const [showModal, setShowModal] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [showWishlistNotification, setWishShowNotification] = useState(false);
+  const [showCompareNotification, setCompareShowNotification] = useState(false);
   const navigate = useNavigate();
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
-    navigate('product');
+    navigate('/product');
   };
 
   const handleEyeClick = (e) => {
@@ -88,15 +94,37 @@ function Product({ product }) {
     setShowModal(true);
   };
 
+  const handleAddToCart = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
+  const handleAddToWishlist = () => {
+    setWishShowNotification(true);
+    setTimeout(() => {
+      setWishShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+  const handleAddToCompare = () => {
+    setCompareShowNotification(true);
+    setTimeout(() => {
+      setCompareShowNotification(false);
+    }, 3000); // hide the notification after 3 seconds
+  };
+
   return (
     <div
       className="space-y-2 w-full"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      onClick={handleCardClick}
     >
-      {/* <>{showModal ? (<QuickView />) : null}</> */}
-      <div className="lg:h-[180px] cursor-pointer group relative text-black">
+      <>{showModal ? (<QuickView />) : null}</>
+      <>{showNotification ? (<Notice />) : null}</>
+      <>{showWishlistNotification ? (<Wishlist />) : null}</>
+      <>{showCompareNotification ? (<Compare />) : null}</>
+      <div className="lg:h-[180px] cursor-pointer group relative text-black" onClick={handleCardClick}>
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
@@ -120,6 +148,7 @@ function Product({ product }) {
                 exit={{ scale: 0 }}
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
+                title='Quick View'
               >
                 <i className="fa fa-eye" onClick={handleEyeClick}></i>
               </motion.div>
@@ -141,6 +170,8 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
+                    onClick={handleAddToCart}
+                    title='Add to cart'
                   >
                     add to cart
                   </motion.div>
@@ -150,6 +181,8 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                    onClick={handleAddToWishlist}
+                    title='Add to Wish List'
                   >
                     <i className="fa fa-heart-o"></i>
                   </motion.div>
@@ -158,6 +191,8 @@ function Product({ product }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
+                    onClick={handleAddToCompare}
+                    title='Compare this product'
                   >
                     <i className="fa fa-retweet"></i>
                   </motion.div>
@@ -258,23 +293,24 @@ export default function RelatedProducts() {
       // discountedPrice: 85,
     },
   ]
-  const child = ({ item }) => (
+  // const child = ({ item }) => (
+  return (
     <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
       {products.map((product, index) => (
         <Product product={product} key={index} />
       ))}
     </div>
   )
-  return (
-    <div className="pb-20 pr-[15px]">
-      <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
-      <Carousel
-        Child={child}
-        items={[products, products, products]}
-        hideBtns={true}
-        showChevrons={true}
-        chevronY={-50}
-      />
-    </div>
-  )
+  // return (
+    // <div className="pb-20 pr-[15px]">
+    //   <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
+    //   <Carousel
+    //     Child={child}
+    //     items={[products, products, products]}
+    //     hideBtns={true}
+    //     showChevrons={true}
+    //     chevronY={-50}
+    //   />
+    // </div>
+  // )
 }

@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -167,7 +166,7 @@ export default function WishList() {
 
   return (
     <div
-      className="box-border text-gray-400 p-0 leading-6 text-sm justify-center"
+      className="overflow-visible box-border text-gray-400 p-0 leading-6 text-sm justify-center"
       style={{ width: 95 + '%', margin: '0 auto' }}
     >
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col sm:flex-row gap-8 p-0 min-h-fit">
