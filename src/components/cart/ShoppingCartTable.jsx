@@ -5,13 +5,24 @@ import 'tippy.js/dist/tippy.css';
 
 function ShoppingCartTable({ cartItems }) {
 
-  const [quantity, setQuantity] = useState({index: 0, quantity: 1})
-  const handleRemove = () => {
+  const [cart, setCartData] = useState(cartItems);
+  console.log(cart)
+  // const handleRemove = () => {
 
-  }
-  const handleUpdate = () => {
+  // }
 
-  }
+  // // handleUpdate = () => {
+  // //   setQuantity()
+  // // }
+  
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...cart];
+    list[index].quantity = value;
+    list[index].total = list[index].unitPrice * value;
+    // list[index] = { ...list[index], value };
+    setCartData(list);
+  };
 
   return <div>
     <table className="mb-3 w-full text-xs sm:text-sm max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
@@ -26,7 +37,7 @@ function ShoppingCartTable({ cartItems }) {
         </tr>
       </thead>
       <tbody>
-          {cartItems.map((item, index) => (
+          {cart.map((item, index) => (
             <tr key={index}>
                     <td className="border border-solid align-top leading-snug p-2 text-center box-border border-collapse border-spacing-0">
                     <a href="product.html">
@@ -55,10 +66,10 @@ function ShoppingCartTable({ cartItems }) {
                        focus:border-blue-300 sm:text-sm sm:leading-5"
                         id="input-voucher"
                         placeholder="Enter your gift voucher code here"
-                        name="quantity"
+                        name={item.title}
                         value={item.quantity}
                         size="1"
-                        onChange={(e)=>setQuantity(index, e.target.value)}
+                        onChange={(e) => handleInputChange(e, index)}
                       />
                       <span
                         className="whitespace-nowrap align-middle table-cell"
@@ -69,7 +80,7 @@ function ShoppingCartTable({ cartItems }) {
                           type="submit"
                           className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block px-4 h-9"
-                          onClick={handleUpdate}
+                          // onClick={handleUpdate}
                           >
                           <i className="fa fa-refresh"></i>
         
@@ -82,7 +93,7 @@ function ShoppingCartTable({ cartItems }) {
                           title=""
                           className="cursor-pointer bg-red-600 hover:bg-red-700 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block  px-4 h-9"
-                          onClick={() => cartItems = cartItems.filter( cart => cart.index == index) }
+                          // onClick={() => cartItems = cartItems.filter( cart => cart.index == index) }
                         >
                           <i className="fa fa-times-circle"></i>
                         </button>
@@ -91,10 +102,10 @@ function ShoppingCartTable({ cartItems }) {
                     </div>
                   </td>
                   <td className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
-                    $114.35
+                    ${item.unitPrice}
                   </td>
                   <td className="text-right border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
-                    $114.35
+                    ${item.total}
                   </td>
                   </tr>
           ))}
