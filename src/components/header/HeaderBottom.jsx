@@ -611,6 +611,20 @@ function PagesDropDown() {
       ],
     },
   ]
+
+  const navigate = useNavigate()
+  const [hidden, setHidden] = useState(false)
+  const handleNavigation = (path) => {
+    navigate(path)
+    setHidden(true)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -620,8 +634,9 @@ function PagesDropDown() {
               <div
                 key={lindex}
                 className="text-xs cursor-pointer hover:text-primary"
+                onClick={() => handleNavigation(link.path)}
               >
-                <Link to={link.path}>{link.name}</Link>
+                {link.name}
               </div>
             ))}
           </div>
@@ -636,6 +651,7 @@ function PagesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
