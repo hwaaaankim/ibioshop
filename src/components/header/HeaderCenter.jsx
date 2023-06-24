@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 function Logo() {
+  const navigate = useNavigate()
   return (
-    <div className="flex md:block justify-center">
+    <div
+      className="flex md:block justify-center cursor-pointer"
+      onClick={() => navigate('/')}
+    >
       <img src="image/catalog/logo.png" style={{ width: 189, height: 39 }} />
     </div>
   )
