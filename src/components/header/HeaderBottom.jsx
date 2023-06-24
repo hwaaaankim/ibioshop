@@ -687,6 +687,15 @@ function CategoriesDropDown() {
       links: ['computer', 'smartphone', 'tablets', 'monitors'],
     },
   ]
+
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (hidden) setHidden(false)
+    }, 1000)
+  }, [hidden])
+
   const content = (
     <div className="p-10 flex space-x-8 items-start">
       {navs.map((nav, nindex) => (
@@ -705,6 +714,7 @@ function CategoriesDropDown() {
               <div
                 key={lindex}
                 className="capitalize text-sm cursor-pointer hover:text-primary"
+                onClick={() => setHidden(true)}
               >
                 {link}
               </div>
@@ -721,6 +731,7 @@ function CategoriesDropDown() {
       bordered={false}
       hasPadding={false}
       content={content}
+      visible={hidden ? false : undefined}
     >
       <div>
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
