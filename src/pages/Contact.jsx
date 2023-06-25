@@ -4,6 +4,9 @@ import BaseInput from '../components/controlled/BaseInput'
 import { useForm } from 'react-hook-form'
 import account from '../services/api/account'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
 
 function Contact() {
   const {
@@ -24,29 +27,32 @@ function Contact() {
     }
     setLoading(false)
   }
+  //Start Breadcrumb
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [
+          { title: 'Page', path: '' },
+          { title: 'Contact us', path: '/contact_us' },
+        ],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+  //End Breadcrumb
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 text-xs font-body w-[95%] max-w-[1650px] leading-6">
-      {/* Breadcrumb */}
-      <ul className="flex mt-6 mb-11 leading-normal text-gray-2 space-x-3 ">
-        <li>
-          <a href="#">
-            <i className="fa fa-home ml-2  hover:text-blue-3"></i>
-          </a>
-        </li>
-        <li>
-          <Icon className="mt-1" id="chevronRight" size="8"></Icon>
-        </li>
-        <li className=" hover:text-primary">
-          <a href="#">Page</a>
-        </li>
-        <li>
-          <Icon className="mt-1" id="chevronRight" size="9"></Icon>
-        </li>
-        <li className="text-primary text-sm">
-          <a href="/contact_us">Contact Us</a>
-        </li>
-      </ul>
       <div className="">
         <div className="">
           <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
@@ -58,8 +64,8 @@ function Contact() {
           allowFullScreen
         ></iframe>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 ">
-        <div className="">
+      <div className="sm:flex mt-3 pr-5">
+        <div className="w-full sm:w-[35%] pr-3">
           <h3 className="text-lg py-5 font-medium mb-3">Your Store</h3>
           <address className="font-normal not-italic leading-[1.4285714] ">
             <div className="mb-4">
@@ -89,7 +95,7 @@ function Contact() {
             </div>
           </address>
         </div>
-        <div className="">
+        <div className="w-full sm:w-[65%]">
           <form onSubmit={handleSubmit(sendContact)}>
             <h3 className="text-lg py-5 font-medium mb-3">Contact Form</h3>
             <div className="sm:flex mb-4 sm:space-x-4 ">
