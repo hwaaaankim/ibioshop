@@ -95,10 +95,11 @@ function ContactInfo() {
 
 function SpecialLink({ title, to }) {
   const navigate = useNavigate()
+  const scrollToTop = () => window.scrollTo(0, 0)
   return (
     <div
       className="flex space-x-2 items-center cursor-pointer text-gray-700 hover:text-primary"
-      onClick={() => (!to ? null : navigate(to))}
+      onClick={() => (!to ? scrollToTop() : navigate(to))}
     >
       <i className="fa fa-dot-circle-o" style={{ fontSize: 8 }} />
       <div className="text-xs">{title}</div>
