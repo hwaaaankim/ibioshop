@@ -12,13 +12,13 @@ export default function AccountSiteMap() {
             <Link to="/register">Register</Link>
           </li>
           <li className="mb-2">
-            <Link to="/forget_password">Forgotten Password </Link>
+            <Link to="/">Forgotten Password </Link>
           </li>
           <li className="mb-2">
             <Link to="/my_account">My Account</Link>
           </li>
           <li className="mb-2">
-            <Link to="/address_book">Address Books</Link>
+            <Link to="/">Address Books</Link>
           </li>
           <li className="mb-2">
             <Link to="/wish_list">Wish List</Link>
@@ -27,22 +27,22 @@ export default function AccountSiteMap() {
             <Link to="/order_history">Order History</Link>
           </li>
           <li className="mb-2">
-            <Link to="/downloads">Downloads</Link>
+            <Link to="/">Downloads</Link>
           </li>
           <li className="mb-2">
-            <Link to="/reward_point">Reward Points</Link>
+            <Link to="/">Reward Points</Link>
           </li>
           <li className="mb-2">
             <Link to="/product_return">Returns</Link>
           </li>
           <li className="mb-2">
-            <Link to="/transaction">Transactions</Link>
+            <Link to="/">Transactions</Link>
           </li>
           <li className="mb-2">
-            <Link to="/newsletter">Newsletter</Link>
+            <Link to="/blog">Newsletter</Link>
           </li>
           <li className="mb-2">
-            <Link to="/recurring_payment">Recurring payments</Link>
+            <Link to="/">Recurring payments</Link>
           </li>
         </ul>
       </div>
