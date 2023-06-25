@@ -12,7 +12,7 @@ import OrderInfo from './pages/OrderInfo'
 import Protected from './components/route-hocs/Protected'
 import OnlyWhenLoggedOut from './components/route-hocs/OnlyWhenLoggedOut'
 import Register from './pages/Register'
-import ProductReturn from './pages/ProductReturn'
+//import ProductReturn from './pages/ProductReturn'
 import MyAccount from './pages/MyAccount'
 import Cart from './pages/Cart'
 import Product from './pages/Product'
@@ -45,7 +45,7 @@ function App() {
         <Route path="checkout" element={<Checkout />} />
         <Route path="wish_list" element={<WishList />} />
         <Route path="order_info" element={<OrderInfo />} />
-        <Route path="product_return" element={<ProductReturn />} />
+        {/* <Route path="product_return" element={<ProductReturn />} /> */}
         <Route path="my_account" element={<MyAccount />} />
         <Route path="cart" element={<Cart />} />
         <Route path="about" element={<Aboutus />} />

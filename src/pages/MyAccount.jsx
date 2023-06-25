@@ -1,10 +1,12 @@
-import Icon from '../components/icon/Icon'
 import BaseInput from '../components/controlled/BaseInput'
 import Label from '../components/my_account/Label'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import { useForm } from 'react-hook-form'
 import account from '../services/api/account'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
 
 function MyAccount() {
   const [loading, setLoading] = useState(false)
@@ -19,44 +21,48 @@ function MyAccount() {
 
   // update Account function
   const updateAccount = async (data) => {
-    console.log(errors)
     setLoading(true)
     if (data.newPassword !== data.repeatPassword) {
       setError('Passwords do not match')
       return
     }
+
     const { isError, response, error } = await account.updateAccount(data)
     if (!isError) {
-      console.log(response)
     } else {
       setError(error.toString())
     }
     setLoading(false)
   }
+
+  //Start Breadcrumb
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [
+          { title: 'Account', path: '/my_account' },
+          { title: 'My Account', path: '/my_account' },
+        ],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+  //End Breadcrumb
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8 text-xs text-gray-2 font-body leading-6">
-      {/* Breadcrumb */}
-      <ul className="flex my-6 leading-normal text-gray-2 space-x-4 ">
-        <li>
-          <a href="#">
-            <i className="fa fa-home ml-2  hover:text-blue-3"></i>
-          </a>
-        </li>
-        <li>
-          <Icon className="mt-2" id="chevronRight" size="8"></Icon>
-        </li>
-        <li className=" hover:text-primary">
-          <a href="#">Account</a>
-        </li>
-        <li>
-          <Icon className="mt-2 " id="chevronRight" size="8"></Icon>
-        </li>
-        <li className="text-primary">
-          <a href="/my_account">My Account</a>
-        </li>
-      </ul>
+    <div className="px-5 sm:px-6 lg:px-8 text-xs text-gray-2 font-body leading-6">
       <div className="flex">
-        <div className="w-full sm:w-3/4">
+        <div className=" w-full sm:w-[80%]">
           <div className="text-xl mb-6 mt-5">
             <h2 className="mb-2 font-medium">My Account</h2>
             <p className="leading-normal">
@@ -210,14 +216,15 @@ function MyAccount() {
                         className="outline-none focus-within:border-2 pl-3  border border-gray-300 rounded py-2  text-sm"
                         {...register('subscribe')}
                       />
-                      Yes
+                      &nbsp;Yes
                       <input
                         type="radio"
                         value="no"
                         className="outline-none focus-within:border-2 pl-3 border border-gray-300 rounded py-2  text-sm"
                         {...register('subscribe', { required: true })}
+                        checked
                       />
-                      No
+                      &nbsp; No
                     </div>
                   </div>
                 </div>
@@ -427,7 +434,7 @@ function MyAccount() {
             </div>
           </form>
         </div>
-        <div className="sm:w-1/4 hidden sm:block">
+        <div className="sm:w-[20%] hidden sm:block">
           {/* Site Map */}
           <AccountSiteMap />
         </div>
