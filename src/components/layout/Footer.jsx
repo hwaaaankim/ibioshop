@@ -194,6 +194,7 @@ function ServiceNavs() {
 
 function FooterBottom() {
   const navigate = useNavigate()
+  const scrollToTop = () => window.scrollTo(0, 0)
   const navs = [
     { path: '/about', title: 'about us' },
     { path: '', title: 'customer service' },
@@ -215,7 +216,7 @@ function FooterBottom() {
               <li
                 key={key}
                 className="uppercase text-xs font-semibold text-gray-800 hover:text-primary cursor-pointer inline-block px-3"
-                onClick={() => (!nav.path ? null : navigate(nav.path))}
+                onClick={() => (!nav.path ? scrollToTop() : navigate(nav.path))}
               >
                 {nav.title}
               </li>
