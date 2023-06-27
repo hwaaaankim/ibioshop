@@ -56,10 +56,8 @@ function App() {
         <Route path="compare" element={<ProductComparison />} />
         <Route path="gift_voucher" element={<GiftVoucher />} />
         <Route path="category" element={<Category />} />
-        <Route path="go-responsive" element={<div>here we go</div>} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog-detail" element={<BlogDetail />} />
-        <Route path="go-responsive" element={<div>go responsive</div>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
