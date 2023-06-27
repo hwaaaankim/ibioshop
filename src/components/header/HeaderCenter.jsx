@@ -194,12 +194,17 @@ function CartMini() {
 }
 
 function RightNavs() {
+  const navigate = useNavigate()
   return (
     <div className="hidden md:flex mdp5:space-x-6 mdp5:pl-12 mdp5:mx-4 items-center">
-      {[{ icon: 'refresh' }, { icon: 'heart' }].map((item, index) => (
+      {[
+        { icon: 'refresh', path: '/compare' },
+        { icon: 'heart', path: '/wish_list' },
+      ].map((item, index) => (
         <div
           className="cursor-pointer w-10 h-10 hidden lgp8:flex items-center justify-center"
           key={index}
+          onClick={() => navigate(item.path)}
         >
           <i
             className={'fa fa-' + item.icon + ' text-white hover:text-black'}

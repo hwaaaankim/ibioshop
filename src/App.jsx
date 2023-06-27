@@ -47,7 +47,6 @@ function App() {
         <Route path="order_info" element={<OrderInfo />} />
         <Route path="product_return" element={<ProductReturn />} />
         <Route path="my_account" element={<MyAccount />} />
-        <Route path="cart" element={<Cart />} />
         <Route path="about" element={<Aboutus />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product" element={<Product />} />
