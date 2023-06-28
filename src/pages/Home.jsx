@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+import { openModal } from '../store/slices/modalSlice'
 
 function Carousel({
   items,
@@ -668,6 +671,13 @@ function Product({ product, showProgress = false }) {
     </div>
   )
 
+  const dispatch = useDispatch()
+
+  const openQuickView = (event) => {
+    event.stopPropagation()
+    dispatch(openModal({ id: 2 }))
+  }
+
   return (
     <div
       className="space-y-2 w-full"
@@ -701,6 +711,7 @@ function Product({ product, showProgress = false }) {
                 exit={{ scale: 0 }}
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
+                onClick={openQuickView}
               >
                 <i className="fa fa-eye"></i>
               </motion.div>

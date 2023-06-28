@@ -39,7 +39,7 @@ function App() {
     <div className="h-screen">
       <ScrollToTop />
       <Modal />
-      <div className={'h-screen' + modal.show ? ' overflow-hidden' : ''}>
+      <div className={'h-screen' + (modal.show ? ' overflow-hidden' : '')}>
         {!header.hidden && <Header />}
         {!breadcrumb.hidden && <Breadcrumb />}
         <Routes>
