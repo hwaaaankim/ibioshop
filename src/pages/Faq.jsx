@@ -3,6 +3,9 @@ import { More, Less } from '../components/product/svg'
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
 const Faq = () => {
   const [isActive, setIsActive] = useState('0')
   // const handleToggle = (index) => {
@@ -11,34 +14,34 @@ const Faq = () => {
   //   }
   //   setIsActive(index)
   // }
+
+  //Start Breadcrumb
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [
+          { title: 'Account', path: '/my_account' },
+          { title: 'Page', path: '' },
+          { title: 'Faq', path: '/faq' },
+        ],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+  //End Breadcrumb
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8 text-xs font-body w-[95%] max-w-[1650px] leading-6">
-      {/* Breadcrumb */}
-      <ul className="flex mt-6 mb-11 leading-normal text-gray-2 space-x-3 ">
-        <li>
-          <a href="#">
-            <i className="fa fa-home ml-2  hover:text-blue-3"></i>
-          </a>
-        </li>
-        <li>
-          <Icon className="mt-1" id="chevronRight" size="8"></Icon>
-        </li>
-        <li className=" hover:text-primary">
-          <a href="#">Account</a>
-        </li>
-        <li>
-          <Icon className="mt-1" id="chevronRight" size="8"></Icon>
-        </li>
-        <li className=" hover:text-primary">
-          <a href="#">Page</a>
-        </li>
-        <li>
-          <Icon className="mt-1" id="chevronRight" size="9"></Icon>
-        </li>
-        <li className="text-primary text-sm">
-          <a href="/faq">Faq</a>
-        </li>
-      </ul>
+    <div className="px-4 sm:px-6 lg:px-8 text-xs font-body w-[95%] max-w-[1650px] mt-3 leading-6">
       <div className="">
         <div className="mb-4">
           <h3 className="text-xl mb-2">Got Questions? We’ve Got Answers!</h3>

@@ -19,7 +19,7 @@ export function Dropdown({
     setVariants({ animate: { rotateX: 0 } })
   }
   const onHide = () => {
-    setVariants({ animate: { rotateX: 90 } })
+    setVariants({ animate: { rotateX: 90, originY: 0 } })
   }
 
   const contentAnimated = (attrs) => (
@@ -86,9 +86,9 @@ function Currencies() {
 
   return (
     <Dropdown content={content}>
-      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
         <div>$ US Dollar</div>
-        <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
+        <i className="fa fa-angle-down" style={{ fontSize: 12 }} />
       </div>
     </Dropdown>
   )
@@ -115,13 +115,13 @@ function Languages() {
   )
   return (
     <Dropdown content={content}>
-      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-0.5 items-center">
+      <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
         <img
           src="image/catalog/flags/gb.png"
           style={{ width: 16, height: 11 }}
         />
         <div>English</div>
-        <i className="fa fa-angle-down" style={{ fontSize: 10 }} />
+        <i className="fa fa-angle-down" style={{ fontSize: 12 }} />
       </div>
     </Dropdown>
   )
@@ -162,19 +162,22 @@ function AccountNavs() {
 
 export default function HeaderTop() {
   return (
-    <div className="flex space-x-2 items-center px-[2.5%] py-2">
+    <div className="flex space-x-2 items-center lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
       <div
-        className="flex-auto leading-9 text-gray-500 hidden min-[1200px]::flex"
+        className="flex-auto leading-9 text-gray-500 hidden lgp8:flex"
         style={{ fontSize: 12 }}
       >
         Welcome to SuperMarket! Wrap new offers / gift every single day on
         Weekends - New Coupon code:&nbsp;
         <span className="text-primary">Happy2018</span>
       </div>
-      <div className="flex-auto flex min-[1200px]::hidden">
+      <div className="flex-auto flex lgp8:hidden">
         <AccountNavs />
       </div>
-      <div className="flex space-x-5 items-center" style={{ fontSize: 12 }}>
+      <div
+        className="flex space-x-[19px] items-center"
+        style={{ fontSize: 12 }}
+      >
         <Currencies />
         <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div>
         <Languages />

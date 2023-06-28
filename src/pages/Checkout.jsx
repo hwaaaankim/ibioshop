@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
 
+import Label from '../components/controlled/Label'
 import BaseInput from '../components/controlled/BaseInput'
 import RadioBox from '../components/controlled/RadioBox'
 import CheckBox from '../components/controlled/CheckBox'
@@ -121,7 +122,7 @@ function PersonalDetail({ setter }) {
               </li>
               <li>
                 <BaseInput
-                  label="E-mail"
+                  label="E-Mail"
                   value={userData.email}
                   required={true}
                   setter={setUserData}
@@ -182,16 +183,13 @@ function PersonalAddress() {
     company: '',
     city: '',
     post: '',
-    country: '',
     state: '',
-    box: false,
+    box: true,
   })
-  const countries = [
-    { name: '--- Please Select ---', value: '' },
-    { name: 'Aaland Islands', value: 244 },
-    { name: 'Bahrain', value: 17 },
-  ]
 
+  const handleCheck = () => {
+    setAddress({ ...address, box: !address.box })
+  }
   const states = [
     { name: '--- Please Select ---', value: '' },
     { name: 'Jeju', value: 'Jeju' },
@@ -273,7 +271,7 @@ function PersonalAddress() {
                   }
                 />
               </li>
-              <li>
+              {/* <li>
                 <label className="block text-sm text-neutral-500">
                   Country
                 </label>
@@ -283,9 +281,9 @@ function PersonalAddress() {
                   }
                   name="country-id"
                   id="country"
-                  className="bg-white border-gray-1 inset-px
+                  className="bg-white border-gray-1 font-normal inset-px
                            p-2 text-sm block w-full px-3 mt-1 transition duration-150 ease-in-out border rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none 
-                           focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                           focus:shadow-outline-blue focus:border-blue-300"
                 >
                   {countries.map((country) => (
                     <option key={country.value} value={country.value}>
@@ -294,20 +292,22 @@ function PersonalAddress() {
                     </option>
                   ))}
                 </select>
-              </li>
+              </li> */}
               <li>
-                <label className="block text-sm text-neutral-500">
-                  Region / State
-                </label>
+                <Label
+                  required={true}
+                  className="mt-4 whitespace-nowrap text-gray-2 mb-1 leading-6 text-xs font-normal"
+                  name="Region / State"
+                ></Label>
                 <select
                   onChange={(e) =>
                     setAddress({ ...address, state: e.target.value })
                   }
                   name="zone-id"
                   id="state"
-                  className="p-2 text-sm block w-full px-3 mt-1 transition bg-white duration-150 ease-in-out border 
+                  className="p-2 text-sm font-normal block w-full px-3 mt-1 transition bg-white duration-150 ease-in-out border 
                            border-gray-1 inset-px rounded-md shadow-sm focus:shadow-blue-300 focus:outline-none 
-                           focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                           focus:shadow-outline-blue focus:border-blue-300"
                 >
                   {states.map((state) => (
                     <option key={state.value} value={state.value}>
@@ -318,13 +318,15 @@ function PersonalAddress() {
                 </select>
               </li>
             </ul>
-            <CheckBox
-              checked={address.box === true}
-              title="My delivery and billing addresses are the same."
-              onClick={(e) => {
-                setAddress({ ...address, box: !address.box })
-              }}
-            />
+            <div className="ml-2 font-normal">
+              <label>
+                <CheckBox
+                  checked={address.box}
+                  setter={handleCheck}
+                  title="My delivery and billing addresses are the same."
+                />
+              </label>
+            </div>
           </span>
         </div>
       </form>
@@ -490,7 +492,7 @@ function ShoppingCart() {
         </div>
         <div className="p-4 box-border">
           <div className="overflow-x-auto ">
-            <table className="mb-3 w-full min-w-[490px] max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
+            <table className="mb-3 w-full min-w-[490px] max-w-full text-gray-2 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
               <thead className="p-2 bg-gray-200 border-b-transparent h-10">
                 <tr className="font-bold ">
                   <td className="text-center whitespace-nowrap border border-solid align-top p-2 ">
@@ -586,7 +588,7 @@ function ShoppingCart() {
                   >
                     <strong>Sub-Total:</strong>
                   </td>
-                  <td className="text-right">$93.73</td>
+                  <td className="text-right p-2">$93.73</td>
                 </tr>
                 <tr>
                   <td
@@ -628,7 +630,7 @@ function ShoppingCart() {
                   >
                     <strong>Total:</strong>
                   </td>
-                  <td className="text-right">$121.85</td>
+                  <td className="text-right p-2">$121.85</td>
                 </tr>
               </tfoot>
             </table>
@@ -669,6 +671,7 @@ function AddComment() {
           <label>
             <input
               type="checkbox"
+              defaultChecked
               onChange={() => {
                 setAgreeBox((prev) => !prev)
               }}
