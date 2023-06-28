@@ -4,7 +4,7 @@ import GiftVoucherForm from '../components/product/GiftVoucherForm'
 export default function GiftVoucher() {
 
   return (
-    <div className="px-10 leading-5">
+    <div className="px-10 leading-5 2xl:m-auto 2xl:max-w-[1650px] 2xl:w-[95%] 2xl:px-0">
       <ul class="flex items-center text-[#999] my-[23px]">
         <li>
           <a href="#" className='focus:outline-none'>

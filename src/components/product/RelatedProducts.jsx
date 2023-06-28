@@ -124,7 +124,7 @@ function Product({ product }) {
       <>{showNotification ? (<Notice />) : null}</>
       <>{showWishlistNotification ? (<Wishlist />) : null}</>
       <>{showCompareNotification ? (<Compare />) : null}</>
-      <div className="lg:h-[180px] cursor-pointer group relative text-black" onClick={handleCardClick}>
+      <div className="lg:h-[180px] 2xl:h-[250px] 2xl:w-[250px] 2xl:pr-3 cursor-pointer group relative text-black" onClick={handleCardClick}>
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"

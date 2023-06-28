@@ -52,7 +52,7 @@ function Contact() {
   //End Breadcrumb
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 text-xs font-body leading-6">
+    <div className="px-4 sm:px-6 lg:px-8 text-xs font-body leading-6 2xl:m-auto lgp8:max-w-[1650px] lgp8:w-[95%]">
       <div className="">
         <div className="">
           <h2 className="text-xl font-semibold mb-2">Contact Us</h2>

@@ -148,6 +148,7 @@ const products = [
     price: 90,
     discounted: true,
     discountedPrice: 85,
+    discountPercent: '-12%',
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
   },
   {
@@ -168,6 +169,7 @@ const products = [
     price: 90,
     discounted: true,
     discountedPrice: 85,
+    discountPercent: '-15%',
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
   },
 ]
@@ -229,7 +231,7 @@ function Product({ product }) {
       <>{showNotification ? (<Notice />) : null}</>
       <>{showWishlistNotification ? (<Wishlist />) : null}</>
       <>{showCompareNotification ? (<Compare />) : null}</>
-      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] cursor-pointer group relative text-black"
+      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] 2xl:w-[249px] 2xl:h-[249px] cursor-pointer group relative text-black"
         onClick={handleCardClick}
       >
         <img
@@ -530,7 +532,7 @@ export default function Category() {
     return hideBreadcrumb
   }, [])
   return (
-    <div className="w-full sm:px-10 px-4 2xl:flex 2xl:m-auto">
+    <div className="w-full sm:px-10 px-4 2xl:flex 2xl:m-auto 2xl:px-0 2xl:max-w-[1650px] 2xl:w-[95%]">
       <div className="md:flex">
         <div className="flex flex-col md:pr-[15px]">
           <Categories />

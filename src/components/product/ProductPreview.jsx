@@ -71,7 +71,7 @@ function ProductPreview() {
           ))}
         </div>
         {/* main-product-image */}
-        <div className='border border-[#e6e6e6] md:w-[380px] md:h-[280px] p-0.5'>
+        <div className='border border-[#e6e6e6] md:w-[380px] md:h-[280px] lgp8:w-full p-0.5'>
           <a title="Banner Image" href="#" className=''>
             <img src={pro} alt="Banner Image" />
           </a>
