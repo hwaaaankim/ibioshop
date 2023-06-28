@@ -725,10 +725,7 @@ export default function Checkout() {
   }, [])
 
   return (
-    <div
-      className="p-0 overflow-visible mx-auto box-border text-neutral-700 leading-6 text-sm justify-center"
-      style={{ width: 95 + '%', margin: '0 auto' }}
-    >
+    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto p-0 overflow-visible box-border text-neutral-700 leading-6 text-sm justify-center">
       <div className="w-full pb-0">
         <h2 className="text-xl mt-9 font-normal text-gray-500 leading-none">
           Checkout

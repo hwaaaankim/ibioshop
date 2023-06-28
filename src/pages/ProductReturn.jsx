@@ -50,10 +50,7 @@ export default function ProductReturn() {
   }, [])
 
   return (
-    <div
-      className="overflow-visible box-border text-gray-400 p-0 leading-6 text-sm justify-center"
-      style={{ width: 95 + '%', margin: '0 auto' }}
-    >
+    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto p-0 leading-6 text-sm justify-center">
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex gap-8 p-0 min-h-fit">
         <div
           className="mb-2 float-left relative sm:w-[79 '%'] w-full"

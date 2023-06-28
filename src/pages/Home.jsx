@@ -21,7 +21,9 @@ function Carousel({
   const targetEl = useRef()
   const widthRef = useRef()
   useEffect(() => {
-    setHeight(targetEl.current.clientHeight)
+    setTimeout(() => {
+      setHeight(targetEl.current.clientHeight)
+    }, 1000)
     setWidth(widthRef.current.clientWidth)
   }, [])
   useEffect(() => setCurrentIndex(index), [index])
@@ -86,28 +88,28 @@ function Carousel({
             <motion.div
               initial={{ x: chevronlX, y: chevronY, scale: 0 }}
               animate={{ scale: 1 }}
-              className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
+              className="bg-white cursor-pointer shadow-lg border text-gray-400 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
                   prevIndex - 1 < 0 ? prevIndex : prevIndex - 1
                 )
               }
             >
-              <i className="fa fa-caret-left" style={{ fontSize: 20 }}></i>
+              <i className="fa fa-angle-left" style={{ fontSize: 24 }}></i>
             </motion.div>
           </div>
           <div className="absolute bottom-0 top-0 -right-[20px] z-20 flex items-center">
             <motion.div
               initial={{ x: chevronrX, y: chevronY, scale: 0 }}
               animate={{ scale: 1 }}
-              className="bg-white cursor-pointer shadow-lg border text-gray-700 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
+              className="bg-white cursor-pointer shadow-lg border text-gray-400 hover:bg-primary hover:text-white w-[40px] h-[40px] flex items-center justify-center rounded-full"
               onClick={() =>
                 setCurrentIndex((prevIndex) =>
                   prevIndex + pageSize == totalPages ? prevIndex : prevIndex + 1
                 )
               }
             >
-              <i className="fa fa-caret-right" style={{ fontSize: 20 }}></i>
+              <i className="fa fa-angle-right" style={{ fontSize: 24 }}></i>
             </motion.div>
           </div>
         </>
@@ -1286,7 +1288,7 @@ export default function Home() {
     window.addEventListener('resize', handleResize)
   }, [])
   return (
-    <div className="grid grid-cols-4 gap-8 w-full px-[15px] md:px-0 md:w-[80%] lgp8:w-[95%] mx-auto py-8">
+    <div className="grid grid-cols-4 gap-8 w-full px-[15px] md:px-0 md:w-[80%] lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto py-8">
       <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
         <div className="hidden lgp8:block" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">

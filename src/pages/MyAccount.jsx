@@ -60,7 +60,7 @@ function MyAccount() {
   //End Breadcrumb
 
   return (
-    <div className="px-5 sm:px-6 lg:px-8 text-xs text-gray-2 font-body leading-6">
+    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto text-xs text-gray-2 font-body leading-6">
       <div className="flex">
         <div className=" w-full sm:w-[80%]">
           <div className="text-xl mb-6 mt-5">

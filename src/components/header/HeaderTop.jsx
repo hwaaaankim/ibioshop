@@ -175,7 +175,7 @@ export default function HeaderTop() {
         <AccountNavs />
       </div>
       <div
-        className="flex space-x-[19px] items-center"
+        className="flex space-x-[19px] items-center pt-[1px]"
         style={{ fontSize: 12 }}
       >
         <Currencies />

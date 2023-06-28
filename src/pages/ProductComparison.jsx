@@ -2,7 +2,7 @@ import e3 from '../assets/images/e3.jpg'
 
 function ProductComparison() {
   return (
-    <div className="py-10 pl-5 mx-5 overflow-x-auto">
+    <div className="py-10 lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto overflow-x-auto">
       <h1 className="text-lg ">Product Comparison</h1>
       <ul className="flex flex-row mb-4 mt-7 text-gray-400">
         <li>

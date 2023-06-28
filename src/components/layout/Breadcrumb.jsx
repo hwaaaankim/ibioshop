@@ -6,7 +6,7 @@ export default function Breadcrumb() {
   const navigate = useNavigate()
 
   return (
-    <ul className="mx-[2.5%] flex items-center list-none my-6 leading-normal bg-transparent p-0 space-x-3">
+    <ul className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto flex items-center list-none my-6 leading-normal bg-transparent p-0 space-x-3">
       <li className="relative py-0">
         <div className="cursor-pointer hover:text-primary">
           <i
