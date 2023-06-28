@@ -293,24 +293,23 @@ export default function RelatedProducts() {
       // discountedPrice: 85,
     },
   ]
-  // const child = ({ item }) => (
-  return (
+  const child = ({ item }) => (
     <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
       {products.map((product, index) => (
         <Product product={product} key={index} />
       ))}
     </div>
   )
-  // return (
-    // <div className="pb-20 pr-[15px]">
-    //   <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
-    //   <Carousel
-    //     Child={child}
-    //     items={[products, products, products]}
-    //     hideBtns={true}
-    //     showChevrons={true}
-    //     chevronY={-50}
-    //   />
-    // </div>
-  // )
+  return (
+    <div className="pb-20 pr-[15px]">
+      <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
+      <Carousel
+        Child={child}
+        items={[products, products, products]}
+        hideBtns={true}
+        showChevrons={true}
+        chevronY={-50}
+      />
+    </div>
+  )
 }
