@@ -21,7 +21,9 @@ function Carousel({
   const targetEl = useRef()
   const widthRef = useRef()
   useEffect(() => {
-    setHeight(targetEl.current.clientHeight)
+    setTimeout(() => {
+      setHeight(targetEl.current.clientHeight)
+    }, 1000)
     setWidth(widthRef.current.clientWidth)
   }, [])
   useEffect(() => setCurrentIndex(index), [index])
