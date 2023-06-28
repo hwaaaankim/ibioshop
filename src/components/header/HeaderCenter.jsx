@@ -265,12 +265,14 @@ function CartNsearchMini() {
 
 export default function HeaderCenter() {
   return (
-    <div className="px-[2.5%] pt-[25px] pb-[16px]">
-      <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 mdp5:space-x-7 items-center">
-        <Logo />
-        <FilterBar />
-        <RightNavs />
-        <CartNsearchMini />
+    <div className="pt-[25px] pb-[16px]">
+      <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
+        <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 mdp5:space-x-[30px] items-center">
+          <Logo />
+          <FilterBar />
+          <RightNavs />
+          <CartNsearchMini />
+        </div>
       </div>
     </div>
   )
