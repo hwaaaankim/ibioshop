@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import QuickView from '../product/QuickViewModal'
+import CartNotice from '../Notification/Notice'
 import { useEffect } from 'react'
 import { closeModal } from '../../store/slices/modalSlice'
 
@@ -13,6 +14,10 @@ const modalConfig = [
   {
     id: 2,
     component: QuickView,
+  },
+  {
+    id: 3,
+    component: CartNotice,
   },
 ]
 

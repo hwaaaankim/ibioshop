@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import product1 from '../../assets/images/1.jpg'
@@ -15,6 +15,20 @@ function QuickView() {
   const handleClose = () => {
     dispatch(closeModal())
   }
+  const [value, setValue] = useState(1);
+
+  const handleInputChange = (event) => {
+    setValue(parseInt(event.target.value) || '');
+  };
+
+  const handleMinusClick = () => {
+    setValue(value - 1);
+  };
+
+  const handlePlusClick = () => {
+    setValue(value + 1);
+  };
+
   const slide = [
     { image: product1 },
     { image: product2 },
@@ -368,25 +382,13 @@ function QuickView() {
                   <div className="sm:flex w-full mb-4">
                     <div className="">
                       <div className="bg-[#eee] relative py-1 px-2.5 border-separate table">
-                        <label className="font-normal mt-2 pr-1 mb-1">
-                          Qty
-                        </label>
-                        <input
-                          className="h-8 leading-8 mr-4 px-2.5 w-9 border border-[#bdc2c9] z-0 table-cell"
-                          type="text"
-                          name="quantity"
-                          value="1"
-                        />
-                        <input type="hidden" name="product_id" value="50" />
-                        <span className="bg-[#444] text-xs px-1 absolute top-5 right-3 w-4 h-4 leading-4 hover:bg-blue-600 cursor-pointer text-white">
-                          −
-                        </span>
-                        <span className="bg-[#444] text-xs absolute right-3 top-1 h-4 w-4 px-1 hover:bg-blue-600 cursor-pointer text-white">
-                          +
-                        </span>
+                        <label className='font-normal mt-2 pr-1 mb-1'>Qty</label>
+                        <input type="text" value={value} onChange={handleInputChange} className='h-8 leading-8 mr-4 px-2.5 w-9 border border-[#bdc2c9] z0' />
+                        <span onClick={handleMinusClick} className="bg-[#444] text-xs px-1 absolute top-5 right-3 w-4 h-4 leading-4 hover:bg-blue-600 cursor-pointer text-white">−</span>
+                        <span onClick={handlePlusClick} className="bg-[#444] text-xs absolute right-3 top-1 h-4 w-4 px-1 hover:bg-blue-600 cursor-pointer text-white">+</span>
                       </div>
                     </div>
-                    <div className="mr-2.5 mb-5">
+                    <div className="mr-2.5">
                       <input
                         type="button"
                         data-toggle="tooltip"

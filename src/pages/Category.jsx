@@ -4,11 +4,11 @@ import { Tab } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
+import { openModal } from '../store/slices/modalSlice'
 
 import Categories from "../components/product/Categories"
 import LatestProducts from "../components/product/LatestProducts"
 import BannerSidebar from "../components/product/BannerSidebar"
-import QuickView from '../components/product/QuickViewModal'
 import Notice from '../components/Notification/Notice'
 import Wishlist from '../components/Notification/Wishlist'
 import Compare from '../components/Notification/Compare'
@@ -184,22 +184,26 @@ function ProductBanner() {
   )
 }
 function Product({ product }) {
-  const [showModal, setShowModal] = useState(false);
   const [mouseOver, setMouseOver] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [showWishlistNotification, setWishShowNotification] = useState(false);
   const [showCompareNotification, setCompareShowNotification] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const openQuickView = (event) => {
+    event.stopPropagation()
+    dispatch(openModal({ id: 2 }))
+  }
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
     navigate('/product');
   };
 
-  const handleEyeClick = (e) => {
-    e.stopPropagation();
-    setShowModal(true);
-  };
+  // const handleEyeClick = (e) => {
+  //   e.stopPropagation();
+  //   setShowModal(true);
+  // };
 
   const handleAddToCart = () => {
     setShowNotification(true);
@@ -227,7 +231,6 @@ function Product({ product }) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <>{showModal ? (<QuickView />) : null}</>
       <>{showNotification ? (<Notice />) : null}</>
       <>{showWishlistNotification ? (<Wishlist />) : null}</>
       <>{showCompareNotification ? (<Compare />) : null}</>
@@ -260,7 +263,7 @@ function Product({ product }) {
               >
                 <button title='Quick View'>
                   <i className="fa fa-eye"
-                    onClick={handleEyeClick}></i>
+                    onClick={openQuickView}></i>
                 </button>
               </motion.div>
             )}
@@ -370,16 +373,21 @@ function ListedProducts() {
   const [showWishlistNotification, setWishShowNotification] = useState(false);
   const [showCompareNotification, setCompareShowNotification] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const openQuickView = (event) => {
+    event.stopPropagation()
+    dispatch(openModal({ id: 2 }))
+  }
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
     navigate('/product');
   };
 
-  const handleEyeClick = (e) => {
-    e.stopPropagation();
-    setShowModal(true);
-  };
+  // const handleEyeClick = (e) => {
+  //   e.stopPropagation();
+  //   setShowModal(true);
+  // };
 
   const handleAddToCart = () => {
     setShowNotification(true);
@@ -489,7 +497,7 @@ function ListedProducts() {
                 <i className="fa fa-refresh"></i>
               </button>
               <a
-                onClick={handleEyeClick}
+                onClick={openQuickView}
                 title='Quick View'
                 className="bg-white border border-[#eaeaea] cursor-pointer text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[10px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
               ><i className="fa fa-eye"></i
