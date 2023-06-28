@@ -56,7 +56,7 @@ function ProductPreview() {
   ]
 
   return (
-    <div className="lg:flex lg:flex-row flex-col mt-6 text-[#999]">
+    <div className="lg:flex lg:flex-row flex-col text-[#999]">
       {/* product image */}
       <>{showNotification ? (<Notice />) : null}</>
       <>{showWishlistNotification ? (<Wishlist />) : null}</>

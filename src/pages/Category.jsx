@@ -1,7 +1,9 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Tab } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 
 import Categories from "../components/product/Categories"
 import LatestProducts from "../components/product/LatestProducts"
@@ -169,24 +171,6 @@ const products = [
     description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
   },
 ]
-function Breadcrumb() {
-
-  return (
-    <div className="text-[14px]">
-      <ul className="flex items-center text-[#999]">
-        <li className="mr-2.5">
-          <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-              <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
-              <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
-            </svg>
-          </a>
-        </li>
-        <li><a href="#" className='hover:text-[#094bad]'>Smartphone & Tablets</a></li>
-      </ul >
-    </div >
-  )
-}
 function ProductBanner() {
   return (
     <div className="">
@@ -528,10 +512,26 @@ function ShowingPages() {
 }
 
 export default function Category() {
+  const dispatch = useDispatch()
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({
+        path: [{ title: 'Smartphone & Tablets', path: '/category' }],
+      })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
   return (
-    <div className="w-full sm:px-10 px-4 sm:py-8 2xl:flex 2xl:m-auto">
-      <Breadcrumb />
-      <div className="md:flex mt-5">
+    <div className="w-full sm:px-10 px-4 2xl:flex 2xl:m-auto">
+      <div className="md:flex">
         <div className="flex flex-col md:pr-[15px]">
           <Categories />
           <LatestProducts />
