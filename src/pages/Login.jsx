@@ -139,10 +139,7 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4"
-      style={{ width: 95 + '%', margin: '0 auto' }}
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4 lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
       <AccountRegistrationIntro />
       <LoginForm />
     </div>
