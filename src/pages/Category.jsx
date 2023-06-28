@@ -529,7 +529,7 @@ function ShowingPages() {
 
 export default function Category() {
   return (
-    <div className="w-full sm:px-10 px-4 sm:py-8">
+    <div className="w-full sm:px-10 px-4 sm:py-8 2xl:flex 2xl:m-auto">
       <Breadcrumb />
       <div className="md:flex mt-5">
         <div className="flex flex-col md:pr-[15px]">
