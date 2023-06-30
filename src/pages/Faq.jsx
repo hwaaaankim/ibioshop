@@ -41,7 +41,7 @@ const Faq = () => {
   //End Breadcrumb
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 text-xs font-body w-[95%] max-w-[1650px] mt-3 leading-6">
+    <div className="px-4 sm:px-6 lg:px-8 text-xs font-body mt-3 leading-6 2xl:px-0 2xl:m-auto 2xl:max-w-[1650px] 2xl:w-[95%]">
       <div className="">
         <div className="mb-4">
           <h3 className="text-xl mb-2">Got Questions? We’ve Got Answers!</h3>

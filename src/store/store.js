@@ -3,6 +3,7 @@ import headerSlice from './slices/headerSlice'
 import footerSlice from './slices/footerSlice'
 import authSlice from './slices/authSlice'
 import breadcrumbSlice from './slices/breadcrumbSlice'
+import modalSlice from './slices/modalSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     breadcrumb: breadcrumbSlice,
     footer: footerSlice,
     auth: authSlice,
+    modal: modalSlice,
   },
 })

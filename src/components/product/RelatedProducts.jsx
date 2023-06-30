@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline'
+import { openModal } from '../../store/slices/modalSlice'
+import { useDispatch } from 'react-redux'
 
-import QuickView from '../../components/product/QuickViewModal'
 import Notice from '../Notification/Notice'
 import Wishlist from '../Notification/Wishlist'
 import Compare from '../Notification/Compare'
@@ -78,20 +79,20 @@ function Carousel({
 }
 function Product({ product }) {
   const [mouseOver, setMouseOver] = useState(false)
-  const [showModal, setShowModal] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [showWishlistNotification, setWishShowNotification] = useState(false);
   const [showCompareNotification, setCompareShowNotification] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const openQuickView = (event) => {
+    event.stopPropagation()
+    dispatch(openModal({ id: 2 }))
+  }
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
     navigate('/product');
-  };
-
-  const handleEyeClick = (e) => {
-    e.stopPropagation();
-    setShowModal(true);
   };
 
   const handleAddToCart = () => {
@@ -120,11 +121,10 @@ function Product({ product }) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <>{showModal ? (<QuickView />) : null}</>
       <>{showNotification ? (<Notice />) : null}</>
       <>{showWishlistNotification ? (<Wishlist />) : null}</>
       <>{showCompareNotification ? (<Compare />) : null}</>
-      <div className="lg:h-[180px] cursor-pointer group relative text-black" onClick={handleCardClick}>
+      <div className="lg:h-[180px] 2xl:h-[250px] 2xl:w-[250px] 2xl:pr-3 cursor-pointer group relative text-black" onClick={handleCardClick}>
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
@@ -150,7 +150,7 @@ function Product({ product }) {
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
                 title='Quick View'
               >
-                <i className="fa fa-eye" onClick={handleEyeClick}></i>
+                <i className="fa fa-eye" onClick={openQuickView}></i>
               </motion.div>
             )}
           </AnimatePresence>
@@ -293,24 +293,23 @@ export default function RelatedProducts() {
       // discountedPrice: 85,
     },
   ]
-  // const child = ({ item }) => (
-  return (
+  const child = ({ item }) => (
     <div className="grid lg:grid-cols-5 gap-[30px] grid-cols-2">
       {products.map((product, index) => (
         <Product product={product} key={index} />
       ))}
     </div>
   )
-  // return (
-    // <div className="pb-20 pr-[15px]">
-    //   <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
-    //   <Carousel
-    //     Child={child}
-    //     items={[products, products, products]}
-    //     hideBtns={true}
-    //     showChevrons={true}
-    //     chevronY={-50}
-    //   />
-    // </div>
-  // )
+  return (
+    <div className="pb-20 pr-[15px]">
+      <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
+      <Carousel
+        Child={child}
+        items={[products, products, products]}
+        hideBtns={true}
+        showChevrons={true}
+        chevronY={-50}
+      />
+    </div>
+  )
 }

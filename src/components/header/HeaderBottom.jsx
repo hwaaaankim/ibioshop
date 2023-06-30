@@ -986,24 +986,26 @@ export default function HeaderBottom() {
   const islgp8 = useMediaQuery({ query: '(min-width: 1200px)' })
 
   return (
-    <div className="flex items-center mdp5:space-x-8 text-white px-[2.5%]">
-      <div className="hidden mdp5:flex space-x-8 items-end">
-        <CategoriesMenu isBigScreen={islgp8} />
-        <HomeDropDown />
-        <FeaturesDropDown />
-        <PagesDropDown />
-        <CategoriesDropDown />
-      </div>
-      <div className="hidden mdp5:flex space-x-8 items-center">
-        <Accessories />
-        <Blog />
-      </div>
-      <div className="flex-auto pt-2 hidden lgp8:block">
-        <AccountNav />
-      </div>
-      <div className="flex-auto flex mdp5:hidden items-center justify-between">
-        <CategoriesMenuDrawer />
-        <MainMenuDrawer />
+    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
+      <div className="flex items-center mdp5:space-x-8 text-white">
+        <div className="hidden mdp5:flex space-x-8 items-end">
+          <CategoriesMenu isBigScreen={islgp8} />
+          <HomeDropDown />
+          <FeaturesDropDown />
+          <PagesDropDown />
+          <CategoriesDropDown />
+        </div>
+        <div className="hidden mdp5:flex space-x-8 items-center">
+          <Accessories />
+          <Blog />
+        </div>
+        <div className="flex-auto pt-2 hidden lgp8:block">
+          <AccountNav />
+        </div>
+        <div className="flex-auto flex mdp5:hidden items-center justify-between">
+          <CategoriesMenuDrawer />
+          <MainMenuDrawer />
+        </div>
       </div>
     </div>
   )

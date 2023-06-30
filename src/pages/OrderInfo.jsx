@@ -286,10 +286,7 @@ export default function OrderInfo() {
 
   const handleSubmit = () => {}
   return (
-    <div
-      className="overflow-visible box-border pb-8 text-gray-400 p-0 leading-6 text-sm justify-center"
-      style={{ width: 95 + '%', margin: '0 auto' }}
-    >
+    <div className="overflow-visible box-border lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto pb-8 text-gray-400 p-0 leading-6 text-sm justify-center">
       <div className="w-full bg-transparent my-3 mx-0 rounded list-none box-border flex gap-4 text-neutral-700 p-0 min-h-fit">
         <div
           className="float-left relative space-y-2 sm:w-[79 '%'] w-full"

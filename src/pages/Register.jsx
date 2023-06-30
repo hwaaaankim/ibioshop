@@ -35,7 +35,7 @@ function Register() {
   }
 
   return (
-    <div className="sm:mx-10 mx-3 my-4 pb-10">
+    <div className="sm:mx-10 mx-3 my-4 pb-10 2xl:m-auto lgp8:max-w-[1650px] lgp8:w-[95%]">
       <ul className="flex flex-row mb-4 text-gray-400">
         <Icon className="mt-1.5" size="12" id="home"></Icon>
         <li>
