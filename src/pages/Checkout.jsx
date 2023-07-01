@@ -27,31 +27,37 @@ function UserAccount() {
         <span className="text-xl font-medium leading-tight text-neutral-600 dark:text-neutral-50">
           <ul className="space-y-3 mt-4 pb-6">
             <li>
-              <RadioBox
-                selected={userType}
-                value="register"
-                title="Register Account"
-                setter={setUserType}
-                onChange={handleChange}
-              />
+              <label>
+                <RadioBox
+                  selected={userType}
+                  value="register"
+                  title="Register Account"
+                  setter={setUserType}
+                  onChange={handleChange}
+                />
+              </label>
             </li>
             <li>
-              <RadioBox
-                value="guest"
-                selected={userType}
-                title="Guest Checkout"
-                setter={setUserType}
-                onChange={handleChange}
-              />
+              <label>
+                <RadioBox
+                  value="guest"
+                  selected={userType}
+                  title="Guest Checkout"
+                  setter={setUserType}
+                  onChange={handleChange}
+                />
+              </label>
             </li>
             <li>
-              <RadioBox
-                value="returning"
-                selected={userType}
-                title="Returning Customer"
-                setter={setUserType}
-                onChange={handleChange}
-              />
+              <label>
+                <RadioBox
+                  value="returning"
+                  selected={userType}
+                  title="Returning Customer"
+                  setter={setUserType}
+                  onChange={handleChange}
+                />
+              </label>
             </li>
           </ul>
         </span>
@@ -365,22 +371,26 @@ function DeliPayMethod() {
               Please select the preferred shipping method to use on this order.
             </p>
             <div className="my-2 relative block ">
-              <RadioBox
-                selected={deliveryMethod}
-                value="free"
-                title="Free Shipping - $0.00"
-                setter={setDelivery}
-                onChange={handleDeliveryMethod}
-              />
+              <label>
+                <RadioBox
+                  selected={deliveryMethod}
+                  value="free"
+                  title="Free Shipping - $0.00"
+                  setter={setDelivery}
+                  onChange={handleDeliveryMethod}
+                />
+              </label>
             </div>
             <div className="relative block -mt-1 mb-2 ">
-              <RadioBox
-                selected={deliveryMethod}
-                value="flat"
-                title="Flat Shipping Rate - $7.50"
-                setter={setDelivery}
-                onChange={handleDeliveryMethod}
-              />
+              <label>
+                <RadioBox
+                  selected={deliveryMethod}
+                  value="flat"
+                  title="Flat Shipping Rate - $7.50"
+                  setter={setDelivery}
+                  onChange={handleDeliveryMethod}
+                />
+              </label>
             </div>
           </div>
         </div>
@@ -395,22 +405,26 @@ function DeliPayMethod() {
               Please select the preferred payment method to use on this order.
             </p>
             <div className="my-2 relative block">
-              <RadioBox
-                selected={paymentMethod}
-                value="cash"
-                title="Cash On Delivery"
-                setter={setPayment}
-                onChange={handlePaymentMethod}
-              />
+              <label>
+                <RadioBox
+                  selected={paymentMethod}
+                  value="cash"
+                  title="Cash On Delivery"
+                  setter={setPayment}
+                  onChange={handlePaymentMethod}
+                />
+              </label>
             </div>
             <div className="relative block -mt-1 mb-2">
-              <RadioBox
-                selected={paymentMethod}
-                value="paypal"
-                title="Cash On Delivery"
-                setter={setPayment}
-                onChange={handlePaymentMethod}
-              />
+              <label>
+                <RadioBox
+                  selected={paymentMethod}
+                  value="paypal"
+                  title="Cash On Delivery"
+                  setter={setPayment}
+                  onChange={handlePaymentMethod}
+                />
+              </label>
             </div>
           </div>
         </div>

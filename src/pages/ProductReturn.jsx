@@ -156,7 +156,7 @@ export default function ProductReturn() {
                   <div className=" w-full md:w-[270px]">
                     <DatePicker
                       selected={date}
-                      name="date"
+                      name="date_ordered"
                       className="block w-full z-20  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
                       dateFormat="yyyy-MM-dd"
                       placeholderText={'Order Date'}
@@ -168,7 +168,7 @@ export default function ProductReturn() {
                         setdatePickerIsOpen((prev) => !prev)
                         setDate(date)
                       }}
-                      {...register('date')}
+                      {...register('date_ordered')}
                     />
                   </div>
 
@@ -177,8 +177,9 @@ export default function ProductReturn() {
                       className="leading-normal z-[2] rounded-none border-collapse rounded-l-none -ml-[1px] mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
                     cursor-pointer align-middle text-center font-normal py-[6px] px-3 box-border"
                       type="button"
+                      name="date_ordered"
                       onClick={() => {
-                        setDate(new Date().dateFormat('yyyy-mm-dd'))
+                        setDate(new Date())
                         setdatePickerIsOpen((prev) => !prev)
                       }}
                     >
