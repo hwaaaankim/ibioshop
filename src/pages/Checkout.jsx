@@ -359,7 +359,7 @@ function DeliPayMethod() {
   }
   return (
     <div className="relative text-neutral-600 w-full float-left box-border">
-      <div className="inline-block rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
+      <div className="flex flex-col md:flex-row rounded box-border pb-4 bg-white border border-solid mb-5 px-0 shadow-sm w-full">
         <div className="w-1/2 float-left px-4 relative ">
           <div className="px-3 py-2">
             <h4 className="text-base my-0 leading-none font-medium ">
@@ -739,7 +739,7 @@ export default function Checkout() {
   }, [])
 
   return (
-    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto p-0 overflow-visible box-border text-neutral-700 leading-6 text-sm justify-center">
+    <div className="lgp8:max-w-[1650px] w-[95%] mx-auto p-0 overflow-visible box-border text-neutral-700 leading-6 text-sm justify-center">
       <div className="w-full pb-0">
         <h2 className="text-xl mt-9 font-normal text-gray-500 leading-none">
           Checkout

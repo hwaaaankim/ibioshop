@@ -50,10 +50,10 @@ export default function ProductReturn() {
   }, [])
 
   return (
-    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto p-0 leading-6 text-sm justify-center">
+    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] w-[95%] mx-auto p-0 leading-6 text-sm justify-center">
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative sm:w-[79 '%'] w-full"
+          className="mb-2 float-left relative md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           {/* main page start */}
@@ -347,7 +347,7 @@ export default function ProductReturn() {
           {/* main page end */}
         </div>
         <div
-          className="relative sm:w-1/4 hidden md:block text-gray-2"
+          className="relative md:w-[21%] lg:w-[16%] hidden md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />
