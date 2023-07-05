@@ -50,10 +50,10 @@ export default function ProductReturn() {
   }, [])
 
   return (
-    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto p-0 leading-6 text-sm justify-center">
+    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] w-[95%] mx-auto p-0 leading-6 text-sm justify-center">
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative sm:w-[79 '%'] w-full"
+          className="mb-2 float-left relative md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           {/* main page start */}
@@ -156,7 +156,7 @@ export default function ProductReturn() {
                   <div className=" w-full md:w-[270px]">
                     <DatePicker
                       selected={date}
-                      name="date"
+                      name="date_ordered"
                       className="block w-full z-20  h-9 px-3 mt-1 transition duration-150 ease-in-out border border-gray-1 rounded-l-md inset-px shadow-sm focus:shadow-blue-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
                       dateFormat="yyyy-MM-dd"
                       placeholderText={'Order Date'}
@@ -168,7 +168,7 @@ export default function ProductReturn() {
                         setdatePickerIsOpen((prev) => !prev)
                         setDate(date)
                       }}
-                      {...register('date')}
+                      {...register('date_ordered')}
                     />
                   </div>
 
@@ -177,8 +177,9 @@ export default function ProductReturn() {
                       className="leading-normal z-[2] rounded-none border-collapse rounded-l-none -ml-[1px] mt-1 hover:bg-primary hover:text-white h-9 rounded-r text-sm border border-[#ccc] text-[#333] border-solid
                     cursor-pointer align-middle text-center font-normal py-[6px] px-3 box-border"
                       type="button"
+                      name="date_ordered"
                       onClick={() => {
-                        setDate(new Date().dateFormat('yyyy-mm-dd'))
+                        setDate(new Date())
                         setdatePickerIsOpen((prev) => !prev)
                       }}
                     >
@@ -346,7 +347,7 @@ export default function ProductReturn() {
           {/* main page end */}
         </div>
         <div
-          className="relative sm:w-1/4 hidden md:block text-gray-2"
+          className="relative md:w-[21%] lg:w-[16%] hidden md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />

@@ -108,11 +108,6 @@ function PricingTable() {
   const handleReturn = () => {}
   return (
     <>
-      <div className="w-full">
-        <h2 className="mt-5 text-xl text-inherit box-border font-normal leading-none mb-2">
-          Order Information
-        </h2>
-      </div>
       <div className="box-border overflow-x-auto leading-6 text-xs text-gray-2 min-h-[0.01%]">
         <table
           className="box-border border-solid border border-gray-3 min-w-[550px] mb-5 w-full max-w-full bg-transparent 
@@ -286,17 +281,17 @@ export default function OrderInfo() {
 
   const handleSubmit = () => {}
   return (
-    <div className="overflow-visible box-border lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto pb-8 text-gray-400 p-0 leading-6 text-sm justify-center">
+    <div className="overflow-visible box-border lgp8:max-w-[1650px] w-[95%] mx-auto text-gray-400 p-0 leading-6 text-sm justify-center">
       <div className="w-full bg-transparent my-3 mx-0 rounded list-none box-border flex gap-4 text-neutral-700 p-0 min-h-fit">
         <div
-          className="float-left relative space-y-2 sm:w-[79 '%'] w-full"
+          className="float-left relative space-y-2 md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <OrderDetails />
           <PaymentAdress />
           <PricingTable />
           <OrderHistory />
-          <div className="float-right mt-2 mb-5">
+          <div className="float-right mt-2 mb-2">
             <button
               type="submit"
               className="bg-blue-1 border-blue-2 text-white text-sm transition ease-in-out font-normal px-3 py-2 focus:bg-primary "
@@ -307,8 +302,8 @@ export default function OrderInfo() {
           </div>
         </div>
         <div
-          className="hidden sm:relative box-border float-left mb-3 px-4 md:block text-gray-600"
-          style={{ width: 21 + '%', margin: '0 auto', minHeight: 1 + 'px' }}
+          className="hidden md:relative box-border md:w-[21%] lg:w-[16%] float-left px-4 md:block text-gray-600"
+          style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />
         </div>
