@@ -43,7 +43,7 @@ function WishListTable() {
         </h2>
       </div>
       <div
-        className="box-border overflow-x-auto min-h-[0.01%] leading-6 text-xs text-gray-2"
+        className="box-border overflow-x-auto min-h-[0.01%] leading-6 text-xs text-gray-2 w-full"
         style={{ minHeight: 0.1 + '%' }}
       >
         <table className="mb-3 min-w-[500px] w-full max-w-full text-neutral-600 bg-transparent border border-solid border-collapse border-spacing-0 box-border">
@@ -71,7 +71,6 @@ function WishListTable() {
                   <a href="product.html">
                     <img
                       src={image}
-                      // width="70px"
                       alt="Xitefun Causal Wear Fancy Shoes"
                       title="Xitefun Causal Wear Fancy Shoes"
                       className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
@@ -165,16 +164,16 @@ export default function WishList() {
   }, [])
 
   return (
-    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto p-0 leading-6 text-sm justify-center">
-      <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col sm:flex-row gap-8 p-0 min-h-fit">
+    <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] w-[95%] mx-auto p-0 leading-6 text-sm justify-center mb-3">
+      <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col md:flex-row gap-8 p-0 min-h-fit">
         <div
-          className="mb-2 float-left relative sm:w-[79 '%'] w-full"
+          className="mb-2 float-left relative md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
           <WishListTable />
         </div>
         <div
-          className="hidden sm:w-1/4 md:block text-gray-2"
+          className="hidden md:w-[21%] lg:w-[16%] md:block text-gray-2"
           style={{ margin: '0 auto', minHeight: 1 + 'px' }}
         >
           <AccountSiteMap />

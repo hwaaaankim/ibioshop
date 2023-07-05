@@ -89,7 +89,7 @@ export default function Blog() {
   }, [])
 
   return (
-    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto md:flex space-y-3 md:space-y-0 md:space-x-8">
+    <div className="lgp8:max-w-[1650px] w-[95%] mx-auto md:flex space-y-3 md:space-y-0 md:space-x-8">
       <div className="w-full md:w-[237px] flex-shrink-0">
         <div className="border rounded">
           <div className="uppercase font-bold p-[15px] bg-[#f5f5f5] border-b">

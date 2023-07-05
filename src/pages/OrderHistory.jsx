@@ -46,7 +46,7 @@ function OrderHistory() {
   }, [])
   // End Breadcrumb
   return (
-    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto text-xs text-gray-2 leading-6">
+    <div className="lgp8:max-w-[1650px] w-[95%] mx-auto text-xs text-gray-2 leading-6">
       <div className="flex">
         <div className="w-full sm:w-3/4 pr-7">
           <h2 className="text-xl font-medium mt-8 mb-3">Order History</h2>
