@@ -204,13 +204,13 @@ function FooterBottom() {
     { path: '/contact_us', title: 'contact us' },
   ]
   return (
-    <div className="border-t border-solid text-center mx-auto my-auto bg-red-600">
-      <div className="flex flex-col space-y-12 items-center w-[90%] sm:w-[750px] xl:w-[95%] md:w-[930px] pt-10 text-center pb-6 mx-0 my-auto">
+    <div className="border-t border-solid text-center">
+      <div className="flex flex-col space-y-12 items-center pt-10 text-center pb-6">
         <img
           src="image/catalog/demo/payment/pay1.jpg"
           className="w-[507px] h-[51]"
         />
-        <div className="flex flex-col items-center space-y-12 sm:w-[80%] mx-auto">
+        <div className="flex flex-col items-center space-y-12 ">
           <ul>
             {navs.map((nav, key) => (
               <li
@@ -223,7 +223,7 @@ function FooterBottom() {
             ))}
           </ul>
 
-          <p className="text-xs text-gray-2 text-center">
+          <p className="text-xs text-gray-2 text-center w-[56%]">
             **$50 off orders $350+ with the code BOO50. $75 off orders $500+
             with the code BOO75. $150 off orders $1000+ with the code BOO150.
             Valid from October 28, 2016 to October 31, 2016. Offer may not be
@@ -259,7 +259,7 @@ export default function Footer() {
         </motion.div>
       </div>
       <div className="lgp8:max-w-[1650px] w-[95%] mx-auto">
-        <div className="pt-14 pb-8 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-3">
+        <div className="pt-14 pb-8 grid grid-cols-1 md:grid-cols-3 lgp8:grid-cols-6 gap-3">
           <ContactInfo />
           <InformationNavs />
           <AccountNavs />
