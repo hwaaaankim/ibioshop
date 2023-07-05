@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 function SocialMedia() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-white bg-primary py-[30px] px-[25px] rounded items-center">
-      <div className="flex">
-        <div className="uppercase font-semibold text-xl xl:pr-3 xl:mt-1 xl:block hidden">
+      <div className="flex items-center space-x-2">
+        <div className="uppercase font-semibold text-xl hidden lgp8:block">
           follow socials
         </div>
         <ul className="flex">
@@ -33,8 +33,8 @@ function SocialMedia() {
           </li>
         </ul>
       </div>
-      <div className="flex">
-        <div className="uppercase font-semibold pr-5 mt-2 lg:block hidden text-lg leading-10">
+      <div className="flex space-x-2 items-center">
+        <div className="uppercase font-semibold hidden lgp8:block text-lg leading-10">
           signup for newsletter
         </div>
         <div className="flex-auto flex">
@@ -204,7 +204,7 @@ function FooterBottom() {
     { path: '/contact_us', title: 'contact us' },
   ]
   return (
-    <div className="border-t border-solid text-center mx-auto my-auto">
+    <div className="border-t border-solid text-center mx-auto my-auto bg-red-600">
       <div className="flex flex-col space-y-12 items-center w-[90%] sm:w-[750px] xl:w-[95%] md:w-[930px] pt-10 text-center pb-6 mx-0 my-auto">
         <img
           src="image/catalog/demo/payment/pay1.jpg"
@@ -253,12 +253,12 @@ function PoweredBy() {
 export default function Footer() {
   return (
     <footer className="mt-32 bg-[#f5f5f5]">
-      <div className="sm:px-5">
+      <div className="lgp8:max-w-[1650px] w-[95%] mx-auto">
         <motion.div animate={{ y: -40 }} className="mt-[-50px] mb-[-15px]">
           <SocialMedia />
         </motion.div>
       </div>
-      <div className="px-5">
+      <div className="lgp8:max-w-[1650px] w-[95%] mx-auto">
         <div className="pt-14 pb-8 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-3">
           <ContactInfo />
           <InformationNavs />
