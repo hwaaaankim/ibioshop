@@ -31,9 +31,18 @@ function Cart() {
   const [showShippingForm, toggleShippingForm] = useState(false)
   const [showGiftCertForm, toggleGiftCertForm] = useState(false)
 
-  // const hideOthers = (disc) => {
+  const smartToggleHandler = (targetKey) => {
+    const setters = {
+      showCouponForm: toggleCouponForm,
+      showShippingForm: toggleShippingForm,
+      showGiftCertForm: toggleGiftCertForm,
+    }
+    Object.keys(setters)
+      .filter((key) => key !== targetKey)
+      .forEach((key) => setters[key](false))
 
-  // }
+    setters[targetKey]((prev) => !prev)
+  }
 
   return (
     <div className="flex flex-col sm:mx-10 mx-3 mb-4 pb-2 sm:text-sm lg:text-xs 2xl:m-auto lgp8:max-w-[1650px] lgp8:w-[95%]">
@@ -63,15 +72,15 @@ function Cart() {
           </span>
           <CouponCode
             show={showCouponForm}
-            toggleHandler={() => toggleCouponForm((prev) => !prev)}
+            toggleHandler={() => smartToggleHandler('showCouponForm')}
           />
           <Shipping
             show={showShippingForm}
-            toggleHandler={() => toggleShippingForm((prev) => !prev)}
+            toggleHandler={() => smartToggleHandler('showShippingForm')}
           />
           <GiftCertificate
             show={showGiftCertForm}
-            toggleHandler={() => toggleGiftCertForm((prev) => !prev)}
+            toggleHandler={() => smartToggleHandler('showGiftCertForm')}
           />
           <div>
             <Total></Total>
