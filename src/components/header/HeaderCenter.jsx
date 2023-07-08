@@ -7,10 +7,10 @@ function Logo() {
   const navigate = useNavigate()
   return (
     <div
-      className="flex md:block justify-center cursor-pointer"
+      className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6"
       onClick={() => navigate('/')}
     >
-      <img src="image/catalog/logo.png" style={{ width: 189, height: 39 }} />
+      <img src="image/catalog/logo.png" />
     </div>
   )
 }
@@ -266,7 +266,7 @@ function CartNsearchMini() {
 export default function HeaderCenter() {
   return (
     <div className="pt-[25px] pb-[16px]">
-      <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
+      <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto">
         <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 mdp5:space-x-[30px] items-center">
           <Logo />
           <FilterBar />
