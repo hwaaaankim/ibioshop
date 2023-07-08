@@ -1036,11 +1036,11 @@ function ProductCategories({
         <div className="bg-primary inline-block text-white border-b-2 border-primary uppercase font-semibold py-2 px-4">
           {category}
         </div>
-        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center mdp5:justify-end">
+        <div className="flex-auto border-b-2 border-gray-200 flex space-x-4 items-center mdp5:justify-end overflow-x-auto">
           {subCategories.map((scategory, index) => (
             <div
               key={index}
-              className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary text-[12px]"
+              className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary text-[12px] flex-shrink-0"
             >
               {scategory}
             </div>

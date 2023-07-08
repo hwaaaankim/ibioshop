@@ -38,10 +38,13 @@ function SocialMedia() {
           signup for newsletter
         </div>
         <div className="flex-auto flex">
-          <input
-            className="flex-auto py-2 px-2 text-xs bg-white text-gray-700 rounded-l outline-none"
-            placeholder="Your email address..."
-          />
+          <div className="flex-auto">
+            <input
+              className="w-full py-2 px-2 text-xs bg-white text-gray-700 rounded-l outline-none"
+              placeholder="Your email address..."
+            />
+          </div>
+
           <div className="uppercase bg-[#222] text-white text-sm font-semibold px-4 flex items-center rounded-r">
             subscribe
           </div>
