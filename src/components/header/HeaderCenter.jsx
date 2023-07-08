@@ -7,7 +7,7 @@ function Logo() {
   const navigate = useNavigate()
   return (
     <div
-      className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6"
+      className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6 px-[15px] -ml-[15px]"
       onClick={() => navigate('/')}
     >
       <img src="image/catalog/logo.png" />
@@ -61,7 +61,7 @@ function FilterBar() {
     window.location.reload()
   }
   return (
-    <div className="flex-auto hidden md:flex items-center">
+    <div className="flex-auto hidden md:flex items-center lgp8:w-[58.33%] px-[15px]">
       <CategoriesSelector category={category} setter={setCategory} />
       <div className="mdp5:flex-auto bg-white p-0.5 rounded-l mdp5:rounded-l-none rounded-r border-l border-gray-400">
         <div className="flex">
@@ -196,7 +196,7 @@ function CartMini() {
 function RightNavs() {
   const navigate = useNavigate()
   return (
-    <div className="hidden md:flex mdp5:space-x-6 mdp5:pl-12 mdp5:mx-4 items-center">
+    <div className="hidden flex-shrink-0 md:flex mdp5:space-x-6 mdp5:pl-12 mdp5:mx-4 items-center">
       {[
         { icon: 'refresh', path: '/compare' },
         { icon: 'heart', path: '/wish_list' },
@@ -267,7 +267,7 @@ export default function HeaderCenter() {
   return (
     <div className="pt-[25px] pb-[16px]">
       <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto">
-        <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 mdp5:space-x-[30px] items-center">
+        <div className="space-y-2 md:space-y-0 md:flex md:space-x-2 mdp5:space-x-[0px] items-center">
           <Logo />
           <FilterBar />
           <RightNavs />
