@@ -1368,7 +1368,7 @@ export default function Home() {
           </div>
         </div>
         <div className="md:flex-auto space-y-8">
-          {/* <MiniBanners /> */}
+          <MiniBanners />
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
           <Technology currentWidth={currentWidth} />
