@@ -45,7 +45,7 @@ function Cart() {
   }
 
   return (
-    <div className="flex flex-col sm:mx-10 mx-3 mb-4 pb-2 sm:text-sm lg:text-xs 2xl:m-auto lgp8:max-w-[1650px] lgp8:w-[95%]">
+    <div className="flex flex-col md:mx-10 mx-3 mb-4 pb-2 sm:text-sm lg:text-xs 2xl:m-auto lgp8:max-w-[1650px] lgp8:w-[95%]">
       <ul className="flex flex-row mb-4 mt-7 text-gray-400">
         <li>
           <a href="/">
