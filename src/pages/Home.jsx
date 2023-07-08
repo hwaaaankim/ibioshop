@@ -1216,13 +1216,15 @@ function NewArrivals({ currentWidth }) {
   ]
 
   const [activeTab, setActiveTab] = useState(0)
+  const [showTabsdd, setShowTabsdd] = useState(false)
 
   const child = ({ item }) => <Product product={item} />
+  const tabs = ['best seller', 'new arrivals', 'most rating']
 
   return (
     <div className="space-y-4">
-      <div className="flex items-stretch">
-        {['best seller', 'new arrivals', 'most rating'].map((title, index) => (
+      <div className="hidden mdp5:flex items-stretch">
+        {tabs.map((title, index) => (
           <div
             key={index}
             className={
@@ -1237,6 +1239,42 @@ function NewArrivals({ currentWidth }) {
           </div>
         ))}
         <div className="flex-auto border-b-2 border-gray-300"></div>
+      </div>
+
+      <div className="flex mdp5:hidden">
+        <div className="relative">
+          <div
+            className="border border-gray-1 flex items-stretch leading-[30px] cursor-pointer"
+            onClick={() => setShowTabsdd((prev) => !prev)}
+          >
+            <div className="w-[167px] indent-5 capitalize text-sm flex items-center">
+              {tabs[activeTab]}
+            </div>
+            <div className="px-2 bg-gray-1 text-gray-600 flex items-center text-sm py-1">
+              ▼
+            </div>
+          </div>
+
+          {showTabsdd && (
+            <div className="absolute z-50 left-0 right-0 bg-white shadow space-y-1">
+              {tabs.map((title, index) => (
+                <div
+                  className={
+                    'capitalize cursor-pointer indent-5 py-1' +
+                    (index === activeTab ? ' text-primary' : '')
+                  }
+                  key={index}
+                  onClick={() => {
+                    setActiveTab(index)
+                    setShowTabsdd(false)
+                  }}
+                >
+                  {title}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <Carousel
