@@ -1040,7 +1040,7 @@ function ProductCategories({
           {subCategories.map((scategory, index) => (
             <div
               key={index}
-              className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary"
+              className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary text-[12px]"
             >
               {scategory}
             </div>
@@ -1299,7 +1299,7 @@ export default function Home() {
     window.addEventListener('resize', handleResize)
   }, [])
   return (
-    <div className="grid grid-cols-4 gap-8 w-full px-[15px] md:px-0 md:w-[80%] lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto py-8">
+    <div className="grid grid-cols-4 gap-8 px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-8">
       <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
         <div className="hidden lgp8:block" style={{ width: 237 }}></div>
         <div className="flex-auto bg-gray-50 h-[300px]">
@@ -1330,7 +1330,7 @@ export default function Home() {
           </div>
         </div>
         <div className="md:flex-auto space-y-8">
-          <MiniBanners />
+          {/* <MiniBanners /> */}
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
           <Technology currentWidth={currentWidth} />
