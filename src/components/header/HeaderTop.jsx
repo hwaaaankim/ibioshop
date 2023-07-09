@@ -162,7 +162,7 @@ function AccountNavs() {
 
 export default function HeaderTop() {
   return (
-    <div className="flex space-x-2 items-center lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
+    <div className="flex space-x-2 items-center px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto">
       <div
         className="flex-auto leading-9 text-gray-500 hidden lgp8:flex"
         style={{ fontSize: 12 }}

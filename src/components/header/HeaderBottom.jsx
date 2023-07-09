@@ -986,7 +986,7 @@ export default function HeaderBottom() {
   const islgp8 = useMediaQuery({ query: '(min-width: 1200px)' })
 
   return (
-    <div className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto">
+    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto">
       <div className="flex items-center mdp5:space-x-8 text-white">
         <div className="hidden mdp5:flex space-x-8 items-end">
           <CategoriesMenu isBigScreen={islgp8} />

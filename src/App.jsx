@@ -66,6 +66,7 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="blog-detail" element={<BlogDetail />} />
 
+          <Route path="go-responsive" element={<div></div>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {!footer.hidden && <Footer />}
