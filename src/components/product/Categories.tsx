@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { More, Less } from './svg'
 import React from 'react'
@@ -12,6 +12,10 @@ type Props = {
 const Disclosure = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  useEffect(() => {
+    setIsOpen(props?.accordion  == props.title)
+  }, [props.accordion])
+
   return (
     <div className="w-full border-b border-dotted border-[#e4e4e4] py-1.5">
       <button
@@ -23,7 +27,11 @@ const Disclosure = (props: Props) => {
           <a href="category">{props.title}</a>
         </div>
         {props.body ? (
-          <div onClick={() => setIsOpen((prev) => !prev)}>
+          <div onClick={() => {
+            props?.accordion == props.title ?
+            props.openAccordion("") :
+            props.openAccordion(props.title)
+          }}>
             <AnimatePresence initial={false} mode="wait">
               <motion.div
                 key={isOpen ? 'minus' : 'plus'}
@@ -113,6 +121,7 @@ const Disclosure = (props: Props) => {
 }
 
 export default function App() {
+  const [accordion, setAccordion] = useState('')
   const categories = [
     {
       name: 'Smartphone & Tablets',
@@ -160,6 +169,10 @@ export default function App() {
     { name: 'Home & Garden' },
     { name: 'Wines & Spirits' },
   ]
+
+  function openAccordion(name) {
+    setAccordion(name)
+  }
   return (
     <div className="border border-[#d7d7d7] overflow-hidden mb-10 rounded-[3px]">
       <h3 className="border-b border-[#d7d7d7] text-[16px] text-[#222] font-bold uppercase bg-[#f5f5f5] p-[15px]">
@@ -167,7 +180,7 @@ export default function App() {
       </h3>
       <div className="flex flex-col w-full p-5 justify-center items-center text-left">
         {categories.map((faq, i) => (
-          <Disclosure key={i} title={faq.name} body={faq.sub} />
+          <Disclosure openAccordion={openAccordion} accordion={accordion} key={i} title={faq.name} body={faq.sub} />
         ))}
       </div>
     </div>

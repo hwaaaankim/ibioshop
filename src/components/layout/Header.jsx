@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <HeaderTop />
-      <div className="bg-primary">
+      <div className="bg-primary px-5 md:px-0">
         <HeaderCenter />
         <HeaderBottom />
       </div>
