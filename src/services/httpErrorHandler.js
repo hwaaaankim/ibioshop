@@ -4,7 +4,7 @@ export function errorHandler(error) {
      * The request was made and the server responded with a
      * status code that falls out of the range of 2xx
      */
-    throw error
+    return error
   } else if (error.request) {
     /*
      * The request was made but no response was received, `error.request`
@@ -12,10 +12,10 @@ export function errorHandler(error) {
      * of http.ClientRequest in Node.js
      */
 
-    throw new Error('Something went wrong. Try again later!')
+    return Error('Something went wrong. Try again later!')
   } else {
     // Something happened in setting up the request and triggered an Error
 
-    throw new Error('Something went wrong. Try again later!')
+    return Error('Something went wrong. Try again later!')
   }
 }
