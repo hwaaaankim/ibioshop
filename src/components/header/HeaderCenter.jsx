@@ -7,10 +7,10 @@ function Logo() {
   const navigate = useNavigate()
   return (
     <div
-      className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6 px-[15px] -ml-[15px]"
+      className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6 px-[15px] -ml-[15px] bg-white"
       onClick={() => navigate('/')}
     >
-      <img src="image/catalog/logo.png" />
+      <img src="image/logo-ibio.png" />
     </div>
   )
 }
