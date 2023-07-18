@@ -4,7 +4,7 @@ import Label from '../components/controlled/Label'
 import BaseInput from '../components/controlled/BaseInput'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import account from '../services/api/account'
+import { http } from '../services/http'
 
 function Register() {
   const [loading, setLoading] = useState(false)
@@ -18,15 +18,16 @@ function Register() {
 
   const handleRegistration = async (data) => {
     setLoading(true)
-    // let formData = new FormData()
-    // formData.append('u', email)
-    // formData.append('password', password)
     if (data.password !== data.repeat_password) {
       setError('Passwords do not much')
       return
     }
-    const { isError, resonse, error } = await account.register(data)
-    if (!isError) {
+    const response = await http.request({
+      method: 'post',
+      url: 'register',
+      data,
+    })
+    if (!response.isError) {
       console.log(response)
     } else {
       setError(error.toString())
@@ -284,8 +285,11 @@ function Register() {
           </div>
         </div>
         <div className="sm:flex sm:float-right space-x-2 text-m">
-          <span className='w-full flex items-center'>
-            <p className='mr-1'>I have read and agree to the<a href="/something">Pricing Tables</a></p>
+          <span className="w-full flex items-center">
+            <p className="mr-1">
+              I have read and agree to the
+              <a href="/something">Pricing Tables</a>
+            </p>
             <CheckBox></CheckBox>
           </span>
           {error && <div className="text-red-600 text-sm mb-2">{error}</div>}
