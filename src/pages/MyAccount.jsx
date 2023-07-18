@@ -2,11 +2,11 @@ import BaseInput from '../components/controlled/BaseInput'
 import Label from '../components/my_account/Label'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import { useForm } from 'react-hook-form'
-import account from '../services/api/account'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
+import { http } from '../services/http'
 
 function MyAccount() {
   const [loading, setLoading] = useState(false)
@@ -27,8 +27,8 @@ function MyAccount() {
       return
     }
 
-    const { isError, response, error } = await account.updateAccount(data)
-    if (!isError) {
+    const response = await http.request({ method: 'put', url: 'account', data })
+    if (!response.isError) {
     } else {
       setError(error.toString())
     }
