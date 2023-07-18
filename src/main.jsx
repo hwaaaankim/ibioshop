@@ -13,7 +13,7 @@ import './assets/font-awesome/css/font-awesome.min.css'
 
 import { store } from './store/store'
 import { Provider } from 'react-redux'
-import httpInit from './services/httpInit'
+import httpInit from './services/http/httpInit'
 
 httpInit()
 

@@ -1,5 +1,5 @@
 import apiService from './http-common'
-import { tokenService } from './storageService'
+import { tokenService } from '../storageService'
 
 export default function httpInit() {
   apiService.init()

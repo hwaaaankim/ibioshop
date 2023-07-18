@@ -4,7 +4,7 @@ import { setUser, setStatus } from '../store/slices/authSlice'
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
-import auth from '../services/api/auth'
+import auth from '../services/http/auth'
 import { Link } from 'react-router-dom'
 
 function AccountRegistrationIntro() {

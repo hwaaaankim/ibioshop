@@ -4,7 +4,7 @@ import Label from '../components/controlled/Label'
 import BaseInput from '../components/controlled/BaseInput'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { http } from '../services/http'
+import { http } from '../services/http/http'
 
 function Register() {
   const [loading, setLoading] = useState(false)
