@@ -234,7 +234,7 @@ function Product({ product }) {
       <>{showNotification ? (<Notice />) : null}</>
       <>{showWishlistNotification ? (<Wishlist />) : null}</>
       <>{showCompareNotification ? (<Compare />) : null}</>
-      <div className="lg:h-[180px] lg:w-[180px] sm:w-[220px] sm:h-[220px] 2xl:w-[249px] 2xl:h-[249px] cursor-pointer group relative text-black"
+      <div className="lg:h-[180px] lg:w-[180px] 2xl:w-[249px] 2xl:h-[249px] cursor-pointer group relative text-black"
         onClick={handleCardClick}
       >
         <img
@@ -360,7 +360,7 @@ function Product({ product }) {
 }
 function GridProducts() {
   return (
-    <div className="grid lg:grid-cols-5 lg:gap-[30px] sm:grid-cols-2 sm:gap-10">
+    <div className="grid lg:grid-cols-5 lg:gap-[30px] gap-0 grid-cols-1">
       {products.map((product, index) => (
         <Product product={product} key={index} />
       ))}
@@ -540,7 +540,7 @@ export default function Category() {
     return hideBreadcrumb
   }, [])
   return (
-    <div className="w-full sm:px-10 px-4 2xl:flex 2xl:m-auto 2xl:px-0 2xl:max-w-[1650px] 2xl:w-[95%]">
+    <div className="w-full md:px-10 px-4 2xl:flex 2xl:m-auto 2xl:px-0 2xl:max-w-[1650px] 2xl:w-[95%]">
       <div className="md:flex">
         <div className="flex flex-col md:pr-[15px]">
           <Categories />
@@ -573,8 +573,8 @@ export default function Category() {
                   </Tab>
                 </div>
                 <div className="md:flex items-center">
-                  <div className="md:ml-2.5 mb-6 md:mb-0">
-                    <label className="text-[#444] mr-1" for="input-sort">Sort By:</label>
+                  <div className="lg:flex items-center md:ml-2.5 mb-6 md:mb-0">
+                    <label className="text-[#444] lg:w-20 float-right lg:float-none" for="input-sort">Sort By:</label>
                     <select className="w-full border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
                       <option value="" selected="selected">Default</option>
                       <option value="">Name (A - Z)</option>
@@ -587,8 +587,8 @@ export default function Category() {
                       <option value="">Model (Z - A)</option>
                     </select>
                   </div>
-                  <div className="md:ml-2.5">
-                    <label className="text-[#444] mr-1" for="input-limit">Show:</label>
+                  <div className="lg:flex items-center md:ml-2.5">
+                    <label className="text-[#444] mr-1 float-right lg:float-none" for="input-limit">Show:</label>
                     <select className="w-full border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
                       <option value="" selected="selected">15</option>
                       <option value="">25</option>

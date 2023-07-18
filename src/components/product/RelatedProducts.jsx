@@ -97,9 +97,9 @@ function Product({ product }) {
 
   const handleAddToCart = () => {
     setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
+    // setTimeout(() => {
+    //   setShowNotification(false);
+    // }, 3000); // hide the notification after 3 seconds
   };
 
   const handleAddToWishlist = () => {
