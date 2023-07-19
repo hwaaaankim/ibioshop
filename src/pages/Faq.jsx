@@ -51,7 +51,7 @@ const Faq = () => {
         </div>
 
         {FAQs.map((FAQ) => (
-          <Disclosure key={FAQ._id}>
+          <Disclosure key={FAQ.id}>
             {({ open }) => (
               <>
                 <div>
