@@ -4,6 +4,7 @@ import { errorHandler } from './httpErrorHandler'
 export const http = {
   request: async (payload) => {
     try {
+      if (!payload.method) payload.method = 'get'
       const response = await apiService.request(payload)
       return response ? response.data : response
     } catch (error) {
