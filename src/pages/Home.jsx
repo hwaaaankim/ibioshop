@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { openModal } from '../store/slices/modalSlice'
+import { http } from '../services/http/http'
 
 function Carousel({
   items,
@@ -564,23 +565,17 @@ function LatestPosts() {
 function Testimonials() {
   const [currentPage, setPage] = useState(1)
 
-  const testimonials = [
-    {
-      author: 'Johny Walker',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    },
-    {
-      author: 'Johny Walker2',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    },
-    {
-      author: 'Johny Walker3',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    },
-  ]
+  const [testimonials, setTestimonials] = useState([])
+  const getTestimonials = async () => {
+    const response = await http.request({ url: 'testimonials' })
+    if (!response.isError) {
+      setTestimonials(response.testimonials)
+    }
+  }
+
+  useEffect(() => {
+    getTestimonials()
+  }, [])
 
   const child = ({ item }) => (
     <div className="space-y-4 flex flex-col items-center">
@@ -590,14 +585,14 @@ function Testimonials() {
           className="w-full h-full rounded-full"
         />
       </div>
-      <div className="text-sm font-medium">{item.author}</div>
+      <div className="text-sm font-medium">{item.fullName}</div>
       <div className="px-2 space-x-2">
         <i
           className="fa fa-quote-left text-gray-300"
           style={{ fontSize: 22 }}
         ></i>
         <span className="text-xs text-gray-500 text-center">
-          “{item.quote}”
+          “{item.description}”
         </span>
         <i
           className="fa fa-quote-right text-gray-300"
