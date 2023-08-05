@@ -1,9 +1,5 @@
 import { useDispatch } from 'react-redux'
 import { setUser, setStatus } from '../store/slices/authSlice'
-import { useState } from 'react'
-import auth from '../services/http/auth'
-import { useForm } from 'react-hook-form'
-import { setUser, setStatus } from '../store/slices/authSlice'
 
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
