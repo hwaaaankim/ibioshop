@@ -1,5 +1,9 @@
 import { useDispatch } from 'react-redux'
 import { setUser, setStatus } from '../store/slices/authSlice'
+import { useState } from 'react'
+import auth from '../services/http/auth'
+import { useForm } from 'react-hook-form'
+import { setUser, setStatus } from '../store/slices/authSlice'
 
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
@@ -36,41 +40,28 @@ function AccountRegistrationIntro() {
 function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
-
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { register, handleSubmit } = useForm()
 
   const handleLogin = async ({ email, password }) => {
+    console.log({ email, password })
     setLoading(true)
-
-    let formData = new FormData()
-    formData.append('username', email)
-    formData.append('password', password)
 
     const requestPayload = {
       method: 'post',
-      url: 'login',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      data: formData,
+      url: 'users/login',
+      data: { email: email, password },
     }
     const { isError, user, error } = await auth.signIn(requestPayload)
     if (!isError) {
       dispatch(setUser({ user }))
       dispatch(setStatus({ signedIn: true }))
-    } else {
-      setError(error.toString())
-    }
+      navigate('/')
+    } else if (error.message) setError(error.message)
 
     setLoading(false)
   }
-
   return (
     <div className="border border-gray-300 flex flex-col justify-between">
       <div className="p-5 my-5 text-gray-600 space-y-3">
