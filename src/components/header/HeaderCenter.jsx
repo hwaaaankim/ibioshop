@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import { Dropdown } from './HeaderTop'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeFromCart } from '../../store/slices/cartSlice'
 
 function Logo() {
   const navigate = useNavigate()
@@ -87,6 +89,10 @@ function FilterBar() {
 }
 
 function Product({ product, light = false }) {
+  const dispatch = useDispatch()
+  const removeCartItem = () => {
+    dispatch(removeFromCart(product.id))
+  }
   return (
     <div
       className={
@@ -107,7 +113,10 @@ function Product({ product, light = false }) {
         <div className="cursor-pointer hover:text-primary">
           <i className="fa fa-edit"></i>
         </div>
-        <div className="cursor-pointer hover:text-primary">
+        <div
+          className="cursor-pointer hover:text-primary"
+          onClick={removeCartItem}
+        >
           <i className="fa fa-times"></i>
         </div>
       </div>
@@ -115,11 +124,8 @@ function Product({ product, light = false }) {
   )
 }
 function CartContent() {
+  const products = useSelector((state) => state.cart)
   const navigate = useNavigate()
-  const products = [
-    { id: 1, name: 'Yutculpa ullamco', size: 'xl', price: 80.0 },
-    { id: 2, name: 'Xancetta bresao', size: 'xl', price: 60.0 },
-  ]
   return (
     <div className="w-[320px] space-y-5 pb-[10px]">
       <div>
