@@ -139,22 +139,26 @@ function CartContent() {
         )}
       </div>
       <div className="text-xs text-gray-600">
-        <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
-          <div className="font-semibold">Sub-Total</div>
-          <div className="text-right">$140.00</div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
-          <div className="font-semibold">Eco Tax (-2.00)</div>
-          <div className="text-right">$2.00</div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
-          <div className="font-semibold">VAT (20%)</div>
-          <div className="text-right">$20.00</div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
-          <div className="font-semibold">Total</div>
-          <div className="text-right">$162.00</div>
-        </div>
+        {products.length > 0 && (
+          <>
+            <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
+              <div className="font-semibold">Sub-Total</div>
+              <div className="text-right">$140.00</div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+              <div className="font-semibold">Eco Tax (-2.00)</div>
+              <div className="text-right">$2.00</div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+              <div className="font-semibold">VAT (20%)</div>
+              <div className="text-right">$20.00</div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+              <div className="font-semibold">Total</div>
+              <div className="text-right">$162.00</div>
+            </div>
+          </>
+        )}
         <div className="flex space-x-[12px] items-center justify-end py-2">
           <div
             className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary"
