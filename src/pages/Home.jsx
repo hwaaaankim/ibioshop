@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
 import { addToCart } from '../store/slices/cartSlice'
+import { useSnackbar } from 'notistack'
 
 function Carousel({
   items,
@@ -668,6 +669,7 @@ function Product({ product, showProgress = false }) {
   )
 
   const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const openQuickView = (event) => {
     event.stopPropagation()
@@ -675,6 +677,10 @@ function Product({ product, showProgress = false }) {
   }
   const add2Cart = () => {
     dispatch(addToCart({ ...product, size: 'xl' }))
+    enqueueSnackbar('Added to cart successfully!', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
   }
 
   return (
