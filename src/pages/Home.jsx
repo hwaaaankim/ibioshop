@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 
 import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
+import { addToCart } from '../store/slices/cartSlice'
 
 function Carousel({
   items,
@@ -672,6 +673,9 @@ function Product({ product, showProgress = false }) {
     event.stopPropagation()
     dispatch(openModal({ id: 2 }))
   }
+  const add2Cart = () => {
+    dispatch(addToCart({ ...product, size: 'xl' }))
+  }
 
   return (
     <div
@@ -728,6 +732,7 @@ function Product({ product, showProgress = false }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs"
+                    onClick={add2Cart}
                   >
                     add to cart
                   </motion.div>
@@ -876,7 +881,72 @@ function FlashSale({ currentWidth }) {
         percentage: 40,
       },
     },
-  ]
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 40,
+        percentage: 40,
+      },
+    },
+  ].map((product, index) => ({ id: index, ...product }))
 
   const child = ({ item }) => <Product product={item} showProgress={true} />
 
@@ -912,7 +982,7 @@ function FlashSale({ currentWidth }) {
 
       <Carousel
         Child={child}
-        items={[...products, ...products]}
+        items={products}
         hideBtns={true}
         showChevrons={true}
         chevronY={-80}
