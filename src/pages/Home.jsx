@@ -1331,7 +1331,72 @@ function NewArrivals({ currentWidth }) {
         percentage: 40,
       },
     },
-  ]
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 40,
+        percentage: 40,
+      },
+    },
+  ].map((product, index) => ({ id: index, ...product }))
 
   const [activeTab, setActiveTab] = useState(0)
   const [showTabsdd, setShowTabsdd] = useState(false)
@@ -1397,7 +1462,7 @@ function NewArrivals({ currentWidth }) {
 
       <Carousel
         Child={child}
-        items={[...products, ...products]}
+        items={products}
         hideBtns={true}
         showChevrons={true}
         chevronY={-50}
