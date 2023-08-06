@@ -1,5 +1,6 @@
 const TOKEN_KEY = '__token__'
 const USER_KEY = '__user__'
+const CART_KEY = '__cart__'
 
 class AppStorage {
   constructor(storage) {
@@ -69,4 +70,14 @@ const userService = {
     appStorage.removeItem(USER_KEY)
   },
 }
-export { tokenService, userService }
+
+const cartService = {
+  getCart() {
+    return appStorage.getItem(CART_KEY)
+  },
+
+  updateCart(cart) {
+    appStorage.setItem(CART_KEY, cart)
+  },
+}
+export { tokenService, userService, cartService }

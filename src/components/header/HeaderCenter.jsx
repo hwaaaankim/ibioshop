@@ -132,6 +132,11 @@ function CartContent() {
         {products.map((item, index) => (
           <Product key={item.id} product={item} light={index % 2 !== 0} />
         ))}
+        {products.length === 0 && (
+          <div className="text-sm p-[8px]">
+            There are no items in your cart yet.
+          </div>
+        )}
       </div>
       <div className="text-xs text-gray-600">
         <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
