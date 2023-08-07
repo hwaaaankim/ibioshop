@@ -2,8 +2,8 @@ import image from '../../assets/images/10.jpg'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
-import { updateQuantity } from '../../store/slices/cartSlice'
+import { useEffect, useState } from 'react'
+import { updateQuantity, removeFromCart } from '../../store/slices/cartSlice'
 import { useSnackbar } from 'notistack'
 
 function ShoppingCartTable() {
@@ -25,6 +25,17 @@ function ShoppingCartTable() {
       anchorOrigin: { horizontal: 'right', vertical: 'top' },
     })
   }
+  const handleRemove = (id) => {
+    dispatch(removeFromCart(id))
+    enqueueSnackbar('Item removed from cart', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
+  }
+
+  useEffect(() => {
+    setCart(initial)
+  }, [initial])
 
   return (
     <div>
@@ -93,12 +104,11 @@ function ShoppingCartTable() {
                     </Tippy>
                     <Tippy content={<span>Remove</span>}>
                       <button
-                        type="button"
                         data-toggle="tooltip"
                         title=""
                         className="cursor-pointer bg-red-600 hover:bg-red-700 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block  px-4 h-9"
-                        // onClick={() => cartItems = cartItems.filter( cart => cart.index == index) }
+                        onClick={() => handleRemove(item.id)}
                       >
                         <i className="fa fa-times-circle"></i>
                       </button>
