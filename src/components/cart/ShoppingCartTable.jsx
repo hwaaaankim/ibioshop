@@ -1,18 +1,29 @@
 import image from '../../assets/images/10.jpg'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { updateQuantity } from '../../store/slices/cartSlice'
+import { useSnackbar } from 'notistack'
 
 function ShoppingCartTable() {
   const initial = useSelector((state) => state.cart)
   const [cart, setCart] = useState(initial.map((item) => ({ ...item })))
+  const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleInputChange = (e, id) => {
     const update = cart.map((citem) =>
       citem.id === id ? { ...citem, quantity: +e.target.value } : citem
     )
     setCart(update)
+  }
+  const handleUpdate = (id, quantity) => {
+    dispatch(updateQuantity({ id, quantity }))
+    enqueueSnackbar('Quantity updated successfully!', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
   }
 
   return (
@@ -71,12 +82,13 @@ function ShoppingCartTable() {
                   >
                     <Tippy content={<span> Update</span>}>
                       <button
-                        type="submit"
                         className="cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
                           leading-normal font-normal text-sm inline-block px-4 h-9"
-                        // onClick={handleUpdate}
+                        onClick={() => handleUpdate(item.id, item.quantity)}
                       >
-                        <i className="fa fa-refresh"></i>
+                        <div>
+                          <i className="fa fa-refresh"></i>
+                        </div>
                       </button>
                     </Tippy>
                     <Tippy content={<span>Remove</span>}>

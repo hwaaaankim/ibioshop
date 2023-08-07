@@ -14,6 +14,13 @@ const cartSlice = createSlice({
       else state.push({ ...product, quantity: 1 })
       cartService.updateCart(state)
     },
+    updateQuantity(state, { payload: { id, quantity } }) {
+      const existingItem = state.find((item) => item.id === id)
+      if (!existingItem) return
+
+      existingItem.quantity = quantity
+      cartService.updateCart(state)
+    },
     removeFromCart(state, { payload: productId }) {
       const index = state.findIndex((item) => item.id === productId)
       if (index !== -1) state.splice(index, 1)
@@ -22,6 +29,6 @@ const cartSlice = createSlice({
   },
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const { addToCart, updateQuantity, removeFromCart } = cartSlice.actions
 
 export default cartSlice.reducer
