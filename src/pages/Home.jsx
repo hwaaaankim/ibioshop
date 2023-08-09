@@ -692,7 +692,7 @@ function Product({ product, showProgress = false }) {
     >
       <div
         className="h-[180px] cursor-pointer group relative"
-        onClick={() => navigate('/product')}
+        onClick={() => navigate('/products/' + product.id)}
       >
         <img
           src={
