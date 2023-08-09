@@ -694,7 +694,7 @@ function Product({ product, showProgress = false }) {
         onClick={() => navigate('/product')}
       >
         <img
-          src={product.picture}
+          src={product.picture || 'image/catalog/demo/product/270/h1.jpg'}
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
         {product.discounted && (
@@ -780,7 +780,7 @@ function Product({ product, showProgress = false }) {
                 ))}
               </div>
               <div className="text-[10px] text-[#333]">
-                ({product.totalRatings})
+                ({product.totalRatings || 0})
               </div>
             </div>
             <div className="text-[13px] text-[#333] font-medium">
@@ -802,11 +802,11 @@ function Product({ product, showProgress = false }) {
 
         {showProgress && (
           <div className="w-full space-y-2">
-            <ProgressBar progress={product.totalSold.percentage} />
+            <ProgressBar progress={product?.totalSold?.percentage || 30} />
             <div className="flex items-center justify-center">
               <div className="text-[#333] text-xs">Sold:&nbsp;</div>
               <div className="text-primary text-[13px] font-semibold">
-                {product.totalSold.total}
+                {product?.totalSold?.total || 55}
               </div>
             </div>
           </div>
@@ -819,140 +819,149 @@ function Product({ product, showProgress = false }) {
 function FlashSale({ currentWidth }) {
   const flashSaleRef = useRef()
   const [width, setWidht] = useState(0)
-  useEffect(() => setWidht(flashSaleRef.current.clientWidth), [])
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    getProducts()
+    setWidht(flashSaleRef.current.clientWidth)
+  }, [])
 
-  const products = [
-    {
-      name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 51,
-        percentage: 80,
-      },
-    },
-    {
-      name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 62,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 45,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 30,
-        percentage: 40,
-      },
-    },
-    {
-      name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 40,
-        percentage: 40,
-      },
-    },
-    {
-      name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 51,
-        percentage: 80,
-      },
-    },
-    {
-      name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 62,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 45,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 30,
-        percentage: 40,
-      },
-    },
-    {
-      name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 40,
-        percentage: 40,
-      },
-    },
-  ].map((product, index) => ({ id: index, ...product }))
+  const getProducts = async () => {
+    const response = await http.request({ url: 'products' })
+    if (!response.isError) setProducts(response.products)
+  }
+
+  // const products = [
+  //   {
+  //     name: 'Pastrami bacon',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 51,
+  //       percentage: 80,
+  //     },
+  //   },
+  //   {
+  //     name: 'Lommodo qulutvenla',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 62,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Mapicola incidid',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 45,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Duis aute irure',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 30,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Excepteur sint occ',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 40,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Pastrami bacon',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 51,
+  //       percentage: 80,
+  //     },
+  //   },
+  //   {
+  //     name: 'Lommodo qulutvenla',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 62,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Mapicola incidid',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 45,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Duis aute irure',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 30,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Excepteur sint occ',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 40,
+  //       percentage: 40,
+  //     },
+  //   },
+  // ].map((product, index) => ({ id: index, ...product }))
 
   const child = ({ item }) => <Product product={item} showProgress={true} />
 
