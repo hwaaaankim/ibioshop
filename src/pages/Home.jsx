@@ -7,6 +7,7 @@ import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
 import { addToCart } from '../store/slices/cartSlice'
 import { useSnackbar } from 'notistack'
+import { BASE_URL } from '../config/config'
 
 function Carousel({
   items,
@@ -694,7 +695,11 @@ function Product({ product, showProgress = false }) {
         onClick={() => navigate('/product')}
       >
         <img
-          src={product.picture || 'image/catalog/demo/product/270/h1.jpg'}
+          src={
+            product.media && product.media.length > 0
+              ? BASE_URL + '/images/' + product.media[0].title
+              : 'image/catalog/demo/product/270/h1.jpg'
+          }
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
         {product.discounted && (
