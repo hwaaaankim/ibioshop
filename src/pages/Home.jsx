@@ -1054,15 +1054,6 @@ function ProductCategories({
   hasLeftBannner = false,
   hasRightBanner = false,
 }) {
-  if (!category) category = 'Technology'
-  if (!subCategories)
-    subCategories = [
-      'Smartphone',
-      'Tablets',
-      'Computer',
-      'Accessories',
-      'Hitech',
-    ]
   const products = [
     {
       name: 'Pastrami bacon',
@@ -1174,7 +1165,7 @@ function ProductCategories({
               key={index}
               className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary text-[12px] flex-shrink-0"
             >
-              {scategory}
+              {scategory.name}
             </div>
           ))}
         </div>
@@ -1224,7 +1215,18 @@ function ProductCategories({
   )
 }
 
-function Technology({ currentWidth }) {
+function ProductsByCategory({ currentWidth }) {
+  const [categories, setCategories] = useState([])
+  const getCategries = async () => {
+    const response = await http.request({ url: 'product_categories' })
+    if (!response.isError) {
+      const parentCategories = response.filter(
+        (item) => item.children && item.children.length > 0
+      )
+      console.log({ len: parentCategories.length, items: parentCategories })
+      setCategories(parentCategories)
+    }
+  }
   const scategories = [
     'Smartphone',
     'Tablets',
@@ -1232,49 +1234,22 @@ function Technology({ currentWidth }) {
     'Accessories',
     'Hitech',
   ]
-  return (
-    <ProductCategories
-      category="Technology"
-      subCategories={scategories}
-      hasLeftBannner={true}
-      currentWidth={currentWidth}
-    />
-  )
-}
 
-function FurnitureNdecor({ currentWidth }) {
-  const scategories = [
-    'Living room',
-    'Bathroom',
-    'Bedroom',
-    'Accessories',
-    'Decor',
-  ]
+  useEffect(() => {
+    getCategries()
+  }, [])
   return (
-    <ProductCategories
-      category="Furniture & decor"
-      subCategories={scategories}
-      hasRightBanner={true}
-      currentWidth={currentWidth}
-    />
-  )
-}
-
-function FashionNaccessories({ currentWidth }) {
-  const scategories = [
-    'Smartphone',
-    'Tablets',
-    'Computer',
-    'Accessories',
-    'Hitech',
-  ]
-  return (
-    <ProductCategories
-      category="Fashion & accessories"
-      subCategories={scategories}
-      hasLeftBannner={true}
-      currentWidth={currentWidth}
-    />
+    <>
+      {categories.map((parent) => (
+        <ProductCategories
+          key={parent.id}
+          category={parent.name}
+          subCategories={parent.children}
+          hasLeftBannner={true}
+          currentWidth={currentWidth}
+        />
+      ))}
+    </>
   )
 }
 
@@ -1568,9 +1543,7 @@ export default function Home() {
           <MiniBanners />
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
-          <Technology currentWidth={currentWidth} />
-          <FurnitureNdecor currentWidth={currentWidth} />
-          <FashionNaccessories currentWidth={currentWidth} />
+          <ProductsByCategory currentWidth={currentWidth} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
             {[1, 2].map((index) => (
               <div
