@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
 import auth from '../services/http/auth'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function AccountRegistrationIntro() {
   return (
@@ -38,7 +38,11 @@ function LoginForm() {
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors: fError },
+  } = useForm()
 
   const handleLogin = async ({ email, password }) => {
     console.log({ email, password })
@@ -54,7 +58,7 @@ function LoginForm() {
       dispatch(setUser({ user }))
       dispatch(setStatus({ signedIn: true }))
       navigate('/')
-    } else if (error.message) setError(error.message)
+    } else if (error.message) setError(error.response.data.message)
 
     setLoading(false)
   }
@@ -76,10 +80,9 @@ function LoginForm() {
           <div>
             <BaseInput
               label="E-Mail Address"
-              sm={false}
               {...register('email', { required: true })}
             />
-            {errors.email && (
+            {fError.email && (
               <span className="text-xs text-red-600">
                 E-Mail Address is required
               </span>
@@ -90,10 +93,9 @@ function LoginForm() {
             <BaseInput
               type="password"
               label="Password"
-              sm={false}
               {...register('password', { required: true })}
             />
-            {errors.password && (
+            {fError.password && (
               <span className="text-xs text-red-600">Password is required</span>
             )}
           </div>
