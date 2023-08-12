@@ -291,7 +291,7 @@ function CategoriesMenu({ isBigScreen }) {
       setShowMore((prev) => !prev)
     }
     return (
-      <div className="pl-2 pr-4 pb-3 bg-[#f5f5f5] w-[237px]">
+      <div className="pl-2 pr-4 pb-3 bg-[#f5f5f5] w-[237px] space-y-1">
         <GiftNToys />
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
