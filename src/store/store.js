@@ -4,6 +4,7 @@ import footerSlice from './slices/footerSlice'
 import authSlice from './slices/authSlice'
 import breadcrumbSlice from './slices/breadcrumbSlice'
 import modalSlice from './slices/modalSlice'
+import cartSlice from './slices/cartSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     footer: footerSlice,
     auth: authSlice,
     modal: modalSlice,
+    cart: cartSlice,
   },
 })

@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { openModal } from '../store/slices/modalSlice'
+import { http } from '../services/http/http'
+import { addToCart } from '../store/slices/cartSlice'
+import { useSnackbar } from 'notistack'
+import { BASE_URL } from '../config/config'
 
 function Carousel({
   items,
@@ -564,23 +568,17 @@ function LatestPosts() {
 function Testimonials() {
   const [currentPage, setPage] = useState(1)
 
-  const testimonials = [
-    {
-      author: 'Johny Walker',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    },
-    {
-      author: 'Johny Walker2',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    },
-    {
-      author: 'Johny Walker3',
-      quote:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore',
-    },
-  ]
+  const [testimonials, setTestimonials] = useState([])
+  const getTestimonials = async () => {
+    const response = await http.request({ url: 'testimonials' })
+    if (!response.isError) {
+      setTestimonials(response.testimonials)
+    }
+  }
+
+  useEffect(() => {
+    getTestimonials()
+  }, [])
 
   const child = ({ item }) => (
     <div className="space-y-4 flex flex-col items-center">
@@ -590,14 +588,14 @@ function Testimonials() {
           className="w-full h-full rounded-full"
         />
       </div>
-      <div className="text-sm font-medium">{item.author}</div>
+      <div className="text-sm font-medium">{item.fullName}</div>
       <div className="px-2 space-x-2">
         <i
           className="fa fa-quote-left text-gray-300"
           style={{ fontSize: 22 }}
         ></i>
         <span className="text-xs text-gray-500 text-center">
-          “{item.quote}”
+          “{item.description}”
         </span>
         <i
           className="fa fa-quote-right text-gray-300"
@@ -672,10 +670,18 @@ function Product({ product, showProgress = false }) {
   )
 
   const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const openQuickView = (event) => {
     event.stopPropagation()
     dispatch(openModal({ id: 2 }))
+  }
+  const add2Cart = () => {
+    dispatch(addToCart({ ...product, size: 'xl' }))
+    enqueueSnackbar('Added to cart successfully!', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
   }
 
   return (
@@ -686,10 +692,14 @@ function Product({ product, showProgress = false }) {
     >
       <div
         className="h-[180px] cursor-pointer group relative"
-        onClick={() => navigate('/product')}
+        onClick={() => navigate('/products/' + product.id)}
       >
         <img
-          src={product.picture}
+          src={
+            product.media && product.media.length > 0
+              ? BASE_URL + '/images/' + product.media[0].title
+              : 'image/catalog/demo/product/270/h1.jpg'
+          }
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
         {product.discounted && (
@@ -733,6 +743,7 @@ function Product({ product, showProgress = false }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs"
+                    onClick={add2Cart}
                   >
                     add to cart
                   </motion.div>
@@ -774,7 +785,7 @@ function Product({ product, showProgress = false }) {
                 ))}
               </div>
               <div className="text-[10px] text-[#333]">
-                ({product.totalRatings})
+                ({product.totalRatings || 0})
               </div>
             </div>
             <div className="text-[13px] text-[#333] font-medium">
@@ -796,11 +807,11 @@ function Product({ product, showProgress = false }) {
 
         {showProgress && (
           <div className="w-full space-y-2">
-            <ProgressBar progress={product.totalSold.percentage} />
+            <ProgressBar progress={product?.totalSold?.percentage || 30} />
             <div className="flex items-center justify-center">
               <div className="text-[#333] text-xs">Sold:&nbsp;</div>
               <div className="text-primary text-[13px] font-semibold">
-                {product.totalSold.total}
+                {product?.totalSold?.total || 55}
               </div>
             </div>
           </div>
@@ -813,75 +824,149 @@ function Product({ product, showProgress = false }) {
 function FlashSale({ currentWidth }) {
   const flashSaleRef = useRef()
   const [width, setWidht] = useState(0)
-  useEffect(() => setWidht(flashSaleRef.current.clientWidth), [])
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    getProducts()
+    setWidht(flashSaleRef.current.clientWidth)
+  }, [])
 
-  const products = [
-    {
-      name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 51,
-        percentage: 80,
-      },
-    },
-    {
-      name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 62,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 45,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 30,
-        percentage: 40,
-      },
-    },
-    {
-      name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 40,
-        percentage: 40,
-      },
-    },
-  ]
+  const getProducts = async () => {
+    const response = await http.request({ url: 'products' })
+    if (!response.isError) setProducts(response.products)
+  }
+
+  // const products = [
+  //   {
+  //     name: 'Pastrami bacon',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 51,
+  //       percentage: 80,
+  //     },
+  //   },
+  //   {
+  //     name: 'Lommodo qulutvenla',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 62,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Mapicola incidid',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 45,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Duis aute irure',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 30,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Excepteur sint occ',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 40,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Pastrami bacon',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 51,
+  //       percentage: 80,
+  //     },
+  //   },
+  //   {
+  //     name: 'Lommodo qulutvenla',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 62,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Mapicola incidid',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 45,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Duis aute irure',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 30,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Excepteur sint occ',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 40,
+  //       percentage: 40,
+  //     },
+  //   },
+  // ].map((product, index) => ({ id: index, ...product }))
 
   const child = ({ item }) => <Product product={item} showProgress={true} />
 
@@ -917,7 +1002,7 @@ function FlashSale({ currentWidth }) {
 
       <Carousel
         Child={child}
-        items={[...products, ...products]}
+        items={products}
         hideBtns={true}
         showChevrons={true}
         chevronY={-80}
@@ -969,64 +1054,112 @@ function ProductCategories({
   hasLeftBannner = false,
   hasRightBanner = false,
 }) {
-  if (!category) category = 'Technology'
-  if (!subCategories)
-    subCategories = [
-      'Smartphone',
-      'Tablets',
-      'Computer',
-      'Accessories',
-      'Hitech',
-    ]
-  const products = [
-    {
-      name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      totalSold: {
-        total: 51,
-        percentage: 80,
-      },
-    },
-    {
-      name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      discounted: true,
-      discountedPrice: 85,
-      totalSold: {
-        total: 62,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      totalSold: {
-        total: 45,
-        percentage: 70,
-      },
-    },
-    {
-      name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
-      rating: 4,
-      totalRatings: 3,
-      price: 96.0,
-      isNew: true,
-      totalSold: {
-        total: 30,
-        percentage: 40,
-      },
-    },
-  ]
+  const [products, setProducts] = useState([])
+  const getProducts = async () => {
+    const response = await http.request({ url: 'products' })
+    if (!response.isError) setProducts(response.products)
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
+  // const products = [
+  //   {
+  //     name: 'Pastrami bacon',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     totalSold: {
+  //       total: 51,
+  //       percentage: 80,
+  //     },
+  //   },
+  //   {
+  //     name: 'Lommodo qulutvenla',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 62,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Mapicola incidid',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     totalSold: {
+  //       total: 45,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Duis aute irure',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     isNew: true,
+  //     totalSold: {
+  //       total: 30,
+  //       percentage: 40,
+  //     },
+  //   },
+  //   {
+  //     name: 'Pastrami bacon',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     totalSold: {
+  //       total: 51,
+  //       percentage: 80,
+  //     },
+  //   },
+  //   {
+  //     name: 'Lommodo qulutvenla',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     discounted: true,
+  //     discountedPrice: 85,
+  //     totalSold: {
+  //       total: 62,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Mapicola incidid',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     totalSold: {
+  //       total: 45,
+  //       percentage: 70,
+  //     },
+  //   },
+  //   {
+  //     name: 'Duis aute irure',
+  //     picture: 'image/catalog/demo/product/270/h1.jpg',
+  //     rating: 4,
+  //     totalRatings: 3,
+  //     price: 96.0,
+  //     isNew: true,
+  //     totalSold: {
+  //       total: 30,
+  //       percentage: 40,
+  //     },
+  //   },
+  // ].map((product, index) => ({ id: index, ...product }))
 
   const child = ({ item }) => <Product product={item} />
 
@@ -1042,7 +1175,7 @@ function ProductCategories({
               key={index}
               className="py-1 px-2 cursor-pointer text-gray-800 hover:text-primary text-[12px] flex-shrink-0"
             >
-              {scategory}
+              {scategory.name}
             </div>
           ))}
         </div>
@@ -1060,7 +1193,7 @@ function ProductCategories({
         <div className="md:flex-auto">
           <Carousel
             Child={child}
-            items={[...products, ...products]}
+            items={products}
             hideBtns={true}
             showChevrons={true}
             chevronY={-50}
@@ -1092,7 +1225,18 @@ function ProductCategories({
   )
 }
 
-function Technology({ currentWidth }) {
+function ProductsByCategory({ currentWidth }) {
+  const [categories, setCategories] = useState([])
+  const getCategries = async () => {
+    const response = await http.request({ url: 'product_categories' })
+    if (!response.isError) {
+      const parentCategories = response.filter(
+        (item) => item.children && item.children.length > 0
+      )
+      console.log({ len: parentCategories.length, items: parentCategories })
+      setCategories(parentCategories)
+    }
+  }
   const scategories = [
     'Smartphone',
     'Tablets',
@@ -1100,49 +1244,22 @@ function Technology({ currentWidth }) {
     'Accessories',
     'Hitech',
   ]
-  return (
-    <ProductCategories
-      category="Technology"
-      subCategories={scategories}
-      hasLeftBannner={true}
-      currentWidth={currentWidth}
-    />
-  )
-}
 
-function FurnitureNdecor({ currentWidth }) {
-  const scategories = [
-    'Living room',
-    'Bathroom',
-    'Bedroom',
-    'Accessories',
-    'Decor',
-  ]
+  useEffect(() => {
+    getCategries()
+  }, [])
   return (
-    <ProductCategories
-      category="Furniture & decor"
-      subCategories={scategories}
-      hasRightBanner={true}
-      currentWidth={currentWidth}
-    />
-  )
-}
-
-function FashionNaccessories({ currentWidth }) {
-  const scategories = [
-    'Smartphone',
-    'Tablets',
-    'Computer',
-    'Accessories',
-    'Hitech',
-  ]
-  return (
-    <ProductCategories
-      category="Fashion & accessories"
-      subCategories={scategories}
-      hasLeftBannner={true}
-      currentWidth={currentWidth}
-    />
+    <>
+      {categories.map((parent) => (
+        <ProductCategories
+          key={parent.id}
+          category={parent.name}
+          subCategories={parent.children}
+          hasLeftBannner={true}
+          currentWidth={currentWidth}
+        />
+      ))}
+    </>
   )
 }
 
@@ -1213,7 +1330,72 @@ function NewArrivals({ currentWidth }) {
         percentage: 40,
       },
     },
-  ]
+    {
+      name: 'Pastrami bacon',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 51,
+        percentage: 80,
+      },
+    },
+    {
+      name: 'Lommodo qulutvenla',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 62,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Mapicola incidid',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 45,
+        percentage: 70,
+      },
+    },
+    {
+      name: 'Duis aute irure',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 30,
+        percentage: 40,
+      },
+    },
+    {
+      name: 'Excepteur sint occ',
+      picture: 'image/catalog/demo/product/270/h1.jpg',
+      rating: 4,
+      totalRatings: 3,
+      price: 96.0,
+      discounted: true,
+      discountedPrice: 85,
+      totalSold: {
+        total: 40,
+        percentage: 40,
+      },
+    },
+  ].map((product, index) => ({ id: index, ...product }))
 
   const [activeTab, setActiveTab] = useState(0)
   const [showTabsdd, setShowTabsdd] = useState(false)
@@ -1279,7 +1461,7 @@ function NewArrivals({ currentWidth }) {
 
       <Carousel
         Child={child}
-        items={[...products, ...products]}
+        items={products}
         hideBtns={true}
         showChevrons={true}
         chevronY={-50}
@@ -1371,9 +1553,7 @@ export default function Home() {
           <MiniBanners />
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
-          <Technology currentWidth={currentWidth} />
-          <FurnitureNdecor currentWidth={currentWidth} />
-          <FashionNaccessories currentWidth={currentWidth} />
+          <ProductsByCategory currentWidth={currentWidth} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
             {[1, 2].map((index) => (
               <div

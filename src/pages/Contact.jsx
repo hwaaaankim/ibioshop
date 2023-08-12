@@ -1,12 +1,10 @@
-import Icon from '../components/icon/Icon'
 import Label from '../components/controlled/Label'
 import BaseInput from '../components/controlled/BaseInput'
 import { useForm } from 'react-hook-form'
-import account from '../services/api/account'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
+import { http } from '../services/http/http'
 
 function Contact() {
   const {
@@ -19,8 +17,9 @@ function Contact() {
   const sendContact = async (data) => {
     console.log(errors)
     setLoading(true)
-    const { isError, response, error } = await account.updateAccount(data)
-    if (!isError) {
+
+    const response = await http.request({ method: 'put', url: 'account', data })
+    if (!response.isError) {
       console.log(response)
     } else {
       setError(error.toString())

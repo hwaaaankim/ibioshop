@@ -4,8 +4,8 @@ import { setUser, setStatus } from '../store/slices/authSlice'
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
-import auth from '../services/api/auth'
-import { Link } from 'react-router-dom'
+import auth from '../services/http/auth'
+import { Link, useNavigate } from 'react-router-dom'
 
 function AccountRegistrationIntro() {
   return (
@@ -36,41 +36,32 @@ function AccountRegistrationIntro() {
 function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors: fError },
   } = useForm()
 
-  const dispatch = useDispatch()
-
   const handleLogin = async ({ email, password }) => {
+    console.log({ email, password })
     setLoading(true)
-
-    let formData = new FormData()
-    formData.append('username', email)
-    formData.append('password', password)
 
     const requestPayload = {
       method: 'post',
-      url: 'login',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      data: formData,
+      url: 'users/login',
+      data: { email: email, password },
     }
     const { isError, user, error } = await auth.signIn(requestPayload)
     if (!isError) {
       dispatch(setUser({ user }))
       dispatch(setStatus({ signedIn: true }))
-    } else {
-      setError(error.toString())
-    }
+      navigate('/')
+    } else if (error.message) setError(error.response.data.message)
 
     setLoading(false)
   }
-
   return (
     <div className="border border-gray-300 flex flex-col justify-between">
       <div className="p-5 my-5 text-gray-600 space-y-3">
@@ -89,10 +80,9 @@ function LoginForm() {
           <div>
             <BaseInput
               label="E-Mail Address"
-              sm={false}
               {...register('email', { required: true })}
             />
-            {errors.email && (
+            {fError.email && (
               <span className="text-xs text-red-600">
                 E-Mail Address is required
               </span>
@@ -103,10 +93,9 @@ function LoginForm() {
             <BaseInput
               type="password"
               label="Password"
-              sm={false}
               {...register('password', { required: true })}
             />
-            {errors.password && (
+            {fError.password && (
               <span className="text-xs text-red-600">Password is required</span>
             )}
           </div>

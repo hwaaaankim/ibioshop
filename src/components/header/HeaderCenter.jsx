@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import { Dropdown } from './HeaderTop'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeFromCart } from '../../store/slices/cartSlice'
 
 function Logo() {
   const navigate = useNavigate()
@@ -87,6 +89,10 @@ function FilterBar() {
 }
 
 function Product({ product, light = false }) {
+  const dispatch = useDispatch()
+  const removeCartItem = () => {
+    dispatch(removeFromCart(product.id))
+  }
   return (
     <div
       className={
@@ -107,7 +113,10 @@ function Product({ product, light = false }) {
         <div className="cursor-pointer hover:text-primary">
           <i className="fa fa-edit"></i>
         </div>
-        <div className="cursor-pointer hover:text-primary">
+        <div
+          className="cursor-pointer hover:text-primary"
+          onClick={removeCartItem}
+        >
           <i className="fa fa-times"></i>
         </div>
       </div>
@@ -115,35 +124,41 @@ function Product({ product, light = false }) {
   )
 }
 function CartContent() {
+  const products = useSelector((state) => state.cart)
   const navigate = useNavigate()
-  const products = [
-    { id: 1, name: 'Yutculpa ullamco', size: 'xl', price: 80.0 },
-    { id: 2, name: 'Xancetta bresao', size: 'xl', price: 60.0 },
-  ]
   return (
     <div className="w-[320px] space-y-5 pb-[10px]">
       <div>
         {products.map((item, index) => (
           <Product key={item.id} product={item} light={index % 2 !== 0} />
         ))}
+        {products.length === 0 && (
+          <div className="text-sm p-[8px]">
+            There are no items in your cart yet.
+          </div>
+        )}
       </div>
       <div className="text-xs text-gray-600">
-        <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
-          <div className="font-semibold">Sub-Total</div>
-          <div className="text-right">$140.00</div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
-          <div className="font-semibold">Eco Tax (-2.00)</div>
-          <div className="text-right">$2.00</div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
-          <div className="font-semibold">VAT (20%)</div>
-          <div className="text-right">$20.00</div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
-          <div className="font-semibold">Total</div>
-          <div className="text-right">$162.00</div>
-        </div>
+        {products.length > 0 && (
+          <>
+            <div className="grid grid-cols-2 gap-2 p-2 border-y border-y-gray-200">
+              <div className="font-semibold">Sub-Total</div>
+              <div className="text-right">$140.00</div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+              <div className="font-semibold">Eco Tax (-2.00)</div>
+              <div className="text-right">$2.00</div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+              <div className="font-semibold">VAT (20%)</div>
+              <div className="text-right">$20.00</div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 p-2 border-b border-b-gray-200">
+              <div className="font-semibold">Total</div>
+              <div className="text-right">$162.00</div>
+            </div>
+          </>
+        )}
         <div className="flex space-x-[12px] items-center justify-end py-2">
           <div
             className="flex space-x-1 items-center py-[6px] px-[12px] cursor-pointer hover:text-primary"

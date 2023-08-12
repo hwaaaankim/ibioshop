@@ -4,27 +4,7 @@ import Total from '../components/cart/Total'
 import CouponCode from '../components/cart/CouponCode'
 import Shipping from '../components/cart/Shipping'
 import GiftCertificate from '../components/cart/GiftCertificate'
-import image from '../assets/images/10.jpg'
 import { useState } from 'react'
-
-const cartItems = [
-  {
-    image: image,
-    name: 'Emasa rumas gacem',
-    quantity: 1,
-    model: 'Pt001',
-    unitPrice: 20,
-    total: 20,
-  },
-  {
-    image: image,
-    name: 'Comas samer rumas',
-    quantity: 1,
-    model: 'Pt001',
-    unitPrice: 20,
-    total: 20,
-  },
-]
 
 function Cart() {
   const [showCouponForm, toggleCouponForm] = useState(true)
@@ -62,7 +42,7 @@ function Cart() {
           <h2 className="text-xl font-normal text-gray-500 pb-2">
             Shopping Cart
           </h2>
-          <ShoppingCartTable cartItems={cartItems}></ShoppingCartTable>
+          <ShoppingCartTable />
           <h2 className="text-lg font-normal text-gray-500">
             What would you like to do next?
           </h2>

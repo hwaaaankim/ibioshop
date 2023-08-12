@@ -1,4 +1,4 @@
-import apiService from '../http-common'
+import apiService from './http-common'
 import { tokenService } from '../storageService'
 
 const auth = {

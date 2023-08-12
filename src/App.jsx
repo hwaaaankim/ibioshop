@@ -56,7 +56,7 @@ function App() {
           <Route path="my_account" element={<MyAccount />} />
           <Route path="about" element={<Aboutus />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="product" element={<Product />} />
+          <Route path="products/:id" element={<Product />} />
           <Route path="order_history" element={<OrderHistory />} />
           <Route path="contact_us" element={<Contact />} />
           <Route path="faq" element={<Faq />} />
