@@ -3,6 +3,7 @@ import { Dropdown } from './HeaderTop'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useMediaQuery } from 'react-responsive'
+import { useSelector } from 'react-redux'
 
 function GiftNToys() {
   const categories = [
@@ -760,19 +761,33 @@ function Blog() {
 }
 
 function AccountNav() {
+  const auth = useSelector((state) => state.auth)
+
   return (
     <div className="flex space-x-4 items-center justify-end text-[12px]">
       <div className="flex space-x-2 items-center">
-        <div className="flex space-x-1 items-center cursor-pointer hover:text-black">
-          <i className="fa fa-lock" />
-          <Link to="/login">
-            <div>Login</div>
+        {!auth.signedIn && (
+          <>
+            <div className="flex space-x-1 items-center cursor-pointer hover:text-black">
+              <i className="fa fa-lock" />
+              <Link to="/login">
+                <div>Login</div>
+              </Link>
+            </div>
+            <div>or</div>
+            <Link to="/register">
+              <div className="cursor-pointer hover:text-black">Register</div>
+            </Link>
+          </>
+        )}
+
+        {auth.signedIn && (
+          <Link to="/register">
+            <div className="cursor-pointer hover:text-black">
+              Track Your Order
+            </div>
           </Link>
-        </div>
-        <div>or</div>
-        <Link to="/register">
-          <div className="cursor-pointer hover:text-black">Register</div>
-        </Link>
+        )}
       </div>
 
       <div className="border border-l h-4 border-white"></div>
