@@ -5,10 +5,10 @@ const auth = {
   async signIn(payload) {
     try {
       const response = await apiService.request(payload)
-      tokenService.saveToken(response.data.token)
+      tokenService.saveToken(response.data.access_token)
       apiService.setHeader()
 
-      return { isError: false, user: response.data.member }
+      return { isError: false, user: response.data.user }
     } catch (err) {
       return { isError: true, error: err }
     }
