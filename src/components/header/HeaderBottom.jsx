@@ -782,7 +782,7 @@ function AccountNav() {
         )}
 
         {auth.signedIn && (
-          <Link to="/register">
+          <Link to="/order_info">
             <div className="cursor-pointer hover:text-black">
               Track Your Order
             </div>
