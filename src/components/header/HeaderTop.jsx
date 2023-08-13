@@ -178,8 +178,8 @@ export default function HeaderTop() {
         className="flex space-x-[19px] items-center pt-[1px]"
         style={{ fontSize: 12 }}
       >
-        <Currencies />
-        <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div>
+        {/* <Currencies />
+        <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div> */}
         <Languages />
       </div>
     </div>
