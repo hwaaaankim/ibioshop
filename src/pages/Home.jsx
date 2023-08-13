@@ -645,7 +645,8 @@ function MiniBanners() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 mdp5:grid-cols-5 gap-[30px]">
       {[1, 2, 3, 4, 5].map((index) => (
-        <div key={index} className="h-auto cursor-pointer hover:opacity-80">
+        <div key={index} className="h-auto cursor-pointer relative group">
+          <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
           <img src="image/catalog/banners/cat1.jpg" className="w-full h-full" />
         </div>
       ))}
