@@ -1,7 +1,8 @@
 import Tippy from '@tippyjs/react/headless'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function Dropdown({
   placement = 'bottom-end',
@@ -161,6 +162,9 @@ function AccountNavs() {
 }
 
 export default function HeaderTop() {
+  const navigate = useNavigate()
+  const auth = useSelector((state) => state.auth)
+
   return (
     <div className="flex space-x-2 items-center px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto">
       <div
@@ -178,9 +182,22 @@ export default function HeaderTop() {
         className="flex space-x-[19px] items-center pt-[1px]"
         style={{ fontSize: 12 }}
       >
-        <Currencies />
-        <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div>
+        {/* <Currencies />
+        <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div> */}
         <Languages />
+
+        {auth.signedIn && (
+          <>
+            <div className="h-3 bg-gray-400" style={{ width: 0.5 }}></div>
+            <div
+              title="My Info"
+              className="cursor-pointer rounded-full hover:opacity-75 active:opacity-50"
+              onClick={() => navigate('/my_account')}
+            >
+              <i className="fa fa-user" style={{ fontSize: 14 }}></i>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

@@ -645,7 +645,8 @@ function MiniBanners() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 mdp5:grid-cols-5 gap-[30px]">
       {[1, 2, 3, 4, 5].map((index) => (
-        <div key={index} className="h-auto cursor-pointer hover:opacity-80">
+        <div key={index} className="h-auto cursor-pointer relative group">
+          <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
           <img src="image/catalog/banners/cat1.jpg" className="w-full h-full" />
         </div>
       ))}
@@ -1520,13 +1521,17 @@ export default function Home() {
   }, [])
   return (
     <div className="grid grid-cols-4 gap-8 px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-8">
-      <div className="col-span-4 lgp8:col-span-3 flex lgp8:space-x-8">
-        <div className="hidden lgp8:block" style={{ width: 237 }}></div>
-        <div className="flex-auto bg-gray-50 h-[300px]">
-          <ImageCarouse />
+      <div className="col-span-4 grid grid-cols-5 gap-8">
+        <div className="col-span-5 lgp8:col-span-4 flex lgp8:space-x-8">
+          <div className="hidden lgp8:block" style={{ width: 237 }}></div>
+          <div className="flex-auto bg-gray-50 h-[300px]">
+            <ImageCarouse />
+          </div>
+        </div>
+        <div className="col-span-5 lgp8:col-span-1">
+          <BestSelling />
         </div>
       </div>
-      <BestSelling />
       <div className="col-span-4 md:flex md:space-x-8 space-y-4 md:space-y-0">
         <div className="space-y-8 md:w-[237px] shrink-0">
           <div className="h-[390px] cursor-pointer">

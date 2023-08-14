@@ -53,12 +53,15 @@ function LoginForm() {
       url: 'users/login',
       data: { email: email, password },
     }
-    const { isError, user, error } = await auth.signIn(requestPayload)
-    if (!isError) {
-      dispatch(setUser({ user }))
+    const response = await auth.signIn(requestPayload)
+    if (!response.isError) {
+      dispatch(setUser({ user: response.user }))
       dispatch(setStatus({ signedIn: true }))
       navigate('/')
-    } else if (error.message) setError(error.response.data.message)
+    } else {
+      // setError(response.error.response.data.message)
+      console.log({ response })
+    }
 
     setLoading(false)
   }
