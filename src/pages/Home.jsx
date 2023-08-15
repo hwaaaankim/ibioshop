@@ -1024,7 +1024,7 @@ function FlashSale({ currentWidth }) {
 }
 
 function CatalogBanners() {
-  const Banner = ({ picture, moreCalsses = '' }) => {
+  const Banner = ({ picture, ...attrs }) => {
     const [mouseIn, setMouseIn] = useState(false) // mouse moves in to the left card
     const [pictureZ, setPictureZ] = useState(0)
 
@@ -1037,10 +1037,8 @@ function CatalogBanners() {
 
     return (
       <div
-        className={
-          'h-max-[225px] h-auto hidden md:block cursor-pointer relative ' +
-          moreCalsses
-        }
+        className="h-max-[225px] h-auto hidden md:block cursor-pointer relative "
+        {...attrs}
         onMouseEnter={() => setMouseIn(true)}
         onMouseLeave={() => setMouseIn(false)}
       >
