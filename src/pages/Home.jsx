@@ -1024,25 +1024,25 @@ function FlashSale({ currentWidth }) {
 }
 
 function CatalogBanners() {
-  const [leftIn, setLeftIn] = useState(false) // mouse moves in to the left card
-  const [leftZ, setLeftZ] = useState(0)
+  const Banner = () => {
+    const [mouseIn, setMouseIn] = useState(false) // mouse moves in to the left card
+    const [pictureZ, setPictureZ] = useState(0)
 
-  useEffect(() => {
-    if (leftIn) setTimeout(() => setLeftZ(30), 280)
-    else {
-      setLeftZ(0)
-    }
-  }, [leftIn])
+    useEffect(() => {
+      if (mouseIn) setTimeout(() => setPictureZ(30), 280)
+      else {
+        setPictureZ(0)
+      }
+    }, [mouseIn])
 
-  return (
-    <div className="grid grid-cols-4 gap-3">
+    return (
       <div
         className="h-max-[225px] h-auto hidden md:block cursor-pointer relative"
-        onMouseEnter={() => setLeftIn(true)}
-        onMouseLeave={() => setLeftIn(false)}
+        onMouseEnter={() => setMouseIn(true)}
+        onMouseLeave={() => setMouseIn(false)}
       >
         <AnimatePresence>
-          {leftIn && (
+          {mouseIn && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1062,7 +1062,7 @@ function CatalogBanners() {
         </AnimatePresence>
         <div
           className="absolute top-0 right-0 bottom-0 left-0"
-          style={{ zIndex: leftZ }}
+          style={{ zIndex: pictureZ }}
         >
           <img
             src="image/catalog/banners/banner3.jpg"
@@ -1070,13 +1070,19 @@ function CatalogBanners() {
           />
         </div>
       </div>
-      <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer opacity-80 hover:opacity-100">
+    )
+  }
+
+  return (
+    <div className="grid grid-cols-4 gap-3">
+      <Banner />
+      <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer">
         <img
           src="image/catalog/banners/banner4.jpg"
           className="w-full h-full"
         />
       </div>
-      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
+      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer">
         <img
           src="image/catalog/banners/banner5.jpg"
           className="w-full h-full"
