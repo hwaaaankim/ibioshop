@@ -1024,7 +1024,7 @@ function FlashSale({ currentWidth }) {
 }
 
 function CatalogBanners() {
-  const Banner = ({ picture, ...attrs }) => {
+  const Banner = ({ picture, moreClasses = '' }) => {
     const [mouseIn, setMouseIn] = useState(false) // mouse moves in to the left card
     const [pictureZ, setPictureZ] = useState(0)
 
@@ -1037,8 +1037,9 @@ function CatalogBanners() {
 
     return (
       <div
-        className="h-max-[225px] h-auto hidden md:block cursor-pointer relative "
-        {...attrs}
+        className={
+          'h-[225px] hidden md:block cursor-pointer relative ' + moreClasses
+        }
         onMouseEnter={() => setMouseIn(true)}
         onMouseLeave={() => setMouseIn(false)}
       >
@@ -1056,7 +1057,8 @@ function CatalogBanners() {
                 animate={{ scale: 2 }}
                 exit={{ scale: 0 }}
                 transition={{ duration: 0.28 }}
-                className="bg-white w-full h-full opacity-75 rounded-full z-20"
+                className="bg-white opacity-75 rounded-full z-20"
+                style={{ width: 255, height: 255 }}
               ></motion.div>
             </motion.div>
           )}
@@ -1074,12 +1076,10 @@ function CatalogBanners() {
   return (
     <div className="grid grid-cols-4 gap-3">
       <Banner picture="image/catalog/banners/banner3.jpg" />
-      <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer">
-        <img
-          src="image/catalog/banners/banner4.jpg"
-          className="w-full h-full"
-        />
-      </div>
+      <Banner
+        moreClasses="col-span-4 md:col-span-2"
+        picture="image/catalog/banners/banner4.jpg"
+      />
       <Banner picture="image/catalog/banners/banner5.jpg" />
     </div>
   )
