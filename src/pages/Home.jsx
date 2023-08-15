@@ -1024,13 +1024,51 @@ function FlashSale({ currentWidth }) {
 }
 
 function CatalogBanners() {
+  const [leftIn, setLeftIn] = useState(false) // mouse moves in to the left card
+  const [leftZ, setLeftZ] = useState(0)
+
+  useEffect(() => {
+    if (leftIn) setTimeout(() => setLeftZ(30), 280)
+    else {
+      setLeftZ(0)
+    }
+  }, [leftIn])
+
   return (
     <div className="grid grid-cols-4 gap-3">
-      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
-        <img
-          src="image/catalog/banners/banner3.jpg"
-          className="w-full h-full"
-        />
+      <div
+        className="h-max-[225px] h-auto hidden md:block cursor-pointer relative"
+        onMouseEnter={() => setLeftIn(true)}
+        onMouseLeave={() => setLeftIn(false)}
+      >
+        <AnimatePresence>
+          {leftIn && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { delay: 0.28 } }}
+              transition={{ duration: 0 }}
+              className="absolute top-0 right-0 bottom-0 left-0 bg-gray-2 flex items-center justify-center z-10 overflow-hidden"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 2 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.28 }}
+                className="bg-white w-full h-full opacity-75 rounded-full z-20"
+              ></motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div
+          className="absolute top-0 right-0 bottom-0 left-0"
+          style={{ zIndex: leftZ }}
+        >
+          <img
+            src="image/catalog/banners/banner3.jpg"
+            className="w-full h-full"
+          />
+        </div>
       </div>
       <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer opacity-80 hover:opacity-100">
         <img
