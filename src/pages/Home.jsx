@@ -746,7 +746,7 @@ function Product({ product, showProgress = false }) {
                 exit={{ y: -30, opacity: 0, transition: { duration: 0.1 } }}
                 className="absolute top-0 left-0 right-0 bottom-0 flex items-center z-10"
               >
-                <div className="flex-auto flex space-x-2 items-center justify-between">
+                <div className="flex-auto flex space-x-1 items-center justify-center">
                   <motion.div
                     initial={{ y: -30 }}
                     animate={{ y: 0 }}
@@ -1110,103 +1110,6 @@ function ProductCategories({
     getProducts()
   }, [])
 
-  // const products = [
-  //   {
-  //     name: 'Pastrami bacon',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     totalSold: {
-  //       total: 51,
-  //       percentage: 80,
-  //     },
-  //   },
-  //   {
-  //     name: 'Lommodo qulutvenla',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 62,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Mapicola incidid',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     totalSold: {
-  //       total: 45,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Duis aute irure',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     isNew: true,
-  //     totalSold: {
-  //       total: 30,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Pastrami bacon',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     totalSold: {
-  //       total: 51,
-  //       percentage: 80,
-  //     },
-  //   },
-  //   {
-  //     name: 'Lommodo qulutvenla',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 62,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Mapicola incidid',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     totalSold: {
-  //       total: 45,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Duis aute irure',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     isNew: true,
-  //     totalSold: {
-  //       total: 30,
-  //       percentage: 40,
-  //     },
-  //   },
-  // ].map((product, index) => ({ id: index, ...product }))
-
   const child = ({ item }) => <Product product={item} />
 
   return (
@@ -1228,7 +1131,8 @@ function ProductCategories({
       </div>
       <div className="md:flex md:space-x-2 space-y-2 md:space-y-0">
         {hasLeftBannner && (
-          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
+            <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
@@ -1259,7 +1163,8 @@ function ProductCategories({
         </div>
 
         {hasRightBanner && (
-          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
+            <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
@@ -1283,13 +1188,6 @@ function ProductsByCategory({ currentWidth }) {
       setCategories(parentCategories)
     }
   }
-  const scategories = [
-    'Smartphone',
-    'Tablets',
-    'Computer',
-    'Accessories',
-    'Hitech',
-  ]
 
   useEffect(() => {
     getCategries()
