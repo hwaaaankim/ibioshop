@@ -1131,7 +1131,8 @@ function ProductCategories({
       </div>
       <div className="md:flex md:space-x-2 space-y-2 md:space-y-0">
         {hasLeftBannner && (
-          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
+            <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
@@ -1162,7 +1163,8 @@ function ProductCategories({
         </div>
 
         {hasRightBanner && (
-          <div className="md:w-[200px] h-[275px] cursor-pointer opacity-80 hover:opacity-100">
+          <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
+            <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
               src="image/catalog/demo/category/tab1.jpg"
               className="w-full h-full"
