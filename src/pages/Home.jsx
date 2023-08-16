@@ -685,6 +685,12 @@ function Product({ product, showProgress = false }) {
     })
   }
 
+  const pictureRef = useRef()
+  const [pictureHeight, setPictureHeight] = useState(180)
+  useEffect(() => {
+    setPictureHeight(pictureRef.current.clientWidth)
+  })
+
   return (
     <div
       className="space-y-2 w-full"
@@ -692,7 +698,8 @@ function Product({ product, showProgress = false }) {
       onMouseLeave={() => setMouseOver(false)}
     >
       <div
-        className="h-[180px] cursor-pointer group relative"
+        className="cursor-pointer group relative"
+        style={{ height: pictureHeight }}
         onClick={() => navigate('/products/' + product.id)}
       >
         <img
@@ -702,6 +709,7 @@ function Product({ product, showProgress = false }) {
               : 'image/catalog/demo/product/270/h1.jpg'
           }
           className="w-full h-full opacity-80 group-hover:opacity-100"
+          ref={pictureRef}
         />
         {product.discounted && (
           <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[5px] top-[5px]">
