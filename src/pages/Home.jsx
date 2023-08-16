@@ -1403,6 +1403,7 @@ function NewArrivals({ currentWidth }) {
 
   const child = ({ item }) => <Product product={item} />
   const tabs = ['best seller', 'new arrivals', 'most rating']
+  const [hoverIndex, setHoverIndex] = useState(undefined)
 
   return (
     <div className="space-y-4">
@@ -1414,12 +1415,26 @@ function NewArrivals({ currentWidth }) {
               'py-1 pr-12 uppercase text-lg font-semibold cursor-pointer hover:text-primary border-b-2 relative border-gray-300'
             }
             onClick={() => setActiveTab(index)}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(undefined)}
           >
             <div>{title}</div>
             <AnimatePresence>
               {activeTab === index && (
                 <motion.div
                   exit={{ scaleX: 0, originX: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute w-[100px] h-[2px] bottom-0 bg-primary -mb-[2px]"
+                ></motion.div>
+              )}
+            </AnimatePresence>
+            <AnimatePresence>
+              {hoverIndex === index && activeTab !== index && (
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1, originX: 0 }}
+                  exit={{ scaleX: 0, originX: 0 }}
+                  transition={{ duration: 0.3 }}
                   className="absolute w-[100px] h-[2px] bottom-0 bg-primary -mb-[2px]"
                 ></motion.div>
               )}
