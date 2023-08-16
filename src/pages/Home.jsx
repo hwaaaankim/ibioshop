@@ -1093,6 +1093,63 @@ function CatalogBanners() {
   )
 }
 
+function ProductBanners() {
+  const Banner = ({ picture }) => {
+    const [mouseIn, setMouseIn] = useState(false) // mouse moves in to the left card
+    const [pictureZ, setPictureZ] = useState(0)
+
+    useEffect(() => {
+      if (mouseIn) setTimeout(() => setPictureZ(30), 280)
+      else {
+        setPictureZ(0)
+      }
+    }, [mouseIn])
+
+    return (
+      <div
+        className={'h-[138px] hidden md:block cursor-pointer relative '}
+        onMouseEnter={() => setMouseIn(true)}
+        onMouseLeave={() => setMouseIn(false)}
+      >
+        <AnimatePresence>
+          {mouseIn && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { delay: 0.28 } }}
+              transition={{ duration: 0 }}
+              className="absolute top-0 right-0 bottom-0 left-0 bg-gray-2 flex items-center justify-center z-10 overflow-hidden"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 2 }}
+                exit={{ scale: 0 }}
+                transition={{ duration: 0.28 }}
+                className="bg-white opacity-75 rounded-full z-20"
+                style={{ width: 255, height: 255 }}
+              ></motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div
+          className="absolute top-0 right-0 bottom-0 left-0"
+          style={{ zIndex: pictureZ }}
+        >
+          <img src={picture} className="w-full h-full" />
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
+      {[1, 2].map((index) => (
+        <Banner key={index} picture="image/catalog/banners/bn1.jpg" />
+      ))}
+    </div>
+  )
+}
+
 function ProductCategories({
   currentWidth,
   category,
@@ -1502,20 +1559,7 @@ export default function Home() {
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
           <ProductsByCategory currentWidth={currentWidth} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
-            {[1, 2].map((index) => (
-              <div
-                key={index}
-                className="opacity-80 hover:opacity-100 cursor-pointer"
-              >
-                <img
-                  src="image/catalog/banners/bn1.jpg"
-                  className="w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
-
+          <ProductBanners />
           <NewArrivals currentWidth={currentWidth} />
           <BrandsCarousel />
         </div>
