@@ -1024,25 +1024,27 @@ function FlashSale({ currentWidth }) {
 }
 
 function CatalogBanners() {
-  const [leftIn, setLeftIn] = useState(false) // mouse moves in to the left card
-  const [leftZ, setLeftZ] = useState(0)
+  const Banner = ({ picture, moreClasses = '' }) => {
+    const [mouseIn, setMouseIn] = useState(false) // mouse moves in to the left card
+    const [pictureZ, setPictureZ] = useState(0)
 
-  useEffect(() => {
-    if (leftIn) setTimeout(() => setLeftZ(30), 280)
-    else {
-      setLeftZ(0)
-    }
-  }, [leftIn])
+    useEffect(() => {
+      if (mouseIn) setTimeout(() => setPictureZ(30), 280)
+      else {
+        setPictureZ(0)
+      }
+    }, [mouseIn])
 
-  return (
-    <div className="grid grid-cols-4 gap-3">
+    return (
       <div
-        className="h-max-[225px] h-auto hidden md:block cursor-pointer relative"
-        onMouseEnter={() => setLeftIn(true)}
-        onMouseLeave={() => setLeftIn(false)}
+        className={
+          'h-[225px] hidden md:block cursor-pointer relative ' + moreClasses
+        }
+        onMouseEnter={() => setMouseIn(true)}
+        onMouseLeave={() => setMouseIn(false)}
       >
         <AnimatePresence>
-          {leftIn && (
+          {mouseIn && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1055,33 +1057,30 @@ function CatalogBanners() {
                 animate={{ scale: 2 }}
                 exit={{ scale: 0 }}
                 transition={{ duration: 0.28 }}
-                className="bg-white w-full h-full opacity-75 rounded-full z-20"
+                className="bg-white opacity-75 rounded-full z-20"
+                style={{ width: 255, height: 255 }}
               ></motion.div>
             </motion.div>
           )}
         </AnimatePresence>
         <div
           className="absolute top-0 right-0 bottom-0 left-0"
-          style={{ zIndex: leftZ }}
+          style={{ zIndex: pictureZ }}
         >
-          <img
-            src="image/catalog/banners/banner3.jpg"
-            className="w-full h-full"
-          />
+          <img src={picture} className="w-full h-full" />
         </div>
       </div>
-      <div className="col-span-4 md:col-span-2 h-max-[225px] h-auto cursor-pointer opacity-80 hover:opacity-100">
-        <img
-          src="image/catalog/banners/banner4.jpg"
-          className="w-full h-full"
-        />
-      </div>
-      <div className="h-max-[225px] h-auto hidden md:block cursor-pointer opacity-80 hover:opacity-100">
-        <img
-          src="image/catalog/banners/banner5.jpg"
-          className="w-full h-full"
-        />
-      </div>
+    )
+  }
+
+  return (
+    <div className="grid grid-cols-4 gap-3">
+      <Banner picture="image/catalog/banners/banner3.jpg" />
+      <Banner
+        moreClasses="col-span-4 md:col-span-2"
+        picture="image/catalog/banners/banner4.jpg"
+      />
+      <Banner picture="image/catalog/banners/banner5.jpg" />
     </div>
   )
 }
