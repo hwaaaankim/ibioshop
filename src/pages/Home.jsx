@@ -1411,14 +1411,19 @@ function NewArrivals({ currentWidth }) {
           <div
             key={index}
             className={
-              'py-1 pr-12 uppercase text-lg font-semibold cursor-pointer hover:text-primary border-b-2 ' +
-              (activeTab !== index
-                ? 'border-gray-300'
-                : 'border-primary text-primary')
+              'py-1 pr-12 uppercase text-lg font-semibold cursor-pointer hover:text-primary border-b-2 relative border-gray-300'
             }
             onClick={() => setActiveTab(index)}
           >
-            {title}
+            <div>{title}</div>
+            <AnimatePresence>
+              {activeTab === index && (
+                <motion.div
+                  exit={{ scaleX: 0, originX: 0 }}
+                  className="absolute w-[100px] h-[2px] bottom-0 bg-primary -mb-[2px]"
+                ></motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
         <div className="flex-auto border-b-2 border-gray-300"></div>
