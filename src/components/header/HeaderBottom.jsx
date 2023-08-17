@@ -120,7 +120,7 @@ function Electronics() {
           </div>
         ))}
       </div>
-      <img src="image/catalog/menu/megabanner/vbanner1.jpg" alt="" />
+      <img src="/image/catalog/menu/megabanner/vbanner1.jpg" alt="" />
     </div>
   )
   return (

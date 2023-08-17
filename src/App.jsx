@@ -28,6 +28,7 @@ import Faq from './pages/Faq'
 import ProductComparison from './pages/ProductComparison'
 import ScrollToTop from './components/layout/ScrollToTop'
 import Modal from './components/collection/Modal'
+import ProductNew from './pages/ProductNew'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -56,7 +57,8 @@ function App() {
           <Route path="my_account" element={<MyAccount />} />
           <Route path="about" element={<Aboutus />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="products/:id" element={<Product />} />
+          <Route path="products/:id" element={<ProductNew />} />
+          <Route path="productnew" element={<Product />} />
           <Route path="order_history" element={<OrderHistory />} />
           <Route path="contact_us" element={<Contact />} />
           <Route path="faq" element={<Faq />} />

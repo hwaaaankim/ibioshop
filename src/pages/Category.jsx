@@ -6,9 +6,9 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { openModal } from '../store/slices/modalSlice'
 
-import Categories from "../components/product/Categories"
-import LatestProducts from "../components/product/LatestProducts"
-import BannerSidebar from "../components/product/BannerSidebar"
+import Categories from '../components/product/Categories'
+import LatestProducts from '../components/product/LatestProducts'
+import BannerSidebar from '../components/product/BannerSidebar'
 import Notice from '../components/Notification/Notice'
 import Wishlist from '../components/Notification/Wishlist'
 import Compare from '../components/Notification/Compare'
@@ -25,7 +25,8 @@ const products = [
     price: 80,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Exceerur sint occaecat',
@@ -36,7 +37,8 @@ const products = [
     discounted: true,
     discountedPrice: 50,
     discountPercent: '-15%',
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Mapicola incidid',
@@ -46,7 +48,8 @@ const products = [
     price: 60,
     discounted: false,
     discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Duis aute irure',
@@ -57,7 +60,8 @@ const products = [
     discounted: false,
     discountedPrice: 85,
     isNew: true,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -67,7 +71,8 @@ const products = [
     price: 90,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -77,7 +82,8 @@ const products = [
     price: 90,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -88,7 +94,8 @@ const products = [
     discounted: false,
     isNew: true,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -98,7 +105,8 @@ const products = [
     price: 90,
     // discounted: true,
     discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -108,7 +116,8 @@ const products = [
     price: 90,
     discounted: true,
     discountPercent: '-10%',
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -118,7 +127,8 @@ const products = [
     price: 90,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -128,7 +138,8 @@ const products = [
     price: 90,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -138,7 +149,8 @@ const products = [
     price: 90,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -149,7 +161,8 @@ const products = [
     discounted: true,
     discountedPrice: 85,
     discountPercent: '-12%',
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -159,7 +172,8 @@ const products = [
     price: 90,
     discounted: false,
     // discountedPrice: 85,
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
   {
     name: 'Excepteur sint occ',
@@ -170,25 +184,30 @@ const products = [
     discounted: true,
     discountedPrice: 85,
     discountPercent: '-15%',
-    description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .'
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
   },
 ]
 function ProductBanner() {
   return (
     <div className="">
-      <div className="relative text-[18px] uppercase text-[#222] border-b-2 border-[#eee] w-full pb-2.5 inline-block font-medium mb-2.5">Accessories
+      <div className="relative text-[18px] uppercase text-[#222] border-b-2 border-[#eee] w-full pb-2.5 inline-block font-medium mb-2.5">
+        Accessories
         <div className="absolute w-[110px] h-[2px] bg-[#094bad] -bottom-0.5 left-0"></div>
       </div>
-      <a href="#" className=''><img src="image/catalog/demo/category/img-cate.jpg" alt="img cate" /><br /></a>
+      <a href="#" className="">
+        <img src="/image/catalog/demo/category/img-cate.jpg" alt="img cate" />
+        <br />
+      </a>
     </div>
   )
 }
 function Product({ product }) {
-  const [mouseOver, setMouseOver] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  const [showWishlistNotification, setWishShowNotification] = useState(false);
-  const [showCompareNotification, setCompareShowNotification] = useState(false);
-  const navigate = useNavigate();
+  const [mouseOver, setMouseOver] = useState(false)
+  const [showNotification, setShowNotification] = useState(false)
+  const [showWishlistNotification, setWishShowNotification] = useState(false)
+  const [showCompareNotification, setCompareShowNotification] = useState(false)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const openQuickView = (event) => {
     event.stopPropagation()
@@ -197,8 +216,8 @@ function Product({ product }) {
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
-    navigate('/product');
-  };
+    navigate('/product')
+  }
 
   // const handleEyeClick = (e) => {
   //   e.stopPropagation();
@@ -206,24 +225,24 @@ function Product({ product }) {
   // };
 
   const handleAddToCart = () => {
-    setShowNotification(true);
+    setShowNotification(true)
     setTimeout(() => {
-      setShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
 
   const handleAddToWishlist = () => {
-    setWishShowNotification(true);
+    setWishShowNotification(true)
     setTimeout(() => {
-      setWishShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setWishShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
   const handleAddToCompare = () => {
-    setCompareShowNotification(true);
+    setCompareShowNotification(true)
     setTimeout(() => {
-      setCompareShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setCompareShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
 
   return (
     <div
@@ -231,10 +250,11 @@ function Product({ product }) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <>{showNotification ? (<Notice />) : null}</>
-      <>{showWishlistNotification ? (<Wishlist />) : null}</>
-      <>{showCompareNotification ? (<Compare />) : null}</>
-      <div className="lg:h-[180px] lg:w-[180px] 2xl:w-[249px] 2xl:h-[249px] cursor-pointer group relative text-black"
+      <>{showNotification ? <Notice /> : null}</>
+      <>{showWishlistNotification ? <Wishlist /> : null}</>
+      <>{showCompareNotification ? <Compare /> : null}</>
+      <div
+        className="lg:h-[180px] lg:w-[180px] 2xl:w-[249px] 2xl:h-[249px] cursor-pointer group relative text-black"
         onClick={handleCardClick}
       >
         <img
@@ -243,7 +263,9 @@ function Product({ product }) {
         />
         {product.discounted && (
           <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
-            <div className="text-xs font-semibold">{product.discountPercent}</div>
+            <div className="text-xs font-semibold">
+              {product.discountPercent}
+            </div>
           </div>
         )}
         {product.isNew && (
@@ -261,9 +283,8 @@ function Product({ product }) {
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
               >
-                <button title='Quick View'>
-                  <i className="fa fa-eye"
-                    onClick={openQuickView}></i>
+                <button title="Quick View">
+                  <i className="fa fa-eye" onClick={openQuickView}></i>
                 </button>
               </motion.div>
             )}
@@ -286,7 +307,7 @@ function Product({ product }) {
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
                     onClick={handleAddToCart}
-                    title='Add to cart'
+                    title="Add to cart"
                   >
                     add to cart
                   </motion.div>
@@ -297,7 +318,7 @@ function Product({ product }) {
                     transition={{ duration: 0.3, delay: 0.1 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
                     onClick={handleAddToWishlist}
-                    title='Add to Wish List'
+                    title="Add to Wish List"
                   >
                     <i className="fa fa-heart-o"></i>
                   </motion.div>
@@ -307,7 +328,7 @@ function Product({ product }) {
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
                     onClick={handleAddToCompare}
-                    title='Compare this product'
+                    title="Compare this product"
                   >
                     <i className="fa fa-retweet"></i>
                   </motion.div>
@@ -341,10 +362,7 @@ function Product({ product }) {
           </div>
           <div className="flex space-x-2 items-center justify-center">
             <div className="text-primary font-semibold">
-              $
-              {product.discounted
-                ? product.discountedPrice
-                : product.price}
+              ${product.discounted ? product.discountedPrice : product.price}
               .00
             </div>
             {product.discounted && (
@@ -355,7 +373,7 @@ function Product({ product }) {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 function GridProducts() {
@@ -368,11 +386,11 @@ function GridProducts() {
   )
 }
 function ListedProducts() {
-  const [showModal, setShowModal] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  const [showWishlistNotification, setWishShowNotification] = useState(false);
-  const [showCompareNotification, setCompareShowNotification] = useState(false);
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false)
+  const [showNotification, setShowNotification] = useState(false)
+  const [showWishlistNotification, setWishShowNotification] = useState(false)
+  const [showCompareNotification, setCompareShowNotification] = useState(false)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const openQuickView = (event) => {
     event.stopPropagation()
@@ -381,8 +399,8 @@ function ListedProducts() {
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
-    navigate('/product');
-  };
+    navigate('/product')
+  }
 
   // const handleEyeClick = (e) => {
   //   e.stopPropagation();
@@ -390,35 +408,35 @@ function ListedProducts() {
   // };
 
   const handleAddToCart = () => {
-    setShowNotification(true);
+    setShowNotification(true)
     setTimeout(() => {
-      setShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
 
   const handleAddToWishlist = () => {
-    setWishShowNotification(true);
+    setWishShowNotification(true)
     setTimeout(() => {
-      setWishShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setWishShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
   const handleAddToCompare = () => {
-    setCompareShowNotification(true);
+    setCompareShowNotification(true)
     setTimeout(() => {
-      setCompareShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setCompareShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
 
   return (
     <div className="flex flex-col">
-      <>{showModal ? (<QuickView />) : null}</>
-      <>{showNotification ? (<Notice />) : null}</>
-      <>{showWishlistNotification ? (<Wishlist />) : null}</>
-      <>{showCompareNotification ? (<Compare />) : null}</>
+      <>{showModal ? <QuickView /> : null}</>
+      <>{showNotification ? <Notice /> : null}</>
+      <>{showWishlistNotification ? <Wishlist /> : null}</>
+      <>{showCompareNotification ? <Compare /> : null}</>
       {products.map((product, index) => (
         <div key={index} className="w-full sm:flex mb-8">
           <div className="cursor-pointer group relative text-black">
-            <div className='sm:w-[268px] sm:h-[268px]'>
+            <div className="sm:w-[268px] sm:h-[268px]">
               <img
                 src={product.picture}
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
@@ -427,7 +445,9 @@ function ListedProducts() {
             </div>
             {product.discounted && (
               <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
-                <div className="text-xs font-semibold">{product.discountPercent}</div>
+                <div className="text-xs font-semibold">
+                  {product.discountPercent}
+                </div>
               </div>
             )}
             {product.isNew && (
@@ -456,10 +476,7 @@ function ListedProducts() {
             </div>
             <div className="flex space-x-2 items-center text-lg">
               <div className="text-primary font-semibold">
-                $
-                {product.discounted
-                  ? product.discountedPrice
-                  : product.price}
+                ${product.discounted ? product.discountedPrice : product.price}
                 .00
               </div>
               {product.discounted && (
@@ -498,12 +515,12 @@ function ListedProducts() {
               </button>
               <a
                 onClick={openQuickView}
-                title='Quick View'
+                title="Quick View"
                 className="bg-white border border-[#eaeaea] cursor-pointer text-[#666] rounded-[3px] text-[12px] uppercase mr-[5px] py-[10px] px-[15px] text-center hover:bg-[#094bad] hover:text-white"
-              ><i className="fa fa-eye"></i
-              ></a>
+              >
+                <i className="fa fa-eye"></i>
+              </a>
             </div>
-
           </div>
         </div>
       ))}
@@ -512,12 +529,14 @@ function ListedProducts() {
 }
 function ShowingPages() {
   return (
-    <div div className="border-t border-[#ebebeb] pt-5 mt-5 mb-[30px]" >
+    <div div className="border-t border-[#ebebeb] pt-5 mt-5 mb-[30px]">
       <div className="">
         {/* <div className="text-left px-[15px]"></div> */}
-        <div className="px-[15px] text-right text-[12px]">Showing 1 to 15 of 15 (1 Pages)</div>
+        <div className="px-[15px] text-right text-[12px]">
+          Showing 1 to 15 of 15 (1 Pages)
+        </div>
       </div>
-    </div >
+    </div>
   )
 }
 
@@ -554,19 +573,21 @@ export default function Category() {
               <div className="md:flex justify-between">
                 <div className="list-view flex items-center">
                   <Tab
-                    className={({ selected }) => classNames(
-                      'mr-[1px] float-left w-[33px] h-[33px] leading-[34px] text-center text-white focus:outline-none',
-                      selected ? 'bg-blue-600' : 'bg-[#666]'
-                    )
+                    className={({ selected }) =>
+                      classNames(
+                        'mr-[1px] float-left w-[33px] h-[33px] leading-[34px] text-center text-white focus:outline-none',
+                        selected ? 'bg-blue-600' : 'bg-[#666]'
+                      )
                     }
                   >
                     <i className="fa fa-th"></i>
                   </Tab>
                   <Tab
-                    className={({ selected }) => classNames(
-                      'mr-[1px] float-left w-[33px] h-[33px] leading-[34px] text-center text-white focus:outline-none',
-                      selected ? 'bg-blue-600' : 'bg-[#666]'
-                    )
+                    className={({ selected }) =>
+                      classNames(
+                        'mr-[1px] float-left w-[33px] h-[33px] leading-[34px] text-center text-white focus:outline-none',
+                        selected ? 'bg-blue-600' : 'bg-[#666]'
+                      )
                     }
                   >
                     <i className="fa fa-th-list"></i>
@@ -574,9 +595,16 @@ export default function Category() {
                 </div>
                 <div className="md:flex items-center">
                   <div className="lg:flex items-center md:ml-2.5 mb-6 md:mb-0">
-                    <label className="text-[#444] lg:w-20 float-right lg:float-none" for="input-sort">Sort By:</label>
+                    <label
+                      className="text-[#444] lg:w-20 float-right lg:float-none"
+                      for="input-sort"
+                    >
+                      Sort By:
+                    </label>
                     <select className="w-full border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
-                      <option value="" selected="selected">Default</option>
+                      <option value="" selected="selected">
+                        Default
+                      </option>
                       <option value="">Name (A - Z)</option>
                       <option value="">Name (Z - A)</option>
                       <option value="">Price (Low &gt; High)</option>
@@ -588,9 +616,16 @@ export default function Category() {
                     </select>
                   </div>
                   <div className="lg:flex items-center md:ml-2.5">
-                    <label className="text-[#444] mr-1 float-right lg:float-none" for="input-limit">Show:</label>
+                    <label
+                      className="text-[#444] mr-1 float-right lg:float-none"
+                      for="input-limit"
+                    >
+                      Show:
+                    </label>
                     <select className="w-full border border-[#e5e5e5] h-[33px] leading-8 pl-2.5 pr-5 bg-white focus:outline-none text-[#555] text-[14px]">
-                      <option value="" selected="selected">15</option>
+                      <option value="" selected="selected">
+                        15
+                      </option>
                       <option value="">25</option>
                       <option value="">50</option>
                       <option value="">75</option>
@@ -601,13 +636,17 @@ export default function Category() {
               </div>
             </Tab.List>
             <Tab.Panels>
-              <Tab.Panel><GridProducts /></Tab.Panel>
-              <Tab.Panel><ListedProducts /></Tab.Panel>
+              <Tab.Panel>
+                <GridProducts />
+              </Tab.Panel>
+              <Tab.Panel>
+                <ListedProducts />
+              </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
           <ShowingPages />
         </div>
       </div>
-    </div >
+    </div>
   )
 }
