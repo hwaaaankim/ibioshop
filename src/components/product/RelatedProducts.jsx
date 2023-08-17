@@ -27,7 +27,10 @@ function Carousel({
   const totalPages = items.length
   return (
     <div className="relative">
-      <div className={'overflow-x-hidden overflow-y-hidden relative'} style={{ height }}>
+      <div
+        className={'overflow-x-hidden overflow-y-hidden relative'}
+        style={{ height }}
+      >
         <div className="relative h-full">
           {items.map((item, index) => (
             <motion.div
@@ -79,10 +82,10 @@ function Carousel({
 }
 function Product({ product }) {
   const [mouseOver, setMouseOver] = useState(false)
-  const [showNotification, setShowNotification] = useState(false);
-  const [showWishlistNotification, setWishShowNotification] = useState(false);
-  const [showCompareNotification, setCompareShowNotification] = useState(false);
-  const navigate = useNavigate();
+  const [showNotification, setShowNotification] = useState(false)
+  const [showWishlistNotification, setWishShowNotification] = useState(false)
+  const [showCompareNotification, setCompareShowNotification] = useState(false)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const openQuickView = (event) => {
@@ -92,28 +95,28 @@ function Product({ product }) {
 
   const handleCardClick = () => {
     // history.push(`/product/${product.id}`);
-    navigate('/product');
-  };
+    navigate('/product')
+  }
 
   const handleAddToCart = () => {
-    setShowNotification(true);
+    setShowNotification(true)
     // setTimeout(() => {
     //   setShowNotification(false);
     // }, 3000); // hide the notification after 3 seconds
-  };
+  }
 
   const handleAddToWishlist = () => {
-    setWishShowNotification(true);
+    setWishShowNotification(true)
     setTimeout(() => {
-      setWishShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setWishShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
   const handleAddToCompare = () => {
-    setCompareShowNotification(true);
+    setCompareShowNotification(true)
     setTimeout(() => {
-      setCompareShowNotification(false);
-    }, 3000); // hide the notification after 3 seconds
-  };
+      setCompareShowNotification(false)
+    }, 3000) // hide the notification after 3 seconds
+  }
 
   return (
     <div
@@ -121,17 +124,22 @@ function Product({ product }) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <>{showNotification ? (<Notice />) : null}</>
-      <>{showWishlistNotification ? (<Wishlist />) : null}</>
-      <>{showCompareNotification ? (<Compare />) : null}</>
-      <div className="lg:h-[180px] 2xl:h-[250px] 2xl:w-[250px] 2xl:pr-3 cursor-pointer group relative text-black" onClick={handleCardClick}>
+      <>{showNotification ? <Notice /> : null}</>
+      <>{showWishlistNotification ? <Wishlist /> : null}</>
+      <>{showCompareNotification ? <Compare /> : null}</>
+      <div
+        className="lg:h-[180px] 2xl:h-[250px] 2xl:w-[250px] 2xl:pr-3 cursor-pointer group relative text-black"
+        onClick={handleCardClick}
+      >
         <img
           src={product.picture}
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
         {product.discounted && (
           <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#ffd839] absolute right-[8px] top-[8px]">
-            <div className="text-xs font-semibold">{product.discountPercent}</div>
+            <div className="text-xs font-semibold">
+              {product.discountPercent}
+            </div>
           </div>
         )}
         {product.isNew && (
@@ -148,7 +156,7 @@ function Product({ product }) {
                 exit={{ scale: 0 }}
                 transition={{ duration: 0.3 }}
                 className="w-[38px] h-[38px] flex items-center justify-center rounded-full bg-primary hover:bg-red-500 text-white"
-                title='Quick View'
+                title="Quick View"
               >
                 <i className="fa fa-eye" onClick={openQuickView}></i>
               </motion.div>
@@ -171,7 +179,7 @@ function Product({ product }) {
                     transition={{ duration: 0.3 }}
                     className="bg-primary py-2 font-semibold px-3 text-white cursor-pointer capitalize rounded-full text-xs  hover:bg-red-500"
                     onClick={handleAddToCart}
-                    title='Add to cart'
+                    title="Add to cart"
                   >
                     add to cart
                   </motion.div>
@@ -182,7 +190,7 @@ function Product({ product }) {
                     transition={{ duration: 0.3, delay: 0.1 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
                     onClick={handleAddToWishlist}
-                    title='Add to Wish List'
+                    title="Add to Wish List"
                   >
                     <i className="fa fa-heart-o"></i>
                   </motion.div>
@@ -192,7 +200,7 @@ function Product({ product }) {
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer  hover:bg-primary hover:text-white"
                     onClick={handleAddToCompare}
-                    title='Compare this product'
+                    title="Compare this product"
                   >
                     <i className="fa fa-retweet"></i>
                   </motion.div>
@@ -226,10 +234,7 @@ function Product({ product }) {
           </div>
           <div className="flex space-x-2 items-center justify-center">
             <div className="text-primary font-semibold">
-              $
-              {product.discounted
-                ? product.discountedPrice
-                : product.price}
+              ${product.discounted ? product.discountedPrice : product.price}
               .00
             </div>
             {product.discounted && (
@@ -247,7 +252,7 @@ export default function RelatedProducts() {
   const products = [
     {
       name: 'Lastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 2,
       price: 80,
@@ -256,7 +261,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Exceerur sint occaecat',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 59,
@@ -266,7 +271,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 5,
       price: 60,
@@ -275,7 +280,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 2,
       price: 48,
@@ -285,7 +290,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 4,
       price: 90,
@@ -302,7 +307,9 @@ export default function RelatedProducts() {
   )
   return (
     <div className="pb-20 pr-[15px]">
-      <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">Related Products</h3>
+      <h3 className="text-[16px] font-semibold uppercase mb-2 text-[#333]">
+        Related Products
+      </h3>
       <Carousel
         Child={child}
         items={[products, products, products]}

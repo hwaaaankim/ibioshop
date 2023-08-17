@@ -76,7 +76,7 @@ function ContactInfo() {
         />
       </a>
       <div className="flex mt-8">
-        <img src="image/icon/icon-contact.png" />
+        <img src="/image/icon/icon-contact.png" />
         <div className="flex-auto space-y-6 text-gray-2 text-xs ml-3">
           <div className="text-[11px]">
             San Luis Potosí, Centro Historico, 78000 San Luis Potosí, SPL,

@@ -54,25 +54,10 @@ function ProductPreview({ product }) {
       <>{showNotification ? <Notice /> : null}</>
       <>{showWishlistNotification ? <Wishlist /> : null}</>
       <>{showCompareNotification ? <Compare /> : null}</>
-      <div className="lg:w-[50%] w-full flex mr-4">
-        {/* sub-product-images */}
-        <div className="flex flex-col mr-4">
-          {product?.media &&
-            product.media.map((image, index) => (
-              <Link
-                key={index}
-                className="mb-2.5 text-sm font-medium w-[98px] h-[98px] hover:border hover:border-[#337ab7]"
-              >
-                <img
-                  src={BASE_URL + '/images/' + image.title}
-                  title="Chicken swinesha"
-                  alt="Chicken swinesha"
-                />
-              </Link>
-            ))}
-        </div>
+
+      <div className="lg:w-2/5 w-full mr-4">
         {/* main-product-image */}
-        <div className="border border-[#e6e6e6] md:w-[380px] md:h-[280px] p-0.5">
+        <div className="border border-[#e6e6e6]  md:h-[380px] p-0.5">
           <a title="Banner Image" href="#" className="">
             <img
               src={
@@ -81,12 +66,45 @@ function ProductPreview({ product }) {
                   : pro
               }
               alt="Banner Image"
+              className="w-full h-full"
             />
           </a>
         </div>
+
+        {/* sub-product-images */}
+        {/* <div className="flex flex-col mr-4">
+          {product?.media &&
+            product.media.map((image, index) => (
+              <Link
+                key={index}
+                className="mb-2.5 text-sm font-medium w-[98px] h-[98px] hover:border hover:border-[#337ab7]"
+              >
+              <img
+                src={BASE_URL + '/images/' + image.title}
+                title="Chicken swinesha"
+                alt="Chicken swinesha"
+              />
+              </Link>
+            ))}
+        </div> */}
+
+        <div className="flex space-x-2 overflow-x-hidden mr-4">
+          {[1, 2, 3, 4, 5].map((item, index) => (
+            <Link
+              key={index}
+              className="mb-2.5 text-sm font-medium w-[98px] h-[98px] hover:border hover:border-[#337ab7] shrink-0"
+            >
+              <img
+                src="/image/catalog/demo/product/fashion/1.jpg"
+                title="Chicken swinesha"
+                alt="Chicken swinesha"
+              />
+            </Link>
+          ))}
+        </div>
       </div>
       {/* product-detail */}
-      <div className="lg:w-[50%] flex flex-col pr-[15px] mt-12 lg:mt-0">
+      <div className="lg:w-3/5 flex flex-col pr-[15px] mt-12 lg:mt-0">
         <div className="w-full">
           <h2 className="text-[#444] font-medium mb-2.5 text-2xl">
             Chicken swinesha
