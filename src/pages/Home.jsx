@@ -1503,7 +1503,7 @@ function NewArrivals({ currentWidth }) {
 
 function BrandsCarousel() {
   const child = () => (
-    <div className="h-[71px] opacity-80 hover:opacity-100 cursor-pointer -mx-3">
+    <div className="h-[71px]  hover:opacity-60 cursor-pointer -mx-3">
       <img src="image/catalog/brands/b1.png" className="w-full h-full" />
     </div>
   )
