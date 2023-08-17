@@ -55,7 +55,7 @@ function ProductPreview({ product }) {
       <>{showWishlistNotification ? <Wishlist /> : null}</>
       <>{showCompareNotification ? <Compare /> : null}</>
 
-      <div className="lg:w-2/5 w-full mr-4">
+      <div className="lg:w-2/5 w-full mr-4 space-y-2">
         {/* main-product-image */}
         <div className="border border-[#e6e6e6]  md:h-[380px] p-0.5">
           <a title="Banner Image" href="#" className="">
@@ -89,10 +89,10 @@ function ProductPreview({ product }) {
         </div> */}
 
         <div className="flex space-x-2 overflow-x-hidden mr-4">
-          {[1, 2, 3, 4, 5].map((item, index) => (
+          {[1, 2, 3].map((item, index) => (
             <Link
               key={index}
-              className="mb-2.5 text-sm font-medium w-[98px] h-[98px] hover:border hover:border-[#337ab7] shrink-0"
+              className="mb-2.5 text-sm font-medium w-[93px] h-[93px] p-1 border hover:border-[#337ab7] shrink-0"
             >
               <img
                 src="/image/catalog/demo/product/fashion/1.jpg"
