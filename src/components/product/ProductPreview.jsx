@@ -226,21 +226,8 @@ function ProductPreview({ product }) {
               </div>
             </div>
           </div>
-          <div className="text-[#666] text-left leading-6 mb-[15px]">
-            <h4 className="text-[15px] text-[#666] font-medium my-2.5">
-              OverView
-            </h4>
-            <span className="text-left text-xs">
-              The 30-inch Apple Cinema HD Display delivers an amazing 2560 x
-              1600 pixel
-              <br /> resolution. Designed specifically for the creative
-              professional, this display provid...
-            </span>
-          </div>
-          <div className="mt-10">
-            <h4 className="my-2.5 text-[#666] font-medium">
-              Available Options
-            </h4>
+          <div className="mt-4">
+            <h4 className="my-1 text-[#666] font-medium">Available Options</h4>
             <div className="text-xs leading-6">
               <span className="flex items-center">
                 <svg
@@ -259,90 +246,30 @@ function ProductPreview({ product }) {
                   Colors
                 </label>
               </span>
-              <ul className="flex items-center">
-                <li className="relative z-10 capitalize cursor-pointer my-2.5">
-                  <label className="text-[#666] font-normal cursor-pointer text-xs inline-block">
-                    <input
-                      className="absolute -ml-5 mt-1 leading-normal hidden"
-                      type="radio"
-                    />
-                    <img
-                      src="/image/demo/colors/blue.jpg"
-                      data-original-title="blue +$12.00"
-                      className="w-5 h-5 border border-[#ddd]"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="font-bold w-5 h-5 absolute text-white text-center z-10 top-0 left-0"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <label className="p-0 text-[#666]"> </label>
-                  </label>
+              <ul className="flex space-x-1">
+                <li className="w-6 h-6 cursor-pointer p-[2px] border">
+                  <img
+                    src="/image/demo/colors/blue.jpg"
+                    data-original-title="blue +$12.00"
+                    className="w-full h-full border border-[#ddd]"
+                  />
                 </li>
-                <li className="relative z-10 capitalize cursor-pointer my-2.5">
-                  <label className="text-[#666] font-normal cursor-pointer text-xs inline-block">
-                    <input
-                      className="absolute -ml-5 mt-1 leading-normal hidden"
-                      type="radio"
-                    />
-                    <img
-                      src="/image/demo/colors/blue.jpg"
-                      className="w-5 h-5 border border-[#ddd]"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="font-bold w-5 h-5 absolute text-white text-center z-10 top-0 left-0"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <label className="p-0 text-[#666]"> </label>
-                  </label>
+                <li className="w-6 h-6 cursor-pointer p-[2px] border">
+                  <img
+                    src="/image/demo/colors/blue.jpg"
+                    className="w-full h-full border border-[#ddd]"
+                  />
                 </li>
-                <li className="relative z-10 capitalize cursor-pointer my-2.5">
-                  <label className="text-[#666] font-normal cursor-pointer text-xs inline-block">
-                    <input
-                      className="absolute -ml-5 mt-1 leading-normal hidden"
-                      type="radio"
-                    />
-                    <img
-                      src="/image/demo/colors/blue.jpg"
-                      className="w-5 h-5 border border-[#ddd]"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="font-bold w-5 h-5 absolute text-white text-center z-10 top-0 left-0"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <label className="p-0 text-[#666]"> </label>
-                  </label>
-                </li>
-                <li className="ml-2 -mt-2 capitalize bg-[#5cb85c] text-xs font-normal text-white leading-none rounded h-full p-1">
-                  blue +$12.00
+                <li className="w-6 h-6 cursor-pointer p-[2px] border">
+                  <img
+                    src="/image/demo/colors/blue.jpg"
+                    className="w-full h-full border border-[#ddd]"
+                  />
                 </li>
               </ul>
             </div>
 
-            <div className="flex w-full mb-4">
+            <div className="flex w-full mb-4 mt-2">
               <div className="">
                 <div className="bg-[#eee] relative py-1 px-2.5 border-separate table">
                   <label className="font-normal mt-2 pr-1 mb-1">Qty</label>
