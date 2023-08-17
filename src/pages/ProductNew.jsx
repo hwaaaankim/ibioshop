@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 
@@ -10,7 +11,7 @@ import BannerSidebar from '../components/product/BannerSidebar'
 import { useParams } from 'react-router-dom'
 import { http } from '../services/http/http'
 
-function ProductNew() {
+export default function ProductNew() {
   const { id } = useParams()
   const [product, setProduct] = useState()
   const dispatch = useDispatch()
@@ -51,6 +52,7 @@ function ProductNew() {
 
         <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col space-y-10">
           <ProductPreview product={product} />
+          <ProductTab product={product} />
           <RelatedProducts />
         </div>
       </div>
@@ -58,4 +60,29 @@ function ProductNew() {
   )
 }
 
-export default ProductNew
+function ProductTab({ product }) {
+  const [activeTab, setActiveTab] = useState(0)
+  return (
+    <div className="border grid grid-cols-6 gap-0">
+      <div className="border-r">
+        {['description', 'reviews (1)', 'tags', 'custom tab'].map(
+          (title, index) => (
+            <motion.div
+              key={index}
+              className={
+                'px-3 py-2 cursor-pointer uppercase font-semibold border-l-4 border-b ' +
+                (index !== activeTab
+                  ? 'border-l-transparent'
+                  : 'border-l-primary text-primary')
+              }
+              onClick={() => setActiveTab(index)}
+            >
+              {title}
+            </motion.div>
+          )
+        )}
+      </div>
+      <div className="col-span-5 p-2"></div>
+    </div>
+  )
+}
