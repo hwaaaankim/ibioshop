@@ -49,7 +49,7 @@ function ProductNew() {
           <BannerSidebar />
         </div>
 
-        <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col">
+        <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col space-y-10">
           <ProductPreview product={product} />
           <RelatedProducts />
         </div>
