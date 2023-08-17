@@ -267,7 +267,7 @@ function ProductPreview({ product }) {
                       type="radio"
                     />
                     <img
-                      src="image/demo/colors/blue.jpg"
+                      src="/image/demo/colors/blue.jpg"
                       data-original-title="blue +$12.00"
                       className="w-5 h-5 border border-[#ddd]"
                     />
@@ -293,7 +293,7 @@ function ProductPreview({ product }) {
                       type="radio"
                     />
                     <img
-                      src="image/demo/colors/blue.jpg"
+                      src="/image/demo/colors/blue.jpg"
                       className="w-5 h-5 border border-[#ddd]"
                     />
                     <svg
@@ -318,7 +318,7 @@ function ProductPreview({ product }) {
                       type="radio"
                     />
                     <img
-                      src="image/demo/colors/blue.jpg"
+                      src="/image/demo/colors/blue.jpg"
                       className="w-5 h-5 border border-[#ddd]"
                     />
                     <svg
