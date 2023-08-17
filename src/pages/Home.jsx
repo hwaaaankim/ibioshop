@@ -1502,28 +1502,22 @@ function NewArrivals({ currentWidth }) {
 }
 
 function BrandsCarousel() {
-  const child = ({ item }) => (
-    <div className="grid grid-cols-7 gap-0">
-      {[1, 2, 3, 4, 5, 6, 7].map((index) => (
-        <div
-          key={index}
-          className="h-[71px] opacity-80 hover:opacity-100 cursor-pointer"
-        >
-          <img src="image/catalog/brands/b1.png" className="w-full h-full" />
-        </div>
-      ))}
+  const child = () => (
+    <div className="h-[71px] opacity-80 hover:opacity-100 cursor-pointer -mx-3">
+      <img src="image/catalog/brands/b1.png" className="w-full h-full" />
     </div>
   )
   return (
     <div className="p-[30px] border border-gray-200 rounded">
       <Carousel
         Child={child}
-        items={[1, 2, 3]}
+        items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
         hideBtns={true}
         showChevrons={true}
         chevronlX={-18}
         chevronrX={18}
         showChevronsConditionally={false}
+        pageSize={7}
       />
     </div>
   )
