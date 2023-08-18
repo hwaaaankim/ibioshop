@@ -20,6 +20,7 @@ function Carousel({
   chevronlX = 0,
   chevronrX = 0,
   pageSize = 1,
+  draggable = false,
 }) {
   const [mouseIn, setMouseIn] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(index)
@@ -38,6 +39,17 @@ function Carousel({
   const makeChevronVisible =
     showChevrons &&
     (!showChevronsConditionally || (showChevronsConditionally && mouseIn))
+
+  const handlePageChange = (drxn) => {
+    if (drxn < 0)
+      setCurrentIndex((prevIndex) =>
+        prevIndex + pageSize == totalPages ? prevIndex : prevIndex + 1
+      )
+    else if (drxn > 0)
+      setCurrentIndex((prevIndex) =>
+        prevIndex - 1 < 0 ? prevIndex : prevIndex - 1
+      )
+  }
 
   return (
     <div
@@ -67,7 +79,10 @@ function Carousel({
               key={index}
             >
               <div ref={index === 0 ? targetEl : null} className="w-full">
-                <Child item={item} />
+                <Child
+                  item={item}
+                  changePage={draggable ? handlePageChange : null}
+                />
               </div>
             </motion.div>
           ))}
@@ -131,10 +146,25 @@ function ImageCarouse() {
     { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
     { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
   ]
-  const child = ({ item }) => (
-    <img src={item.path} className="w-full h-[300px]" />
-  )
-  return <Carousel Child={child} items={images} />
+
+  const child = ({ item, changePage }) => {
+    const handleDragend = (event, info) => {
+      console.log('end: ', info)
+      changePage(info.offset.x)
+    }
+
+    return (
+      <motion.img
+        drag="x"
+        dragConstraints={{ left: 50, right: 50 }}
+        dragSnapToOrigin={true}
+        onDragEnd={handleDragend}
+        src={item.path}
+        className="w-full h-[300px]"
+      />
+    )
+  }
+  return <Carousel Child={child} draggable={true} items={images} />
 }
 
 function BestSelling() {
