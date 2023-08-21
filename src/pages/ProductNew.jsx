@@ -25,7 +25,7 @@ export default function ProductNew() {
   const getProduct = async () => {
     const response = await http.request({ url: 'products/' + id })
     if (!response.isError) {
-      setProduct(response[0])
+      setProduct(response[0]) // to be modified once the backend devs are done fixing the api server
       showBreadCrumb(response[0].name)
     }
   }
