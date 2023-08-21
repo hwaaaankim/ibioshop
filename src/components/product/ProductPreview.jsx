@@ -22,7 +22,7 @@ function ProductPreview({ product }) {
   }
 
   const handleMinusClick = () => {
-    setValue(value - 1)
+    setValue((prev) => (prev > 1 ? prev - 1 : prev))
   }
 
   const handlePlusClick = () => {
