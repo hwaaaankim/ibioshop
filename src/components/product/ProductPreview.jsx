@@ -5,11 +5,18 @@ import Notice from '../Notification/Notice'
 import Wishlist from '../Notification/Wishlist'
 import Compare from '../Notification/Compare'
 import { BASE_URL } from '../../config/config'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { updateQuantity, addToCart } from '../../store/slices/cartSlice'
+
 function ProductPreview({ product }) {
   const [showNotification, setShowNotification] = useState(false)
   const [showWishlistNotification, setWishShowNotification] = useState(false)
   const [showCompareNotification, setCompareShowNotification] = useState(false)
   const [value, setValue] = useState(1)
+
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart)
   const availabilities = [
     'In Stock',
     'Out of Stock',
@@ -30,6 +37,15 @@ function ProductPreview({ product }) {
   }
 
   const handleAddToCart = () => {
+    const doesItExist = cart.some((item) => item.id === product.id)
+    console.log({ doesItExist })
+    if (doesItExist)
+      dispatch(updateQuantity({ id: product.id, quantity: +value }))
+    else
+      dispatch(
+        addToCart({ product: { ...product, size: 'xl' }, quantity: +value })
+      )
+
     setShowNotification(true)
     setTimeout(() => {
       setShowNotification(false)

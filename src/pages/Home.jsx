@@ -711,7 +711,7 @@ function Product({ product, showProgress = false }) {
     dispatch(openModal({ id: 2 }))
   }
   const add2Cart = () => {
-    dispatch(addToCart({ ...product, size: 'xl' }))
+    dispatch(addToCart({ product: { ...product, size: 'xl' }, quantity: 1 }))
     enqueueSnackbar('Added to cart successfully!', {
       variant: 'success',
       anchorOrigin: { horizontal: 'right', vertical: 'top' },
