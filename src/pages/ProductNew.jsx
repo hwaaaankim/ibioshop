@@ -24,22 +24,25 @@ export default function ProductNew() {
 
   const getProduct = async () => {
     const response = await http.request({ url: 'products/' + id })
-    if (!response.isError) setProduct(response)
+    if (!response.isError) {
+      setProduct(response[0])
+      showBreadCrumb(response[0].name)
+    }
   }
 
-  const showBreadCrumb = () => {
+  const showBreadCrumb = (productName) => {
+    console.log({ productName })
     dispatch(
       setPath({
         path: [
           { title: 'Smartphone & Tablets', path: '/category' },
-          { title: 'Chicken swinesha', path: '#' },
+          { title: productName, path: '#' },
         ],
       })
     )
     dispatch(toggleVisibility({ hidden: false }))
   }
   useEffect(() => {
-    showBreadCrumb()
     getProduct()
     return hideBreadcrumb
   }, [])
