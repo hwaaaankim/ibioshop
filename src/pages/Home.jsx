@@ -718,6 +718,28 @@ function Product({ product, showProgress = false }) {
     })
   }
 
+  const [wlLoading, setWloading] = useState(false)
+  const add2Wishlist = async () => {
+    setWloading(true)
+    const response = await http.request({
+      method: 'post',
+      url: 'wishlists',
+      data: { productId: product.id, quantity: 1 },
+    })
+    if (!response.isError)
+      enqueueSnackbar('Added to wishlist successfully!', {
+        variant: 'success',
+        anchorOrigin: { horizontal: 'right', vertical: 'top' },
+      })
+    else
+      enqueueSnackbar("Couldn't add to wishlist, try again later!", {
+        variant: 'error',
+        anchorOrigin: { horizontal: 'right', vertical: 'top' },
+      })
+
+    setWloading(false)
+  }
+
   const pictureRef = useRef()
   const [pictureHeight, setPictureHeight] = useState(180)
   useEffect(() => {
@@ -794,7 +816,11 @@ function Product({ product, showProgress = false }) {
                     initial={{ y: -30 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
-                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer"
+                    className={
+                      'flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary ' +
+                      (wlLoading ? 'cursor-not-allowed' : 'cursor-pointer')
+                    }
+                    onClick={!wlLoading ? add2Wishlist : () => null}
                   >
                     <i className="fa fa-heart-o"></i>
                   </motion.div>
