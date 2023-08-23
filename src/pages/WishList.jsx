@@ -10,7 +10,7 @@ import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import '../App.css'
 import { http } from '../services/http/http'
 
-function WishListTable({ wishlists }) {
+function Product({ wishilistItem }) {
   const availabilities = [
     'In Stock',
     'Out of Stock',
@@ -20,6 +20,74 @@ function WishListTable({ wishlists }) {
 
   const handleRemove = () => {}
   const handleUpdate = () => {}
+
+  return (
+    <tr
+      key={wishilistItem.id}
+      className="hover:bg-gray-100 align-top border border-solid whitespace-nowrap"
+    >
+      <td className="border border-solid p-2 text-center">
+        <a href="product.html">
+          <img
+            src={image}
+            alt="Xitefun Causal Wear Fancy Shoes"
+            title="Xitefun Causal Wear Fancy Shoes"
+            className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
+                            max-w-full inline-block align-middle cursor-pointer"
+          />
+        </a>
+      </td>
+      <td className="text-left border border-solid p-2">
+        <a href="product.html">{wishilistItem.product.name}</a>
+      </td>
+      <td className="text-left border border-solid p-2">
+        {wishilistItem.model || 'Nike'}
+      </td>
+      <td className="text-right border border-solid p-2">
+        {availabilities[wishilistItem.product.status]}
+      </td>
+      <td className="text-right border border-solid p-2">
+        <div className="price">
+          <span className="font-semibold text-lg" style={{ color: '#094bad' }}>
+            {wishilistItem.product.basePrice}
+          </span>
+          {wishilistItem.discounted && (
+            <span
+              className="font-medium text-sm line-through inline-block px-2 leading-5"
+              style={{ color: '#aaa' }}
+            >
+              {wishilistItem.discountedPrice}
+            </span>
+          )}
+        </div>
+      </td>
+      <td className="flex float-right p-2">
+        <Tippy content={<span className="text-xs"> Add to Cart</span>}>
+          <button
+            className="mr-1 cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
+                  leading-normal font-normal text-sm inline-block px-4 h-9"
+            onClick={handleUpdate}
+            type="button"
+          >
+            <i className="fa fa-shopping-cart"></i>
+          </button>
+        </Tippy>
+        <Tippy content={<span className="text-xs"> Remove</span>}>
+          <button
+            type="button"
+            className="cursor-pointer bg-red-1 hover:bg-red-500 text-white align-middle text-center 
+                  leading-normal font-normal text-sm inline-block px-4 h-9"
+            onClick={handleRemove}
+          >
+            <i className="fa fa-times"></i>
+          </button>
+        </Tippy>
+      </td>
+    </tr>
+  )
+}
+
+function WishListTable({ wishlists }) {
   return (
     <>
       <div className="w-full">
@@ -48,73 +116,7 @@ function WishListTable({ wishlists }) {
           </thead>
           <tbody>
             {wishlists.map((wishlist) => (
-              <tr
-                key={wishlist.id}
-                className="hover:bg-gray-100 align-top border border-solid whitespace-nowrap"
-              >
-                <td className="border border-solid p-2 text-center">
-                  <a href="product.html">
-                    <img
-                      src={image}
-                      alt="Xitefun Causal Wear Fancy Shoes"
-                      title="Xitefun Causal Wear Fancy Shoes"
-                      className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
-                            max-w-full inline-block align-middle cursor-pointer"
-                    />
-                  </a>
-                </td>
-                <td className="text-left border border-solid p-2">
-                  <a href="product.html">{wishlist.product.name}</a>
-                </td>
-                <td className="text-left border border-solid p-2">
-                  {wishlist.model || 'Nike'}
-                </td>
-                <td className="text-right border border-solid p-2">
-                  {availabilities[wishlist.product.status]}
-                </td>
-                <td className="text-right border border-solid p-2">
-                  <div className="price">
-                    <span
-                      className="font-semibold text-lg"
-                      style={{ color: '#094bad' }}
-                    >
-                      {wishlist.product.basePrice}
-                    </span>
-                    {wishlist.discounted && (
-                      <span
-                        className="font-medium text-sm line-through inline-block px-2 leading-5"
-                        style={{ color: '#aaa' }}
-                      >
-                        {wishlist.discountedPrice}
-                      </span>
-                    )}
-                  </div>
-                </td>
-                <td className="flex float-right p-2">
-                  <Tippy
-                    content={<span className="text-xs"> Add to Cart</span>}
-                  >
-                    <button
-                      className="mr-1 cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
-                  leading-normal font-normal text-sm inline-block px-4 h-9"
-                      onClick={handleUpdate}
-                      type="button"
-                    >
-                      <i className="fa fa-shopping-cart"></i>
-                    </button>
-                  </Tippy>
-                  <Tippy content={<span className="text-xs"> Remove</span>}>
-                    <button
-                      type="button"
-                      className="cursor-pointer bg-red-1 hover:bg-red-500 text-white align-middle text-center 
-                  leading-normal font-normal text-sm inline-block px-4 h-9"
-                      onClick={handleRemove}
-                    >
-                      <i className="fa fa-times"></i>
-                    </button>
-                  </Tippy>
-                </td>
-              </tr>
+              <Product key={wishlist.id} wishilistItem={wishlist} />
             ))}
           </tbody>
         </table>
