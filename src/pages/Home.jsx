@@ -711,11 +711,33 @@ function Product({ product, showProgress = false }) {
     dispatch(openModal({ id: 2 }))
   }
   const add2Cart = () => {
-    dispatch(addToCart({ ...product, size: 'xl' }))
+    dispatch(addToCart({ product: { ...product, size: 'xl' }, quantity: 1 }))
     enqueueSnackbar('Added to cart successfully!', {
       variant: 'success',
       anchorOrigin: { horizontal: 'right', vertical: 'top' },
     })
+  }
+
+  const [wlLoading, setWloading] = useState(false)
+  const add2Wishlist = async () => {
+    setWloading(true)
+    const response = await http.request({
+      method: 'post',
+      url: 'wishlists',
+      data: { productId: product.id, quantity: 1 },
+    })
+    if (!response.isError)
+      enqueueSnackbar('Added to wishlist successfully!', {
+        variant: 'success',
+        anchorOrigin: { horizontal: 'right', vertical: 'top' },
+      })
+    else
+      enqueueSnackbar("Couldn't add to wishlist, try again later!", {
+        variant: 'error',
+        anchorOrigin: { horizontal: 'right', vertical: 'top' },
+      })
+
+    setWloading(false)
   }
 
   const pictureRef = useRef()
@@ -794,7 +816,11 @@ function Product({ product, showProgress = false }) {
                     initial={{ y: -30 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
-                    className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer"
+                    className={
+                      'flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary ' +
+                      (wlLoading ? 'cursor-not-allowed' : 'cursor-pointer')
+                    }
+                    onClick={!wlLoading ? add2Wishlist : () => null}
                   >
                     <i className="fa fa-heart-o"></i>
                   </motion.div>
@@ -1041,25 +1067,26 @@ function FlashSale({ currentWidth }) {
         <div className="border-b-2 border-primary" style={{ width }}></div>
         <div className="flex-auto border-b-2 border-gray-300"></div>
       </div>
-
-      <Carousel
-        Child={child}
-        items={products}
-        hideBtns={true}
-        showChevrons={true}
-        chevronY={-80}
-        index={0}
-        pageSize={
-          currentWidth >= 1200
-            ? 5
-            : currentWidth >= 992
-            ? 3
-            : currentWidth >= 480
-            ? 2
-            : 1
-        }
-        showChevronsConditionally={false}
-      />
+      {products && products.length > 0 && (
+        <Carousel
+          Child={child}
+          items={products}
+          hideBtns={true}
+          showChevrons={true}
+          chevronY={-80}
+          index={0}
+          pageSize={
+            currentWidth >= 1200
+              ? 5
+              : currentWidth >= 992
+              ? 3
+              : currentWidth >= 480
+              ? 2
+              : 1
+          }
+          showChevronsConditionally={false}
+        />
+      )}
     </div>
   )
 }

@@ -25,13 +25,12 @@ export default function ProductNew() {
   const getProduct = async () => {
     const response = await http.request({ url: 'products/' + id })
     if (!response.isError) {
-      setProduct(response[0])
-      showBreadCrumb(response[0].name)
+      setProduct(response)
+      showBreadCrumb(response.name)
     }
   }
 
   const showBreadCrumb = (productName) => {
-    console.log({ productName })
     dispatch(
       setPath({
         path: [
@@ -55,11 +54,13 @@ export default function ProductNew() {
           <BannerSidebar />
         </div>
 
-        <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col space-y-10">
-          <ProductPreview product={product} />
-          <ProductTab product={product} />
-          <RelatedProducts />
-        </div>
+        {product && (
+          <div className="xl:w-[79%] sm:w-[500px] w-full flex flex-col space-y-10">
+            <ProductPreview product={product} />
+            <ProductTab product={product} />
+            <RelatedProducts />
+          </div>
+        )}
       </div>
     </div>
   )
@@ -185,6 +186,43 @@ function Description() {
   )
 }
 
+function ReviewForm() {
+  return (
+    <>
+      <div className="space-y-2">
+        <div className="text-lg font-medium">Write a review</div>
+        <BaseInput placeholder="Your Name" />
+        <BaseTextArea placeholder="Your Review" rows={2} />
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex space-x-2 items-center text-[11px]">
+          <div className="bg-[#a94442] text-white rounded p-[5px]">Note:</div>
+          <div>HTML is not translated!</div>
+        </div>
+      </div>
+      <div className="flex space-x-2 items-center">
+        <div className="text-sm font-medium">Rating</div>
+        <div className="flex space-x-2 items-center">
+          <div className="text-sm">Bad</div>
+          <input name="rate" type="radio" />
+          <input name="rate" type="radio" />
+          <input name="rate" type="radio" />
+          <input name="rate" type="radio" />
+          <input name="rate" type="radio" />
+          <div className="text-sm">Good</div>
+        </div>
+      </div>
+
+      <div className="flex">
+        <div className="py-[6px] px-3 text-white text-sm flex space-x-2 items-center bg-[gray] hover:bg-primary cursor-pointer">
+          Continue
+        </div>
+      </div>
+    </>
+  )
+}
+
 function Reviews() {
   return (
     <div className="space-y-4">
@@ -219,36 +257,7 @@ function Reviews() {
         </div>
       </div>
 
-      <div className="space-y-2">
-        <div className="text-lg font-medium">Write a review</div>
-        <BaseInput placeholder="Your Name" />
-        <BaseTextArea placeholder="Your Review" rows={2} />
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex space-x-2 items-center text-[11px]">
-          <div className="bg-[#a94442] text-white rounded p-[5px]">Note:</div>
-          <div>HTML is not translated!</div>
-        </div>
-      </div>
-      <div className="flex space-x-2 items-center">
-        <div className="text-sm font-medium">Rating</div>
-        <div className="flex space-x-2 items-center">
-          <div className="text-sm">Bad</div>
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <div className="text-sm">Good</div>
-        </div>
-      </div>
-
-      <div className="flex">
-        <div className="py-[6px] px-3 text-white text-sm flex space-x-2 items-center bg-[gray] hover:bg-primary cursor-pointer">
-          Continue
-        </div>
-      </div>
+      <ReviewForm />
     </div>
   )
 }

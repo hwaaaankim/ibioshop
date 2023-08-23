@@ -8,33 +8,86 @@ import 'tippy.js/dist/tippy.css'
 import image from '../assets/images/10.jpg'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import '../App.css'
+import { http } from '../services/http/http'
 
-function WishListTable() {
-  const whishs = [
-    {
-      id: 1,
-      image: { image },
-      pName: 'iPad',
-      model: 'pt 001',
-      stoke: 'In stoke',
-      unitPrice: {
-        priceNew: '$45',
-        priceOld: '$80',
-      },
-    },
-    {
-      id: 2,
-      image: { image },
-      pName: 'Comas samer rumas',
-      model: 'pt 002',
-      stoke: 'Pre-Order',
-      unitPrice: {
-        priceNew: '$80',
-      },
-    },
+function Product({ wishilistItem }) {
+  const availabilities = [
+    'In Stock',
+    'Out of Stock',
+    'Coming Soon',
+    'Unavailable',
   ]
+
   const handleRemove = () => {}
   const handleUpdate = () => {}
+
+  return (
+    <tr
+      key={wishilistItem.id}
+      className="hover:bg-gray-100 align-top border border-solid whitespace-nowrap"
+    >
+      <td className="border border-solid p-2 text-center">
+        <a href="product.html">
+          <img
+            src={image}
+            alt="Xitefun Causal Wear Fancy Shoes"
+            title="Xitefun Causal Wear Fancy Shoes"
+            className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
+                            max-w-full inline-block align-middle cursor-pointer"
+          />
+        </a>
+      </td>
+      <td className="text-left border border-solid p-2">
+        <a href="product.html">{wishilistItem.product.name}</a>
+      </td>
+      <td className="text-left border border-solid p-2">
+        {wishilistItem.model || 'Nike'}
+      </td>
+      <td className="text-right border border-solid p-2">
+        {availabilities[wishilistItem.product.status]}
+      </td>
+      <td className="text-right border border-solid p-2">
+        <div className="price">
+          <span className="font-semibold text-lg" style={{ color: '#094bad' }}>
+            {wishilistItem.product.basePrice}
+          </span>
+          {wishilistItem.discounted && (
+            <span
+              className="font-medium text-sm line-through inline-block px-2 leading-5"
+              style={{ color: '#aaa' }}
+            >
+              {wishilistItem.discountedPrice}
+            </span>
+          )}
+        </div>
+      </td>
+      <td className="flex float-right p-2">
+        <Tippy content={<span className="text-xs"> Add to Cart</span>}>
+          <button
+            className="mr-1 cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
+                  leading-normal font-normal text-sm inline-block px-4 h-9"
+            onClick={handleUpdate}
+            type="button"
+          >
+            <i className="fa fa-shopping-cart"></i>
+          </button>
+        </Tippy>
+        <Tippy content={<span className="text-xs"> Remove</span>}>
+          <button
+            type="button"
+            className="cursor-pointer bg-red-1 hover:bg-red-500 text-white align-middle text-center 
+                  leading-normal font-normal text-sm inline-block px-4 h-9"
+            onClick={handleRemove}
+          >
+            <i className="fa fa-times"></i>
+          </button>
+        </Tippy>
+      </td>
+    </tr>
+  )
+}
+
+function WishListTable({ wishlists }) {
   return (
     <>
       <div className="w-full">
@@ -62,74 +115,8 @@ function WishListTable() {
             </tr>
           </thead>
           <tbody>
-            {whishs.map((wish) => (
-              <tr
-                key={wish.id}
-                className="hover:bg-gray-100 align-top border border-solid whitespace-nowrap"
-              >
-                <td className="border border-solid p-2 text-center">
-                  <a href="product.html">
-                    <img
-                      src={image}
-                      alt="Xitefun Causal Wear Fancy Shoes"
-                      title="Xitefun Causal Wear Fancy Shoes"
-                      className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
-                            max-w-full inline-block align-middle cursor-pointer"
-                    />
-                  </a>
-                </td>
-                <td className="text-left border border-solid p-2">
-                  <a href="product.html">{wish.pName}</a>
-                </td>
-                <td className="text-left border border-solid p-2">
-                  {wish.model}
-                </td>
-                <td className="text-right border border-solid p-2">
-                  {wish.stoke}
-                </td>
-                <td className="text-right border border-solid p-2">
-                  <div className="price">
-                    <span
-                      className="font-semibold text-lg"
-                      style={{ color: '#094bad' }}
-                    >
-                      {wish.unitPrice.priceNew}
-                    </span>
-                    {wish.unitPrice?.priceOld && (
-                      <span
-                        className="font-medium text-sm line-through inline-block px-2 leading-5"
-                        style={{ color: '#aaa' }}
-                      >
-                        {wish.unitPrice?.priceOld}
-                      </span>
-                    )}
-                  </div>
-                </td>
-                <td className="flex float-right p-2">
-                  <Tippy
-                    content={<span className="text-xs"> Add to Cart</span>}
-                  >
-                    <button
-                      className="mr-1 cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
-                  leading-normal font-normal text-sm inline-block px-4 h-9"
-                      onClick={handleUpdate}
-                      type="button"
-                    >
-                      <i className="fa fa-shopping-cart"></i>
-                    </button>
-                  </Tippy>
-                  <Tippy content={<span className="text-xs"> Remove</span>}>
-                    <button
-                      type="button"
-                      className="cursor-pointer bg-red-1 hover:bg-red-500 text-white align-middle text-center 
-                  leading-normal font-normal text-sm inline-block px-4 h-9"
-                      onClick={handleRemove}
-                    >
-                      <i className="fa fa-times"></i>
-                    </button>
-                  </Tippy>
-                </td>
-              </tr>
+            {wishlists.map((wishlist) => (
+              <Product key={wishlist.id} wishilistItem={wishlist} />
             ))}
           </tbody>
         </table>
@@ -158,8 +145,16 @@ export default function WishList() {
     )
     dispatch(toggleVisibility({ hidden: false }))
   }
+
+  const [wishlists, setWishlists] = useState([])
+  const getWishlists = async () => {
+    const response = await http.request({ url: 'wishlists/user' })
+    if (!response.isError) setWishlists(response.wishlists)
+  }
+
   useEffect(() => {
     showBreadCrumb()
+    getWishlists()
     return hideBreadcrumb
   }, [])
 
@@ -170,7 +165,7 @@ export default function WishList() {
           className="mb-2 float-left relative md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
-          <WishListTable />
+          <WishListTable wishlists={wishlists} />
         </div>
         <div
           className="hidden md:w-[21%] lg:w-[16%] md:block text-gray-2"

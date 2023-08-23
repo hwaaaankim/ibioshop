@@ -5,11 +5,18 @@ import Notice from '../Notification/Notice'
 import Wishlist from '../Notification/Wishlist'
 import Compare from '../Notification/Compare'
 import { BASE_URL } from '../../config/config'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { updateQuantity, addToCart } from '../../store/slices/cartSlice'
+
 function ProductPreview({ product }) {
   const [showNotification, setShowNotification] = useState(false)
   const [showWishlistNotification, setWishShowNotification] = useState(false)
   const [showCompareNotification, setCompareShowNotification] = useState(false)
   const [value, setValue] = useState(1)
+
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart)
   const availabilities = [
     'In Stock',
     'Out of Stock',
@@ -22,7 +29,7 @@ function ProductPreview({ product }) {
   }
 
   const handleMinusClick = () => {
-    setValue(value - 1)
+    setValue((prev) => (prev > 1 ? prev - 1 : prev))
   }
 
   const handlePlusClick = () => {
@@ -30,6 +37,15 @@ function ProductPreview({ product }) {
   }
 
   const handleAddToCart = () => {
+    const doesItExist = cart.some((item) => item.id === product.id)
+    console.log({ doesItExist })
+    if (doesItExist)
+      dispatch(updateQuantity({ id: product.id, quantity: +value }))
+    else
+      dispatch(
+        addToCart({ product: { ...product, size: 'xl' }, quantity: +value })
+      )
+
     setShowNotification(true)
     setTimeout(() => {
       setShowNotification(false)
@@ -89,7 +105,7 @@ function ProductPreview({ product }) {
         </div> */}
 
         <div className="flex space-x-2 overflow-x-hidden mr-4">
-          {[1, 2, 3].map((item, index) => (
+          {product.media.map((item, index) => (
             <Link
               key={index}
               className="mb-2.5 text-sm font-medium w-[93px] h-[93px] p-1 border hover:border-[#337ab7] shrink-0"
@@ -107,71 +123,17 @@ function ProductPreview({ product }) {
       <div className="lg:w-3/5 flex flex-col pr-[15px] mt-12 lg:mt-0">
         <div className="w-full">
           <h2 className="text-[#444] font-medium mb-2.5 text-2xl">
-            Chicken swinesha
+            {product.name}
           </h2>
           <div className="flex">
-            <span className="flex space-x-1 mr-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
+            <div className="flex space-x-1 items-center">
+              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
+              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
+              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
+              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
+              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
+            </div>
+
             <span className="text-[#555] flex space-x-2 text-xs">
               <a className="px-2" href="">
                 {product?.reviews?.length || 0} reviews
@@ -186,23 +148,17 @@ function ProductPreview({ product }) {
               </span>
               <span className="line-through text-sm font-normal">$122.00</span>
             </div>
-            <div className="text-xs flex items-center">
-              <span className="mr-2">Availability:</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="text-[#00abf0] w-4 h-4"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span className="text-[#00abf0]">
-                {availabilities[product?.status || 0]}
-              </span>
+            <div className="text-xs flex items-center space-x-3">
+              <span>Availability:</span>
+              <div className="flex space-x-1 items-center">
+                <i
+                  className="fa fa-check-square-o text-[#00abf0]"
+                  style={{ fontSize: 12 }}
+                ></i>
+                <span className="text-[#00abf0]">
+                  {availabilities[product?.status || 0]}
+                </span>
+              </div>
             </div>
           </div>
           <div className="border-y border-[#eee] py-2.5 px-5">
