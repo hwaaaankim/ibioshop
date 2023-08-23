@@ -8,31 +8,16 @@ import 'tippy.js/dist/tippy.css'
 import image from '../assets/images/10.jpg'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import '../App.css'
+import { http } from '../services/http/http'
 
-function WishListTable() {
-  const whishs = [
-    {
-      id: 1,
-      image: { image },
-      pName: 'iPad',
-      model: 'pt 001',
-      stoke: 'In stoke',
-      unitPrice: {
-        priceNew: '$45',
-        priceOld: '$80',
-      },
-    },
-    {
-      id: 2,
-      image: { image },
-      pName: 'Comas samer rumas',
-      model: 'pt 002',
-      stoke: 'Pre-Order',
-      unitPrice: {
-        priceNew: '$80',
-      },
-    },
+function WishListTable({ wishlists }) {
+  const availabilities = [
+    'In Stock',
+    'Out of Stock',
+    'Coming Soon',
+    'Unavailable',
   ]
+
   const handleRemove = () => {}
   const handleUpdate = () => {}
   return (
@@ -62,9 +47,9 @@ function WishListTable() {
             </tr>
           </thead>
           <tbody>
-            {whishs.map((wish) => (
+            {wishlists.map((wishlist) => (
               <tr
-                key={wish.id}
+                key={wishlist.id}
                 className="hover:bg-gray-100 align-top border border-solid whitespace-nowrap"
               >
                 <td className="border border-solid p-2 text-center">
@@ -79,13 +64,13 @@ function WishListTable() {
                   </a>
                 </td>
                 <td className="text-left border border-solid p-2">
-                  <a href="product.html">{wish.pName}</a>
+                  <a href="product.html">{wishlist.product.name}</a>
                 </td>
                 <td className="text-left border border-solid p-2">
-                  {wish.model}
+                  {wishlist.model || 'Nike'}
                 </td>
                 <td className="text-right border border-solid p-2">
-                  {wish.stoke}
+                  {availabilities[wishlist.product.status]}
                 </td>
                 <td className="text-right border border-solid p-2">
                   <div className="price">
@@ -93,14 +78,14 @@ function WishListTable() {
                       className="font-semibold text-lg"
                       style={{ color: '#094bad' }}
                     >
-                      {wish.unitPrice.priceNew}
+                      {wishlist.product.basePrice}
                     </span>
-                    {wish.unitPrice?.priceOld && (
+                    {wishlist.discounted && (
                       <span
                         className="font-medium text-sm line-through inline-block px-2 leading-5"
                         style={{ color: '#aaa' }}
                       >
-                        {wish.unitPrice?.priceOld}
+                        {wishlist.discountedPrice}
                       </span>
                     )}
                   </div>
@@ -158,8 +143,16 @@ export default function WishList() {
     )
     dispatch(toggleVisibility({ hidden: false }))
   }
+
+  const [wishlists, setWishlists] = useState([])
+  const getWishlists = async () => {
+    const response = await http.request({ url: 'wishlists/user' })
+    if (!response.isError) setWishlists(response.wishlists)
+  }
+
   useEffect(() => {
     showBreadCrumb()
+    getWishlists()
     return hideBreadcrumb
   }, [])
 
@@ -170,7 +163,7 @@ export default function WishList() {
           className="mb-2 float-left relative md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
-          <WishListTable />
+          <WishListTable wishlists={wishlists} />
         </div>
         <div
           className="hidden md:w-[21%] lg:w-[16%] md:block text-gray-2"
