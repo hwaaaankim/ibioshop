@@ -1041,25 +1041,26 @@ function FlashSale({ currentWidth }) {
         <div className="border-b-2 border-primary" style={{ width }}></div>
         <div className="flex-auto border-b-2 border-gray-300"></div>
       </div>
-
-      <Carousel
-        Child={child}
-        items={products}
-        hideBtns={true}
-        showChevrons={true}
-        chevronY={-80}
-        index={0}
-        pageSize={
-          currentWidth >= 1200
-            ? 5
-            : currentWidth >= 992
-            ? 3
-            : currentWidth >= 480
-            ? 2
-            : 1
-        }
-        showChevronsConditionally={false}
-      />
+      {products && products.length > 0 && (
+        <Carousel
+          Child={child}
+          items={products}
+          hideBtns={true}
+          showChevrons={true}
+          chevronY={-80}
+          index={0}
+          pageSize={
+            currentWidth >= 1200
+              ? 5
+              : currentWidth >= 992
+              ? 3
+              : currentWidth >= 480
+              ? 2
+              : 1
+          }
+          showChevronsConditionally={false}
+        />
+      )}
     </div>
   )
 }
