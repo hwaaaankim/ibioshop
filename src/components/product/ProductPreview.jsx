@@ -111,7 +111,11 @@ function ProductPreview({ product }) {
               className="mb-2.5 text-sm font-medium w-[93px] h-[93px] p-1 border hover:border-[#337ab7] shrink-0"
             >
               <img
-                src="/image/catalog/demo/product/fashion/1.jpg"
+                src={
+                  item.title
+                    ? BASE_URL + '/images/' + item.title
+                    : '/image/catalog/demo/product/fashion/1.jpg'
+                }
                 title="Chicken swinesha"
                 alt="Chicken swinesha"
               />
