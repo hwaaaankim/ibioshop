@@ -23,6 +23,11 @@ function ProductPreview({ product }) {
     'Coming Soon',
     'Unavailable',
   ]
+  const [activeImage, setActiveImage] = useState(
+    product?.media && product.media.length > 0
+      ? BASE_URL + '/images/' + product.media[0].title
+      : pro
+  )
 
   const handleInputChange = (event) => {
     setValue(parseInt(event.target.value) || '')
@@ -76,11 +81,7 @@ function ProductPreview({ product }) {
         <div className="border border-[#e6e6e6]  md:h-[380px] p-0.5">
           <a title="Banner Image" href="#" className="">
             <img
-              src={
-                product?.media && product.media.length > 0
-                  ? BASE_URL + '/images/' + product.media[0].title
-                  : pro
-              }
+              src={activeImage}
               alt="Banner Image"
               className="w-full h-full"
             />
@@ -118,6 +119,9 @@ function ProductPreview({ product }) {
                 }
                 title="Chicken swinesha"
                 alt="Chicken swinesha"
+                onClick={() =>
+                  setActiveImage(BASE_URL + '/images/' + item.title)
+                }
               />
             </Link>
           ))}
