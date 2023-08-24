@@ -270,7 +270,11 @@ function ListedProducts({ products }) {
           <div className="cursor-pointer group relative text-black">
             <div className="sm:w-[268px] sm:h-[268px]">
               <img
-                src={product.picture}
+                src={
+                  product.media && product.media.length > 0
+                    ? BASE_URL + '/images/' + product.media[0].title
+                    : 'image/catalog/demo/product/270/h1.jpg'
+                }
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
                 onClick={() => handleCardClick(product.id)}
               />
@@ -300,7 +304,7 @@ function ListedProducts({ products }) {
                 ))}
               </div>
               <div className="text-[10px] text-[#333]">
-                ({product.totalRatings})
+                ({product.totalRatings || 0})
               </div>
             </div>
             <div className="text-[13px] text-[#333] font-medium">
