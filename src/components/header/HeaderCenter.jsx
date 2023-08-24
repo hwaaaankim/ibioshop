@@ -90,9 +90,13 @@ function FilterBar() {
 
 function Product({ product, light = false }) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const removeCartItem = () => {
     dispatch(removeFromCart(product.id))
   }
+  const openProduct = () => navigate('/products/' + product.id)
+
   return (
     <div
       className={
@@ -104,7 +108,10 @@ function Product({ product, light = false }) {
         src="image/catalog/demo/product/80/1.jpg"
         className="w-[54px] h-[54px] cursor-pointer"
       />
-      <div className="w-[94px] break-words cursor-pointer hover:text-primary">
+      <div
+        className="w-[94px] break-words cursor-pointer hover:text-primary"
+        onClick={openProduct}
+      >
         {product.name}
       </div>
       <div className="flex-auto flex space-x-2 items-center justify-between">
