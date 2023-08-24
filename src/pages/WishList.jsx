@@ -9,6 +9,7 @@ import image from '../assets/images/10.jpg'
 import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import '../App.css'
 import { http } from '../services/http/http'
+import { BASE_URL } from '../config/config'
 
 function Product({ wishilistItem }) {
   const availabilities = [
@@ -29,9 +30,14 @@ function Product({ wishilistItem }) {
       <td className="border border-solid p-2 text-center">
         <a href="product.html">
           <img
-            src={image}
-            alt="Xitefun Causal Wear Fancy Shoes"
-            title="Xitefun Causal Wear Fancy Shoes"
+            src={
+              wishilistItem.product?.media &&
+              wishilistItem.product.media.length > 0
+                ? BASE_URL + '/images/' + wishilistItem.product.media[0].title
+                : image
+            }
+            alt={wishilistItem.product.name}
+            title={wishilistItem.product.name}
             className="wish-image transition-all rounded object-cover p-1 border-solid border-gray-400
                             max-w-full inline-block align-middle cursor-pointer"
           />
