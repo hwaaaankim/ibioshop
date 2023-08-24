@@ -17,178 +17,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const products = [
-  {
-    name: 'Lastrami bacon',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 2,
-    price: 80,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Exceerur sint occaecat',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 3,
-    price: 59,
-    discounted: true,
-    discountedPrice: 50,
-    discountPercent: '-15%',
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Mapicola incidid',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 5,
-    price: 60,
-    discounted: false,
-    discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Duis aute irure',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 2,
-    price: 48,
-    discounted: false,
-    discountedPrice: 85,
-    isNew: true,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 6,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    isNew: true,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    // discounted: true,
-    discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: true,
-    discountPercent: '-10%',
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: true,
-    discountedPrice: 85,
-    discountPercent: '-12%',
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: false,
-    // discountedPrice: 85,
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-  {
-    name: 'Excepteur sint occ',
-    picture: 'image/catalog/demo/product/270/h1.jpg',
-    rating: 4,
-    totalRatings: 4,
-    price: 90,
-    discounted: true,
-    discountedPrice: 85,
-    discountPercent: '-15%',
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est .',
-  },
-]
 function ProductBanner() {
   return (
     <div className="">
@@ -377,7 +205,7 @@ function Product({ product }) {
     </div>
   )
 }
-function GridProducts() {
+function GridProducts({ products }) {
   return (
     <div className="grid lg:grid-cols-5 lg:gap-[30px] gap-0 grid-cols-1">
       {products.map((product, index) => (
@@ -386,7 +214,7 @@ function GridProducts() {
     </div>
   )
 }
-function ListedProducts() {
+function ListedProducts({ products }) {
   const [showModal, setShowModal] = useState(false)
   const [showNotification, setShowNotification] = useState(false)
   const [showWishlistNotification, setWishShowNotification] = useState(false)
@@ -557,11 +385,10 @@ export default function Category() {
     dispatch(toggleVisibility({ hidden: false }))
   }
 
+  const [products, setProducts] = useState([])
   const getProducts = async () => {
     const response = await http.request({ url: 'products/categories/' + id })
-    if (!response.isError) {
-      console.log({ p: response.products })
-    }
+    if (!response.isError) setProducts(response.products)
   }
   useEffect(() => {
     showBreadCrumb()
@@ -651,10 +478,10 @@ export default function Category() {
             </Tab.List>
             <Tab.Panels>
               <Tab.Panel>
-                <GridProducts />
+                <GridProducts products={products} />
               </Tab.Panel>
               <Tab.Panel>
-                <ListedProducts />
+                <ListedProducts products={products} />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
