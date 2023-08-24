@@ -201,9 +201,12 @@ function CartMini() {
       className="absolute -top-2 -right-2 p-1.5 bg-black text-white rounded-full w-6 h-6 flex items-center justify-center"
       style={{ fontSize: 8 }}
     >
+      {total < 10 && total > 0 ? '0' : ''}
       {total}
     </div>
   )
+
+  const products = useSelector((state) => state.cart)
   const cartContent = CartContent()
   return (
     <Dropdown hasPadding={false} content={cartContent}>
@@ -212,7 +215,7 @@ function CartMini() {
           <div className="w-full h-full flex items-center justify-center">
             <i className="fa fa-shopping-bag" style={{ fontSize: 16 }} />
           </div>
-          <Badge total={'02'} />
+          <Badge total={products.length} />
         </div>
         <div className="text-white hidden md:flex flex-col justify-end">
           <div className="uppercase text-sm font-semibold">my cart</div>
