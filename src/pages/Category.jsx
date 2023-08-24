@@ -18,11 +18,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function ProductBanner() {
+function ProductBanner({ category }) {
   return (
     <div className="">
       <div className="relative text-[18px] uppercase text-[#222] border-b-2 border-[#eee] w-full pb-2.5 inline-block font-medium mb-2.5">
-        Accessories
+        {category.name}
         <div className="absolute w-[110px] h-[2px] bg-[#094bad] -bottom-0.5 left-0"></div>
       </div>
       <a href="#" className="">
@@ -383,10 +383,10 @@ export default function Category() {
     dispatch(toggleVisibility({ hidden: true }))
     dispatch(setPath({ path: [] }))
   }
-  const showBreadCrumb = () => {
+  const showBreadCrumb = (categoryName) => {
     dispatch(
       setPath({
-        path: [{ title: 'Smartphone & Tablets', path: '#' }],
+        path: [{ title: categoryName, path: '#' }],
       })
     )
     dispatch(toggleVisibility({ hidden: false }))
@@ -397,12 +397,21 @@ export default function Category() {
     const response = await http.request({ url: 'products/categories/' + id })
     if (!response.isError) setProducts(response.products)
   }
+
+  const [category, setCategory] = useState('')
+  const getCategory = async () => {
+    const response = await http.request({ url: 'product_categories/' + id })
+    if (!response.isError) {
+      setCategory(response)
+      showBreadCrumb(response.name)
+    }
+  }
   useEffect(() => {
-    showBreadCrumb()
     return hideBreadcrumb
   }, [])
 
   useEffect(() => {
+    getCategory()
     getProducts()
   }, [id])
 
@@ -415,7 +424,7 @@ export default function Category() {
           <BannerSidebar />
         </div>
         <div className="md:w-[79%] md:pl-[15px]">
-          <ProductBanner />
+          <ProductBanner category={category} />
           <Tab.Group>
             <Tab.List className="mb-[30px] text-[#666] text-[12px] leading-5">
               <div className="md:flex justify-between">
