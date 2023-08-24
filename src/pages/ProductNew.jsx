@@ -42,9 +42,12 @@ export default function ProductNew() {
     dispatch(toggleVisibility({ hidden: false }))
   }
   useEffect(() => {
-    getProduct()
     return hideBreadcrumb
   }, [])
+
+  useEffect(() => {
+    getProduct()
+  }, [id])
   return (
     <div className="w-full md:px-8 px-3 2xl:px-0 2xl:max-w-[1650px] 2xl:w-[95%] 2xl:flex 2xl:m-auto">
       <div className="w-full md:flex md:flex-row flex-col">
