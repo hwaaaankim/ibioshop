@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { updateQuantity, removeFromCart } from '../../store/slices/cartSlice'
 import { useSnackbar } from 'notistack'
+import { BASE_URL } from '../../config/config'
 
 function ShoppingCartTable() {
   const initial = useSelector((state) => state.cart)
@@ -57,9 +58,13 @@ function ShoppingCartTable() {
                 <a href="product.html">
                   <img
                     width="60px"
-                    src={image}
-                    alt="Xitefun Causal Wear Fancy Shoes"
-                    title="Xitefun Causal Wear Fancy Shoes"
+                    src={
+                      item?.media && item.media.length > 0
+                        ? BASE_URL + '/images/' + item.media[0].title
+                        : image
+                    }
+                    alt={item.name}
+                    title={item.name}
                     className="transition-all rounded p-1 border-solid border-gray-400
                         max-w-full inline-block align-middle h-auto text-center border-separate border-spacing-0"
                   />
