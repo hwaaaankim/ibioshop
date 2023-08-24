@@ -64,7 +64,7 @@ function App() {
           <Route path="faq" element={<Faq />} />
           <Route path="compare" element={<ProductComparison />} />
           <Route path="gift_voucher" element={<GiftVoucher />} />
-          <Route path="category" element={<Category />} />
+          <Route path="category/:id" element={<Category />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog-detail" element={<BlogDetail />} />
 

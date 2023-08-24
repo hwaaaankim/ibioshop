@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Tab } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { openModal } from '../store/slices/modalSlice'
@@ -12,6 +12,7 @@ import BannerSidebar from '../components/product/BannerSidebar'
 import Notice from '../components/Notification/Notice'
 import Wishlist from '../components/Notification/Wishlist'
 import Compare from '../components/Notification/Compare'
+import { http } from '../services/http/http'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -541,6 +542,7 @@ function ShowingPages() {
 }
 
 export default function Category() {
+  const { id } = useParams()
   const dispatch = useDispatch()
   const hideBreadcrumb = () => {
     dispatch(toggleVisibility({ hidden: true }))
@@ -549,15 +551,27 @@ export default function Category() {
   const showBreadCrumb = () => {
     dispatch(
       setPath({
-        path: [{ title: 'Smartphone & Tablets', path: '/category' }],
+        path: [{ title: 'Smartphone & Tablets', path: '#' }],
       })
     )
     dispatch(toggleVisibility({ hidden: false }))
+  }
+
+  const getProducts = async () => {
+    const response = await http.request({ url: 'products/categories/' + id })
+    if (!response.isError) {
+      console.log({ p: response.products })
+    }
   }
   useEffect(() => {
     showBreadCrumb()
     return hideBreadcrumb
   }, [])
+
+  useEffect(() => {
+    getProducts()
+  }, [id])
+
   return (
     <div className="w-full md:px-10 px-4 2xl:flex 2xl:m-auto 2xl:px-0 2xl:max-w-[1650px] 2xl:w-[95%]">
       <div className="md:flex">

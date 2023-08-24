@@ -26,15 +26,15 @@ export default function ProductNew() {
     const response = await http.request({ url: 'products/' + id })
     if (!response.isError) {
       setProduct(response)
-      showBreadCrumb(response.name)
+      showBreadCrumb({ id: response.categoryId }, response.name)
     }
   }
 
-  const showBreadCrumb = (productName) => {
+  const showBreadCrumb = (category, productName) => {
     dispatch(
       setPath({
         path: [
-          { title: 'Smartphone & Tablets', path: '/category' },
+          { title: 'Smartphone & Tablets', path: '/category/' + category.id },
           { title: productName, path: '#' },
         ],
       })
