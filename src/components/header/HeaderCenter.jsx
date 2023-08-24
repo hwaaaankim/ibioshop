@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../store/slices/cartSlice'
+import { BASE_URL } from '../../config/config'
 
 function Logo() {
   const navigate = useNavigate()
@@ -105,7 +106,11 @@ function Product({ product, light = false }) {
       }
     >
       <img
-        src="image/catalog/demo/product/80/1.jpg"
+        src={
+          product?.media && product.media.length > 0
+            ? BASE_URL + '/images/' + product.media[0].title
+            : 'image/catalog/demo/product/80/1.jpg'
+        }
         className="w-[54px] h-[54px] cursor-pointer"
       />
       <div
@@ -116,7 +121,7 @@ function Product({ product, light = false }) {
       </div>
       <div className="flex-auto flex space-x-2 items-center justify-between">
         <div>{product.size}</div>
-        <div>${product.price} </div>
+        <div>${product.basePrice} </div>
         <div
           className="cursor-pointer hover:text-primary"
           onClick={() => navigate('/cart')}
