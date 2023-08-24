@@ -47,7 +47,7 @@ function Product({ wishilistItem }) {
         <a href="product.html">{wishilistItem.product.name}</a>
       </td>
       <td className="text-left border border-solid p-2">
-        {wishilistItem.model || 'Nike'}
+        {wishilistItem.model || 'Unknown'}
       </td>
       <td className="text-right border border-solid p-2">
         {availabilities[wishilistItem.product.status]}
