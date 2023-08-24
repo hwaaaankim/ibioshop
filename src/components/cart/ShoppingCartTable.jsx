@@ -70,7 +70,7 @@ function ShoppingCartTable() {
               </td>
               <td className="text-left border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
                 <a className="p-2" href="product.html">
-                  {item.model}
+                  {item.model || 'Unknown'}
                 </a>
               </td>
               <td className="text-left border border-solid align-top leading-snug p-2 box-border border-collapse border-spacing-0">
