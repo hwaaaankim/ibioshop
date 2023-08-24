@@ -78,7 +78,7 @@ function GiftNToys() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="image/catalog/menu/icons/ico10.png"
+          src="/image/catalog/menu/icons/ico10.png"
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -133,7 +133,7 @@ function Electronics() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="image/catalog/menu/icons/ico9.png"
+          src="/image/catalog/menu/icons/ico9.png"
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -226,7 +226,7 @@ function HealthNBeauty() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="image/catalog/menu/icons/ico7.png"
+          src="/image/catalog/menu/icons/ico7.png"
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -265,7 +265,7 @@ function SmartphoneNTablets() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="image/catalog/menu/icons/ico6.png"
+          src="/image/catalog/menu/icons/ico6.png"
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -297,7 +297,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico1.png"
+            src="/image/catalog/menu/icons/ico1.png"
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -312,7 +312,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico5.png"
+            src="/image/catalog/menu/icons/ico5.png"
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -322,7 +322,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico4.png"
+            src="/image/catalog/menu/icons/ico4.png"
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -332,7 +332,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico3.png"
+            src="/image/catalog/menu/icons/ico3.png"
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -342,7 +342,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico2.png"
+            src="/image/catalog/menu/icons/ico2.png"
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -352,7 +352,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico1.png"
+            src="/image/catalog/menu/icons/ico1.png"
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -364,7 +364,7 @@ function CategoriesMenu({ isBigScreen }) {
           <>
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="image/catalog/menu/icons/ico12.png"
+                src="/image/catalog/menu/icons/ico12.png"
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -374,7 +374,7 @@ function CategoriesMenu({ isBigScreen }) {
 
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="image/catalog/menu/icons/ico9.png"
+                src="/image/catalog/menu/icons/ico9.png"
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -384,7 +384,7 @@ function CategoriesMenu({ isBigScreen }) {
 
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="image/catalog/menu/icons/ico6.png"
+                src="/image/catalog/menu/icons/ico6.png"
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
