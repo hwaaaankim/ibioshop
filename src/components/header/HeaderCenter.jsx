@@ -117,7 +117,10 @@ function Product({ product, light = false }) {
       <div className="flex-auto flex space-x-2 items-center justify-between">
         <div>{product.size}</div>
         <div>${product.price} </div>
-        <div className="cursor-pointer hover:text-primary">
+        <div
+          className="cursor-pointer hover:text-primary"
+          onClick={() => navigate('/cart')}
+        >
           <i className="fa fa-edit"></i>
         </div>
         <div
