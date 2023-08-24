@@ -13,6 +13,7 @@ import Notice from '../components/Notification/Notice'
 import Wishlist from '../components/Notification/Wishlist'
 import Compare from '../components/Notification/Compare'
 import { http } from '../services/http/http'
+import { BASE_URL } from '../config/config'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -44,8 +45,7 @@ function Product({ product }) {
   }
 
   const handleCardClick = () => {
-    // history.push(`/product/${product.id}`);
-    navigate('/product')
+    navigate('/products/' + product.id)
   }
 
   // const handleEyeClick = (e) => {
@@ -87,7 +87,11 @@ function Product({ product }) {
         onClick={handleCardClick}
       >
         <img
-          src={product.picture}
+          src={
+            product.media && product.media.length > 0
+              ? BASE_URL + '/images/' + product.media[0].title
+              : 'image/catalog/demo/product/270/h1.jpg'
+          }
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
         {product.discounted && (
@@ -182,7 +186,7 @@ function Product({ product }) {
                 ))}
               </div>
               <div className="text-[10px] text-[#333]">
-                ({product.totalRatings})
+                ({product.totalRatings || 0})
               </div>
             </div>
             <div className="text-[13px] text-[#333] font-medium">
@@ -226,9 +230,8 @@ function ListedProducts({ products }) {
     dispatch(openModal({ id: 2 }))
   }
 
-  const handleCardClick = () => {
-    // history.push(`/product/${product.id}`);
-    navigate('/product')
+  const handleCardClick = (productId) => {
+    navigate('/products/' + productId)
   }
 
   // const handleEyeClick = (e) => {
@@ -269,7 +272,7 @@ function ListedProducts({ products }) {
               <img
                 src={product.picture}
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
-                onClick={handleCardClick}
+                onClick={() => handleCardClick(product.id)}
               />
             </div>
             {product.discounted && (
