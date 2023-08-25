@@ -708,7 +708,7 @@ function Product({ product, showProgress = false }) {
 
   const openQuickView = (event) => {
     event.stopPropagation()
-    dispatch(openModal({ id: 2 }))
+    dispatch(openModal({ id: 2,props: {productId: product.id} }))
   }
   const add2Cart = () => {
     dispatch(addToCart({ product: { ...product, size: 'xl' }, quantity: 1 }))
