@@ -708,7 +708,7 @@ function Product({ product, showProgress = false }) {
 
   const openQuickView = (event) => {
     event.stopPropagation()
-    dispatch(openModal({ id: 2,props: {productId: product.id} }))
+    dispatch(openModal({ id: 2, props: { productId: product.id } }))
   }
   const add2Cart = () => {
     dispatch(addToCart({ product: { ...product, size: 'xl' }, quantity: 1 }))
@@ -742,8 +742,11 @@ function Product({ product, showProgress = false }) {
 
   const pictureRef = useRef()
   const [pictureHeight, setPictureHeight] = useState(180)
+  const productNameRef = useRef()
+  const [CTAsHeight, setCTAsHeight] = useState(0)
   useEffect(() => {
     setPictureHeight(pictureRef.current.clientWidth)
+    setCTAsHeight(productNameRef.current.clientHeight)
   })
 
   return (
@@ -799,9 +802,13 @@ function Product({ product, showProgress = false }) {
             {mouseOver && (
               <motion.div
                 exit={{ y: -30, opacity: 0, transition: { duration: 0.1 } }}
-                className="absolute top-0 left-0 right-0 bottom-0 flex items-center z-10"
+                className={
+                  'absolute top-0 left-0 right-0 flex items-center z-10 h-[' +
+                  CTAsHeight +
+                  'px]'
+                }
               >
-                <div className="flex-auto flex space-x-1 items-center justify-center">
+                <div className="flex-auto flex space-x-1 items-center justify-between">
                   <motion.div
                     initial={{ y: -30 }}
                     animate={{ y: 0 }}
@@ -836,28 +843,31 @@ function Product({ product, showProgress = false }) {
               </motion.div>
             )}
           </AnimatePresence>
-          <div
-            className={
-              'flex flex-col items-center space-y-2 ' +
-              (mouseOver ? 'opacity-0' : 'opacity-100')
-            }
-          >
-            <div className="flex space-x-2 items-center">
-              <div className="flex space-x-1 items-center">
-                {[1, 2, 3, 4, 5].map((sindex) => (
-                  <i
-                    key={sindex}
-                    className="fa fa-star text-[#fec42d]"
-                    style={{ fontSize: 12 }}
-                  ></i>
-                ))}
+          <div className="flex flex-col items-center space-y-2 ">
+            <div
+              ref={productNameRef}
+              className={
+                'flex flex-col items-center space-y-2 ' +
+                (mouseOver ? 'opacity-0' : 'opacity-100')
+              }
+            >
+              <div className="flex space-x-2 items-center">
+                <div className="flex space-x-1 items-center">
+                  {[1, 2, 3, 4, 5].map((sindex) => (
+                    <i
+                      key={sindex}
+                      className="fa fa-star text-[#fec42d]"
+                      style={{ fontSize: 12 }}
+                    ></i>
+                  ))}
+                </div>
+                <div className="text-[10px] text-[#333]">
+                  ({product.totalRatings || 0})
+                </div>
               </div>
-              <div className="text-[10px] text-[#333]">
-                ({product.totalRatings || 0})
+              <div className="text-[13px] text-[#333] font-medium">
+                {product.name}
               </div>
-            </div>
-            <div className="text-[13px] text-[#333] font-medium">
-              {product.name}
             </div>
             <div className="flex space-x-2 items-center justify-center">
               <div className="text-primary font-semibold">
