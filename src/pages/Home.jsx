@@ -1126,15 +1126,15 @@ function CatalogBanners() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0, transition: { delay: 0.28 } }}
+              exit={{ opacity: 0, transition: { delay: 0.25 } }}
               transition={{ duration: 0 }}
-              className="absolute top-0 right-0 bottom-0 left-0 bg-gray-2 flex items-center justify-center z-10 overflow-hidden"
+              className="absolute top-0 right-0 bottom-0 left-0 bg-[#ababab] flex items-center justify-center z-10 overflow-hidden"
             >
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 2 }}
                 exit={{ scale: 0 }}
-                transition={{ duration: 0.28 }}
+                transition={{ duration: 0.25 }}
                 className="bg-white opacity-75 rounded-full z-20"
                 style={{ width: 255, height: 255 }}
               ></motion.div>
@@ -1188,7 +1188,7 @@ function ProductBanners() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, transition: { delay: 0.28 } }}
               transition={{ duration: 0 }}
-              className="absolute top-0 right-0 bottom-0 left-0 bg-gray-2 flex items-center justify-center z-10 overflow-hidden"
+              className="absolute top-0 right-0 bottom-0 left-0 bg-[#ababab] flex items-center justify-center z-10 overflow-hidden"
             >
               <motion.div
                 initial={{ scale: 0 }}
