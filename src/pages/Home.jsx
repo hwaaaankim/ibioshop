@@ -1321,12 +1321,13 @@ function ProductsByCategory({ currentWidth }) {
   }, [])
   return (
     <>
-      {categories.map((parent) => (
+      {categories.map((parent, index) => (
         <ProductCategories
           key={parent.id}
           category={parent.name}
           subCategories={parent.children}
-          hasLeftBannner={true}
+          hasLeftBannner={index % 2 === 0}
+          hasRightBanner={index % 2 !== 0}
           currentWidth={currentWidth}
         />
       ))}
