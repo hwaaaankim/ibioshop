@@ -192,7 +192,7 @@ function BestSelling() {
   ]
 
   const child = ({ item }) => (
-    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-2">
+    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-[4px]">
       {[1, 2, 3, 4].map((pitem, index) => (
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
@@ -1608,8 +1608,8 @@ export default function Home() {
   const header = useSelector((state) => state.header)
   const cmWidth = header.cmWidth
   return (
-    <div className="grid grid-cols-4 gap-8 px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px]">
-      <div className="col-span-4 grid grid-cols-5 gap-8">
+    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px]">
+      {/* <div className="col-span-4 grid grid-cols-5 gap-8">
         <div className="col-span-5 lgp8:col-span-4 flex lgp8:space-x-8">
           <div className="hidden lgp8:block" style={{ width: 237 }}></div>
           <div className="flex-auto bg-gray-50 h-[300px]">
@@ -1619,14 +1619,14 @@ export default function Home() {
         <div className="col-span-5 lgp8:col-span-1">
           <BestSelling />
         </div>
-      </div>
+      </div> */}
 
-      {/* <div className="flex">
+      <div className="flex">
         <div
-          className="hidden lgp8:block px-[15px]"
+          className="hidden lgp8:block px-[15px] ml-[15px]"
           style={{ width: cmWidth }}
         ></div>
-        <div className="flex-auto lgp8:flex px-[15px]">
+        <div className="flex-auto lgp8:flex px-[15px] lgp8:space-x-[30px]">
           <div className="flex-auto bg-gray-50 h-[300px]">
             <ImageCarouse />
           </div>
@@ -1634,7 +1634,7 @@ export default function Home() {
             <BestSelling />
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className="col-span-4 md:flex md:space-x-8 space-y-4 md:space-y-0">
         <div className="space-y-8 md:w-[237px] shrink-0">
