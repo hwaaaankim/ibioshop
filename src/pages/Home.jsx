@@ -1608,7 +1608,7 @@ export default function Home() {
   const header = useSelector((state) => state.header)
   const cmWidth = header.cmWidth
   return (
-    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px]">
+    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px] space-y-2">
       {/* <div className="col-span-4 grid grid-cols-5 gap-8">
         <div className="col-span-5 lgp8:col-span-4 flex lgp8:space-x-8">
           <div className="hidden lgp8:block" style={{ width: 237 }}></div>
