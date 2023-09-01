@@ -34,6 +34,7 @@ module.exports = {
         xl: '1280px',
         // Your custom screens here...
         '2xl': '1536px',
+        raysMax: '1649px',
         '3xl': '1920px',
       },
     },

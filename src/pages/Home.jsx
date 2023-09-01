@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
@@ -1604,8 +1604,11 @@ export default function Home() {
     setCurrentWidth(document.body.clientWidth)
     window.addEventListener('resize', handleResize)
   }, [])
+
+  const header = useSelector((state) => state.header)
+  const cmWidth = header.cmWidth
   return (
-    <div className="grid grid-cols-4 gap-8 px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-8">
+    <div className="grid grid-cols-4 gap-8 px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px]">
       <div className="col-span-4 grid grid-cols-5 gap-8">
         <div className="col-span-5 lgp8:col-span-4 flex lgp8:space-x-8">
           <div className="hidden lgp8:block" style={{ width: 237 }}></div>
@@ -1617,6 +1620,22 @@ export default function Home() {
           <BestSelling />
         </div>
       </div>
+
+      {/* <div className="flex">
+        <div
+          className="hidden lgp8:block px-[15px]"
+          style={{ width: cmWidth }}
+        ></div>
+        <div className="flex-auto lgp8:flex px-[15px]">
+          <div className="flex-auto bg-gray-50 h-[300px]">
+            <ImageCarouse />
+          </div>
+          <div className="w-full lgp8:w-[21%] raysMax:w-[16.667%]">
+            <BestSelling />
+          </div>
+        </div>
+      </div> */}
+
       <div className="col-span-4 md:flex md:space-x-8 space-y-4 md:space-y-0">
         <div className="space-y-8 md:w-[237px] shrink-0">
           <div className="h-[390px] cursor-pointer">

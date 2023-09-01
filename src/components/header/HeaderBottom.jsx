@@ -1,9 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useMediaQuery } from 'react-responsive'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setcmWidth } from '../../store/slices/headerSlice'
 
 function GiftNToys() {
   const categories = [
@@ -279,6 +280,15 @@ function SmartphoneNTablets() {
 
 function CategoriesMenu({ isBigScreen }) {
   const [hidden, setHidden] = useState(false)
+  const dispatch = useDispatch()
+
+  const containerRef = useRef()
+  const [width, setWidth] = useState(0)
+  useEffect(() => {
+    setWidth(containerRef.current.clientWidth)
+    dispatch(setcmWidth({ width: containerRef.current.clientWidth }))
+  }, [containerRef])
+
   const Content = ({ setHidden, isHome }) => {
     const [initial, setInitial] = useState(true)
     const [showMoreCategories, setShowMore] = useState(false)
@@ -292,7 +302,9 @@ function CategoriesMenu({ isBigScreen }) {
       setShowMore((prev) => !prev)
     }
     return (
-      <div className="pl-2 pr-4 pb-3 bg-[#f5f5f5] w-[237px] space-y-1">
+      <div
+        className={'pl-2 pr-4 pb-3 bg-[#f5f5f5] w-[' + width + 'px]  space-y-1'}
+      >
         <GiftNToys />
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
@@ -425,25 +437,30 @@ function CategoriesMenu({ isBigScreen }) {
       if (hidden) setHidden(false)
     }, 1000)
   }, [hidden])
+
   return (
-    <Dropdown
-      placement="bottom-start"
-      bordered={false}
-      hasPadding={false}
-      content={<Content setHidden={setHidden} isHome={isHome} />}
-      offset={0}
-      visible={isVFalse ? false : isVTrue ? true : undefined}
-    >
-      <div>
-        <div className="flex space-x-2 justify-between items-center bg-black px-4 py-[10px] w-[237px] rounded-t">
+    <div className="-ml-[15px] px-[15px] mdp5:w-[25%] lgp8:w-[21%] raysMax:w-[16.667%] flex items-end h-full">
+      <Dropdown
+        placement="bottom-start"
+        bordered={false}
+        hasPadding={false}
+        content={<Content setHidden={setHidden} isHome={isHome} />}
+        offset={0}
+        visible={isVFalse ? false : isVTrue ? true : undefined}
+        minWidth={width}
+      >
+        <div
+          ref={containerRef}
+          className="flex space-x-2 justify-between items-center bg-black w-full px-4 py-[10px] rounded-t"
+        >
           <div className="flex space-x-2 items-center">
             <i className="fa fa-bars" style={{ fontSize: 16 }} />
             <div className="uppercase text-sm font-bold">all categories</div>
           </div>
           <i className="fa fa-angle-down" style={{ fontSize: 16 }} />
         </div>
-      </div>
-    </Dropdown>
+      </Dropdown>
+    </div>
   )
 }
 
@@ -488,7 +505,7 @@ function HomeDropDown() {
       content={content}
       visible={hidden ? false : undefined}
     >
-      <div>
+      <div className="mx-[15px]">
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
           <Link to="/" className="uppercase text-sm font-semibold">
             home
@@ -582,7 +599,7 @@ function FeaturesDropDown() {
       content={content}
       visible={hidden ? false : undefined}
     >
-      <div>
+      <div className="mx-[15px]">
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
           <div className="uppercase text-sm font-semibold">features</div>
           <i className="fa fa-caret-down" />
@@ -654,7 +671,7 @@ function PagesDropDown() {
       content={content}
       visible={hidden ? false : undefined}
     >
-      <div>
+      <div className="mx-[15px]">
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
           <div className="uppercase text-sm font-semibold">pages</div>
           <i className="fa fa-caret-down" />
@@ -734,7 +751,7 @@ function CategoriesDropDown() {
       content={content}
       visible={hidden ? false : undefined}
     >
-      <div>
+      <div className="ml-[15px]">
         <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
           <div className="uppercase text-sm font-semibold">categories</div>
           <i className="fa fa-caret-down" />
@@ -1001,20 +1018,20 @@ export default function HeaderBottom() {
   const islgp8 = useMediaQuery({ query: '(min-width: 1200px)' })
 
   return (
-    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto">
-      <div className="flex items-center mdp5:space-x-8 text-white">
-        <div className="hidden mdp5:flex space-x-8 items-end">
-          <CategoriesMenu isBigScreen={islgp8} />
+    <div className="flex justify-center w-full">
+      <div className="px-[15px] -mx-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] flex items-center text-white">
+        <CategoriesMenu isBigScreen={islgp8} />
+        <div className="hidden mdp5:flex items-end">
           <HomeDropDown />
           <FeaturesDropDown />
           <PagesDropDown />
           <CategoriesDropDown />
         </div>
-        <div className="hidden mdp5:flex space-x-8 items-center">
+        <div className="hidden mdp5:flex space-x-8 items-center mdp5:ml-8">
           <Accessories />
           <Blog />
         </div>
-        <div className="flex-auto pt-2 hidden lgp8:block">
+        <div className="flex-auto pt-2 hidden lgp8:block mdp5:ml-8">
           <AccountNav />
         </div>
         <div className="flex-auto flex mdp5:hidden items-center justify-between">

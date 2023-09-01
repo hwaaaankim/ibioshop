@@ -12,6 +12,7 @@ export function Dropdown({
   children,
   offset = undefined,
   visible = undefined,
+  minWidth = 200,
 }) {
   const initial = { animate: { rotateX: 90, originY: 0 } }
   const [variants, setVariants] = useState(initial)
@@ -35,6 +36,7 @@ export function Dropdown({
         ' shadow-lg overflow-clip text-gray-500'
       }
       {...attrs}
+      style={{ minWidth }}
     >
       {content}
     </motion.div>
