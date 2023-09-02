@@ -373,7 +373,11 @@ function CategoriesMenu({ isBigScreen }) {
         </div>
 
         {showMoreCategories && (
-          <>
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: 'auto' }}
+            className="space-y-1 -mt-1"
+          >
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
                 src="/image/catalog/menu/icons/ico12.png"
@@ -403,7 +407,7 @@ function CategoriesMenu({ isBigScreen }) {
                 Metallurgy
               </div>
             </div>
-          </>
+          </motion.div>
         )}
 
         <div
