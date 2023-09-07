@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import BaseInput from '../components/controlled/BaseInput'
 import BaseTextArea from '../components/controlled/BaseTextArea'
+import { CDN_URL } from '../config/config'
 
 function FeedbackForm() {
   const {
@@ -53,7 +54,7 @@ function FeedbackForm() {
         </div>
       </div>
       <img
-        src="image/demo/content/captcha.jpg"
+        src={CDN_URL + 'image/demo/content/captcha.jpg'}
         style={{ width: 150, height: 35 }}
       />
       <div className="flex pt-8">
