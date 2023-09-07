@@ -7,7 +7,7 @@ import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
 import { addToCart } from '../store/slices/cartSlice'
 import { useSnackbar } from 'notistack'
-import { BASE_URL } from '../config/config'
+import { BASE_URL, CDN_URL } from '../config/config'
 
 function Carousel({
   items,
@@ -418,7 +418,7 @@ function Features() {
   return (
     <div className="border">
       <img
-        src="image/catalog/banners/call-us.jpg"
+        src={CDN_URL + 'image/catalog/banners/call-us.jpg'}
         className="w-full h-[124px] cursor-pointer"
       />
       <div className="">
@@ -558,7 +558,7 @@ function LatestPosts() {
       <div className="space-y-2 items-center py-2">
         <div className="cursor-pointer hover:opacity-80">
           <img
-            src="image/catalog/blog/1.jpg"
+            src={CDN_URL + 'image/catalog/blog/1.jpg'}
             className="w-full h-[170px] rounded"
           />
         </div>
@@ -614,7 +614,7 @@ function Testimonials() {
     <div className="space-y-4 flex flex-col items-center">
       <div className="w-[86px] h-[86px] border-[3px] border-primary rounded-full cursor-pointer">
         <img
-          src="image/catalog/demo/client/user-1.jpg"
+          src={CDN_URL + 'image/catalog/demo/client/user-1.jpg'}
           className="w-full h-full rounded-full"
         />
       </div>
@@ -1153,12 +1153,12 @@ function CatalogBanners() {
 
   return (
     <div className="grid grid-cols-4 gap-3">
-      <Banner picture="image/catalog/banners/banner3.jpg" />
+      <Banner picture={CDN_URL + 'image/catalog/banners/banner3.jpg'} />
       <Banner
         moreClasses="col-span-4 md:col-span-2"
-        picture="image/catalog/banners/banner4.jpg"
+        picture={CDN_URL + 'image/catalog/banners/banner4.jpg'}
       />
-      <Banner picture="image/catalog/banners/banner5.jpg" />
+      <Banner picture={CDN_URL + 'image/catalog/banners/banner5.jpg'} />
     </div>
   )
 }
@@ -1214,7 +1214,10 @@ function ProductBanners() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
       {[1, 2].map((index) => (
-        <Banner key={index} picture="image/catalog/banners/bn1.jpg" />
+        <Banner
+          key={index}
+          picture={CDN_URL + 'image/catalog/banners/bn1.jpg'}
+        />
       ))}
     </div>
   )
@@ -1261,7 +1264,7 @@ function ProductCategories({
           <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
-              src="image/catalog/demo/category/tab1.jpg"
+              src={CDN_URL + 'image/catalog/demo/category/tab1.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -1293,7 +1296,7 @@ function ProductCategories({
           <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
-              src="image/catalog/demo/category/tab1.jpg"
+              src={CDN_URL + 'image/catalog/demo/category/tab1.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -1628,7 +1631,7 @@ export default function Home() {
         <div className="space-y-8 md:w-[237px] shrink-0">
           <div className="h-[390px] cursor-pointer">
             <img
-              src="image/catalog/banners/banner1.jpg"
+              src={CDN_URL + 'image/catalog/banners/banner1.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -1641,7 +1644,7 @@ export default function Home() {
 
           <div className="h-[390px] cursor-pointer">
             <img
-              src="image/catalog/banners/banner2.jpg"
+              src={CDN_URL + 'image/catalog/banners/banner2.jpg'}
               className="w-full h-full"
             />
           </div>
