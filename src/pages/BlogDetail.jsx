@@ -97,7 +97,7 @@ export default function BlogDetail() {
 
   const article = {
     id: 1,
-    picture: 'image/catalog/blog/4.jpg',
+    picture: CDN_URL + 'image/catalog/blog/4.jpg',
     title: 'Duis autem vel eum irure sed diam nonumy',
     author: 'Wash upito',
     publishedAt: {

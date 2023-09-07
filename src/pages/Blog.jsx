@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { toggleVisibility, setPath } from '../store/slices/breadcrumbSlice'
 import { useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { CDN_URL } from '../config/config'
 
 function Article({ article }) {
   const navigate = useNavigate()
@@ -52,7 +53,7 @@ function Article({ article }) {
 function Articles() {
   const articles = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((index) => ({
     id: index + 1,
-    picture: 'image/catalog/blog/4.jpg',
+    picture: CDN_URL + 'image/catalog/blog/4.jpg',
     title: 'Duis autem vel eum irure sed diam nonumy',
     author: 'Wash upito',
     publishedAt: {

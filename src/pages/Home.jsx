@@ -142,9 +142,9 @@ function Carousel({
 
 function ImageCarouse() {
   const images = [
-    { id: 1, path: 'image/catalog/slideshow/home1/slider-1.jpg' },
-    { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
-    { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
+    { id: 1, path: CDN_URL + 'image/catalog/slideshow/home1/slider-1.jpg' },
+    { id: 2, path: CDN_URL + 'image/catalog/slideshow/home1/slider-2.jpg' },
+    { id: 3, path: CDN_URL + 'image/catalog/slideshow/home1/slider-3.jpg' },
   ]
 
   const child = ({ item, changePage }) => {
@@ -173,7 +173,7 @@ function BestSelling() {
   const bestSellingItems = [
     {
       id: 1,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 89,
@@ -182,7 +182,7 @@ function BestSelling() {
     },
     {
       id: 2,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee2',
       rate: 4,
       price: 67,
@@ -281,7 +281,7 @@ function LatestProducts() {
   const products = [
     {
       id: 1,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 89,
@@ -290,7 +290,7 @@ function LatestProducts() {
     },
     {
       id: 2,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee2',
       rate: 4,
       price: 89,
@@ -453,21 +453,21 @@ function Recommended() {
   const products = [
     {
       id: 1,
-      picture: 'image/catalog/demo/product/270/e10.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/e10.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 89,
     },
     {
       id: 2,
-      picture: 'image/catalog/demo/product/270/e10.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/e10.jpg',
       name: 'Sausage Cowbee2',
       rate: 4,
       price: 89,
     },
     {
       id: 3,
-      picture: 'image/catalog/demo/product/270/e10.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/e10.jpg',
       name: 'Sausage Cowbee3',
       rate: 4,
       price: 89,
@@ -764,7 +764,7 @@ function Product({ product, showProgress = false }) {
           src={
             product.media && product.media.length > 0
               ? BASE_URL + '/images/' + product.media[0].title
-              : 'image/catalog/demo/product/270/h1.jpg'
+              : CDN_URL + 'image/catalog/demo/product/270/h1.jpg'
           }
           className="w-full h-full opacity-80 group-hover:opacity-100"
           ref={pictureRef}
@@ -912,139 +912,6 @@ function FlashSale({ currentWidth }) {
     const response = await http.request({ url: 'products' })
     if (!response.isError) setProducts(response.products)
   }
-
-  // const products = [
-  //   {
-  //     name: 'Pastrami bacon',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 51,
-  //       percentage: 80,
-  //     },
-  //   },
-  //   {
-  //     name: 'Lommodo qulutvenla',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 62,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Mapicola incidid',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 45,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Duis aute irure',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 30,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Excepteur sint occ',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 40,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Pastrami bacon',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 51,
-  //       percentage: 80,
-  //     },
-  //   },
-  //   {
-  //     name: 'Lommodo qulutvenla',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 62,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Mapicola incidid',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 45,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Duis aute irure',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 30,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Excepteur sint occ',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 40,
-  //       percentage: 40,
-  //     },
-  //   },
-  // ].map((product, index) => ({ id: index, ...product }))
 
   const child = ({ item }) => <Product product={item} showProgress={true} />
 
@@ -1342,7 +1209,7 @@ function NewArrivals({ currentWidth }) {
   const products = [
     {
       name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1355,7 +1222,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1368,7 +1235,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1381,7 +1248,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1394,7 +1261,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1407,7 +1274,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1420,7 +1287,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1433,7 +1300,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1446,7 +1313,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1459,7 +1326,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,

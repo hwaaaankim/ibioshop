@@ -13,7 +13,8 @@ import Notice from '../components/Notification/Notice'
 import Wishlist from '../components/Notification/Wishlist'
 import Compare from '../components/Notification/Compare'
 import { http } from '../services/http/http'
-import { BASE_URL } from '../config/config'
+import { BASE_URL, CDN_URL } from '../config/config'
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -90,7 +91,7 @@ function Product({ product }) {
           src={
             product.media && product.media.length > 0
               ? BASE_URL + '/images/' + product.media[0].title
-              : 'image/catalog/demo/product/270/h1.jpg'
+              : CDN_URL + 'image/catalog/demo/product/270/h1.jpg'
           }
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
@@ -273,7 +274,7 @@ function ListedProducts({ products }) {
                 src={
                   product.media && product.media.length > 0
                     ? BASE_URL + '/images/' + product.media[0].title
-                    : 'image/catalog/demo/product/270/h1.jpg'
+                    : CDN_URL + 'image/catalog/demo/product/270/h1.jpg'
                 }
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
                 onClick={() => handleCardClick(product.id)}
