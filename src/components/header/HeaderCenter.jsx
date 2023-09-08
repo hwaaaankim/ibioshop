@@ -13,7 +13,7 @@ function Logo() {
       className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6 px-[15px] -ml-[15px] bg-white"
       onClick={() => navigate('/')}
     >
-      <img src="/image/logo-ibio.png" />
+      <img src={CDN_URL + 'image/logo-ibio.png'} />
     </div>
   )
 }

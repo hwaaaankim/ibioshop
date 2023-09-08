@@ -1,4 +1,5 @@
 import React from 'react'
+import { CDN_URL } from '../../config/config'
 
 export default function Notify() {
   const [setShowNotification] = React.useState(false)
@@ -9,7 +10,7 @@ export default function Notify() {
         <h2 className="text-sm font-bold mb-3">Product added to Cart</h2>
         <div className="flex">
           <img
-            src="/image/demo/shop/product/e11.jpg"
+            src={CDN_URL + '/image/demo/shop/product/e11.jpg'}
             alt=""
             className="w-[50px] h-[50px]"
           ></img>

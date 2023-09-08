@@ -678,7 +678,7 @@ function MiniBanners() {
         <div key={index} className="h-auto cursor-pointer relative group">
           <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
           <img
-            src="/image/catalog/banners/cat1.jpg"
+            src={CDN_URL + '/image/catalog/banners/cat1.jpg'}
             className="w-full h-full"
           />
         </div>
@@ -1445,7 +1445,10 @@ function NewArrivals({ currentWidth }) {
 function BrandsCarousel() {
   const child = () => (
     <div className="h-[71px]  hover:opacity-60 cursor-pointer -mx-3">
-      <img src="/image/catalog/brands/b1.png" className="w-full h-full" />
+      <img
+        src={CDN_URL + '/image/catalog/brands/b1.png'}
+        className="w-full h-full"
+      />
     </div>
   )
   return (

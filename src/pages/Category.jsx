@@ -27,7 +27,10 @@ function ProductBanner({ category }) {
         <div className="absolute w-[110px] h-[2px] bg-[#094bad] -bottom-0.5 left-0"></div>
       </div>
       <a href="#" className="">
-        <img src="/image/catalog/demo/category/img-cate.jpg" alt="img cate" />
+        <img
+          src={CDN_URL + '/image/catalog/demo/category/img-cate.jpg'}
+          alt="img cate"
+        />
         <br />
       </a>
     </div>
