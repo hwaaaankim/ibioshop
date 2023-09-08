@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import Notice from '../Notification/Notice'
 import Wishlist from '../Notification/Wishlist'
 import Compare from '../Notification/Compare'
+import { CDN_URL } from '../../config/config'
 
 function Carousel({
   items,
@@ -252,7 +253,7 @@ export default function RelatedProducts() {
   const products = [
     {
       name: 'Lastrami bacon',
-      picture: '/image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 2,
       price: 80,
@@ -261,7 +262,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Exceerur sint occaecat',
-      picture: '/image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 59,
@@ -271,7 +272,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Mapicola incidid',
-      picture: '/image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 5,
       price: 60,
@@ -280,7 +281,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Duis aute irure',
-      picture: '/image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 2,
       price: 48,
@@ -290,7 +291,7 @@ export default function RelatedProducts() {
     },
     {
       name: 'Excepteur sint occ',
-      picture: '/image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 4,
       price: 90,
