@@ -4,7 +4,7 @@ import pro from '../../assets/images/1 (1).jpg'
 import Notice from '../Notification/Notice'
 import Wishlist from '../Notification/Wishlist'
 import Compare from '../Notification/Compare'
-import { BASE_URL } from '../../config/config'
+import { BASE_URL, CDN_URL } from '../../config/config'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { updateQuantity, addToCart } from '../../store/slices/cartSlice'
@@ -211,20 +211,20 @@ function ProductPreview({ product }) {
               <ul className="flex space-x-1">
                 <li className="w-6 h-6 cursor-pointer p-[2px] border">
                   <img
-                    src="/image/demo/colors/blue.jpg"
+                    src={CDN_URL + '/image/demo/colors/blue.jpg'}
                     data-original-title="blue +$12.00"
                     className="w-full h-full border border-[#ddd]"
                   />
                 </li>
                 <li className="w-6 h-6 cursor-pointer p-[2px] border">
                   <img
-                    src="/image/demo/colors/blue.jpg"
+                    src={CDN_URL + '/image/demo/colors/blue.jpg'}
                     className="w-full h-full border border-[#ddd]"
                   />
                 </li>
                 <li className="w-6 h-6 cursor-pointer p-[2px] border">
                   <img
-                    src="/image/demo/colors/blue.jpg"
+                    src={CDN_URL + '/image/demo/colors/blue.jpg'}
                     className="w-full h-full border border-[#ddd]"
                   />
                 </li>

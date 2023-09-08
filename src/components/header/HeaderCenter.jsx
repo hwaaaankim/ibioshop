@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../store/slices/cartSlice'
-import { BASE_URL } from '../../config/config'
+import { BASE_URL, CDN_URL } from '../../config/config'
 
 function Logo() {
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ function Logo() {
       className="flex md:block justify-center cursor-pointer mdp5:w-1/4 lgp8:w-1/6 px-[15px] -ml-[15px] bg-white"
       onClick={() => navigate('/')}
     >
-      <img src="/image/logo-ibio.png" />
+      <img src={CDN_URL + 'image/logo-ibio.png'} />
     </div>
   )
 }
@@ -109,7 +109,7 @@ function Product({ product, light = false }) {
         src={
           product?.media && product.media.length > 0
             ? BASE_URL + '/images/' + product.media[0].title
-            : 'image/catalog/demo/product/80/1.jpg'
+            : CDN_URL + 'image/catalog/demo/product/80/1.jpg'
         }
         className="w-[54px] h-[54px] cursor-pointer"
       />

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 //import { background } from 'public/image/icon/contact-icon.png'
 import { useNavigate } from 'react-router-dom'
+import { CDN_URL } from '../../config/config'
 
 function SocialMedia() {
   return (
@@ -58,7 +59,7 @@ function Logo() {
   return (
     <div>
       <img
-        src="image/catalog/logo-footer.png"
+        src={CDN_URL + 'image/catalog/logo-footer.png'}
         style={{ width: 203, height: 41 }}
       />
     </div>
@@ -71,12 +72,12 @@ function ContactInfo() {
       <a href="#">
         <img
           className="max-w-[100%]"
-          src="image/catalog/logo-footer.png"
+          src={CDN_URL + 'image/catalog/logo-footer.png'}
           style={{ width: 203, height: 41 }}
         />
       </a>
       <div className="flex mt-8">
-        <img src="/image/icon/icon-contact.png" />
+        <img src={CDN_URL + '/image/icon/icon-contact.png'} />
         <div className="flex-auto space-y-6 text-gray-2 text-xs ml-3">
           <div className="text-[11px]">
             San Luis Potosí, Centro Historico, 78000 San Luis Potosí, SPL,
@@ -210,7 +211,7 @@ function FooterBottom() {
     <div className="border-t border-solid text-center">
       <div className="flex flex-col space-y-12 items-center pt-10 text-center pb-6">
         <img
-          src="image/catalog/demo/payment/pay1.jpg"
+          src={CDN_URL + 'image/catalog/demo/payment/pay1.jpg'}
           className="w-[507px] h-[51]"
         />
         <div className="flex flex-col items-center space-y-12 ">
@@ -235,7 +236,7 @@ function FooterBottom() {
           </p>
         </div>
         <img
-          src="image/catalog/demo/payment/pay1.jpg"
+          src={CDN_URL + 'image/catalog/demo/payment/pay1.jpg'}
           className="w-[507px] h-[40px]"
         />
       </div>

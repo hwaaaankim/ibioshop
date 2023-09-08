@@ -7,7 +7,7 @@ import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
 import { addToCart } from '../store/slices/cartSlice'
 import { useSnackbar } from 'notistack'
-import { BASE_URL } from '../config/config'
+import { BASE_URL, CDN_URL } from '../config/config'
 
 function Carousel({
   items,
@@ -142,9 +142,9 @@ function Carousel({
 
 function ImageCarouse() {
   const images = [
-    { id: 1, path: 'image/catalog/slideshow/home1/slider-1.jpg' },
-    { id: 2, path: 'image/catalog/slideshow/home1/slider-2.jpg' },
-    { id: 3, path: 'image/catalog/slideshow/home1/slider-3.jpg' },
+    { id: 1, path: CDN_URL + 'image/catalog/slideshow/home1/slider-1.jpg' },
+    { id: 2, path: CDN_URL + 'image/catalog/slideshow/home1/slider-2.jpg' },
+    { id: 3, path: CDN_URL + 'image/catalog/slideshow/home1/slider-3.jpg' },
   ]
 
   const child = ({ item, changePage }) => {
@@ -173,7 +173,7 @@ function BestSelling() {
   const bestSellingItems = [
     {
       id: 1,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 89,
@@ -182,7 +182,7 @@ function BestSelling() {
     },
     {
       id: 2,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee2',
       rate: 4,
       price: 67,
@@ -281,7 +281,7 @@ function LatestProducts() {
   const products = [
     {
       id: 1,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 89,
@@ -290,7 +290,7 @@ function LatestProducts() {
     },
     {
       id: 2,
-      picture: 'image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee2',
       rate: 4,
       price: 89,
@@ -418,7 +418,7 @@ function Features() {
   return (
     <div className="border">
       <img
-        src="image/catalog/banners/call-us.jpg"
+        src={CDN_URL + 'image/catalog/banners/call-us.jpg'}
         className="w-full h-[124px] cursor-pointer"
       />
       <div className="">
@@ -453,21 +453,21 @@ function Recommended() {
   const products = [
     {
       id: 1,
-      picture: 'image/catalog/demo/product/270/e10.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/e10.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 89,
     },
     {
       id: 2,
-      picture: 'image/catalog/demo/product/270/e10.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/e10.jpg',
       name: 'Sausage Cowbee2',
       rate: 4,
       price: 89,
     },
     {
       id: 3,
-      picture: 'image/catalog/demo/product/270/e10.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/e10.jpg',
       name: 'Sausage Cowbee3',
       rate: 4,
       price: 89,
@@ -558,7 +558,7 @@ function LatestPosts() {
       <div className="space-y-2 items-center py-2">
         <div className="cursor-pointer hover:opacity-80">
           <img
-            src="image/catalog/blog/1.jpg"
+            src={CDN_URL + 'image/catalog/blog/1.jpg'}
             className="w-full h-[170px] rounded"
           />
         </div>
@@ -614,7 +614,7 @@ function Testimonials() {
     <div className="space-y-4 flex flex-col items-center">
       <div className="w-[86px] h-[86px] border-[3px] border-primary rounded-full cursor-pointer">
         <img
-          src="image/catalog/demo/client/user-1.jpg"
+          src={CDN_URL + 'image/catalog/demo/client/user-1.jpg'}
           className="w-full h-full rounded-full"
         />
       </div>
@@ -678,7 +678,7 @@ function MiniBanners() {
         <div key={index} className="h-auto cursor-pointer relative group">
           <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
           <img
-            src="/image/catalog/banners/cat1.jpg"
+            src={CDN_URL + '/image/catalog/banners/cat1.jpg'}
             className="w-full h-full"
           />
         </div>
@@ -764,7 +764,7 @@ function Product({ product, showProgress = false }) {
           src={
             product.media && product.media.length > 0
               ? BASE_URL + '/images/' + product.media[0].title
-              : 'image/catalog/demo/product/270/h1.jpg'
+              : CDN_URL + 'image/catalog/demo/product/270/h1.jpg'
           }
           className="w-full h-full opacity-80 group-hover:opacity-100"
           ref={pictureRef}
@@ -913,139 +913,6 @@ function FlashSale({ currentWidth }) {
     if (!response.isError) setProducts(response.products)
   }
 
-  // const products = [
-  //   {
-  //     name: 'Pastrami bacon',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 51,
-  //       percentage: 80,
-  //     },
-  //   },
-  //   {
-  //     name: 'Lommodo qulutvenla',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 62,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Mapicola incidid',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 45,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Duis aute irure',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 30,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Excepteur sint occ',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 40,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Pastrami bacon',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 51,
-  //       percentage: 80,
-  //     },
-  //   },
-  //   {
-  //     name: 'Lommodo qulutvenla',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 62,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Mapicola incidid',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 45,
-  //       percentage: 70,
-  //     },
-  //   },
-  //   {
-  //     name: 'Duis aute irure',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 30,
-  //       percentage: 40,
-  //     },
-  //   },
-  //   {
-  //     name: 'Excepteur sint occ',
-  //     picture: 'image/catalog/demo/product/270/h1.jpg',
-  //     rating: 4,
-  //     totalRatings: 3,
-  //     price: 96.0,
-  //     discounted: true,
-  //     discountedPrice: 85,
-  //     totalSold: {
-  //       total: 40,
-  //       percentage: 40,
-  //     },
-  //   },
-  // ].map((product, index) => ({ id: index, ...product }))
-
   const child = ({ item }) => <Product product={item} showProgress={true} />
 
   return (
@@ -1153,12 +1020,12 @@ function CatalogBanners() {
 
   return (
     <div className="grid grid-cols-4 gap-3">
-      <Banner picture="image/catalog/banners/banner3.jpg" />
+      <Banner picture={CDN_URL + 'image/catalog/banners/banner3.jpg'} />
       <Banner
         moreClasses="col-span-4 md:col-span-2"
-        picture="image/catalog/banners/banner4.jpg"
+        picture={CDN_URL + 'image/catalog/banners/banner4.jpg'}
       />
-      <Banner picture="image/catalog/banners/banner5.jpg" />
+      <Banner picture={CDN_URL + 'image/catalog/banners/banner5.jpg'} />
     </div>
   )
 }
@@ -1214,7 +1081,10 @@ function ProductBanners() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
       {[1, 2].map((index) => (
-        <Banner key={index} picture="image/catalog/banners/bn1.jpg" />
+        <Banner
+          key={index}
+          picture={CDN_URL + 'image/catalog/banners/bn1.jpg'}
+        />
       ))}
     </div>
   )
@@ -1261,7 +1131,7 @@ function ProductCategories({
           <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
-              src="image/catalog/demo/category/tab1.jpg"
+              src={CDN_URL + 'image/catalog/demo/category/tab1.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -1293,7 +1163,7 @@ function ProductCategories({
           <div className="md:w-[200px] h-[275px] cursor-pointer relative group">
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-40 bg-gray-500 transition delay-100"></div>
             <img
-              src="image/catalog/demo/category/tab1.jpg"
+              src={CDN_URL + 'image/catalog/demo/category/tab1.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -1339,7 +1209,7 @@ function NewArrivals({ currentWidth }) {
   const products = [
     {
       name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1352,7 +1222,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1365,7 +1235,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1378,7 +1248,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1391,7 +1261,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1404,7 +1274,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Pastrami bacon',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1417,7 +1287,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Lommodo qulutvenla',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1430,7 +1300,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Mapicola incidid',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1443,7 +1313,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Duis aute irure',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1456,7 +1326,7 @@ function NewArrivals({ currentWidth }) {
     },
     {
       name: 'Excepteur sint occ',
-      picture: 'image/catalog/demo/product/270/h1.jpg',
+      picture: CDN_URL + 'image/catalog/demo/product/270/h1.jpg',
       rating: 4,
       totalRatings: 3,
       price: 96.0,
@@ -1575,7 +1445,10 @@ function NewArrivals({ currentWidth }) {
 function BrandsCarousel() {
   const child = () => (
     <div className="h-[71px]  hover:opacity-60 cursor-pointer -mx-3">
-      <img src="/image/catalog/brands/b1.png" className="w-full h-full" />
+      <img
+        src={CDN_URL + '/image/catalog/brands/b1.png'}
+        className="w-full h-full"
+      />
     </div>
   )
   return (
@@ -1628,7 +1501,7 @@ export default function Home() {
         <div className="space-y-8 md:w-[237px] shrink-0">
           <div className="h-[390px] cursor-pointer">
             <img
-              src="image/catalog/banners/banner1.jpg"
+              src={CDN_URL + 'image/catalog/banners/banner1.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -1641,7 +1514,7 @@ export default function Home() {
 
           <div className="h-[390px] cursor-pointer">
             <img
-              src="image/catalog/banners/banner2.jpg"
+              src={CDN_URL + 'image/catalog/banners/banner2.jpg'}
               className="w-full h-full"
             />
           </div>

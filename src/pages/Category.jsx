@@ -13,7 +13,8 @@ import Notice from '../components/Notification/Notice'
 import Wishlist from '../components/Notification/Wishlist'
 import Compare from '../components/Notification/Compare'
 import { http } from '../services/http/http'
-import { BASE_URL } from '../config/config'
+import { BASE_URL, CDN_URL } from '../config/config'
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -26,7 +27,10 @@ function ProductBanner({ category }) {
         <div className="absolute w-[110px] h-[2px] bg-[#094bad] -bottom-0.5 left-0"></div>
       </div>
       <a href="#" className="">
-        <img src="/image/catalog/demo/category/img-cate.jpg" alt="img cate" />
+        <img
+          src={CDN_URL + '/image/catalog/demo/category/img-cate.jpg'}
+          alt="img cate"
+        />
         <br />
       </a>
     </div>
@@ -90,7 +94,7 @@ function Product({ product }) {
           src={
             product.media && product.media.length > 0
               ? BASE_URL + '/images/' + product.media[0].title
-              : 'image/catalog/demo/product/270/h1.jpg'
+              : CDN_URL + 'image/catalog/demo/product/270/h1.jpg'
           }
           className="w-full h-full opacity-80 group-hover:opacity-100"
         />
@@ -273,7 +277,7 @@ function ListedProducts({ products }) {
                 src={
                   product.media && product.media.length > 0
                     ? BASE_URL + '/images/' + product.media[0].title
-                    : 'image/catalog/demo/product/270/h1.jpg'
+                    : CDN_URL + 'image/catalog/demo/product/270/h1.jpg'
                 }
                 className="sm:w-[268px] sm:h-[268px] opacity-80 group-hover:opacity-100"
                 onClick={() => handleCardClick(product.id)}

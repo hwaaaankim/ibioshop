@@ -9,7 +9,7 @@ import pro from '../../assets/images/1 (1).jpg'
 import { closeModal } from '../../store/slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import { http } from '../../services/http/http'
-import { BASE_URL } from '../../config/config'
+import { BASE_URL, CDN_URL } from '../../config/config'
 
 function QuickView({ productId }) {
   const [product, setProduct] = useState()
@@ -193,7 +193,7 @@ function QuickView({ productId }) {
                               type="radio"
                             />
                             <img
-                              src="image/demo/colors/blue.jpg"
+                              src={CDN_URL + 'image/demo/colors/blue.jpg'}
                               data-original-title="blue +$12.00"
                               className="w-5 h-5 border border-[#ddd]"
                             />
@@ -219,7 +219,7 @@ function QuickView({ productId }) {
                               type="radio"
                             />
                             <img
-                              src="image/demo/colors/blue.jpg"
+                              src={CDN_URL + 'image/demo/colors/blue.jpg'}
                               className="w-5 h-5 border border-[#ddd]"
                             />
                             <svg
@@ -244,7 +244,7 @@ function QuickView({ productId }) {
                               type="radio"
                             />
                             <img
-                              src="image/demo/colors/blue.jpg"
+                              src={CDN_URL + 'image/demo/colors/blue.jpg'}
                               className="w-5 h-5 border border-[#ddd]"
                             />
                             <svg

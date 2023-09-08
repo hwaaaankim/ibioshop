@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { CDN_URL } from '../../config/config'
 
 export function Dropdown({
   placement = 'bottom-end',
@@ -108,7 +109,7 @@ function Languages() {
           style={{ fontSize: 12 }}
         >
           <img
-            src="image/catalog/flags/gb.png"
+            src={CDN_URL + 'image/catalog/flags/gb.png'}
             style={{ width: 16, height: 11 }}
           />
           <a href="#">{language}</a>
@@ -120,7 +121,7 @@ function Languages() {
     <Dropdown content={content}>
       <div className="text-gray-500 hover:text-primary cursor-pointer flex space-x-1 items-center">
         <img
-          src="image/catalog/flags/gb.png"
+          src={CDN_URL + 'image/catalog/flags/gb.png'}
           style={{ width: 16, height: 11 }}
         />
         <div>English</div>

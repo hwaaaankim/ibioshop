@@ -1,8 +1,10 @@
+import { CDN_URL } from '../../config/config'
+
 function LatestProducts() {
   const latestProducts = [
     {
       id: 1,
-      picture: '/image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/80/1.jpg',
       name: 'Mandouille Short',
       rate: 4,
       price: 76,
@@ -11,7 +13,7 @@ function LatestProducts() {
     },
     {
       id: 1,
-      picture: '/image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/80/1.jpg',
       name: 'Xancetta Bresao',
       rate: 4,
       price: 89,
@@ -20,7 +22,7 @@ function LatestProducts() {
     },
     {
       id: 1,
-      picture: '/image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/80/1.jpg',
       name: 'Sausage Cowbee',
       rate: 4,
       price: 66,
@@ -28,7 +30,7 @@ function LatestProducts() {
     },
     {
       id: 1,
-      picture: '/image/catalog/demo/product/80/1.jpg',
+      picture: CDN_URL + '/image/catalog/demo/product/80/1.jpg',
       name: 'Chicken Swinesha',
       rate: 4,
       price: 56,

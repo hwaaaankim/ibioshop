@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { setcmWidth } from '../../store/slices/headerSlice'
+import { CDN_URL } from '../../config/config'
 
 function GiftNToys() {
   const categories = [
@@ -79,7 +80,7 @@ function GiftNToys() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="/image/catalog/menu/icons/ico10.png"
+          src={CDN_URL + '/image/catalog/menu/icons/ico10.png'}
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -121,7 +122,10 @@ function Electronics() {
           </div>
         ))}
       </div>
-      <img src="/image/catalog/menu/megabanner/vbanner1.jpg" alt="" />
+      <img
+        src={CDN_URL + '/image/catalog/menu/megabanner/vbanner1.jpg'}
+        alt=""
+      />
     </div>
   )
   return (
@@ -134,7 +138,7 @@ function Electronics() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="/image/catalog/menu/icons/ico9.png"
+          src={CDN_URL + '/image/catalog/menu/icons/ico9.png'}
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -227,7 +231,7 @@ function HealthNBeauty() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="/image/catalog/menu/icons/ico7.png"
+          src={CDN_URL + '/image/catalog/menu/icons/ico7.png'}
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -266,7 +270,7 @@ function SmartphoneNTablets() {
     >
       <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
         <img
-          src="/image/catalog/menu/icons/ico6.png"
+          src={CDN_URL + '/image/catalog/menu/icons/ico6.png'}
           className="w-[26px] h-[26px]"
         />
         <div className="text-sm flex-auto group-hover:text-primary">
@@ -309,7 +313,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="/image/catalog/menu/icons/ico1.png"
+            src={CDN_URL + '/image/catalog/menu/icons/ico1.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -324,7 +328,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="/image/catalog/menu/icons/ico5.png"
+            src={CDN_URL + '/image/catalog/menu/icons/ico5.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -334,7 +338,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="/image/catalog/menu/icons/ico4.png"
+            src={CDN_URL + '/image/catalog/menu/icons/ico4.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -344,7 +348,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="/image/catalog/menu/icons/ico3.png"
+            src={CDN_URL + '/image/catalog/menu/icons/ico3.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -354,7 +358,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="/image/catalog/menu/icons/ico2.png"
+            src={CDN_URL + '/image/catalog/menu/icons/ico2.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -364,7 +368,7 @@ function CategoriesMenu({ isBigScreen }) {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="/image/catalog/menu/icons/ico1.png"
+            src={CDN_URL + '/image/catalog/menu/icons/ico1.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -380,7 +384,7 @@ function CategoriesMenu({ isBigScreen }) {
           >
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="/image/catalog/menu/icons/ico12.png"
+                src={CDN_URL + '/image/catalog/menu/icons/ico12.png'}
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -390,7 +394,7 @@ function CategoriesMenu({ isBigScreen }) {
 
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="/image/catalog/menu/icons/ico9.png"
+                src={CDN_URL + '/image/catalog/menu/icons/ico9.png'}
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -400,7 +404,7 @@ function CategoriesMenu({ isBigScreen }) {
 
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="/image/catalog/menu/icons/ico6.png"
+                src={CDN_URL + '/image/catalog/menu/icons/ico6.png'}
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -491,7 +495,7 @@ function HomeDropDown() {
           onClick={() => setHidden(true)}
         >
           <img
-            src="image/catalog/menu/home-1.jpg"
+            src={CDN_URL + 'image/catalog/menu/home-1.jpg'}
             className="w-full h-[60px]"
           />
           <div className="uppercase text-center text-xs text-gray-700 font-semibold group-hover:text-primary">
@@ -724,7 +728,7 @@ function CategoriesDropDown() {
         <div key={nindex} className="space-y-4">
           <div className="opacity-80 hover:opacity-100 cursor-pointer w-[120px] h-[60px]">
             <img
-              src="image/catalog/menu/megabanner/image-3.jpg"
+              src={CDN_URL + 'image/catalog/menu/megabanner/image-3.jpg'}
               className="w-full h-full"
             />
           </div>
@@ -865,7 +869,7 @@ function CategoriesMenuDrawer() {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico1.png"
+            src={CDN_URL + 'image/catalog/menu/icons/ico1.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -880,7 +884,7 @@ function CategoriesMenuDrawer() {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico5.png"
+            src={CDN_URL + 'image/catalog/menu/icons/ico5.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -890,7 +894,7 @@ function CategoriesMenuDrawer() {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico4.png"
+            src={CDN_URL + 'image/catalog/menu/icons/ico4.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -900,7 +904,7 @@ function CategoriesMenuDrawer() {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico3.png"
+            src={CDN_URL + 'image/catalog/menu/icons/ico3.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -910,7 +914,7 @@ function CategoriesMenuDrawer() {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico2.png"
+            src={CDN_URL + 'image/catalog/menu/icons/ico2.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -920,7 +924,7 @@ function CategoriesMenuDrawer() {
 
         <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
           <img
-            src="image/catalog/menu/icons/ico1.png"
+            src={CDN_URL + 'image/catalog/menu/icons/ico1.png'}
             className="w-[26px] h-[26px]"
           />
           <div className="text-sm flex-auto group-hover:text-primary">
@@ -932,7 +936,7 @@ function CategoriesMenuDrawer() {
           <>
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="image/catalog/menu/icons/ico12.png"
+                src={CDN_URL + 'image/catalog/menu/icons/ico12.png'}
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -942,7 +946,7 @@ function CategoriesMenuDrawer() {
 
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="image/catalog/menu/icons/ico9.png"
+                src={CDN_URL + 'image/catalog/menu/icons/ico9.png'}
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
@@ -952,7 +956,7 @@ function CategoriesMenuDrawer() {
 
             <div className="flex space-x-2 items-center cursor-pointer group py-[3px]">
               <img
-                src="image/catalog/menu/icons/ico6.png"
+                src={CDN_URL + 'image/catalog/menu/icons/ico6.png'}
                 className="w-[26px] h-[26px]"
               />
               <div className="text-sm flex-auto group-hover:text-primary">
