@@ -1491,7 +1491,7 @@ export default function Home() {
   }, [imgRef])
 
   return (
-    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px] space-y-2">
+    <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px] space-y-4">
       <div className="flex">
         <div
           className="hidden lgp8:block px-[15px] ml-[15px]"
