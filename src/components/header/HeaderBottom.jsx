@@ -474,55 +474,54 @@ function CategoriesMenu({ isBigScreen }) {
 }
 
 function HomeDropDown() {
-  const [hidden, setHidden] = useState(false)
+  // const [hidden, setHidden] = useState(false)
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (hidden) setHidden(false)
-    }, 1000)
-  }, [hidden])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (hidden) setHidden(false)
+  //   }, 1000)
+  // }, [hidden])
 
-  const content = (
-    <div className="p-10 flex space-x-8">
-      {[
-        'Home page - (default)',
-        'Home page - layout 2',
-        'Home page - layout 3',
-        'Home page - rtl',
-      ].map((title, index) => (
-        <div
-          key={index}
-          className="w-[110px] space-y-2 cursor-pointer group"
-          onClick={() => setHidden(true)}
-        >
-          <img
-            src={CDN_URL + 'image/catalog/menu/home-1.jpg'}
-            className="w-full h-[60px]"
-          />
-          <div className="uppercase text-center text-xs text-gray-700 font-semibold group-hover:text-primary">
-            {title}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
+  // const content = (
+  //   <div className="p-10 flex space-x-8">
+  //     {[
+  //       'Home page - (default)',
+  //       'Home page - layout 2',
+  //       'Home page - layout 3',
+  //       'Home page - rtl',
+  //     ].map((title, index) => (
+  //       <div
+  //         key={index}
+  //         className="w-[110px] space-y-2 cursor-pointer group"
+  //         onClick={() => setHidden(true)}
+  //       >
+  //         <img
+  //           src={CDN_URL + 'image/catalog/menu/home-1.jpg'}
+  //           className="w-full h-[60px]"
+  //         />
+  //         <div className="uppercase text-center text-xs text-gray-700 font-semibold group-hover:text-primary">
+  //           {title}
+  //         </div>
+  //       </div>
+  //     ))}
+  //   </div>
+  // )
   return (
-    <Dropdown
-      placement="bottom-start"
-      bordered={false}
-      hasPadding={false}
-      content={content}
-      visible={hidden ? false : undefined}
-    >
-      <div className="mx-[15px]">
-        <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
-          <Link to="/" className="uppercase text-sm font-semibold">
-            home
-          </Link>
-          <i className="fa fa-caret-down" />
-        </div>
+    // <Dropdown
+    //   placement="bottom-start"
+    //   bordered={false}
+    //   hasPadding={false}
+    //   content={content}
+    //   visible={hidden ? false : undefined}
+    // >
+    <div className="mx-[15px]">
+      <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
+        <Link to="/" className="uppercase text-sm font-semibold">
+          home
+        </Link>
       </div>
-    </Dropdown>
+    </div>
+    // </Dropdown>
   )
 }
 
