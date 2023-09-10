@@ -140,7 +140,7 @@ function Carousel({
   )
 }
 
-function ImageCarouse() {
+function ImageCarouse({ height }) {
   const images = [
     { id: 1, path: CDN_URL + 'image/catalog/slideshow/home1/slider-1.jpg' },
     { id: 2, path: CDN_URL + 'image/catalog/slideshow/home1/slider-2.jpg' },
@@ -160,7 +160,8 @@ function ImageCarouse() {
         dragSnapToOrigin={true}
         onDragEnd={handleDragend}
         src={item.path}
-        className="w-full h-[450px]"
+        className="w-full"
+        style={{ height }}
       />
     )
   }
@@ -1482,6 +1483,13 @@ export default function Home() {
 
   const header = useSelector((state) => state.header)
   const cmWidth = header.cmWidth
+
+  const imgRef = useRef()
+  const [height, setHeight] = useState(300)
+  useEffect(() => {
+    if (imgRef.current) setHeight(imgRef.current.clientWidth * (45 / 109))
+  }, [imgRef])
+
   return (
     <div className="px-[15px] md:px-0 w-full md:w-[750px] mdp5:w-[95%] lgp8:max-w-[1650px] mx-auto py-[30px] space-y-2">
       <div className="flex">
@@ -1490,8 +1498,12 @@ export default function Home() {
           style={{ width: cmWidth }}
         ></div>
         <div className="flex-auto lgp8:flex px-[15px] lgp8:space-x-[30px]">
-          <div className="w-full lgp8:w-[75%] raysMax:w-[80%] bg-gray-50 h-[450px]">
-            <ImageCarouse />
+          <div
+            ref={imgRef}
+            className="w-full lgp8:w-[75%] raysMax:w-[80%] bg-gray-50"
+            style={{ height }}
+          >
+            <ImageCarouse height={height} />
           </div>
           <div className="w-full lgp8:w-[25%] raysMax:w-[20%]">
             <BestSelling />
