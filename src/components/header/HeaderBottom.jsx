@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useRoutes } from 'react-router-dom'
 import { Dropdown } from './HeaderTop'
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -474,6 +474,7 @@ function CategoriesMenu({ isBigScreen }) {
 }
 
 function HomeDropDown() {
+  const { pathname } = useLocation()
   // const [hidden, setHidden] = useState(false)
 
   // useEffect(() => {
@@ -515,7 +516,12 @@ function HomeDropDown() {
     //   visible={hidden ? false : undefined}
     // >
     <div className="mx-[15px]">
-      <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
+      <div
+        className={
+          'flex space-x-2 items-center py-2 cursor-pointer hover:text-black ' +
+          (pathname === '/' ? 'text-black' : '')
+        }
+      >
         <Link to="/" className="uppercase text-sm font-semibold">
           home
         </Link>
@@ -778,8 +784,15 @@ function Accessories() {
 }
 
 function Blog() {
+  const { pathname } = useLocation()
+
   return (
-    <div className="uppercase text-sm font-semibold cursor-pointer hover:text-black">
+    <div
+      className={
+        'uppercase text-sm font-semibold cursor-pointer hover:text-black ' +
+        (pathname === '/blog' ? 'text-black' : '')
+      }
+    >
       <Link to="blog">Blog</Link>
     </div>
   )
