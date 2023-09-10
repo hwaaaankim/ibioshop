@@ -460,7 +460,7 @@ function CategoriesMenu({ isBigScreen }) {
       >
         <div
           ref={containerRef}
-          className="flex space-x-2 justify-between items-center bg-black w-full px-4 py-[10px] rounded-t"
+          className="flex space-x-2 justify-between items-center bg-black w-full px-4 py-[13px] rounded-t"
         >
           <div className="flex space-x-2 items-center">
             <i className="fa fa-bars" style={{ fontSize: 16 }} />
@@ -515,7 +515,7 @@ function HomeDropDown() {
       visible={hidden ? false : undefined}
     >
       <div className="mx-[15px]">
-        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+        <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
           <Link to="/" className="uppercase text-sm font-semibold">
             home
           </Link>
@@ -609,7 +609,7 @@ function FeaturesDropDown() {
       visible={hidden ? false : undefined}
     >
       <div className="mx-[15px]">
-        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+        <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
           <div className="uppercase text-sm font-semibold">features</div>
           <i className="fa fa-caret-down" />
         </div>
@@ -681,7 +681,7 @@ function PagesDropDown() {
       visible={hidden ? false : undefined}
     >
       <div className="mx-[15px]">
-        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+        <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
           <div className="uppercase text-sm font-semibold">pages</div>
           <i className="fa fa-caret-down" />
         </div>
@@ -761,7 +761,7 @@ function CategoriesDropDown() {
       visible={hidden ? false : undefined}
     >
       <div className="ml-[15px]">
-        <div className="flex space-x-2 items-center py-4 cursor-pointer hover:text-black">
+        <div className="flex space-x-2 items-center py-2 cursor-pointer hover:text-black">
           <div className="uppercase text-sm font-semibold">categories</div>
           <i className="fa fa-caret-down" />
         </div>

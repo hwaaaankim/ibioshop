@@ -193,7 +193,7 @@ function BestSelling() {
   ]
 
   const child = ({ item }) => (
-    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-[8px]">
+    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-[10px]">
       {[1, 2, 3, 4].map((pitem, index) => (
         <div key={index} className="flex space-x-2 items-center">
           <img src={item.picture} className="w-[60px] h-[60px]" />
@@ -249,7 +249,7 @@ function BestSelling() {
   )
   return (
     <div className="col-span-4 lgp8:col-span-1 rounded border border-gray-200 space-y-1 pb-4">
-      <div className="flex space-x-2 justify-between items-center bg-[#e9ecf1] rounded-t py-[6px] px-[20px]">
+      <div className="flex space-x-2 justify-between items-center bg-[#e9ecf1] rounded-t py-[8px] px-[20px]">
         <div className="flex-auto uppercase text-black font-semibold">
           best selling
         </div>
@@ -1500,12 +1500,12 @@ export default function Home() {
         <div className="flex-auto lgp8:flex px-[15px] lgp8:space-x-[30px]">
           <div
             ref={imgRef}
-            className="w-full lgp8:w-[75%] raysMax:w-[80%] bg-[#cfcbcb]"
+            className="w-full lgp8:w-[78%] raysMax:w-[80%] bg-[#cfcbcb]"
             style={{ height }}
           >
             <ImageCarouse height={height} />
           </div>
-          <div className="w-full lgp8:w-[25%] raysMax:w-[20%]">
+          <div className="w-full lgp8:w-[23%] raysMax:w-[20%]">
             <BestSelling />
           </div>
         </div>
