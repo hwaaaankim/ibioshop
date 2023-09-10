@@ -249,7 +249,9 @@ function BestSelling() {
   return (
     <div className="col-span-4 lgp8:col-span-1 rounded border border-gray-50 space-y-1">
       <div className="flex space-x-2 justify-between items-center bg-[#e9ecf1] rounded-t py-[6px] px-[20px]">
-        <div className="flex-auto uppercase font-semibold">best selling</div>
+        <div className="flex-auto uppercase text-black font-semibold">
+          best selling
+        </div>
         <div className="flex space-x-2 items-center">
           {[0, 1].map((page) => (
             <motion.div
