@@ -1500,7 +1500,7 @@ export default function Home() {
         <div className="flex-auto lgp8:flex px-[15px] lgp8:space-x-[30px]">
           <div
             ref={imgRef}
-            className="w-full lgp8:w-[75%] raysMax:w-[80%] bg-gray-50"
+            className="w-full lgp8:w-[75%] raysMax:w-[80%] bg-[#cfcbcb]"
             style={{ height }}
           >
             <ImageCarouse height={height} />
