@@ -192,13 +192,13 @@ function BestSelling() {
   ]
 
   const child = ({ item }) => (
-    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-[4px]">
+    <div className="w-full grid grid-cols-1 xs:grid-cols-2 mdp5:grid-cols-4 lgp8:grid-cols-1 gap-[8px]">
       {[1, 2, 3, 4].map((pitem, index) => (
         <div key={index} className="flex space-x-2 items-center">
-          <img src={item.picture} className="w-[80px] h-[80px]" />
+          <img src={item.picture} className="w-[60px] h-[60px]" />
           <div className="flex-auto -space-y-1">
             <div
-              className="text-[13px] pt-2 cursor-pointer hover:text-primary"
+              className="text-[13px] cursor-pointer hover:text-primary"
               onClick={() => navigate('/product')}
             >
               {item.name}
@@ -247,7 +247,7 @@ function BestSelling() {
     </div>
   )
   return (
-    <div className="col-span-4 lgp8:col-span-1 rounded border border-gray-50 space-y-1">
+    <div className="col-span-4 lgp8:col-span-1 rounded border border-gray-200 space-y-1 pb-4">
       <div className="flex space-x-2 justify-between items-center bg-[#e9ecf1] rounded-t py-[6px] px-[20px]">
         <div className="flex-auto uppercase text-black font-semibold">
           best selling
