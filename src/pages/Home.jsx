@@ -168,7 +168,7 @@ function ImageCarouse() {
 }
 
 function BestSelling() {
-  const [currentPage, setPage] = useState(1)
+  const [currentPage, setPage] = useState(0)
   const navigate = useNavigate()
   const bestSellingItems = [
     {
