@@ -456,6 +456,7 @@ function CategoriesMenu({ isBigScreen }) {
         offset={0}
         visible={isVFalse ? false : isVTrue ? true : undefined}
         minWidth={width}
+        hasShadow={false}
       >
         <div
           ref={containerRef}

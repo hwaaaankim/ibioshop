@@ -14,6 +14,7 @@ export function Dropdown({
   offset = undefined,
   visible = undefined,
   minWidth = 200,
+  hasShadow = true,
 }) {
   const initial = { animate: { rotateX: 90, originY: 0 } }
   const [variants, setVariants] = useState(initial)
@@ -34,7 +35,8 @@ export function Dropdown({
         'bg-white ' +
         (bordered ? 'border ' : '') +
         (hasPadding ? 'px-4 py-2' : '') +
-        ' shadow-lg overflow-clip text-gray-500'
+        (hasShadow ? ' shadow-lg' : '') +
+        ' overflow-clip text-gray-500'
       }
       {...attrs}
       style={{ minWidth }}
