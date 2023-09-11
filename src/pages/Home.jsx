@@ -30,7 +30,7 @@ function Carousel({
   const widthRef = useRef()
   useEffect(() => {
     setTimeout(() => {
-      setHeight(targetEl.current.clientHeight)
+      if (targetEl.current) setHeight(targetEl.current.clientHeight)
     }, 1000)
     setWidth(widthRef.current.clientWidth)
   }, [])
@@ -1097,22 +1097,13 @@ function ProductBanners() {
 }
 
 function ProductCategories({
+  products,
   currentWidth,
   category,
   subCategories,
   hasLeftBannner = false,
   hasRightBanner = false,
 }) {
-  const [products, setProducts] = useState([])
-  const getProducts = async () => {
-    const response = await http.request({ url: 'products' })
-    if (!response.isError) setProducts(response.products)
-  }
-
-  useEffect(() => {
-    getProducts()
-  }, [])
-
   const child = ({ item }) => <Product product={item} />
 
   return (
@@ -1195,7 +1186,7 @@ function ProductsByCategory({ currentWidth }) {
         parentCategories[1],
         parentCategories[0],
         parentCategories[1],
-        parentCategories[0],
+        // parentCategories[0],
       ])
     }
   }
@@ -1203,11 +1194,22 @@ function ProductsByCategory({ currentWidth }) {
   useEffect(() => {
     getCategries()
   }, [])
+
+  const [products, setProducts] = useState([])
+  const getProducts = async () => {
+    const response = await http.request({ url: 'products' })
+    if (!response.isError) setProducts(response.products)
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
   return (
-    <>
+    <div className="space-y-24">
       {categories.map((parent, index) => (
         <ProductCategories
-          key={parent.id}
+          key={parent.id + index}
+          products={products}
           category={parent.name}
           subCategories={parent.children}
           hasLeftBannner={index % 2 === 0}
@@ -1215,7 +1217,7 @@ function ProductsByCategory({ currentWidth }) {
           currentWidth={currentWidth}
         />
       ))}
-    </>
+    </div>
   )
 }
 
@@ -1548,7 +1550,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="md:flex-auto space-y-8">
+        <div className="md:flex-auto space-y-14">
           <MiniBanners />
           <FlashSale currentWidth={currentWidth} />
           <CatalogBanners />
