@@ -1187,8 +1187,16 @@ function ProductsByCategory({ currentWidth }) {
       const parentCategories = response.filter(
         (item) => item.children && item.children.length > 0
       )
-      console.log({ len: parentCategories.length, items: parentCategories })
-      setCategories(parentCategories)
+      console.log({
+        len: parentCategories.length,
+        items: [parentCategories[1], parentCategories[0], parentCategories[1]],
+      })
+      setCategories([
+        parentCategories[1],
+        parentCategories[0],
+        parentCategories[1],
+        parentCategories[0],
+      ])
     }
   }
 
