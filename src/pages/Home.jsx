@@ -921,32 +921,34 @@ function FlashSale({ currentWidth }) {
 
   return (
     <div className="space-y-4">
-      <div className="block xs:flex space-y-1 xs:space-y-0 xs:space-x-4 items-center">
-        <div ref={flashSaleRef} className="py-1 uppercase text-xl font-bold">
-          flash sale
-        </div>
+      <div className="">
+        <div className="block xs:flex space-y-1 xs:space-y-0 xs:space-x-4 items-center">
+          <div ref={flashSaleRef} className="py-1 uppercase text-xl font-bold">
+            flash sale
+          </div>
 
-        <div className="xs:flex-auto xs:flex xs:space-x-2 items-center justify-between">
-          <div className="flex space-x-2 items-center">
-            {[1, 2, 3, 4].map((index) => (
-              <div key={index} className="flex space-x-2 items-center">
-                <div className="bg-primary text-white text-lg px-[10px] rounded">
-                  00
+          <div className="xs:flex-auto xs:flex xs:space-x-2 items-center justify-between">
+            <div className="flex space-x-2 items-center">
+              {[1, 2, 3, 4].map((index) => (
+                <div key={index} className="flex space-x-2 items-center">
+                  <div className="bg-primary text-white text-lg px-[10px] rounded">
+                    00
+                  </div>
+                  {index < 4 && <div className="text-lg font-bold">:</div>}
                 </div>
-                {index < 4 && <div className="text-lg font-bold">:</div>}
-              </div>
-            ))}
-          </div>
-          <div className="hidden xs:flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
-            <div>View All</div>
-            <i className="fa fa-caret-right"></i>
+              ))}
+            </div>
+            <div className="hidden xs:flex space-x-2 items-center text-[13px] cursor-pointer hover:text-primary">
+              <div>View All</div>
+              <i className="fa fa-caret-right"></i>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="hidden xs:flex">
-        <div className="border-b-2 border-primary" style={{ width }}></div>
-        <div className="flex-auto border-b-2 border-gray-300"></div>
+        <div className="hidden xs:flex">
+          <div className="border-b-2 border-primary" style={{ width }}></div>
+          <div className="flex-auto border-b-2 border-gray-300"></div>
+        </div>
       </div>
       {products && products.length > 0 && (
         <Carousel
