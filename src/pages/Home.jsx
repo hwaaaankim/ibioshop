@@ -81,6 +81,7 @@ function Carousel({
               <div ref={index === 0 ? targetEl : null} className="w-full">
                 <Child
                   item={item}
+                  index={index}
                   changePage={draggable ? handlePageChange : null}
                 />
               </div>
@@ -1451,7 +1452,7 @@ function NewArrivals({ currentWidth }) {
 
 function BrandsCarousel() {
   const child = () => (
-    <div className="h-[71px]  hover:opacity-60 cursor-pointer -mx-3">
+    <div className="h-[71px]  hover:opacity-60 cursor-pointer -mr-[30.5px]">
       <img
         src={CDN_URL + '/image/catalog/brands/b1.png'}
         className="w-full h-full"
