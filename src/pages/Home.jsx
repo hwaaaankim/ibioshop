@@ -1362,7 +1362,11 @@ function NewArrivals({ currentWidth }) {
             onMouseEnter={() => setHoverIndex(index)}
             onMouseLeave={() => setHoverIndex(undefined)}
           >
-            <div>{title}</div>
+            <div
+              className={index === activeTab ? 'text-primary' : 'text-gray-900'}
+            >
+              {title}
+            </div>
             <AnimatePresence>
               {activeTab === index && (
                 <motion.div
