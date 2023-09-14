@@ -94,9 +94,13 @@ function Product({ wishilistItem, setRefresh }) {
             type="button"
             className="cursor-pointer bg-red-1 hover:bg-red-500 text-white align-middle text-center 
                   leading-normal font-normal text-sm inline-block px-4 h-9"
-            onClick={handleRemove}
+            onClick={!removing ? handleRemove : null}
           >
-            <i className="fa fa-times"></i>
+            {removing ? (
+              <i className="fa fa-circle-o-notch animate-spin" />
+            ) : (
+              <i className="fa fa-times"></i>
+            )}
           </button>
         </Tippy>
       </td>
