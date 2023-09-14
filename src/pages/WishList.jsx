@@ -11,7 +11,7 @@ import '../App.css'
 import { http } from '../services/http/http'
 import { BASE_URL } from '../config/config'
 
-function Product({ wishilistItem }) {
+function Product({ wishilistItem, setRefresh }) {
   const availabilities = [
     'In Stock',
     'Out of Stock',
@@ -19,7 +19,18 @@ function Product({ wishilistItem }) {
     'Unavailable',
   ]
 
-  const handleRemove = () => {}
+  const [removing, setRemoving] = useState(false)
+  const handleRemove = async () => {
+    setRemoving(true)
+    console.log({ witem: wishilistItem })
+    const response = await http.request({
+      method: 'delete',
+      url: 'wishlists/' + wishilistItem.id,
+    })
+    if (!response.isError) setRefresh((prev) => !prev)
+
+    setRemoving(false)
+  }
   const handleUpdate = () => {}
 
   return (
@@ -93,7 +104,7 @@ function Product({ wishilistItem }) {
   )
 }
 
-function WishListTable({ wishlists }) {
+function WishListTable({ wishlists, setRefresh }) {
   return (
     <>
       <div className="w-full">
@@ -122,7 +133,11 @@ function WishListTable({ wishlists }) {
           </thead>
           <tbody>
             {wishlists.map((wishlist) => (
-              <Product key={wishlist.id} wishilistItem={wishlist} />
+              <Product
+                key={wishlist.id}
+                wishilistItem={wishlist}
+                setRefresh={setRefresh}
+              />
             ))}
           </tbody>
         </table>
@@ -164,6 +179,11 @@ export default function WishList() {
     return hideBreadcrumb
   }, [])
 
+  const [refresh, setRefresh] = useState(false)
+  useEffect(() => {
+    getWishlists()
+  }, [refresh])
+
   return (
     <div className="overflow-visible box-border text-gray-400 lgp8:max-w-[1650px] w-[95%] mx-auto p-0 leading-6 text-sm justify-center mb-3">
       <div className="w-full text-gray-600 bg-transparent my-3 mx-0 rounded list-none box-border flex flex-col md:flex-row gap-8 p-0 min-h-fit">
@@ -171,7 +191,7 @@ export default function WishList() {
           className="mb-2 float-left relative md:w-[79%] lg:w-[84%] w-full"
           style={{ minHeight: 1 + 'px', margin: '0 auto' }}
         >
-          <WishListTable wishlists={wishlists} />
+          <WishListTable wishlists={wishlists} setRefresh={setRefresh} />
         </div>
         <div
           className="hidden md:w-[21%] lg:w-[16%] md:block text-gray-2"
