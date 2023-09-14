@@ -10,8 +10,12 @@ import AccountSiteMap from '../components/my_account/AccountSiteMap'
 import '../App.css'
 import { http } from '../services/http/http'
 import { BASE_URL } from '../config/config'
+import { addToCart } from '../store/slices/cartSlice'
+import { useSnackbar } from 'notistack'
 
 function Product({ wishilistItem, setRefresh }) {
+  const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar()
   const availabilities = [
     'In Stock',
     'Out of Stock',
@@ -31,7 +35,18 @@ function Product({ wishilistItem, setRefresh }) {
 
     setRemoving(false)
   }
-  const handleUpdate = () => {}
+  const add2Cart = () => {
+    dispatch(
+      addToCart({
+        product: { ...wishilistItem.product, size: 'xl' },
+        quantity: 1,
+      })
+    )
+    enqueueSnackbar('Added to cart successfully!', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
+  }
 
   return (
     <tr
@@ -83,7 +98,7 @@ function Product({ wishilistItem, setRefresh }) {
           <button
             className="mr-1 cursor-pointer bg-blue-1 hover:bg-blue-2 text-white align-middle text-center 
                   leading-normal font-normal text-sm inline-block px-4 h-9"
-            onClick={handleUpdate}
+            onClick={add2Cart}
             type="button"
           >
             <i className="fa fa-shopping-cart"></i>
