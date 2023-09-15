@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import pro from '../../assets/images/1 (1).jpg'
 import Notice from '../Notification/Notice'
@@ -8,6 +8,7 @@ import { BASE_URL, CDN_URL } from '../../config/config'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { updateQuantity, addToCart } from '../../store/slices/cartSlice'
+import { http } from '../../services/http/http'
 
 function ProductPreview({ product }) {
   const [showNotification, setShowNotification] = useState(false)
@@ -69,6 +70,25 @@ function ProductPreview({ product }) {
     }, 3000) // hide the notification after 3 seconds
   }
 
+  const [totalReviews, setTotal] = useState(0)
+  const getReviews = async () => {
+    const response = await http.request({
+      url: 'product_reviews/product/' + product.id,
+    })
+    if (!response.isError) setTotal(response.totalProductReviews)
+  }
+  const [rating, setRating] = useState(0)
+  const getRating = async () => {
+    const response = await http.request({
+      url: 'product_rates/' + product.id,
+    })
+    if (!response.isError) setRating(Number(response.rate))
+  }
+
+  useEffect(() => {
+    getReviews()
+    getRating()
+  }, [])
   return (
     <div className="lg:flex lg:flex-row flex-col text-[#999]">
       {/* product image */}
@@ -135,16 +155,21 @@ function ProductPreview({ product }) {
           </h2>
           <div className="flex">
             <div className="flex space-x-1 items-center">
-              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
-              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
-              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
-              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
-              <i className="fa fa-star" style={{ fontSize: 13 }}></i>
+              {Array.from({ length: 5 }).map((item, index) => (
+                <i
+                  key={index}
+                  className="fa fa-star"
+                  style={{
+                    fontSize: 13,
+                    color: index < rating ? 'orange' : '',
+                  }}
+                ></i>
+              ))}
             </div>
 
             <span className="text-[#555] flex space-x-2 text-xs">
               <a className="px-2" href="">
-                {product?.reviews?.length || 0} reviews
+                {totalReviews} reviews
               </a>
               |<a className="write_review_buttonick">Write a review</a>
             </span>
