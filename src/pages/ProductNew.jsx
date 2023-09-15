@@ -229,6 +229,38 @@ function ReviewForm() {
   )
 }
 
+function Review({ review }) {
+  const createdAt = new Date(review.createdAt)
+  return (
+    <div className="border">
+      <div className="grid grid-cols-2 gap-0 border-b bg-gray-100 px-2 items-center">
+        <div className="py-1 text-[13px] font-medium border-r">
+          {review.fullName}
+        </div>
+        <div className="py-1 text-[13px] text-right">
+          {createdAt.getDate()}/{createdAt.getMonth() + 1}/
+          {createdAt.getFullYear()}
+        </div>
+      </div>
+      <div className="space-y-2 p-2">
+        <div className="text-xs">{review.review}</div>
+        <div className="flex space-x-1 items-center">
+          {Array.from({ length: 5 }).map((item, index) => (
+            <i
+              key={index}
+              className="fa fa-star"
+              style={{
+                fontSize: 13,
+                color: index < review.rating ? 'orange' : '',
+              }}
+            ></i>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function Reviews() {
   const { id } = useParams()
   const [loading, setLoading] = useState(false)
@@ -251,29 +283,7 @@ function Reviews() {
     <div className="space-y-4">
       <div className="space-y-2">
         {reviews.map((review) => (
-          <div key={review.id} className="border">
-            <div className="grid grid-cols-2 gap-0 border-b bg-gray-100 px-2 items-center">
-              <div className="py-1 text-[13px] font-medium border-r">
-                {review.fullName}
-              </div>
-              <div className="py-1 text-[13px] text-right">29/07/2015</div>
-            </div>
-            <div className="space-y-2 p-2">
-              <div className="text-xs">{review.review}</div>
-              <div className="flex space-x-1 items-center">
-                {Array.from({ length: 5 }).map((item, index) => (
-                  <i
-                    key={index}
-                    className="fa fa-star"
-                    style={{
-                      fontSize: 13,
-                      color: index < review.rating ? 'orange' : '',
-                    }}
-                  ></i>
-                ))}
-              </div>
-            </div>
-          </div>
+          <Review review={review} key={review.id} />
         ))}
       </div>
 
