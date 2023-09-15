@@ -282,6 +282,10 @@ function Reviews() {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
+        {loading && <div className="">Loading...</div>}
+        {!loading && reviews.length === 0 && (
+          <div className="">No reviews!</div>
+        )}
         {reviews.map((review) => (
           <Review review={review} key={review.id} />
         ))}
