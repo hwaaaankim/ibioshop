@@ -230,37 +230,51 @@ function ReviewForm() {
 }
 
 function Reviews() {
+  const { id } = useParams()
+  const [loading, setLoading] = useState(false)
+  const [reviews, setReviews] = useState([])
+  const getReviews = async () => {
+    setLoading(true)
+    const response = await http.request({
+      url: 'product_reviews/product/' + id,
+    })
+
+    if (!response.isError) setReviews(response.productReviews)
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
   return (
     <div className="space-y-4">
-      <div className="border">
-        <div className="grid grid-cols-2 gap-0 border-b bg-gray-100 px-2 items-center">
-          <div className="py-1 text-[13px] font-medium border-r">
-            Super Administrator
+      <div className="space-y-2">
+        {reviews.map((review) => (
+          <div key={review.id} className="border">
+            <div className="grid grid-cols-2 gap-0 border-b bg-gray-100 px-2 items-center">
+              <div className="py-1 text-[13px] font-medium border-r">
+                {review.fullName}
+              </div>
+              <div className="py-1 text-[13px] text-right">29/07/2015</div>
+            </div>
+            <div className="space-y-2 p-2">
+              <div className="text-xs">{review.review}</div>
+              <div className="flex space-x-1 items-center">
+                {Array.from({ length: 5 }).map((item, index) => (
+                  <i
+                    key={index}
+                    className="fa fa-star"
+                    style={{
+                      fontSize: 13,
+                      color: index < review.rating ? 'orange' : '',
+                    }}
+                  ></i>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="py-1 text-[13px] text-right">29/07/2015</div>
-        </div>
-        <div className="space-y-2 p-2">
-          <div className="text-xs">Best this product opencart</div>
-          <div className="flex space-x-1 items-center">
-            <i
-              className="fa fa-star text-amber-500"
-              style={{ fontSize: 13 }}
-            ></i>
-            <i
-              className="fa fa-star text-amber-500"
-              style={{ fontSize: 13 }}
-            ></i>
-            <i
-              className="fa fa-star text-amber-500"
-              style={{ fontSize: 13 }}
-            ></i>
-            <i
-              className="fa fa-star text-amber-500"
-              style={{ fontSize: 13 }}
-            ></i>
-            <i className="fa fa-star" style={{ fontSize: 13 }}></i>
-          </div>
-        </div>
+        ))}
       </div>
 
       <ReviewForm />
@@ -314,29 +328,49 @@ function CustomTab() {
 }
 
 function ProductTab({ product }) {
+  const { id } = useParams()
   const [activeTab, setActiveTab] = useState(0)
+
+  const [totalReviews, setTotal] = useState(0)
+  const getReviews = async () => {
+    const response = await http.request({
+      url: 'product_reviews/product/' + id,
+    })
+
+    if (!response.isError) setTotal(response.totalProductReviews)
+  }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
+
   return (
     <div className="border grid grid-cols-6 gap-0">
       <div className="border-r">
-        {['description', 'reviews (1)', 'tags', 'custom tab'].map(
-          (title, index) => (
-            <motion.div
-              key={index}
-              className={
-                'px-3 py-2 cursor-pointer uppercase font-semibold border-l-4 border-b ' +
-                (index !== activeTab
-                  ? 'border-l-transparent'
-                  : 'border-l-primary text-primary')
-              }
-              onClick={() => setActiveTab(index)}
-            >
-              {title}
-            </motion.div>
-          )
-        )}
+        {[
+          'description',
+          'reviews (' + totalReviews + ')',
+          'tags',
+          'custom tab',
+        ].map((title, index) => (
+          <motion.div
+            key={index}
+            className={
+              'px-3 py-2 cursor-pointer uppercase font-semibold border-l-4 border-b ' +
+              (index !== activeTab
+                ? 'border-l-transparent'
+                : 'border-l-primary text-primary')
+            }
+            onClick={() => setActiveTab(index)}
+          >
+            {title}
+          </motion.div>
+        ))}
       </div>
       <div className="col-span-5 p-3">
-        {[Description, Reviews, Tags, CustomTab][activeTab]()}
+        {[Description, Reviews, Tags, CustomTab].map((Tab, index) =>
+          index === activeTab ? <Tab /> : null
+        )}
       </div>
     </div>
   )
