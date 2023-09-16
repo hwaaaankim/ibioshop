@@ -331,7 +331,7 @@ function Reviews() {
   }, [])
   return (
     <div className="space-y-4">
-      <div className="space-y-2">
+      <div className="space-y-2 max-h-[60vh] overflow-y-auto">
         {loading && <div className="">Loading...</div>}
         {!loading && reviews.length === 0 && (
           <div className="">No reviews!</div>
