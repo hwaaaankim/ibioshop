@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom'
 import { http } from '../services/http/http'
 import BaseInput from '../components/controlled/BaseInput'
 import BaseTextArea from '../components/controlled/BaseTextArea'
+import { useForm } from 'react-hook-form'
 
 export default function ProductNew() {
   const { id } = useParams()
@@ -192,13 +193,52 @@ function Description() {
   )
 }
 
-function ReviewForm() {
+function ReviewForm({ refresh }) {
+  const { id } = useParams()
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      fullName: '',
+      review: '',
+      rating: '',
+    },
+  })
+
+  const [loading, setLoading] = useState(false)
+  const submitReview = async ({ fullName, review, rating }) => {
+    setLoading(true)
+    const response = await http.request({
+      method: 'post',
+      url: 'product_reviews',
+      data: {
+        productId: id,
+        fullName,
+        review,
+        rating: Number(rating),
+      },
+    })
+
+    if (!response.isError) {
+      reset()
+      refresh()
+    }
+
+    setLoading(false)
+  }
   return (
     <>
       <div className="space-y-2">
         <div className="text-lg font-medium">Write a review</div>
-        <BaseInput placeholder="Your Name" />
-        <BaseTextArea placeholder="Your Review" rows={2} />
+        <BaseInput placeholder="Your Name" {...register('fullName')} />
+        <BaseTextArea
+          placeholder="Your Review"
+          rows={2}
+          {...register('review')}
+        />
       </div>
 
       <div className="space-y-2">
@@ -211,18 +251,28 @@ function ReviewForm() {
         <div className="text-sm font-medium">Rating</div>
         <div className="flex space-x-2 items-center">
           <div className="text-sm">Bad</div>
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
-          <input name="rate" type="radio" />
+          <input type="radio" value={1} {...register('rating')} />
+          <input type="radio" value={2} {...register('rating')} />
+          <input type="radio" value={3} {...register('rating')} />
+          <input type="radio" value={4} {...register('rating')} />
+          <input type="radio" value={5} {...register('rating')} />
           <div className="text-sm">Good</div>
         </div>
       </div>
 
       <div className="flex">
-        <div className="py-[6px] px-3 text-white text-sm flex space-x-2 items-center bg-[gray] hover:bg-primary cursor-pointer">
-          Continue
+        <div
+          className="py-[6px] px-3 text-white text-sm flex space-x-2 items-center bg-[gray] hover:bg-primary cursor-pointer"
+          onClick={handleSubmit(submitReview)}
+        >
+          {loading ? (
+            <span>
+              <i className="fa fa-circle-o-notch animate-spin" />
+              Submitting
+            </span>
+          ) : (
+            'Continue'
+          )}
         </div>
       </div>
     </>
@@ -291,7 +341,7 @@ function Reviews() {
         ))}
       </div>
 
-      <ReviewForm />
+      <ReviewForm refresh={getReviews} />
     </div>
   )
 }
