@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { setStatus, setUser } from '../../store/slices/authSlice'
 import auth from '../../services/http/auth'
 import { useEffect } from 'react'
+import eventEmitter from '../../services/eventEmitter'
 
 export default function LogoutHandler() {
   const dispatch = useDispatch()
