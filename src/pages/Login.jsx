@@ -6,6 +6,7 @@ import BaseInput from '../components/controlled/BaseInput'
 import { useState } from 'react'
 import auth from '../services/http/auth'
 import { Link, useNavigate } from 'react-router-dom'
+import { ADMIN_PANEL_URL } from '../config/config'
 
 function AccountRegistrationIntro() {
   return (
@@ -55,9 +56,13 @@ function LoginForm() {
     }
     const response = await auth.signIn(requestPayload)
     if (!response.isError) {
-      dispatch(setUser({ user: response.user }))
-      dispatch(setStatus({ signedIn: true }))
-      navigate('/')
+      if (response.user.role === 'USER') {
+        dispatch(setUser({ user: response.user }))
+        dispatch(setStatus({ signedIn: true }))
+        navigate('/')
+      } else
+        window.location.href =
+          ADMIN_PANEL_URL + '/role-based-auth?token=' + response.token
     } else {
       // setError(response.error.response.data.message)
       console.log({ response })
