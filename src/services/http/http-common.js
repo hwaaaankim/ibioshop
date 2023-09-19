@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { tokenService } from '../storageService'
 import { BASE_URL } from '../../config/config'
+import eventEmitter from '../eventEmitter'
 
 const apiService = {
   init() {
@@ -27,6 +28,7 @@ const apiService = {
       async (error) => {
         if (error.response.status === 401) {
           console.log('401: unauthorized -- interceptor')
+          eventEmitter.emit('signOut')
           /**
            * Either sign the user out or refresh token
            * 1. sign the user out by emitting a sign out event or implement sign out here
