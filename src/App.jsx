@@ -29,6 +29,7 @@ import ProductComparison from './pages/ProductComparison'
 import ScrollToTop from './components/layout/ScrollToTop'
 import Modal from './components/collection/Modal'
 import ProductNew from './pages/ProductNew'
+import LogoutHandler from './components/layout/LogoutHandler'
 
 function App() {
   const header = useSelector((state) => state.header)
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <div className="h-screen">
+      <LogoutHandler />
       <ScrollToTop />
       <Modal />
       <div className={'h-screen' + (modal.show ? ' overflow-hidden' : '')}>
