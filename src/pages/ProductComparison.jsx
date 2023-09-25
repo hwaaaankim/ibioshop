@@ -4,6 +4,8 @@ import { setPath, toggleVisibility } from '../store/slices/breadcrumbSlice'
 import { useEffect, useState } from 'react'
 import { BASE_URL } from '../config/config'
 import { removeFromComparison } from '../store/slices/compareSlice'
+import { enqueueSnackbar } from 'notistack'
+import { addToCart } from '../store/slices/cartSlice'
 
 function ProductComparison() {
   const initial = useSelector((state) => state.compare)
@@ -16,12 +18,18 @@ function ProductComparison() {
     'Unavailable',
   ]
 
+  const dispatch = useDispatch()
+
+  const add2Cart = (product) => {
+    dispatch(addToCart({ product: { ...product, size: 'xl' }, quantity: 1 }))
+    enqueueSnackbar('Added to cart successfully!', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
+  }
   const removeProduct = (productId) => {
-    console.log({ productId })
     dispatch(removeFromComparison(productId))
   }
-
-  const dispatch = useDispatch()
 
   const hideBreadcrumb = () => {
     dispatch(toggleVisibility({ hidden: true }))
@@ -281,11 +289,12 @@ function ProductComparison() {
                   key={index}
                   className="border pl-3 text-xs font-normal py-3"
                 >
-                  <input
-                    type="button"
-                    className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3"
-                    value="Add to Cart"
-                  ></input>
+                  <div
+                    className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3 cursor-pointer hover:opacity-75 active:opacity-60"
+                    onClick={() => add2Cart(item)}
+                  >
+                    Add to Cart
+                  </div>
                   <div
                     className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3 cursor-pointer hover:opacity-75 active:opacity-60"
                     onClick={() => removeProduct(item.id)}
