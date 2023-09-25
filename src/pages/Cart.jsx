@@ -1,4 +1,3 @@
-import Icon from '../components/icon/Icon'
 import ShoppingCartTable from '../components/cart/ShoppingCartTable'
 import Total from '../components/cart/Total'
 import CouponCode from '../components/cart/CouponCode'
