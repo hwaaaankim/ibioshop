@@ -5,6 +5,7 @@ import authSlice from './slices/authSlice'
 import breadcrumbSlice from './slices/breadcrumbSlice'
 import modalSlice from './slices/modalSlice'
 import cartSlice from './slices/cartSlice'
+import compareSlice from './slices/compareSlice'
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     auth: authSlice,
     modal: modalSlice,
     cart: cartSlice,
+    compare: compareSlice,
   },
 })
