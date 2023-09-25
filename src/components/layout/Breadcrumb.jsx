@@ -16,7 +16,7 @@ export default function Breadcrumb() {
         </div>
       </li>
       {breadcrumb.path.map((nav, index) => (
-        <>
+        <div key={index} className="flex items-center space-x-3">
           <li>
             <i
               className="fa fa-angle-right text-gray-400"
@@ -36,7 +36,7 @@ export default function Breadcrumb() {
               {nav.title}
             </div>
           </li>
-        </>
+        </div>
       ))}
     </ul>
   )
