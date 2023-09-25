@@ -1,6 +1,7 @@
 const TOKEN_KEY = '__token__'
 const USER_KEY = '__user__'
 const CART_KEY = '__cart__'
+const PRODUCT_COMPARE_KEY = '__products_2_compare__'
 
 class AppStorage {
   constructor(storage) {
@@ -80,4 +81,14 @@ const cartService = {
     appStorage.setItem(CART_KEY, cart)
   },
 }
-export { tokenService, userService, cartService }
+
+const compareService = {
+  get() {
+    return appStorage.getItem(PRODUCT_COMPARE_KEY)
+  },
+
+  update(items) {
+    appStorage.setItem(PRODUCT_COMPARE_KEY, items)
+  },
+}
+export { tokenService, userService, cartService, compareService }
