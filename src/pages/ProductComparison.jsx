@@ -38,6 +38,10 @@ function ProductComparison() {
     return hideBreadcrumb
   }, [])
 
+  useEffect(() => {
+    setProducts(initial)
+  }, [initial])
+
   return (
     <div className="pb-10 lgp8:max-w-[1650px] w-[95%] mx-auto overflow-x-auto">
       <h1 className="text-lg ">Product Comparison</h1>
