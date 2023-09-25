@@ -1,9 +1,14 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import e3 from '../assets/images/e3.jpg'
 import { setPath, toggleVisibility } from '../store/slices/breadcrumbSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function ProductComparison() {
+  const initial = useSelector((state) => state.compare)
+  //productsToCompare
+  const [products, setProducts] = useState(initial.map((item) => ({ ...item })))
+  console.log({ products })
+
   const dispatch = useDispatch()
 
   const hideBreadcrumb = () => {
@@ -24,22 +29,12 @@ function ProductComparison() {
   return (
     <div className="pb-10 lgp8:max-w-[1650px] w-[95%] mx-auto overflow-x-auto">
       <h1 className="text-lg ">Product Comparison</h1>
-      {/* <ul className="flex flex-row mb-4 mt-7 text-gray-400">
-        <li>
-          <a href="/">
-            <i className="fa fa-home"></i>
-          </a>
-        </li>
-        <i className="fa fa-chevron-right mt-0.5 mx-2"></i>
-        <li className="/">
-          <a href="/compare">Product Comparison</a>
-        </li>
-      </ul> */}
+
       <table className="">
         <thead className="py-2 comparison-thead">
           <tr className="border">
             <td className="pl-3 text-xs font-normal py-3">
-              <strong className="py-1 font-bold">Product Detais</strong>
+              <strong className="py-1 font-bold">Product Details</strong>
             </td>
           </tr>
         </thead>
@@ -141,68 +136,68 @@ function ProductComparison() {
             <td className="border pl-3 text-xs font-normal py-3">Rating</td>
             <td className="border pl-3 text-xs font-normal py-3">
               <div className="text-yellow-500">
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
               </div>
             </td>
             <td className="border pl-3 text-xs font-normal py-3">
               <div className="text-yellow-500">
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star fa-stack-1x"></i>
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star fa-stack-1x"></i>
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
               </div>
             </td>
             <td className="border pl-3 text-xs font-normal py-3">
               <div className="">
-                <span class="fa fa-stack">
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
-                <span class="fa fa-stack">
-                  <i class="fa fa-star-o fa-stack-1x"></i>
+                <span className="fa fa-stack">
+                  <i className="fa fa-star-o fa-stack-1x"></i>
                 </span>
               </div>
             </td>
