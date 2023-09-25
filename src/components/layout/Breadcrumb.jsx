@@ -8,9 +8,9 @@ export default function Breadcrumb() {
   return (
     <ul className="lgp8:max-w-[1650px] lgp8:w-[95%] mx-auto flex items-center list-none my-6 leading-normal bg-transparent p-0 space-x-3">
       <li className="relative py-0">
-        <div className="cursor-pointer hover:text-primary">
+        <div className="cursor-pointer" onClick={() => navigate('/')}>
           <i
-            className="fa fa-home ml-2 text-gray-400"
+            className="fa fa-home ml-2 text-gray-400 hover:text-primary"
             style={{ fontSize: 14 }}
           ></i>
         </div>
