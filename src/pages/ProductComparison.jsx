@@ -3,6 +3,7 @@ import e3 from '../assets/images/e3.jpg'
 import { setPath, toggleVisibility } from '../store/slices/breadcrumbSlice'
 import { useEffect, useState } from 'react'
 import { BASE_URL } from '../config/config'
+import { removeFromComparison } from '../store/slices/compareSlice'
 
 function ProductComparison() {
   const initial = useSelector((state) => state.compare)
@@ -14,7 +15,11 @@ function ProductComparison() {
     'Coming Soon',
     'Unavailable',
   ]
-  console.log({ products })
+
+  const removeProduct = (productId) => {
+    console.log({ productId })
+    dispatch(removeFromComparison(productId))
+  }
 
   const dispatch = useDispatch()
 
@@ -96,15 +101,25 @@ function ProductComparison() {
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">Model</td>
-              <td className="border pl-3 text-xs font-normal py-3">Pt 001</td>
-              <td className="border pl-3 text-xs font-normal py-3">Pt 002</td>
-              <td className="border pl-3 text-xs font-normal py-3">Pt 003</td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  Pt 001
+                </td>
+              ))}
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">Brand</td>
-              <td className="border pl-3 text-xs font-normal py-3">Apple</td>
-              <td className="border pl-3 text-xs font-normal py-3">Apple</td>
-              <td className="border pl-3 text-xs font-normal py-3">Apple</td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  Apple
+                </td>
+              ))}
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">
@@ -121,73 +136,36 @@ function ProductComparison() {
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">Rating</td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                <div className="text-yellow-500">
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                </div>
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                <div className="text-yellow-500">
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star fa-stack-1x"></i>
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                </div>
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                <div className="">
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                  <span className="fa fa-stack">
-                    <i className="fa fa-star-o fa-stack-1x"></i>
-                  </span>
-                </div>
-              </td>
+
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  <div className="text-yellow-500">
+                    <span className="fa fa-stack">
+                      <i className="fa fa-star fa-stack-1x"></i>
+                      <i className="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+                    <span className="fa fa-stack">
+                      <i className="fa fa-star fa-stack-1x"></i>
+                      <i className="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+                    <span className="fa fa-stack">
+                      <i className="fa fa-star fa-stack-1x"></i>
+                      <i className="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+                    <span className="fa fa-stack">
+                      <i className="fa fa-star fa-stack-1x"></i>
+                      <i className="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+                    <span className="fa fa-stack">
+                      <i className="fa fa-star fa-stack-1x"></i>
+                      <i className="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+                  </div>
+                </td>
+              ))}
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">Summary</td>
@@ -202,23 +180,27 @@ function ProductComparison() {
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">Weight</td>
-              <td className="border pl-3 text-xs font-normal py-3">1.50kg</td>
-              <td className="border pl-3 text-xs font-normal py-3">1.80kg</td>
-              <td className="border pl-3 text-xs font-normal py-3">2.00kg</td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  2.00kg
+                </td>
+              ))}
             </tr>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">
                 Dimensions (L x W x H)
               </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                0.00mm x 0.00mm x 0.00mm
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                0.00mm x 0.00mm x 0.00mm
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                0.00cm x 0.00cm x 0.00cm
-              </td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  0.00cm x 0.00cm x 0.00cm
+                </td>
+              ))}
             </tr>
           </tbody>
           <thead className="comparison-thead w-screen">
@@ -233,9 +215,14 @@ function ProductComparison() {
               <td className="border pl-3 text-xs font-normal py-3">
                 Clockspeed
               </td>
-              <td className="border pl-3 text-xs font-normal py-3">100mhz</td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  100mhz
+                </td>
+              ))}
             </tr>
           </tbody>
           <thead className="comparison-thead">
@@ -248,75 +235,61 @@ function ProductComparison() {
           <tbody>
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">test 1</td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                Hammered metal outer - Semi-precious stone embellishments
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  {index % 2 == 1 &&
+                    'Hammered metal outer - Semi-precious stone embellishments'}
+                </td>
+              ))}
             </tr>
 
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">test 2</td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                H: 11cm/4" W: 12cm/5" D: 5cm/2"
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  {index % 2 == 1 && 'H: 11cm/4" W: 12cm/5" D: 5cm/2"'}
+                </td>
+              ))}
             </tr>
 
             <tr>
               <td className="border pl-3 text-xs font-normal py-3">test 3</td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                Green - Black - Brown
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3"></td>
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
+                >
+                  {index % 2 === 1 && 'Green - Black - Brown'}
+                </td>
+              ))}
             </tr>
 
             <tr>
               <td className="border pl-3 text-xs font-normal py-3"></td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                <input
-                  type="button"
-                  onclick=""
-                  className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3"
-                  value="Add to Cart"
-                ></input>
-                <a
-                  className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3"
-                  href="#"
+              {products.map((item, index) => (
+                <td
+                  key={index}
+                  className="border pl-3 text-xs font-normal py-3"
                 >
-                  Remove
-                </a>
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                <input
-                  type="button"
-                  onclick=""
-                  className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3"
-                  value="Add to Cart"
-                ></input>
-                <a
-                  className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3"
-                  href="#"
-                >
-                  Remove
-                </a>
-              </td>
-              <td className="border pl-3 text-xs font-normal py-3">
-                <input
-                  type="button"
-                  onclick=""
-                  className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3"
-                  value="Add to Cart"
-                ></input>
-                <a
-                  className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3"
-                  href="#"
-                >
-                  Remove
-                </a>
-              </td>
+                  <input
+                    type="button"
+                    className="block bg-blue-600 text-white text-center sm:mx-10 mb-2 w-9/12 px-3 py-3"
+                    value="Add to Cart"
+                  ></input>
+                  <div
+                    className="block bg-red-600 text-white text-center sm:mx-10 px-3 w-9/12 py-3 cursor-pointer hover:opacity-75 active:opacity-60"
+                    onClick={() => removeProduct(item.id)}
+                  >
+                    Remove
+                  </div>
+                </td>
+              ))}
             </tr>
           </tbody>
         </table>
