@@ -4,7 +4,9 @@ import Total from '../components/cart/Total'
 import CouponCode from '../components/cart/CouponCode'
 import Shipping from '../components/cart/Shipping'
 import GiftCertificate from '../components/cart/GiftCertificate'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setPath, toggleVisibility } from '../store/slices/breadcrumbSlice'
 
 function Cart() {
   const [showCouponForm, toggleCouponForm] = useState(true)
@@ -24,19 +26,23 @@ function Cart() {
     setters[targetKey]((prev) => !prev)
   }
 
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(setPath({ path: [{ title: 'Shopping Cart', path: '/cart' }] }))
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+
   return (
     <div className="flex flex-col md:mx-10 mx-3 mb-4 pb-2 sm:text-sm lg:text-xs 2xl:m-auto lgp8:max-w-[1650px] lgp8:w-[95%]">
-      <ul className="flex flex-row mb-4 mt-7 text-gray-400">
-        <li>
-          <a href="/">
-            <Icon className="text-gray-100" size="12" id="home"></Icon>
-          </a>
-        </li>
-        <Icon className="mt-0.5 mx-2" id="chevronRight" size="10"></Icon>
-        <li className="">
-          <a href="/cart">Shopping Cart</a>
-        </li>
-      </ul>
       <div>
         <div className="space-y-2">
           <h2 className="text-xl font-normal text-gray-500 pb-2">
