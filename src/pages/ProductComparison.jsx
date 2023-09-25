@@ -1,10 +1,30 @@
+import { useDispatch } from 'react-redux'
 import e3 from '../assets/images/e3.jpg'
+import { setPath, toggleVisibility } from '../store/slices/breadcrumbSlice'
+import { useEffect } from 'react'
 
 function ProductComparison() {
+  const dispatch = useDispatch()
+
+  const hideBreadcrumb = () => {
+    dispatch(toggleVisibility({ hidden: true }))
+    dispatch(setPath({ path: [] }))
+  }
+  const showBreadCrumb = () => {
+    dispatch(
+      setPath({ path: [{ title: 'Product Comparison', path: '/compare' }] })
+    )
+    dispatch(toggleVisibility({ hidden: false }))
+  }
+  useEffect(() => {
+    showBreadCrumb()
+    return hideBreadcrumb
+  }, [])
+
   return (
-    <div className="py-10 lgp8:max-w-[1650px] w-[95%] mx-auto overflow-x-auto">
+    <div className="pb-10 lgp8:max-w-[1650px] w-[95%] mx-auto overflow-x-auto">
       <h1 className="text-lg ">Product Comparison</h1>
-      <ul className="flex flex-row mb-4 mt-7 text-gray-400">
+      {/* <ul className="flex flex-row mb-4 mt-7 text-gray-400">
         <li>
           <a href="/">
             <i className="fa fa-home"></i>
@@ -14,7 +34,7 @@ function ProductComparison() {
         <li className="/">
           <a href="/compare">Product Comparison</a>
         </li>
-      </ul>
+      </ul> */}
       <table className="">
         <thead className="py-2 comparison-thead">
           <tr className="border">
