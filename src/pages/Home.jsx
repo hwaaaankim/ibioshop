@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openModal } from '../store/slices/modalSlice'
 import { http } from '../services/http/http'
 import { addToCart } from '../store/slices/cartSlice'
+import { addToComparison } from '../store/slices/compareSlice'
 import { useSnackbar } from 'notistack'
 import { BASE_URL, CDN_URL } from '../config/config'
 
@@ -721,6 +722,13 @@ function Product({ product, showProgress = false }) {
       anchorOrigin: { horizontal: 'right', vertical: 'top' },
     })
   }
+  const add2Compare = () => {
+    dispatch(addToComparison(product))
+    enqueueSnackbar('Added to compare list!', {
+      variant: 'success',
+      anchorOrigin: { horizontal: 'right', vertical: 'top' },
+    })
+  }
 
   const [wlLoading, setWloading] = useState(false)
   const add2Wishlist = async () => {
@@ -840,6 +848,7 @@ function Product({ product, showProgress = false }) {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="flex-shrink-0 w-[30px] h-[30px] flex items-center justify-center text-right border rounded-full text-primary border-primary cursor-pointer"
+                    onClick={add2Compare}
                   >
                     <i className="fa fa-retweet"></i>
                   </motion.div>
